@@ -7,5 +7,5 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       intro.style.display = 'none';
     }, 2000); // match the transition fade duration
-  }, 8000); // wait for GIF display duration (10 seconds)
+  }, 6000); // wait for GIF display duration (10 seconds)
 });
