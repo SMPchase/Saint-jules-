@@ -11,24 +11,9 @@
       scroll-behavior: smooth;
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: white;
-      font-size: 1rem;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 12px 20px;
-      border: 1px solid #fff;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      z-index: 1010;
-    }
-
-    .scroll-hint:hover {
-      background: rgba(255, 255, 255, 0.2);
+    /* Optional: let users scroll while intro is still on screen */
+    body {
+      overflow-y: scroll;
     }
   </style>
 </head>
@@ -40,7 +25,6 @@
       src="https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/ezgif-41b83ed05c7028.gif"
       alt="Saint Jules Intro GIF"
     />
-    <a href="#main" class="scroll-hint">Scroll to Enter</a>
   </div>
 
   <!-- Hero Section -->
