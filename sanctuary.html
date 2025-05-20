@@ -12,13 +12,23 @@
       background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
       font-family: 'Open Sans', sans-serif;
       color: #f5f5f5;
-      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
       overflow: hidden;
+    }
+
+    .left-section {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px;
     }
 
     .angel {
       max-width: 300px;
-      margin: 60px auto 20px;
+      margin: 20px auto;
       animation: pulse 4s ease-in-out infinite;
       filter: drop-shadow(0 0 30px #f7e97f);
     }
@@ -59,10 +69,33 @@
       color: #000;
     }
 
+    .right-section {
+      width: 320px;
+      padding: 40px 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border-left: 1px solid #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .player-title {
+      font-size: 1.2rem;
+      color: #f7e97f;
+      margin-bottom: 20px;
+    }
+
+    audio {
+      width: 100%;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 10px #f7e97f66);
+    }
+
     footer {
       position: absolute;
       bottom: 20px;
       width: 100%;
+      text-align: center;
       font-size: 0.85rem;
       color: #888;
     }
@@ -70,15 +103,29 @@
 </head>
 <body>
 
-  <img class="angel" src="Glowing Saint Jules Angel.png" alt="Saint Jules Angel Logo">
+  <div class="left-section">
+    <img class="angel" src="https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Glowing%20Saint%20Jules%20Angel.png" alt="Saint Jules Angel Logo">
 
-  <h1>Welcome to the Sanctuary</h1>
-  <p class="message">You’ve crossed the threshold.  
-  This is where purpose lives and doubt dies.  
-  <br><br>
-  Stay grounded. Stay guided. Stay chosen.</p>
+    <h1>Welcome to the Sanctuary</h1>
+    <p class="message">You’ve crossed the threshold.  
+    This is where purpose lives and doubt dies.  
+    <br><br>
+    Stay grounded. Stay guided. Stay chosen.</p>
 
-  <a href="index.html" class="return-link">Return to the Gate</a>
+    <a href="index.html" class="return-link">Return to the Gate</a>
+  </div>
+
+  <div class="right-section">
+    <div class="player-title">Sacred Sounds</div>
+    <audio controls>
+      <source src="song1.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+    <audio controls>
+      <source src="song2.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
 
   <footer>
     &copy; 2025 Saint Jules. A Glasswall Records Presentation.
