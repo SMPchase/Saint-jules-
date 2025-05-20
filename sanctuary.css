@@ -1,0 +1,101 @@
+
+body {
+  margin: 0;
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 100%);
+  font-family: 'Open Sans', sans-serif;
+  color: #f5f5f5;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  box-shadow: 0 0 60px rgba(247, 233, 127, 0.15);
+  backdrop-filter: blur(12px);
+}
+
+.angel {
+  max-width: 220px;
+  margin: 0 auto 20px;
+  animation: pulse 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px #f7e97f);
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.9; }
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.7rem;
+  color: #f7e97f;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px #f7e97f55;
+}
+
+p.message {
+  font-size: 1.1rem;
+  color: #ccc;
+  max-width: 600px;
+  margin: 0 auto 40px;
+}
+
+.audio-block {
+  margin: 40px auto;
+  max-width: 600px;
+}
+
+.waveform {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+audio {
+  width: 100%;
+  filter: drop-shadow(0 0 10px #f7e97f66);
+}
+
+.about, .socials, .contact {
+  margin-top: 40px;
+  color: #bbb;
+}
+
+.about h3, .socials h3, .contact h3 {
+  color: #f7e97f;
+  margin-bottom: 10px;
+}
+
+.socials a {
+  color: #f7e97f;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.glasswall-logo {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.glasswall-logo img {
+  width: 90px;
+  opacity: 0.9;
+  transition: 0.3s;
+}
+
+.glasswall-logo img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+footer {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #888;
+}
