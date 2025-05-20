@@ -1,55 +1,74 @@
-let wavesurfer = WaveSurfer.create({
-  container: '#waveform',
-  waveColor: '#f7e97f33',
-  progressColor: '#f7e97f',
-  barWidth: 2,
-  height: 80,
-  responsive: true
-});
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Sanctuary | Saint Jules</title>
 
-wavesurfer.load('https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Ouroboros.mp3');
+  <!-- Fonts + Theme CSS -->
+  <link rel="stylesheet" href="sanctuary-player.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
 
-// UI Elements
-const playBtn = document.getElementById('play-btn');
-const currentTimeEl = document.getElementById('current-time');
-const totalTimeEl = document.getElementById('total-time');
-const volumeSlider = document.getElementById('volume');
-const progressBar = document.getElementById('progress');
+  <div class="container">
+    <img class="angel" src="https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Glowing%20Saint%20Jules%20Angel.png" alt="Saint Jules Angel Logo">
 
-// Play/Pause toggle
-playBtn.addEventListener('click', () => {
-  wavesurfer.playPause();
-  playBtn.textContent = wavesurfer.isPlaying() ? 'Pause' : 'Play';
-});
+    <h1>The Sanctuary</h1>
+    <p class="message">
+      You’ve crossed the threshold.<br>
+      This is where purpose lives and doubt dies.<br><br>
+      Stay grounded. Stay guided. Stay chosen.
+    </p>
 
-// Volume control
-volumeSlider.addEventListener('input', () => {
-  wavesurfer.setVolume(volumeSlider.value);
-});
+    <!-- Custom Music Player -->
+    <div class="audio-block">
+      <div id="waveform" class="waveform"></div>
+      <div class="controls">
+        <button id="play-btn">Play</button>
+        <div class="time-display">
+          <span id="current-time">0:00</span> / <span id="total-time">0:00</span>
+        </div>
+        <input type="range" id="progress" min="0" value="0">
+        <div class="volume">
+          <label for="volume">Vol</label>
+          <input type="range" id="volume" min="0" max="1" step="0.01" value="1">
+        </div>
+      </div>
+    </div>
 
-// Update time display
-wavesurfer.on('ready', () => {
-  totalTimeEl.textContent = formatTime(wavesurfer.getDuration());
-  progressBar.max = Math.floor(wavesurfer.getDuration());
-});
+    <!-- About -->
+    <div class="about">
+      <h3>About Saint Jules</h3>
+      <p>Saint Jules is a vessel of sound, story, and spirit. Music is the message—this sanctuary is the echo.</p>
+    </div>
 
-wavesurfer.on('audioprocess', () => {
-  const time = wavesurfer.getCurrentTime();
-  currentTimeEl.textContent = formatTime(time);
-  progressBar.value = time;
-});
+    <!-- Social Links -->
+    <div class="socials">
+      <h3>Connect with Me</h3>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://twitter.com" target="_blank">Twitter/X</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+    </div>
 
-wavesurfer.on('seek', (progress) => {
-  const duration = wavesurfer.getDuration();
-  progressBar.value = progress * duration;
-});
+    <!-- Contact -->
+    <div class="contact">
+      <h3>Contact</h3>
+      <p>Email: saintjules@glasswallrecords.com</p>
+    </div>
 
-progressBar.addEventListener('input', () => {
-  wavesurfer.seekTo(progressBar.value / wavesurfer.getDuration());
-});
+    <footer>
+      &copy; 2025 Saint Jules. A Glasswall Records Presentation.
+    </footer>
+  </div>
 
-function formatTime(seconds) {
-  const m = Math.floor(seconds / 60);
-  const s = Math.floor(seconds % 60).toString().padStart(2, '0');
-  return `${m}:${s}`;
-}
+  <!-- Glasswall Logo -->
+  <a class="glasswall-logo" href="http://glasswallrecords.com" target="_blank">
+    <img src="https://github.com/SMPchase/Dame-Montrel/blob/main/Images%20/glasswalllogo.PNG?raw=true" alt="Glasswall Records Logo" />
+  </a>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+  <script src="sanctuary-player.js"></script>
+</body>
+</html>
