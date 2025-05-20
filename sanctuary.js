@@ -1,4 +1,3 @@
-
 const wavesurfer = WaveSurfer.create({
   container: '#waveform',
   waveColor: '#f7e97f55',
