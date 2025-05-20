@@ -7,6 +7,10 @@
   <meta name="copyright" content="© 2025 Saint Jules. A Glasswall Records Presentation. All Rights Reserved.">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Open Sans', sans-serif;
@@ -17,8 +21,14 @@
 
     .video-intro {
       height: 100vh;
-      position: relative;
-      overflow: hidden;
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: black;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 2s ease;
     }
 
     .video-intro iframe {
@@ -27,16 +37,9 @@
       border: none;
     }
 
-    .scroll-down {
-      text-align: center;
-      font-size: 1rem;
-      margin: 15px;
-      animation: bounce 2s infinite;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(10px); }
+    .video-intro.fade-out {
+      opacity: 0;
+      pointer-events: none;
     }
 
     header {
@@ -48,6 +51,7 @@
       justify-content: center;
       text-align: center;
       position: relative;
+      z-index: 1;
     }
 
     .overlay {
@@ -116,12 +120,10 @@
 </head>
 <body>
 
-  <!-- Intro Video Section -->
-  <div class="video-intro">
-    <iframe src="https://drive.google.com/file/d/1cmdtS9dg5GScWbo9ukuLbHXF5m0HYIS0/preview" allow="autoplay"></iframe>
+  <!-- Autoplay Video Intro -->
+  <div class="video-intro" id="videoIntro">
+    <iframe src="https://drive.google.com/file/d/1cmdtS9dg5GScWbo9ukuLbHXF5m0HYIS0/preview?autoplay=1" allow="autoplay"></iframe>
   </div>
-
-  <div class="scroll-down">▼ Scroll Down ▼</div>
 
   <!-- Hero Section -->
   <header>
@@ -141,5 +143,17 @@
   <footer>
     &copy; 2025 Saint Jules. A Glasswall Records Presentation. All Rights Reserved.
   </footer>
+
+  <script>
+    // Fade out video intro after 15 seconds
+    setTimeout(() => {
+      const intro = document.getElementById('videoIntro');
+      intro.classList.add('fade-out');
+      setTimeout(() => {
+        intro.style.display = 'none';
+      }, 2000);
+    }, 15000); // Adjust this to match your video duration in ms
+  </script>
+
 </body>
 </html>
