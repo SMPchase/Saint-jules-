@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,22 +12,32 @@
       font-family: 'Open Sans', sans-serif;
       color: #f5f5f5;
       display: flex;
-      flex-direction: row;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       min-height: 100vh;
-      overflow: hidden;
+      text-align: center;
+      flex-direction: column;
+      overflow-x: hidden;
     }
 
-    .left-section {
-      flex: 1;
-      text-align: center;
+    .container {
+      max-width: 800px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
       padding: 40px 20px;
+      border-radius: 20px;
+      box-shadow: 0 0 50px rgba(247, 233, 127, 0.1);
+      animation: floatUp 6s ease-in-out infinite;
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
     .angel {
-      max-width: 300px;
-      margin: 20px auto;
+      max-width: 240px;
+      margin: 0 auto 20px;
       animation: pulse 4s ease-in-out infinite;
       filter: drop-shadow(0 0 30px #f7e97f);
     }
@@ -41,7 +50,6 @@
     h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
-      margin-top: 10px;
       color: #f7e97f;
       text-shadow: 0 0 15px #f7e97f77;
     }
@@ -49,8 +57,14 @@
     p.message {
       font-size: 1.1rem;
       color: #ccc;
-      max-width: 500px;
+      max-width: 600px;
+      margin: 20px auto 30px;
+    }
+
+    .waveform {
       margin: 20px auto;
+      width: 100%;
+      max-width: 600px;
     }
 
     .return-link {
@@ -69,33 +83,38 @@
       color: #000;
     }
 
-    .right-section {
-      width: 320px;
-      padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.05);
-      border-left: 1px solid #333;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    .socials, .about, .contact {
+      margin-top: 30px;
+      font-size: 0.95rem;
+      color: #bbb;
     }
 
-    .player-title {
-      font-size: 1.2rem;
+    .socials a {
       color: #f7e97f;
-      margin-bottom: 20px;
+      margin: 0 10px;
+      text-decoration: none;
     }
 
-    audio {
-      width: 100%;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 0 10px #f7e97f66);
+    .glasswall-logo {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 10;
+    }
+
+    .glasswall-logo img {
+      width: 100px;
+      opacity: 0.9;
+      transition: 0.3s;
+    }
+
+    .glasswall-logo img:hover {
+      opacity: 1;
+      transform: scale(1.05);
     }
 
     footer {
-      position: absolute;
-      bottom: 20px;
-      width: 100%;
-      text-align: center;
+      margin-top: 40px;
       font-size: 0.85rem;
       color: #888;
     }
@@ -103,33 +122,60 @@
 </head>
 <body>
 
-  <div class="left-section">
+  <div class="container">
     <img class="angel" src="https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Glowing%20Saint%20Jules%20Angel.png" alt="Saint Jules Angel Logo">
-
     <h1>Welcome to the Sanctuary</h1>
-    <p class="message">You’ve crossed the threshold.  
-    This is where purpose lives and doubt dies.  
-    <br><br>
+    <p class="message">You’ve crossed the threshold.<br>
+    This is where purpose lives and doubt dies.<br><br>
     Stay grounded. Stay guided. Stay chosen.</p>
 
+    <div id="waveform" class="waveform"></div>
+    <audio id="audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" controls></audio>
+
     <a href="index.html" class="return-link">Return to the Gate</a>
+
+    <div class="about">
+      <h3>About Saint Jules</h3>
+      <p>Saint Jules is a vessel of sound, story, and spirit. Music is the message—this sanctuary is the echo.</p>
+    </div>
+
+    <div class="socials">
+      <h3>Connect with Me</h3>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
+      <a href="https://twitter.com" target="_blank">Twitter/X</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
+    </div>
+
+    <div class="contact">
+      <h3>Contact</h3>
+      <p>Email: saintjules@glasswallrecords.com</p>
+    </div>
+
+    <footer>
+      &copy; 2025 Saint Jules. A Glasswall Records Presentation.
+    </footer>
   </div>
 
-  <div class="right-section">
-    <div class="player-title">Sacred Sounds</div>
-    <audio controls>
-      <source src="song1.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-    <audio controls>
-      <source src="song2.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
+  <a class="glasswall-logo" href="http://glasswallrecords.com" target="_blank">
+    <img src="https://github.com/SMPchase/Dame-Montrel/blob/main/Images%20/glasswalllogo.PNG?raw=true" alt="Glasswall Records Logo" />
+  </a>
 
-  <footer>
-    &copy; 2025 Saint Jules. A Glasswall Records Presentation.
-  </footer>
+  <script src="https://unpkg.com/wavesurfer.js"></script>
+  <script>
+    var wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#f7e97f55',
+      progressColor: '#f7e97f',
+      barWidth: 2,
+      height: 80
+    });
+
+    wavesurfer.load('https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3');
+
+    const audio = document.getElementById('audio');
+    audio.addEventListener('play', () => wavesurfer.play());
+    audio.addEventListener('pause', () => wavesurfer.pause());
+  </script>
 
 </body>
 </html>
