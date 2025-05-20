@@ -120,9 +120,9 @@
 </head>
 <body>
 
-  <!-- Autoplay Video Intro -->
+  <!-- Video Intro Section -->
   <div class="video-intro" id="videoIntro">
-    <iframe src="https://drive.google.com/file/d/1cmdtS9dg5GScWbo9ukuLbHXF5m0HYIS0/preview?autoplay=1" allow="autoplay"></iframe>
+    <iframe loading="eager" src="https://drive.google.com/file/d/1cmdtS9dg5GScWbo9ukuLbHXF5m0HYIS0/preview?autoplay=1" allow="autoplay"></iframe>
   </div>
 
   <!-- Hero Section -->
@@ -145,14 +145,18 @@
   </footer>
 
   <script>
-    // Fade out video intro after 15 seconds
-    setTimeout(() => {
-      const intro = document.getElementById('videoIntro');
-      intro.classList.add('fade-out');
+    const intro = document.getElementById('videoIntro');
+    const iframe = document.querySelector('#videoIntro iframe');
+
+    iframe.addEventListener('load', () => {
+      // Fade out after 16s (adjust to match your video length)
       setTimeout(() => {
-        intro.style.display = 'none';
-      }, 2000);
-    }, 20000); // Adjust this to match your video duration in ms
+        intro.classList.add('fade-out');
+        setTimeout(() => {
+          intro.style.display = 'none';
+        }, 2000); // match CSS fade duration
+      }, 16000);
+    });
   </script>
 
 </body>
