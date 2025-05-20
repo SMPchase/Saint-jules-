@@ -6,6 +6,31 @@
   <title>Saint Jules | The Calling</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: white;
+      font-size: 1rem;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 12px 20px;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 1010;
+    }
+
+    .scroll-hint:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  </style>
 </head>
 <body>
 
@@ -15,10 +40,11 @@
       src="https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/ezgif-41b83ed05c7028.gif"
       alt="Saint Jules Intro GIF"
     />
+    <a href="#main" class="scroll-hint">Scroll to Enter</a>
   </div>
 
   <!-- Hero Section -->
-  <header>
+  <header id="main">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Saint Jules</h1>
