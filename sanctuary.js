@@ -7,8 +7,4 @@ const wavesurfer = WaveSurfer.create({
   height: 80
 });
 
-wavesurfer.load('https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Ouroboros.wav');
-
-const audio = document.getElementById('audio');
-audio.addEventListener('play', () => wavesurfer.play());
-audio.addEventListener('pause', () => wavesurfer.pause());
+wavesurfer.load('https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Ouroboros.mp3');
