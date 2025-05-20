@@ -21,7 +21,7 @@
     }
 
     .container {
-      max-width: 960px;
+      max-width: 800px;
       padding: 40px 20px;
       text-align: center;
       backdrop-filter: blur(12px);
@@ -37,7 +37,7 @@
     }
 
     .angel {
-      max-width: 280px;
+      max-width: 240px;
       margin: 0 auto 20px;
       animation: pulse 4s ease-in-out infinite;
       filter: drop-shadow(0 0 30px #f7e97f);
@@ -59,23 +59,23 @@
     p.message {
       font-size: 1.1rem;
       color: #ccc;
-      margin: 20px auto;
+      margin: 20px auto 30px;
       max-width: 600px;
     }
 
-    .audio-section {
-      margin-top: 30px;
+    .audio-block {
+      margin-top: 20px;
     }
 
     .player-title {
       font-size: 1.2rem;
       color: #f7e97f;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     audio {
       width: 100%;
-      max-width: 400px;
+      max-width: 600px;
       margin: 10px auto;
       display: block;
       filter: drop-shadow(0 0 10px #f7e97f66);
@@ -113,4 +113,26 @@
     <p class="message">You’ve crossed the threshold.  
     This is where purpose lives and doubt dies.  
     <br><br>
-    Stay grounded. Stay guided. Stay chosen
+    Stay grounded. Stay guided. Stay chosen.</p>
+
+    <div class="audio-block">
+      <div class="player-title">Sacred Sounds</div>
+      <audio controls>
+        <source src="song1.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      <audio controls>
+        <source src="song2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+    <a href="index.html" class="return-link">Return to the Gate</a>
+
+    <footer>
+      &copy; 2025 Saint Jules. A Glasswall Records Presentation.
+    </footer>
+  </div>
+
+</body>
+</html>
