@@ -119,9 +119,15 @@
 </head>
 <body>
 
-  <!-- MP4 Video Intro -->
+  <!-- Autoplay MP4 Video Intro -->
   <div class="video-intro" id="videoIntro">
-    <video id="introVideo" autoplay muted playsinline>
+    <video
+      id="introVideo"
+      autoplay
+      muted
+      playsinline
+      preload="auto"
+    >
       <source src="https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/light%20pack.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
@@ -150,11 +156,22 @@
     const intro = document.getElementById('videoIntro');
     const video = document.getElementById('introVideo');
 
+    // Fallback: force autoplay via JavaScript
+    window.addEventListener('DOMContentLoaded', () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.log('Autoplay prevented, will not crash:', error);
+        });
+      }
+    });
+
+    // Fade out after video ends
     video.addEventListener('ended', () => {
       intro.classList.add('fade-out');
       setTimeout(() => {
         intro.style.display = 'none';
-      }, 2000); // match fade transition time
+      }, 2000);
     });
   </script>
 
