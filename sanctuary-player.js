@@ -69,6 +69,51 @@
 
   <!-- Scripts -->
   <script src="https://unpkg.com/wavesurfer.js"></script>
-  <script src="sanctuary-player.js"></script>
+  <script>
+    const wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor: '#ccc',
+      progressColor: '#fff',
+      height: 80,
+      responsive: true,
+      barWidth: 2,
+      url: "https://raw.githubusercontent.com/SMPchase/Saint-jules-/main/Ouroboros.mp3"
+    });
+
+    const playButton = document.getElementById('play-btn');
+    const progressBar = document.getElementById('progress');
+    const currentTime = document.getElementById('current-time');
+    const totalTime = document.getElementById('total-time');
+    const volumeSlider = document.getElementById('volume');
+
+    playButton.addEventListener('click', () => {
+      wavesurfer.playPause();
+      playButton.textContent = wavesurfer.isPlaying() ? 'Pause' : 'Play';
+    });
+
+    wavesurfer.on('ready', () => {
+      progressBar.max = wavesurfer.getDuration();
+      totalTime.textContent = formatTime(wavesurfer.getDuration());
+    });
+
+    wavesurfer.on('audioprocess', () => {
+      progressBar.value = wavesurfer.getCurrentTime();
+      currentTime.textContent = formatTime(wavesurfer.getCurrentTime());
+    });
+
+    progressBar.addEventListener('input', () => {
+      wavesurfer.setCurrentTime(progressBar.value);
+    });
+
+    volumeSlider.addEventListener('input', () => {
+      wavesurfer.setVolume(volumeSlider.value);
+    });
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${minutes}:${secs.toString().padStart(2, '0')}`;
+    }
+  </script>
 </body>
 </html>
