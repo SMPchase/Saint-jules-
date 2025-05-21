@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>The Sanctuary | Saint Jules</title>
 
+  <!-- Fonts + Theme CSS -->
   <link rel="stylesheet" href="sanctuary-player.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
 </head>
@@ -20,7 +21,7 @@
       Stay grounded. Stay guided. Stay chosen.
     </p>
 
-    <!-- 🎧 Custom Audio Player -->
+    <!-- Custom Music Player -->
     <div class="audio-block">
       <div id="waveform" class="waveform"></div>
       <div class="controls">
@@ -36,21 +37,21 @@
       </div>
     </div>
 
-    <!-- 👤 About -->
+    <!-- About -->
     <div class="about">
       <h3>About Saint Jules</h3>
       <p>Saint Jules is a vessel of sound, story, and spirit. Music is the message—this sanctuary is the echo.</p>
     </div>
 
-    <!-- 🌐 Social Links -->
+    <!-- Social Links -->
     <div class="socials">
       <h3>Connect with Me</h3>
-      <a href="https://www.instagram.com/saint__jules?igsh=MWlldWNxc3ZscWJ6Mg%3D%3D&utm_source=qr" target="_blank">Instagram</a>
+      <a href="https://instagram.com" target="_blank">Instagram</a>
       <a href="https://twitter.com" target="_blank">Twitter/X</a>
-      <a href="https://m.youtube.com/channel/UCALNiMehHSx3KUoZiaU6SXw/videos" target="_blank">YouTube</a>
+      <a href="https://youtube.com" target="_blank">YouTube</a>
     </div>
 
-    <!-- 📩 Contact -->
+    <!-- Contact -->
     <div class="contact">
       <h3>Contact</h3>
       <p>Email: saintjules@glasswallrecords.com</p>
@@ -66,6 +67,7 @@
     <img src="https://github.com/SMPchase/Dame-Montrel/blob/main/Images%20/glasswalllogo.PNG?raw=true" alt="Glasswall Records Logo" />
   </a>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/wavesurfer.js"></script>
   <script src="sanctuary-player.js"></script>
 </body>
