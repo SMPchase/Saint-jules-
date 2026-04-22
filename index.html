@@ -259,7 +259,7 @@
       <div class="hero-card">
         <div class="hero-stack">
           <div class="hero-main">
-            <img src="IMG_0858.jpeg" alt="Sunset image">
+            <img id="hero-img" alt="Sunset image">
             <div class="float-note script note1">Lord Have Mercy</div>
             <div class="float-note script note2">He's A Crash Dummy</div>
             <div class="overlay-title">
@@ -297,30 +297,30 @@
       <div class="gallery">
         <div class="left-col">
           <div class="image-card tall">
-            <img src="IMG_0373.jpeg" alt="Portrait with angel tattoo">
+            <img id="img-1" alt="Portrait with angel tattoo">
             <div class="scribble s1 script">Lord Have Mercy He's A Crash Dummy</div>
             <div class="caption">romanticized photo dump
               <span class="tiny">pink hair • angel mark • soft sky</span>
             </div>
           </div>
           <div class="image-card medium">
-            <img src="IMG_3415.jpeg" alt="Smiling portrait">
+            <img id="img-2" alt="Smiling portrait">
             <div class="caption smallcap script">funny, sweet, alive</div>
           </div>
         </div>
 
         <div class="right-col">
           <div class="image-card medium">
-            <img src="IMG_0797.jpeg" alt="Field portrait">
+            <img id="img-3" alt="Field portrait">
             <div class="scribble s2 script">Crash Dummy</div>
             <div class="caption smallcap">space for handwritten titles</div>
           </div>
           <div class="image-card small">
-            <img src="IMG_0768.jpeg" alt="Water image">
+            <img id="img-4" alt="Water image">
             <div class="caption smallcap script">glowy little in-betweens</div>
           </div>
           <div class="image-card medium">
-            <img src="IMG_0769.jpeg" alt="House window image">
+            <img id="img-5" alt="House window image">
             <div class="scribble s3 script">repeated phrases everywhere</div>
             <div class="caption smallcap">scrapbook-pop chaos</div>
           </div>
@@ -375,7 +375,7 @@
           <div class="pill">✉ soft call to action</div>
           <h2 style="margin-top:14px">Saint Jules</h2>
           <p class="muted" style="max-width:760px;margin-top:12px">
-            This is built to sit in your repo as the main homepage. Drop it in as <strong>index.html</strong> and it should use the images already sitting in that folder.
+            This version pulls the photos straight from GitHub, so you do not have to rely on local image paths inside the folder.
           </p>
         </div>
         <div class="footer-actions">
@@ -385,5 +385,25 @@
       </div>
     </section>
   </div>
+
+  <script>
+    const GITHUB_BASE = "https://cdn.jsdelivr.net/gh/SMPchase/Saint-jules-@main/";
+
+    const images = {
+      hero: "IMG_0858.jpeg",
+      one: "IMG_0373.jpeg",
+      two: "IMG_3415.jpeg",
+      three: "IMG_0797.jpeg",
+      four: "IMG_0768.jpeg",
+      five: "IMG_0769.jpeg"
+    };
+
+    document.getElementById("hero-img").src = GITHUB_BASE + images.hero;
+    document.getElementById("img-1").src = GITHUB_BASE + images.one;
+    document.getElementById("img-2").src = GITHUB_BASE + images.two;
+    document.getElementById("img-3").src = GITHUB_BASE + images.three;
+    document.getElementById("img-4").src = GITHUB_BASE + images.four;
+    document.getElementById("img-5").src = GITHUB_BASE + images.five;
+  </script>
 </body>
 </html>
