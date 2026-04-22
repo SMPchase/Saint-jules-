@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saint Jules — Bubbly Era</title>
+  <title>Saint Jules</title>
   <style>
     :root{
       --rose:#e97aa8;
-      --hot:#ff6fa8;
+      --soft-rose:#f3a7c5;
       --peach:#ffc59e;
       --cream:#fff5ef;
       --sky:#d9e8ff;
@@ -55,6 +55,7 @@
       padding:11px 16px;border:1px solid var(--line);border-radius:999px;
       background:var(--white);color:var(--rose);font-size:12px;text-transform:uppercase;letter-spacing:.28em;
       box-shadow:var(--shadow);
+      text-decoration:none;
     }
     nav{display:flex;gap:10px;flex-wrap:wrap}
     nav a{
@@ -224,7 +225,7 @@
 
   <div class="wrap">
     <header>
-      <div class="brand">Saint Jules ✦ Bubbly Era</div>
+      <a class="brand" href="#">Saint Jules ✦ Bubbly Era</a>
       <nav>
         <a href="#photos">Photos</a>
         <a href="#music">Music</a>
@@ -238,7 +239,7 @@
         <div class="pill">☁ bubbly era incoming</div>
         <h1>Softer. Dreamier. More fun.</h1>
         <div class="lede">
-          This version feels way closer to what you showed me — sunset-glowy, crushy, scrapbook-pop, handwritten,
+          This version feels way closer to your images — sunset-glowy, crushy, scrapbook-pop, handwritten,
           playful, and a little messy in the good way.
         </div>
         <div class="actions">
@@ -258,7 +259,7 @@
       <div class="hero-card">
         <div class="hero-stack">
           <div class="hero-main">
-            <img src="bubble-1.jpeg" alt="Sunset cover style image">
+            <img id="hero-img" alt="Sunset image">
             <div class="float-note script note1">Lord Have Mercy</div>
             <div class="float-note script note2">He's A Crash Dummy</div>
             <div class="overlay-title">
@@ -289,38 +290,37 @@
           <h2>A site built around your pictures.</h2>
         </div>
         <p>
-          Instead of clean placeholders, this version lets the visuals lead. Rounded collage cards, floating script,
-          and enough softness that the photos carry the whole identity.
+          Rounded collage cards, floating script, and enough softness that the photos carry the whole identity.
         </p>
       </div>
 
       <div class="gallery">
         <div class="left-col">
           <div class="image-card tall">
-            <img src="bubble-3.jpeg" alt="Portrait with angel tattoo">
+            <img id="img-1" alt="Portrait with angel tattoo">
             <div class="scribble s1 script">Lord Have Mercy He's A Crash Dummy</div>
             <div class="caption">romanticized photo dump
               <span class="tiny">pink hair • angel mark • soft sky</span>
             </div>
           </div>
           <div class="image-card medium">
-            <img src="bubble-6.jpeg" alt="Smiling portrait">
+            <img id="img-2" alt="Smiling portrait">
             <div class="caption smallcap script">funny, sweet, alive</div>
           </div>
         </div>
 
         <div class="right-col">
           <div class="image-card medium">
-            <img src="bubble-5.jpeg" alt="Field portrait with red text">
+            <img id="img-3" alt="Field portrait">
             <div class="scribble s2 script">Crash Dummy</div>
             <div class="caption smallcap">space for handwritten titles</div>
           </div>
           <div class="image-card small">
-            <img src="bubble-7.jpeg" alt="Water image with purple text">
+            <img id="img-4" alt="Water image">
             <div class="caption smallcap script">glowy little in-betweens</div>
           </div>
           <div class="image-card medium">
-            <img src="bubble-2.jpeg" alt="House window image">
+            <img id="img-5" alt="House window image">
             <div class="scribble s3 script">repeated phrases everywhere</div>
             <div class="caption smallcap">scrapbook-pop chaos</div>
           </div>
@@ -335,7 +335,7 @@
           <h2>Cute on top. Heart under it.</h2>
         </div>
         <p>
-          The music part should still hold rollout stuff, but in a way that feels handwritten and fun instead of rigid.
+          The music part still holds rollout stuff, but in a way that feels handwritten and fun instead of rigid.
         </p>
       </div>
 
@@ -373,10 +373,9 @@
       <div class="cta">
         <div>
           <div class="pill">✉ soft call to action</div>
-          <h2 style="margin-top:14px">Now it actually looks fun.</h2>
+          <h2 style="margin-top:14px">Saint Jules</h2>
           <p class="muted" style="max-width:760px;margin-top:12px">
-            This is a visible mockup you can click right now. Next step is turning it into the real site with your final copy,
-            links, music embeds, and the exact photo arrangement you want.
+            This version pulls the photos straight from GitHub, so you do not have to rely on local image paths inside the folder.
           </p>
         </div>
         <div class="footer-actions">
@@ -386,5 +385,25 @@
       </div>
     </section>
   </div>
+
+  <script>
+    const GITHUB_BASE = "https://cdn.jsdelivr.net/gh/SMPchase/Saint-jules-@main/";
+
+    const images = {
+      hero: "IMG_0858.jpeg",
+      one: "IMG_0373.jpeg",
+      two: "IMG_3415.jpeg",
+      three: "IMG_0797.jpeg",
+      four: "IMG_0768.jpeg",
+      five: "IMG_0769.jpeg"
+    };
+
+    document.getElementById("hero-img").src = GITHUB_BASE + images.hero;
+    document.getElementById("img-1").src = GITHUB_BASE + images.one;
+    document.getElementById("img-2").src = GITHUB_BASE + images.two;
+    document.getElementById("img-3").src = GITHUB_BASE + images.three;
+    document.getElementById("img-4").src = GITHUB_BASE + images.four;
+    document.getElementById("img-5").src = GITHUB_BASE + images.five;
+  </script>
 </body>
 </html>
