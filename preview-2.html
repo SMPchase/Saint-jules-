@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saint Jules — Bubbly Era</title>
+  <style>
+    :root{
+      --rose:#e97aa8;
+      --hot:#ff6fa8;
+      --peach:#ffc59e;
+      --cream:#fff5ef;
+      --sky:#d9e8ff;
+      --lav:#efd9ff;
+      --text:#6c3550;
+      --soft:#8f5f76;
+      --white:rgba(255,255,255,.60);
+      --line:rgba(255,255,255,.72);
+      --shadow:0 18px 50px rgba(233,122,168,.18);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 20% 10%, rgba(255,255,255,.85), transparent 18%),
+        radial-gradient(circle at 80% 20%, rgba(255,215,221,.8), transparent 18%),
+        linear-gradient(180deg,#fff0f5 0%,#ffe7db 22%,#ffd7c8 45%,#f6d7f6 72%,#dce7ff 100%);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+    .dots{
+      position:fixed; inset:0; pointer-events:none; opacity:.38;
+      background-image: radial-gradient(rgba(255,255,255,.85) 1px, transparent 1px);
+      background-size: 22px 22px;
+      mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+    }
+    .blob{
+      position:fixed; border-radius:999px; filter:blur(42px); pointer-events:none; opacity:.6;
+    }
+    .blob.one{width:240px;height:240px;background:#ffb0cb;top:100px;left:-50px}
+    .blob.two{width:280px;height:280px;background:#ffd1a8;top:420px;right:-80px}
+    .blob.three{width:220px;height:220px;background:#d7c0ff;bottom:120px;left:10%}
+    .wrap{max-width:1220px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
+    header{
+      display:flex;justify-content:space-between;align-items:center;padding:24px 0 10px;
+    }
+    .brand, nav a, .pill, .chip, .btn, .mini-pill{
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+    .brand{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:11px 16px;border:1px solid var(--line);border-radius:999px;
+      background:var(--white);color:var(--rose);font-size:12px;text-transform:uppercase;letter-spacing:.28em;
+      box-shadow:var(--shadow);
+    }
+    nav{display:flex;gap:10px;flex-wrap:wrap}
+    nav a{
+      padding:10px 14px;border:1px solid var(--line);border-radius:999px;
+      background:rgba(255,255,255,.45);text-decoration:none;color:var(--rose);font-size:14px;
+      box-shadow:var(--shadow);
+    }
+    .hero{
+      display:grid;grid-template-columns:1.02fr .98fr;gap:26px;align-items:center;padding:28px 0 48px;
+    }
+    .pill{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.55);
+      color:var(--rose);font-size:11px;text-transform:uppercase;letter-spacing:.22em;box-shadow:var(--shadow);
+    }
+    h1,h2,h3{
+      font-family: Georgia, "Times New Roman", serif;
+      margin:0; font-weight:500;
+    }
+    h1{
+      font-size:clamp(3.1rem,8vw,7rem);
+      line-height:.9;
+      color:var(--rose);
+      margin-top:16px;
+    }
+    .lede{
+      margin-top:22px;max-width:700px;font-size:18px;line-height:1.78;color:var(--soft);
+    }
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:14px 22px;border-radius:999px;border:1px solid var(--line);
+      text-decoration:none;font-weight:600;box-shadow:var(--shadow);
+    }
+    .btn.primary{background:linear-gradient(180deg,#ff8db9,#f06ea4);color:white;border-color:transparent}
+    .btn.secondary{background:rgba(255,255,255,.45);color:var(--rose)}
+    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+    .chip{
+      padding:10px 14px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.46);font-size:14px;color:#d86b99;box-shadow:var(--shadow);
+    }
+
+    .hero-card, .glass, .image-card, .cta{
+      background:rgba(255,255,255,.37);
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .hero-card{
+      border-radius:34px;padding:15px;
+    }
+    .hero-stack{
+      display:grid;gap:14px;
+    }
+    .hero-main{
+      position:relative;overflow:hidden;border-radius:28px;min-height:520px;
+      background:linear-gradient(180deg,#ffd4bf 0%,#fff0e2 40%,#ffcce0 100%);
+    }
+    .hero-main img{
+      width:100%;height:100%;object-fit:cover;display:block;
+    }
+    .overlay-title{
+      position:absolute;inset:auto 18px 18px 18px;
+      padding:18px;border-radius:24px;background:rgba(255,255,255,.26);border:1px solid rgba(255,255,255,.55);
+      color:white;text-shadow:0 1px 10px rgba(153,73,107,.45);
+    }
+    .overlay-title .big{
+      font-size:42px;line-height:.94;font-family:Georgia,"Times New Roman",serif;
+      color:#fff7fb;
+    }
+    .overlay-title .sub{
+      margin-top:6px;font-size:18px;color:#fff1f7
+    }
+    .script{
+      font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", cursive;
+      font-weight:500;
+    }
+    .float-note{
+      position:absolute;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.36);
+      border:1px solid rgba(255,255,255,.56);color:#fff;font-size:18px;
+      text-shadow:0 1px 10px rgba(153,73,107,.42);
+    }
+    .note1{top:16px;left:20px;transform:rotate(-7deg)}
+    .note2{top:76px;right:18px;transform:rotate(8deg)}
+    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .glass{border-radius:24px;padding:18px}
+    .mini-pill{
+      display:inline-flex;padding:8px 12px;border-radius:999px;border:1px solid var(--line);
+      background:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--rose);
+    }
+    .glass h3{font-size:28px;color:var(--text);margin-top:10px}
+    .glass p{font-size:14px;line-height:1.7;color:var(--soft);margin:9px 0 0}
+    section{padding:26px 0}
+    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
+    .section-head p{max-width:520px;color:var(--soft);line-height:1.7}
+    h2{font-size:clamp(2.2rem,5vw,4.8rem);line-height:.95;color:var(--rose)}
+    .gallery{
+      display:grid;grid-template-columns:1.06fr .94fr;gap:16px;
+    }
+    .left-col,.right-col{display:grid;gap:16px}
+    .image-card{
+      border-radius:30px;padding:12px;position:relative;overflow:hidden;
+    }
+    .image-card img{
+      width:100%;height:100%;object-fit:cover;display:block;border-radius:24px;
+    }
+    .tall{min-height:620px}
+    .medium{min-height:300px}
+    .small{min-height:250px}
+    .caption{
+      position:absolute;left:22px;bottom:20px;right:22px;
+      color:#fff5fb;text-shadow:0 1px 12px rgba(130,70,102,.44);
+      font-size:36px;line-height:1;font-family:Georgia,"Times New Roman",serif;
+    }
+    .caption.smallcap{font-size:30px}
+    .caption .tiny{display:block;font-size:15px;margin-top:8px}
+    .scribble{
+      position:absolute;color:rgba(255,255,255,.92);
+      text-shadow:0 1px 10px rgba(153,73,107,.35);
+      font-size:34px;line-height:1;pointer-events:none;
+    }
+    .s1{top:16px;left:18px;transform:rotate(-6deg)}
+    .s2{top:28px;right:10px;transform:rotate(6deg)}
+    .s3{bottom:18px;right:24px;transform:rotate(-4deg)}
+    .music-grid{
+      display:grid;grid-template-columns:1fr .9fr;gap:16px;
+    }
+    .list{display:grid;gap:12px;margin-top:18px}
+    .list-item{
+      display:flex;justify-content:space-between;align-items:center;gap:15px;
+      padding:15px 18px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.43);
+      color:var(--text)
+    }
+    .track-note{
+      display:grid;place-items:center;min-height:100%;
+      text-align:center;padding:22px;border-radius:28px;
+      background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.28));
+      border:1px dashed rgba(233,122,168,.38);
+    }
+    .track-note .curve{
+      font-size:28px;color:#d76b9a
+    }
+    .cta{
+      border-radius:34px;padding:26px;
+      display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin-top:10px
+    }
+    .footer-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .muted{font-size:15px;line-height:1.8;color:var(--soft)}
+    @media (max-width: 980px){
+      nav{display:none}
+      .hero,.gallery,.music-grid,.cta,.mini-grid{grid-template-columns:1fr}
+      .hero-main{min-height:420px}
+      .tall{min-height:440px}
+      .medium{min-height:260px}
+      .small{min-height:220px}
+      .caption{font-size:28px}
+      .overlay-title .big{font-size:34px}
+    }
+  </style>
+</head>
+<body>
+  <div class="dots"></div>
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+  <div class="blob three"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">Saint Jules ✦ Bubbly Era</div>
+      <nav>
+        <a href="#photos">Photos</a>
+        <a href="#music">Music</a>
+        <a href="#mood">Mood</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section class="hero" id="mood">
+      <div>
+        <div class="pill">☁ bubbly era incoming</div>
+        <h1>Softer. Dreamier. More fun.</h1>
+        <div class="lede">
+          This version feels way closer to what you showed me — sunset-glowy, crushy, scrapbook-pop, handwritten,
+          playful, and a little messy in the good way.
+        </div>
+        <div class="actions">
+          <a class="btn primary" href="#photos">Enter the era ♡</a>
+          <a class="btn secondary" href="#music">See the music section</a>
+        </div>
+        <div class="chips">
+          <span class="chip">Lord Have Mercy</span>
+          <span class="chip">Crash Dummy</span>
+          <span class="chip">sunset glow</span>
+          <span class="chip">angel energy</span>
+          <span class="chip">photo dump pop</span>
+          <span class="chip">pink halo</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-stack">
+          <div class="hero-main">
+            <img src="bubble-1.jpeg" alt="Sunset cover style image">
+            <div class="float-note script note1">Lord Have Mercy</div>
+            <div class="float-note script note2">He's A Crash Dummy</div>
+            <div class="overlay-title">
+              <div class="big">A homepage that feels like your actual era.</div>
+              <div class="sub">more diary-pop than brand deck</div>
+            </div>
+          </div>
+          <div class="mini-grid">
+            <div class="glass">
+              <span class="mini-pill">visual feel</span>
+              <h3>sunset + softness</h3>
+              <p>Warm edits, curvy shapes, handwritten overlays, and sweet little details.</p>
+            </div>
+            <div class="glass">
+              <span class="mini-pill">site energy</span>
+              <h3>cute but real</h3>
+              <p>Pretty on the surface, emotional underneath, with enough play to feel alive.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="photos">
+      <div class="section-head">
+        <div>
+          <div class="pill">✿ photo world</div>
+          <h2>A site built around your pictures.</h2>
+        </div>
+        <p>
+          Instead of clean placeholders, this version lets the visuals lead. Rounded collage cards, floating script,
+          and enough softness that the photos carry the whole identity.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <div class="left-col">
+          <div class="image-card tall">
+            <img src="bubble-3.jpeg" alt="Portrait with angel tattoo">
+            <div class="scribble s1 script">Lord Have Mercy He's A Crash Dummy</div>
+            <div class="caption">romanticized photo dump
+              <span class="tiny">pink hair • angel mark • soft sky</span>
+            </div>
+          </div>
+          <div class="image-card medium">
+            <img src="bubble-6.jpeg" alt="Smiling portrait">
+            <div class="caption smallcap script">funny, sweet, alive</div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="image-card medium">
+            <img src="bubble-5.jpeg" alt="Field portrait with red text">
+            <div class="scribble s2 script">Crash Dummy</div>
+            <div class="caption smallcap">space for handwritten titles</div>
+          </div>
+          <div class="image-card small">
+            <img src="bubble-7.jpeg" alt="Water image with purple text">
+            <div class="caption smallcap script">glowy little in-betweens</div>
+          </div>
+          <div class="image-card medium">
+            <img src="bubble-2.jpeg" alt="House window image">
+            <div class="scribble s3 script">repeated phrases everywhere</div>
+            <div class="caption smallcap">scrapbook-pop chaos</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="music">
+      <div class="section-head">
+        <div>
+          <div class="pill">♫ music section</div>
+          <h2>Cute on top. Heart under it.</h2>
+        </div>
+        <p>
+          The music part should still hold rollout stuff, but in a way that feels handwritten and fun instead of rigid.
+        </p>
+      </div>
+
+      <div class="music-grid">
+        <div class="glass" style="border-radius:30px;padding:24px">
+          <span class="mini-pill">what this version can hold</span>
+          <div class="list">
+            <div class="list-item"><span>big hero image + floating script title</span><span>♡</span></div>
+            <div class="list-item"><span>photo collage for the era</span><span>☁</span></div>
+            <div class="list-item"><span>tracklist styled like a diary page</span><span>✦</span></div>
+            <div class="list-item"><span>snippets / teaser embeds</span><span>♫</span></div>
+            <div class="list-item"><span>shows, interviews, and rollout notes</span><span>✿</span></div>
+            <div class="list-item"><span>mailing list or soft CTA</span><span>♡</span></div>
+          </div>
+        </div>
+
+        <div class="glass" style="border-radius:30px;padding:18px">
+          <div class="track-note">
+            <div>
+              <div class="mini-pill" style="margin-bottom:16px">tracklist idea</div>
+              <div class="curve script">let the songs float a little</div>
+              <p class="muted" style="max-width:420px;margin:14px auto 0">
+                Not just a strict list. Let titles curve, drift, or sit like notes across the page so it feels like part of the world.
+              </p>
+              <div style="margin-top:20px;font-family:Georgia, 'Times New Roman', serif;color:#d66c99;font-size:24px;line-height:1.6">
+                Boy Genius • Jump!!! • Come to Life • The Proposition • Rude • House • Apple Pie • PISA • Who Knew • In the Sun
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="cta">
+        <div>
+          <div class="pill">✉ soft call to action</div>
+          <h2 style="margin-top:14px">Now it actually looks fun.</h2>
+          <p class="muted" style="max-width:760px;margin-top:12px">
+            This is a visible mockup you can click right now. Next step is turning it into the real site with your final copy,
+            links, music embeds, and the exact photo arrangement you want.
+          </p>
+        </div>
+        <div class="footer-actions">
+          <a class="btn primary" href="#photos">look again ♡</a>
+          <a class="btn secondary" href="#music">music area</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
