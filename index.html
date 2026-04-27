@@ -417,6 +417,8 @@
       font-family: inherit;
       font-weight: 850;
       transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      position: relative;
+      isolation: isolate;
     }
 
     .track-row:hover, .track-row.active {
@@ -433,6 +435,46 @@
     .track-row.locked { opacity: .78; }
     .track-row .num { opacity: .58; }
     .track-row .status { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; opacity: .72; }
+
+    .track-blurb {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translate(-50%, 8px) scale(.98);
+      width: min(330px, calc(100vw - 48px));
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.44);
+      background: rgba(23, 0, 15, .88);
+      color: var(--white);
+      box-shadow: 0 18px 42px rgba(23,0,15,.24);
+      backdrop-filter: blur(16px);
+      font-size: .86rem;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: 0;
+      text-transform: none;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .track-blurb::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: rgba(23, 0, 15, .88);
+    }
+
+    .track-row:hover .track-blurb,
+    .track-row:focus-visible .track-blurb {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
 
     .album-splash {
       display: grid;
@@ -808,7 +850,8 @@
         art: "IMG_0373.jpeg",
         status: "flashes May 16",
         playable: false,
-        message: "Boy Genius flashes May 16. The dashboard light is blinking, but the keys are not in it yet."
+        message: "Boy Genius flashes May 16. The dashboard light is blinking, but the keys are not in it yet.",
+        blurb: "Duct tape, faith, bad ideas, and a passenger-seat kind of chaos. The pretty warning light before the crash."
       },
       {
         number: "02",
@@ -817,7 +860,8 @@
         art: "IMG_0375.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. Seatbelt on. This one is still behind the velvet rope."
+        message: "Crash date: June 18. Seatbelt on. This one is still behind the velvet rope.",
+        blurb: "A parachute song for when the ground is coming fast and you still have to trust the process."
       },
       {
         number: "03",
@@ -826,7 +870,8 @@
         art: "IMG_0768.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. It is not dead, it is just dramatically unavailable."
+        message: "Crash date: June 18. It is not dead, it is just dramatically unavailable.",
+        blurb: "The emotional reboot. Soft light, second chances, and the part where the heart starts acting alive again."
       },
       {
         number: "04",
@@ -835,7 +880,8 @@
         art: propositionArt,
         status: "single · playable now",
         playable: true,
-        message: "The single is live. Press play and accept The Proposition."
+        message: "The single is live. Press play and accept The Proposition.",
+        blurb: "The single. A broke-boy fairytale with passenger-princess energy, big plans, and a ride you can scream in."
       },
       {
         number: "05",
@@ -844,7 +890,8 @@
         art: "IMG_0769.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. This track is being rude and refusing to come outside yet."
+        message: "Crash date: June 18. This track is being rude and refusing to come outside yet.",
+        blurb: "Sweet talk with teeth. It is romantic, reckless, and just rude enough to tell the truth out loud."
       },
       {
         number: "06",
@@ -853,7 +900,8 @@
         art: "IMG_0781.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. The tower is leaning, but it has not fallen yet."
+        message: "Crash date: June 18. The tower is leaning, but it has not fallen yet.",
+        blurb: "Spanglish heartbreak in perfect weather. Peace disappears, feelings leak out, and the tower still leans pretty."
       },
       {
         number: "07",
@@ -862,7 +910,8 @@
         art: "IMG_0797.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. The pie is cooling on the window sill. Do not touch."
+        message: "Crash date: June 18. The pie is cooling on the window sill. Do not touch.",
+        blurb: "Sweet-as-apple-pie danger music. Best intentions, bad roads, and one bite turning into a whole interstate problem."
       },
       {
         number: "08",
@@ -871,7 +920,8 @@
         art: "IMG_0858.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. I know you want it. That is the problem."
+        message: "Crash date: June 18. I know you want it. That is the problem.",
+        blurb: "The caring-too-much record. Wanting better for somebody even when you cannot want it for them."
       },
       {
         number: "09",
@@ -880,7 +930,8 @@
         art: "IMG_3415.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. Darling, you felt it too early."
+        message: "Crash date: June 18. Darling, you felt it too early.",
+        blurb: "No back-and-forth, no take-backs. Space bars, hidden figures, and feelings too loud to pretend they were accidents."
       },
       {
         number: "10",
@@ -889,7 +940,8 @@
         art: "Glowing%20Saint%20Jules%20Angel.png",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. The dummy is still in the test lab."
+        message: "Crash date: June 18. The dummy is still in the test lab.",
+        blurb: "Full-speed love with no survival instinct. The title track knows the wall is there and still hits the gas."
       },
       {
         number: "11",
@@ -898,7 +950,8 @@
         art: "IMG_0373.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. Mr. Please said please wait."
+        message: "Crash date: June 18. Mr. Please said please wait.",
+        blurb: "A blessing song. Old-school, knees-bent, asking-the-father romance with gold-hearted intentions."
       },
       {
         number: "12",
@@ -907,7 +960,8 @@
         art: "IMG_0375.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. Who knew? Not the public. Not yet."
+        message: "Crash date: June 18. Who knew? Not the public. Not yet.",
+        blurb: "Grief, brotherhood, smoke from one flame, and learning how to believe again without knowing why yet."
       },
       {
         number: "13",
@@ -916,7 +970,8 @@
         art: "IMG_0768.jpeg",
         status: "crash date June 18",
         playable: false,
-        message: "Crash date: June 18. The sky is falling on schedule."
+        message: "Crash date: June 18. The sky is falling on schedule.",
+        blurb: "End-of-the-world pop. For when everything is falling, but somehow the chorus still looks cute doing it."
       }
     ];
 
@@ -976,6 +1031,7 @@
         <span class="num">${track.number}</span>
         <span>${track.title}</span>
         <span class="status">${track.status}</span>
+        <span class="track-blurb">${track.blurb}</span>
       `;
       button.addEventListener("click", () => loadTrack(track, index));
       tracklist.appendChild(button);
