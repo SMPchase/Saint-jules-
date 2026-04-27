@@ -3,407 +3,944 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Saint Jules</title>
+  <title>Saint Jules — Lord Have Mercy, He's A Crash Dummy!</title>
+  <meta name="description" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy! Listen to The Proposition now. Album crashes June 18." />
+  <meta property="og:title" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy!" />
+  <meta property="og:description" content="The Proposition is playable now. Boy Genius flashes May 16. Album crashes June 18." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --rose:#e97aa8;
-      --soft-rose:#f3a7c5;
-      --peach:#ffc59e;
-      --cream:#fff5ef;
-      --sky:#d9e8ff;
-      --lav:#efd9ff;
-      --text:#6c3550;
-      --soft:#8f5f76;
-      --white:rgba(255,255,255,.60);
-      --line:rgba(255,255,255,.72);
-      --shadow:0 18px 50px rgba(233,122,168,.18);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at 20% 10%, rgba(255,255,255,.85), transparent 18%),
-        radial-gradient(circle at 80% 20%, rgba(255,215,221,.8), transparent 18%),
-        linear-gradient(180deg,#fff0f5 0%,#ffe7db 22%,#ffd7c8 45%,#f6d7f6 72%,#dce7ff 100%);
-      min-height:100vh;
-      overflow-x:hidden;
-    }
-    .dots{
-      position:fixed; inset:0; pointer-events:none; opacity:.38;
-      background-image: radial-gradient(rgba(255,255,255,.85) 1px, transparent 1px);
-      background-size: 22px 22px;
-      mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-    }
-    .blob{
-      position:fixed; border-radius:999px; filter:blur(42px); pointer-events:none; opacity:.6;
-    }
-    .blob.one{width:240px;height:240px;background:#ffb0cb;top:100px;left:-50px}
-    .blob.two{width:280px;height:280px;background:#ffd1a8;top:420px;right:-80px}
-    .blob.three{width:220px;height:220px;background:#d7c0ff;bottom:120px;left:10%}
-    .wrap{max-width:1220px;margin:0 auto;padding:0 22px;position:relative;z-index:2}
-    header{
-      display:flex;justify-content:space-between;align-items:center;padding:24px 0 10px;
-    }
-    .brand, nav a, .pill, .chip, .btn, .mini-pill{
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-    .brand{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:11px 16px;border:1px solid var(--line);border-radius:999px;
-      background:var(--white);color:var(--rose);font-size:12px;text-transform:uppercase;letter-spacing:.28em;
-      box-shadow:var(--shadow);
-      text-decoration:none;
-    }
-    nav{display:flex;gap:10px;flex-wrap:wrap}
-    nav a{
-      padding:10px 14px;border:1px solid var(--line);border-radius:999px;
-      background:rgba(255,255,255,.45);text-decoration:none;color:var(--rose);font-size:14px;
-      box-shadow:var(--shadow);
-    }
-    .hero{
-      display:grid;grid-template-columns:1.02fr .98fr;gap:26px;align-items:center;padding:28px 0 48px;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.55);
-      color:var(--rose);font-size:11px;text-transform:uppercase;letter-spacing:.22em;box-shadow:var(--shadow);
-    }
-    h1,h2,h3{
-      font-family: Georgia, "Times New Roman", serif;
-      margin:0; font-weight:500;
-    }
-    h1{
-      font-size:clamp(3.1rem,8vw,7rem);
-      line-height:.9;
-      color:var(--rose);
-      margin-top:16px;
-    }
-    .lede{
-      margin-top:22px;max-width:700px;font-size:18px;line-height:1.78;color:var(--soft);
-    }
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-    .btn{
-      display:inline-flex;align-items:center;gap:10px;
-      padding:14px 22px;border-radius:999px;border:1px solid var(--line);
-      text-decoration:none;font-weight:600;box-shadow:var(--shadow);
-    }
-    .btn.primary{background:linear-gradient(180deg,#ff8db9,#f06ea4);color:white;border-color:transparent}
-    .btn.secondary{background:rgba(255,255,255,.45);color:var(--rose)}
-    .chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-    .chip{
-      padding:10px 14px;border-radius:999px;border:1px solid var(--line);
-      background:rgba(255,255,255,.46);font-size:14px;color:#d86b99;box-shadow:var(--shadow);
+    :root {
+      --hair-pink: #ff4fb8;
+      --hot-pink: #ff1493;
+      --soft-pink: #ffd2ef;
+      --baby-pink: #fff0fa;
+      --ink: #17000f;
+      --white: #fffafc;
+      --glass: rgba(255, 255, 255, 0.62);
+      --shadow: 0 22px 65px rgba(255, 20, 147, 0.24);
+      --border: rgba(23, 0, 15, 0.14);
     }
 
-    .hero-card, .glass, .image-card, .cta{
-      background:rgba(255,255,255,.37);
-      border:1px solid var(--line);
-      box-shadow:var(--shadow);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.95) 0 7%, transparent 8%),
+        radial-gradient(circle at 84% 16%, rgba(255,255,255,.8) 0 5%, transparent 6%),
+        radial-gradient(circle at 80% 82%, rgba(255,255,255,.75) 0 8%, transparent 9%),
+        linear-gradient(135deg, #ff77c8 0%, #ff4fb8 38%, #ffd2ef 100%);
+      overflow-x: hidden;
     }
-    .hero-card{
-      border-radius:34px;padding:15px;
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.13) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 78%);
+      z-index: 0;
     }
-    .hero-stack{
-      display:grid;gap:14px;
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
     }
-    .hero-main{
-      position:relative;overflow:hidden;border-radius:28px;min-height:520px;
-      background:linear-gradient(180deg,#ffd4bf 0%,#fff0e2 40%,#ffcce0 100%);
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.52);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 36px rgba(137, 0, 91, .14);
+      position: sticky;
+      top: 14px;
+      z-index: 5;
     }
-    .hero-main img{
-      width:100%;height:100%;object-fit:cover;display:block;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      font-size: .86rem;
     }
-    .overlay-title{
-      position:absolute;inset:auto 18px 18px 18px;
-      padding:18px;border-radius:24px;background:rgba(255,255,255,.26);border:1px solid rgba(255,255,255,.55);
-      color:white;text-shadow:0 1px 10px rgba(153,73,107,.45);
+
+    .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--hot-pink);
+      box-shadow: 0 0 0 7px rgba(255, 20, 147, .16), 0 0 28px rgba(255, 20, 147, .9);
     }
-    .overlay-title .big{
-      font-size:42px;line-height:.94;font-family:Georgia,"Times New Roman",serif;
-      color:#fff7fb;
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
-    .overlay-title .sub{
-      margin-top:6px;font-size:18px;color:#fff1f7
+
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.54);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: .86rem;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease;
     }
-    .script{
-      font-family: "Snell Roundhand", "Apple Chancery", "URW Chancery L", cursive;
-      font-weight:500;
+
+    .pill:hover { transform: translateY(-2px); background: var(--white); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 28px;
+      align-items: center;
+      padding: 56px 0 30px;
     }
-    .float-note{
-      position:absolute;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.36);
-      border:1px solid rgba(255,255,255,.56);color:#fff;font-size:18px;
-      text-shadow:0 1px 10px rgba(153,73,107,.42);
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: .78rem;
+      box-shadow: 0 10px 28px rgba(137, 0, 91, .12);
     }
-    .note1{top:16px;left:20px;transform:rotate(-7deg)}
-    .note2{top:76px;right:18px;transform:rotate(8deg)}
-    .mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .glass{border-radius:24px;padding:18px}
-    .mini-pill{
-      display:inline-flex;padding:8px 12px;border-radius:999px;border:1px solid var(--line);
-      background:rgba(255,255,255,.45);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--rose);
+
+    h1 {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(3.4rem, 9vw, 9.3rem);
+      line-height: .78;
+      margin: 18px 0 18px;
+      letter-spacing: -.055em;
+      text-transform: lowercase;
+      color: var(--white);
+      text-shadow: 0 4px 0 rgba(23,0,15,.92), 0 18px 45px rgba(255,20,147,.4);
     }
-    .glass h3{font-size:28px;color:var(--text);margin-top:10px}
-    .glass p{font-size:14px;line-height:1.7;color:var(--soft);margin:9px 0 0}
-    section{padding:26px 0}
-    .section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:18px}
-    .section-head p{max-width:520px;color:var(--soft);line-height:1.7}
-    h2{font-size:clamp(2.2rem,5vw,4.8rem);line-height:.95;color:var(--rose)}
-    .gallery{
-      display:grid;grid-template-columns:1.06fr .94fr;gap:16px;
+
+    .hero-copy {
+      max-width: 610px;
+      font-size: clamp(1.02rem, 2vw, 1.24rem);
+      line-height: 1.55;
+      font-weight: 650;
+      background: rgba(255,255,255,.48);
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      backdrop-filter: blur(14px);
     }
-    .left-col,.right-col{display:grid;gap:16px}
-    .image-card{
-      border-radius:30px;padding:12px;position:relative;overflow:hidden;
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
     }
-    .image-card img{
-      width:100%;height:100%;object-fit:cover;display:block;border-radius:24px;
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-weight: 900;
+      letter-spacing: .01em;
+      box-shadow: 0 12px 28px rgba(137,0,91,.18);
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
     }
-    .tall{min-height:620px}
-    .medium{min-height:300px}
-    .small{min-height:250px}
-    .caption{
-      position:absolute;left:22px;bottom:20px;right:22px;
-      color:#fff5fb;text-shadow:0 1px 12px rgba(130,70,102,.44);
-      font-size:36px;line-height:1;font-family:Georgia,"Times New Roman",serif;
+
+    .button:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 18px 38px rgba(137,0,91,.24); }
+    .button.primary { background: var(--ink); color: var(--white); }
+    .button.secondary { background: rgba(255,255,255,.65); }
+
+    .cover-card {
+      position: relative;
+      border-radius: 42px;
+      padding: 14px;
+      background: rgba(255,255,255,.48);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transform: rotate(2.5deg);
     }
-    .caption.smallcap{font-size:30px}
-    .caption .tiny{display:block;font-size:15px;margin-top:8px}
-    .scribble{
-      position:absolute;color:rgba(255,255,255,.92);
-      text-shadow:0 1px 10px rgba(153,73,107,.35);
-      font-size:34px;line-height:1;pointer-events:none;
+
+    .cover-card::before {
+      content: "boy genius · may 16";
+      position: absolute;
+      right: -10px;
+      top: 26px;
+      z-index: 2;
+      transform: rotate(8deg);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.1rem, 3vw, 2rem);
+      letter-spacing: -.02em;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 8px 18px 12px;
+      box-shadow: 0 14px 30px rgba(23,0,15,.28);
+      animation: flashTag 1.45s infinite steps(2, end);
     }
-    .s1{top:16px;left:18px;transform:rotate(-6deg)}
-    .s2{top:28px;right:10px;transform:rotate(6deg)}
-    .s3{bottom:18px;right:24px;transform:rotate(-4deg)}
-    .music-grid{
-      display:grid;grid-template-columns:1fr .9fr;gap:16px;
+
+    @keyframes flashTag {
+      0%, 100% { background: var(--ink); color: var(--white); transform: rotate(8deg) scale(1); }
+      50% { background: var(--white); color: var(--hot-pink); transform: rotate(5deg) scale(1.04); }
     }
-    .list{display:grid;gap:12px;margin-top:18px}
-    .list-item{
-      display:flex;justify-content:space-between;align-items:center;gap:15px;
-      padding:15px 18px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.43);
-      color:var(--text)
+
+    .cover-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      background: var(--soft-pink);
     }
-    .track-note{
-      display:grid;place-items:center;min-height:100%;
-      text-align:center;padding:22px;border-radius:28px;
-      background:linear-gradient(180deg,rgba(255,255,255,.45),rgba(255,255,255,.28));
-      border:1px dashed rgba(233,122,168,.38);
+
+    .caption-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 12px 4px;
+      font-size: .9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
     }
-    .track-note .curve{
-      font-size:28px;color:#d76b9a
+
+    .section {
+      margin-top: 24px;
+      padding: clamp(18px, 3vw, 30px);
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(137,0,91,.14);
     }
-    .cta{
-      border-radius:34px;padding:26px;
-      display:grid;grid-template-columns:1fr auto;gap:18px;align-items:end;margin-top:10px
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
     }
-    .footer-actions{display:flex;gap:12px;flex-wrap:wrap}
-    .muted{font-size:15px;line-height:1.8;color:var(--soft)}
-    @media (max-width: 980px){
-      nav{display:none}
-      .hero,.gallery,.music-grid,.cta,.mini-grid{grid-template-columns:1fr}
-      .hero-main{min-height:420px}
-      .tall{min-height:440px}
-      .medium{min-height:260px}
-      .small{min-height:220px}
-      .caption{font-size:28px}
-      .overlay-title .big{font-size:34px}
+
+    h2 {
+      margin: 0;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: .86;
+      letter-spacing: -.04em;
+      text-transform: lowercase;
+    }
+
+    .small-note {
+      max-width: 440px;
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .single-art {
+      min-height: 360px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--soft-pink), var(--hair-pink));
+      position: relative;
+    }
+
+    .single-art img {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .single-art .label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .lead-badge {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 999px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      box-shadow: 0 12px 26px rgba(23,0,15,.24);
+    }
+
+    .player-panel {
+      border: 1px solid var(--border);
+      background: rgba(255,250,252,.7);
+      border-radius: 30px;
+      padding: clamp(18px, 3vw, 28px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .now-playing {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 16px;
+      border: 1px solid rgba(255,20,147,.22);
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,210,239,.72));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.45);
+    }
+
+    .eyebrow {
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(23,0,15,.68);
+    }
+
+    .track-title {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(2.35rem, 6vw, 5rem);
+      line-height: .88;
+      letter-spacing: -.045em;
+      margin: 0;
+    }
+
+    .track-meta {
+      margin: 0;
+      font-weight: 750;
+      font-size: 1.02rem;
+      line-height: 1.5;
+    }
+
+    .native-player {
+      width: 100%;
+      margin-top: 6px;
+      accent-color: var(--hot-pink);
+    }
+
+    .release-message {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .release-message.show { display: block; }
+
+    .tracklist {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .track-row {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 13px 14px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.62);
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 850;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+    }
+
+    .track-row:hover, .track-row.active {
+      transform: translateX(4px);
+      background: var(--white);
+    }
+
+    .track-row.lead {
+      border-color: rgba(255,20,147,.55);
+      background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,210,239,.9));
+      box-shadow: 0 12px 30px rgba(255,20,147,.14);
+    }
+
+    .track-row.locked { opacity: .78; }
+    .track-row .num { opacity: .58; }
+    .track-row .status { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; opacity: .72; }
+
+    .album-splash {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .album-art {
+      border-radius: 36px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      background: var(--soft-pink);
+      transform: rotate(-1.5deg);
+    }
+
+    .album-art img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .album-copy {
+      padding: clamp(14px, 3vw, 26px);
+      border-radius: 34px;
+      background: rgba(255,255,255,.58);
+      border: 1px solid var(--border);
+    }
+
+    .release-date {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .album-copy p {
+      margin: 14px 0 0;
+      font-weight: 750;
+      line-height: 1.55;
+      font-size: 1.06rem;
+    }
+
+    .album-mini-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .mini-track {
+      padding: 9px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.68);
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: var(--soft-pink);
+      box-shadow: 0 12px 28px rgba(137,0,91,.12);
+    }
+
+    .teaser {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 32px;
+      padding: clamp(20px, 4vw, 34px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .teaser::after {
+      content: "may 16 may 16 may 16 may 16";
+      position: absolute;
+      inset: auto -30px -14px auto;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(3rem, 8vw, 8rem);
+      color: rgba(255,255,255,.08);
+      white-space: nowrap;
+      transform: rotate(-4deg);
+      animation: flashText 1.15s infinite steps(2, end);
+    }
+
+    @keyframes flashText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .28; }
+    }
+
+    .teaser h2, .teaser p, .teaser a { position: relative; z-index: 1; }
+    .teaser p { margin: 10px 0 0; max-width: 660px; font-weight: 750; line-height: 1.5; color: rgba(255,255,255,.82); }
+    .teaser .button { background: var(--white); color: var(--ink); }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .link-card {
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.62);
+      font-weight: 900;
+      box-shadow: 0 14px 34px rgba(137,0,91,.12);
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .link-card:hover { transform: translateY(-4px); background: var(--white); }
+    .link-card span:first-child { font-family: "Bagel Fat One", system-ui, sans-serif; font-size: 1.65rem; letter-spacing: -.035em; }
+    .link-card span:last-child { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; opacity: .68; }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 28px 4px 0;
+      font-weight: 800;
+      font-size: .9rem;
+      opacity: .78;
+    }
+
+    @media (max-width: 880px) {
+      .hero, .player-grid, .teaser, .album-splash { grid-template-columns: 1fr; }
+      .cover-card, .album-art { transform: none; }
+      .gallery { grid-template-columns: repeat(2, 1fr); }
+      .links { grid-template-columns: repeat(2, 1fr); }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 560px) {
+      .page { width: min(100% - 18px, 1180px); padding-top: 10px; }
+      .nav { border-radius: 24px; align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .pill { padding: 8px 11px; }
+      .hero { padding-top: 36px; }
+      .gallery, .links, .album-mini-list { grid-template-columns: 1fr; }
+      .cover-card::before { right: 8px; top: 16px; }
+      .track-row { grid-template-columns: auto 1fr; }
+      .track-row .status { display: none; }
     }
   </style>
 </head>
+
 <body>
-  <div class="dots"></div>
-  <div class="blob one"></div>
-  <div class="blob two"></div>
-  <div class="blob three"></div>
+  <main class="page">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#top" class="brand"><span class="dot"></span><span>Saint Jules</span></a>
+      <div class="nav-links">
+        <a class="pill" href="#listen">Listen</a>
+        <a class="pill" href="#album">Album</a>
+        <a class="pill" href="#boy-genius">Boy Genius</a>
+        <a class="pill" href="#links">Links</a>
+      </div>
+    </nav>
 
-  <div class="wrap">
-    <header>
-      <a class="brand" href="#">Saint Jules ✦ Bubbly Era</a>
-      <nav>
-        <a href="#photos">Photos</a>
-        <a href="#music">Music</a>
-        <a href="#mood">Mood</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
-
-    <section class="hero" id="mood">
+    <section class="hero" id="top">
       <div>
-        <div class="pill">☁ bubbly era incoming</div>
-        <h1>Softer. Dreamier. More fun.</h1>
-        <div class="lede">
-          This version feels way closer to your images — sunset-glowy, crushy, scrapbook-pop, handwritten,
-          playful, and a little messy in the good way.
-        </div>
-        <div class="actions">
-          <a class="btn primary" href="#photos">Enter the era ♡</a>
-          <a class="btn secondary" href="#music">See the music section</a>
-        </div>
-        <div class="chips">
-          <span class="chip">Lord Have Mercy</span>
-          <span class="chip">Crash Dummy</span>
-          <span class="chip">sunset glow</span>
-          <span class="chip">angel energy</span>
-          <span class="chip">photo dump pop</span>
-          <span class="chip">pink halo</span>
+        <div class="tagline">new music · crash dummy era</div>
+        <h1>lord have mercy.</h1>
+        <p class="hero-copy">
+          He’s a crash dummy. Pink hair, pop heart, bad ideas, big feelings. The Proposition is playable now. Everything else has a crash date.
+        </p>
+        <div class="hero-buttons">
+          <a class="button primary" href="#listen">Play The Proposition</a>
+          <a class="button secondary" href="#album">See the album</a>
         </div>
       </div>
 
-      <div class="hero-card">
-        <div class="hero-stack">
-          <div class="hero-main">
-            <img id="hero-img" alt="Sunset image">
-            <div class="float-note script note1">Lord Have Mercy</div>
-            <div class="float-note script note2">He's A Crash Dummy</div>
-            <div class="overlay-title">
-              <div class="big">A homepage that feels like your actual era.</div>
-              <div class="sub">more diary-pop than brand deck</div>
-            </div>
+      <figure class="cover-card">
+        <img src="IMG_0373.jpeg" alt="Saint Jules album era visual" onerror="this.src='Glowing%20Saint%20Jules%20Angel.png'" />
+        <figcaption class="caption-strip">
+          <span>Saint Jules</span>
+          <span>album crashes June 18</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="listen">
+      <div class="section-head">
+        <h2>listen now</h2>
+        <p class="small-note">The playlist stays in album order. Track 04 gets the spotlight because The Proposition is the lead and it plays right here.</p>
+      </div>
+
+      <div class="player-grid">
+        <div class="single-art">
+          <img id="artwork" src="The%20Proposition/The%20Proposition%20Cover%20Art.jpg" alt="The Proposition artwork" onerror="this.src='IMG_0375.jpeg'" />
+          <div class="lead-badge">playable now</div>
+          <div class="label">lead record · track 04</div>
+        </div>
+
+        <div class="player-panel">
+          <div class="now-playing">
+            <span class="eyebrow">Lead single</span>
+            <h3 class="track-title" id="currentTitle">The Proposition</h3>
+            <p class="track-meta" id="currentMeta">Saint Jules · playable now · crashes before the album</p>
+            <audio class="native-player" id="audioPlayer" controls preload="metadata" src="Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/04%20The%20Proposition.wav">
+              Your browser does not support the audio element.
+            </audio>
+            <div class="release-message" id="releaseMessage"></div>
           </div>
-          <div class="mini-grid">
-            <div class="glass">
-              <span class="mini-pill">visual feel</span>
-              <h3>sunset + softness</h3>
-              <p>Warm edits, curvy shapes, handwritten overlays, and sweet little details.</p>
-            </div>
-            <div class="glass">
-              <span class="mini-pill">site energy</span>
-              <h3>cute but real</h3>
-              <p>Pretty on the surface, emotional underneath, with enough play to feel alive.</p>
-            </div>
+
+          <div class="tracklist" id="tracklist" aria-label="Album tracklist"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="album">
+      <div class="album-splash">
+        <div class="album-art">
+          <img src="The%20Proposition/The%20Proposition%20Cover%20Art.jpg" alt="Lord Have Mercy, He's A Crash Dummy album artwork" onerror="this.src='IMG_0375.jpeg'" />
+        </div>
+        <div class="album-copy">
+          <span class="release-date">album crashes June 18</span>
+          <h2>lord have mercy, he's a crash dummy!</h2>
+          <p>
+            This is the album page. The Proposition opens the door now, Boy Genius flashes May 16, and the full crash lands June 18.
+          </p>
+          <div class="album-mini-list" aria-label="Album songs">
+            <span class="mini-track">01 Boy Genius</span>
+            <span class="mini-track">02 Jump!!!</span>
+            <span class="mini-track">03 Come to Life</span>
+            <span class="mini-track">04 The Proposition</span>
+            <span class="mini-track">05 Rude</span>
+            <span class="mini-track">06 PISA</span>
+            <span class="mini-track">07 Apple Pie</span>
+            <span class="mini-track">08 I Know</span>
+            <span class="mini-track">09 Felt It? My Darling</span>
+            <span class="mini-track">10 Crash Dummy</span>
+            <span class="mini-track">11 Mr. Please</span>
+            <span class="mini-track">12 WHO KNEW</span>
+            <span class="mini-track">13 Sky Is Falling</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="photos">
+    <section class="section">
       <div class="section-head">
-        <div>
-          <div class="pill">✿ photo world</div>
-          <h2>A site built around your pictures.</h2>
-        </div>
-        <p>
-          Rounded collage cards, floating script, and enough softness that the photos carry the whole identity.
-        </p>
+        <h2>pictures first</h2>
+        <p class="small-note">No heavy text over the photos. Just the era, the color, and the face card doing the work.</p>
       </div>
-
       <div class="gallery">
-        <div class="left-col">
-          <div class="image-card tall">
-            <img id="img-1" alt="Portrait with angel tattoo">
-            <div class="scribble s1 script">Lord Have Mercy He's A Crash Dummy</div>
-            <div class="caption">romanticized photo dump
-              <span class="tiny">pink hair • angel mark • soft sky</span>
-            </div>
-          </div>
-          <div class="image-card medium">
-            <img id="img-2" alt="Smiling portrait">
-            <div class="caption smallcap script">funny, sweet, alive</div>
-          </div>
-        </div>
-
-        <div class="right-col">
-          <div class="image-card medium">
-            <img id="img-3" alt="Field portrait">
-            <div class="scribble s2 script">Crash Dummy</div>
-            <div class="caption smallcap">space for handwritten titles</div>
-          </div>
-          <div class="image-card small">
-            <img id="img-4" alt="Water image">
-            <div class="caption smallcap script">glowy little in-betweens</div>
-          </div>
-          <div class="image-card medium">
-            <img id="img-5" alt="House window image">
-            <div class="scribble s3 script">repeated phrases everywhere</div>
-            <div class="caption smallcap">scrapbook-pop chaos</div>
-          </div>
-        </div>
+        <img src="IMG_0373.jpeg" alt="Saint Jules visual 1" />
+        <img src="IMG_0375.jpeg" alt="Saint Jules visual 2" />
+        <img src="IMG_0768.jpeg" alt="Saint Jules visual 3" />
+        <img src="IMG_0769.jpeg" alt="Saint Jules visual 4" />
       </div>
     </section>
 
-    <section id="music">
-      <div class="section-head">
+    <section class="section" id="boy-genius">
+      <div class="teaser">
         <div>
-          <div class="pill">♫ music section</div>
-          <h2>Cute on top. Heart under it.</h2>
-        </div>
-        <p>
-          The music part still holds rollout stuff, but in a way that feels handwritten and fun instead of rigid.
-        </p>
-      </div>
-
-      <div class="music-grid">
-        <div class="glass" style="border-radius:30px;padding:24px">
-          <span class="mini-pill">what this version can hold</span>
-          <div class="list">
-            <div class="list-item"><span>big hero image + floating script title</span><span>♡</span></div>
-            <div class="list-item"><span>photo collage for the era</span><span>☁</span></div>
-            <div class="list-item"><span>tracklist styled like a diary page</span><span>✦</span></div>
-            <div class="list-item"><span>snippets / teaser embeds</span><span>♫</span></div>
-            <div class="list-item"><span>shows, interviews, and rollout notes</span><span>✿</span></div>
-            <div class="list-item"><span>mailing list or soft CTA</span><span>♡</span></div>
-          </div>
-        </div>
-
-        <div class="glass" style="border-radius:30px;padding:18px">
-          <div class="track-note">
-            <div>
-              <div class="mini-pill" style="margin-bottom:16px">tracklist idea</div>
-              <div class="curve script">let the songs float a little</div>
-              <p class="muted" style="max-width:420px;margin:14px auto 0">
-                Not just a strict list. Let titles curve, drift, or sit like notes across the page so it feels like part of the world.
-              </p>
-              <div style="margin-top:20px;font-family:Georgia, 'Times New Roman', serif;color:#d66c99;font-size:24px;line-height:1.6">
-                Boy Genius • Jump!!! • Come to Life • The Proposition • Rude • House • Apple Pie • PISA • Who Knew • In the Sun
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="cta">
-        <div>
-          <div class="pill">✉ soft call to action</div>
-          <h2 style="margin-top:14px">Saint Jules</h2>
-          <p class="muted" style="max-width:760px;margin-top:12px">
-            This version pulls the photos straight from GitHub, so you do not have to rely on local image paths inside the folder.
+          <h2>boy genius flashes may 16</h2>
+          <p>
+            Not playing yet. Just blinking at you like a warning light on the dashboard.
           </p>
         </div>
-        <div class="footer-actions">
-          <a class="btn primary" href="#photos">look again ♡</a>
-          <a class="btn secondary" href="#music">music area</a>
-        </div>
+        <a class="button" href="#listen">see playlist</a>
       </div>
     </section>
-  </div>
+
+    <section class="section" id="links">
+      <div class="section-head">
+        <h2>find me</h2>
+        <p class="small-note">Put every important place here so nobody has to search for you after the song hits.</p>
+      </div>
+
+      <div class="links">
+        <a class="link-card" href="https://www.instagram.com/saint__jules/" target="_blank" rel="noopener">
+          <span>Instagram</span>
+          <span>@saint__jules</span>
+        </a>
+        <a class="link-card" href="https://www.youtube.com/@SaintJulezz" target="_blank" rel="noopener">
+          <span>YouTube</span>
+          <span>@SaintJulezz</span>
+        </a>
+        <a class="link-card" href="https://open.spotify.com/" target="_blank" rel="noopener">
+          <span>Spotify</span>
+          <span>replace with artist link</span>
+        </a>
+        <a class="link-card" href="https://music.apple.com/" target="_blank" rel="noopener">
+          <span>Apple Music</span>
+          <span>replace with artist link</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© Saint Jules</span>
+      <span>Lord Have Mercy, He's A Crash Dummy! · June 18</span>
+    </footer>
+  </main>
 
   <script>
-    const GITHUB_BASE = "https://cdn.jsdelivr.net/gh/SMPchase/Saint-jules-@main/";
+    const albumFolder = "Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/";
+    const propositionArt = "The%20Proposition/The%20Proposition%20Cover%20Art.jpg";
 
-    const images = {
-      hero: "IMG_0858.jpeg",
-      one: "IMG_0373.jpeg",
-      two: "IMG_3415.jpeg",
-      three: "IMG_0797.jpeg",
-      four: "IMG_0768.jpeg",
-      five: "IMG_0769.jpeg"
-    };
+    const tracks = [
+      {
+        number: "01",
+        title: "Boy Genius",
+        file: albumFolder + "01%20Boy%20Genius.wav",
+        art: "IMG_0373.jpeg",
+        status: "flashes May 16",
+        playable: false,
+        message: "Boy Genius flashes May 16. The dashboard light is blinking, but the keys are not in it yet."
+      },
+      {
+        number: "02",
+        title: "Jump!!!",
+        file: albumFolder + "02%20Jump%21%21%21.wav",
+        art: "IMG_0375.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. Seatbelt on. This one is still behind the velvet rope."
+      },
+      {
+        number: "03",
+        title: "Come to Life",
+        file: albumFolder + "03%20Come%20to%20Life.wav",
+        art: "IMG_0768.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. It is not dead, it is just dramatically unavailable."
+      },
+      {
+        number: "04",
+        title: "The Proposition",
+        file: albumFolder + "04%20The%20Proposition.wav",
+        art: propositionArt,
+        status: "playable now",
+        playable: true,
+        message: "The lead is live. Press play and accept The Proposition."
+      },
+      {
+        number: "05",
+        title: "Rude",
+        file: albumFolder + "05%20Rude.wav",
+        art: "IMG_0769.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. This track is being rude and refusing to come outside yet."
+      },
+      {
+        number: "06",
+        title: "PISA",
+        file: albumFolder + "06%20PISA.wav",
+        art: "IMG_0781.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. The tower is leaning, but it has not fallen yet."
+      },
+      {
+        number: "07",
+        title: "Apple Pie",
+        file: albumFolder + "07%20Apple%20Pie.wav",
+        art: "IMG_0797.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. The pie is cooling on the window sill. Do not touch."
+      },
+      {
+        number: "08",
+        title: "I Know",
+        file: albumFolder + "08%20I%20Know..wav",
+        art: "IMG_0858.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. I know you want it. That is the problem."
+      },
+      {
+        number: "09",
+        title: "Felt It? My Darling",
+        file: albumFolder + "09%20Felt%20It%3F%3AMy%20Darling%20.wav",
+        art: "IMG_3415.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. Darling, you felt it too early."
+      },
+      {
+        number: "10",
+        title: "Crash Dummy",
+        file: albumFolder + "10%20Crash%20Dummy.wav",
+        art: "Glowing%20Saint%20Jules%20Angel.png",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. The dummy is still in the test lab."
+      },
+      {
+        number: "11",
+        title: "Mr. Please",
+        file: albumFolder + "11%20Mr.Please.wav",
+        art: "IMG_0373.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. Mr. Please said please wait."
+      },
+      {
+        number: "12",
+        title: "WHO KNEW",
+        file: albumFolder + "12%20WHO%20KNEW.wav",
+        art: "IMG_0375.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. Who knew? Not the public. Not yet."
+      },
+      {
+        number: "13",
+        title: "Sky Is Falling",
+        file: albumFolder + "13%20Sky%20Is%20Falling.wav",
+        art: "IMG_0768.jpeg",
+        status: "crash date June 18",
+        playable: false,
+        message: "Crash date: June 18. The sky is falling on schedule."
+      }
+    ];
 
-    document.getElementById("hero-img").src = GITHUB_BASE + images.hero;
-    document.getElementById("img-1").src = GITHUB_BASE + images.one;
-    document.getElementById("img-2").src = GITHUB_BASE + images.two;
-    document.getElementById("img-3").src = GITHUB_BASE + images.three;
-    document.getElementById("img-4").src = GITHUB_BASE + images.four;
-    document.getElementById("img-5").src = GITHUB_BASE + images.five;
+    const player = document.getElementById("audioPlayer");
+    const currentTitle = document.getElementById("currentTitle");
+    const currentMeta = document.getElementById("currentMeta");
+    const artwork = document.getElementById("artwork");
+    const tracklist = document.getElementById("tracklist");
+    const releaseMessage = document.getElementById("releaseMessage");
+
+    const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
+
+    function setActive(index) {
+      document.querySelectorAll(".track-row").forEach((button, buttonIndex) => {
+        button.classList.toggle("active", buttonIndex === index);
+      });
+    }
+
+    function showReleaseMessage(message) {
+      releaseMessage.textContent = message;
+      releaseMessage.classList.add("show");
+    }
+
+    function hideReleaseMessage() {
+      releaseMessage.textContent = "";
+      releaseMessage.classList.remove("show");
+    }
+
+    function loadTrack(track, index, autoplay = true) {
+      if (!track.playable) {
+        player.pause();
+        currentTitle.textContent = track.title;
+        currentMeta.textContent = `Saint Jules · ${track.status}`;
+        artwork.src = track.art;
+        setActive(index);
+        showReleaseMessage(track.message);
+        return;
+      }
+
+      currentTitle.textContent = track.title;
+      currentMeta.textContent = "Saint Jules · playable now · lead record";
+      artwork.src = track.art;
+      player.src = track.file;
+      setActive(index);
+      hideReleaseMessage();
+
+      if (autoplay) {
+        player.play().catch(() => {});
+      }
+    }
+
+    tracks.forEach((track, index) => {
+      const button = document.createElement("button");
+      button.className = `track-row${track.playable ? " lead" : " locked"}${index === leadIndex ? " active" : ""}`;
+      button.type = "button";
+      button.innerHTML = `
+        <span class="num">${track.number}</span>
+        <span>${track.title}</span>
+        <span class="status">${track.status}</span>
+      `;
+      button.addEventListener("click", () => loadTrack(track, index));
+      tracklist.appendChild(button);
+    });
   </script>
 </body>
 </html>
