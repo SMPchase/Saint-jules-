@@ -86,10 +86,10 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: .02em;
       text-transform: uppercase;
-      font-size: .86rem;
+      font-size: .95rem;
     }
 
     .dot {
@@ -122,10 +122,10 @@
 
     .hero {
       display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 28px;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 34px;
       align-items: center;
-      padding: 56px 0 30px;
+      padding: 42px 0 24px;
     }
 
     .tagline {
@@ -145,9 +145,9 @@
 
     h1 {
       font-family: "Bagel Fat One", system-ui, sans-serif;
-      font-size: clamp(3.4rem, 9vw, 9.3rem);
+      font-size: clamp(3.1rem, 8vw, 8.2rem);
       line-height: .78;
-      margin: 18px 0 18px;
+      margin: 16px 0 16px;
       letter-spacing: -.055em;
       text-transform: lowercase;
       color: var(--white);
@@ -155,14 +155,14 @@
     }
 
     .hero-copy {
-      max-width: 610px;
-      font-size: clamp(1.02rem, 2vw, 1.24rem);
-      line-height: 1.55;
-      font-weight: 650;
-      background: rgba(255,255,255,.48);
-      padding: 18px;
+      max-width: 560px;
+      font-size: clamp(1rem, 1.7vw, 1.16rem);
+      line-height: 1.5;
+      font-weight: 700;
+      background: rgba(255,255,255,.5);
+      padding: 16px;
       border: 1px solid var(--border);
-      border-radius: 26px;
+      border-radius: 24px;
       backdrop-filter: blur(14px);
     }
 
@@ -199,24 +199,24 @@
       background: rgba(255,255,255,.48);
       border: 1px solid var(--border);
       box-shadow: var(--shadow);
-      transform: rotate(2.5deg);
+      transform: rotate(1deg);
     }
 
     .cover-card::before {
       content: "boy genius · may 16";
       position: absolute;
-      right: -10px;
-      top: 26px;
+      right: 14px;
+      top: 14px;
       z-index: 2;
-      transform: rotate(8deg);
+      transform: rotate(3deg);
       font-family: "Bagel Fat One", system-ui, sans-serif;
-      font-size: clamp(1.1rem, 3vw, 2rem);
+      font-size: clamp(1rem, 2.4vw, 1.55rem);
       letter-spacing: -.02em;
       background: var(--ink);
       color: var(--white);
       border-radius: 999px;
-      padding: 8px 18px 12px;
-      box-shadow: 0 14px 30px rgba(23,0,15,.28);
+      padding: 8px 16px 11px;
+      box-shadow: 0 14px 30px rgba(23,0,15,.22);
       animation: flashTag 1.45s infinite steps(2, end);
     }
 
@@ -409,13 +409,13 @@
       grid-template-columns: auto 1fr auto;
       gap: 12px;
       align-items: center;
-      padding: 13px 14px;
+      padding: 15px 16px;
       border: 1px solid var(--border);
       border-radius: 18px;
       background: rgba(255,255,255,.62);
       color: var(--ink);
       font-family: inherit;
-      font-weight: 850;
+      font-weight: 900;
       transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
       position: relative;
       isolation: isolate;
@@ -434,7 +434,7 @@
 
     .track-row.locked { opacity: .78; }
     .track-row .num { opacity: .58; }
-    .track-row .status { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; opacity: .72; }
+    .track-row .status { font-size: .86rem; text-transform: uppercase; letter-spacing: .06em; opacity: .78; }
 
     .track-blurb {
       position: absolute;
@@ -478,18 +478,13 @@
 
     .album-splash {
       display: grid;
-      grid-template-columns: .95fr 1.05fr;
+      grid-template-columns: 1fr;
       gap: 22px;
       align-items: center;
     }
 
     .album-art {
-      border-radius: 36px;
-      overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      background: var(--soft-pink);
-      transform: rotate(-1.5deg);
+      display: none;
     }
 
     .album-art img {
@@ -500,9 +495,9 @@
     }
 
     .album-copy {
-      padding: clamp(14px, 3vw, 26px);
+      padding: clamp(20px, 4vw, 38px);
       border-radius: 34px;
-      background: rgba(255,255,255,.58);
+      background: rgba(255,255,255,.6);
       border: 1px solid var(--border);
     }
 
@@ -533,7 +528,7 @@
     }
 
     .mini-track {
-      padding: 9px 11px;
+      padding: 12px 14px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: rgba(255,255,255,.68);
@@ -627,11 +622,11 @@
     .links {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      gap: 14px;
     }
 
     .link-card {
-      min-height: 120px;
+      min-height: 132px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -647,7 +642,7 @@
 
     .link-card:hover { transform: translateY(-4px); background: var(--white); }
     .link-card span:first-child { font-family: "Bagel Fat One", system-ui, sans-serif; font-size: 1.65rem; letter-spacing: -.035em; }
-    .link-card span:last-child { font-size: .82rem; text-transform: uppercase; letter-spacing: .06em; opacity: .68; }
+    .link-card span:last-child { font-size: .86rem; text-transform: uppercase; letter-spacing: .06em; opacity: .72; }
 
     footer {
       display: flex;
@@ -699,7 +694,7 @@
         <div class="tagline">new music · crash dummy era</div>
         <h1>lord have mercy.</h1>
         <p class="hero-copy">
-          He’s a crash dummy. Pink hair, pop heart, bad ideas, big feelings. “The Proposition” is the single — playable now. Everything else has a crash date.
+          Saint Jules crash dummy pop era. “The Proposition” is the single — playable now. Boy Genius flashes May 16. The album crashes June 18.
         </p>
         <div class="hero-buttons">
           <a class="button primary" href="#listen">Play The Proposition</a>
@@ -817,13 +812,13 @@
           <span>YouTube</span>
           <span>@SaintJulezz</span>
         </a>
-        <a class="link-card" href="https://open.spotify.com/" target="_blank" rel="noopener">
+        <a class="link-card" href="#listen">
           <span>Spotify</span>
-          <span>replace with artist link</span>
+          <span>coming soon</span>
         </a>
-        <a class="link-card" href="https://music.apple.com/" target="_blank" rel="noopener">
+        <a class="link-card" href="#listen">
           <span>Apple Music</span>
-          <span>replace with artist link</span>
+          <span>coming soon</span>
         </a>
       </div>
     </section>
@@ -1036,4 +1031,3 @@
   </script>
 </body>
 </html>
-
