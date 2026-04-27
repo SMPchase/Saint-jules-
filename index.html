@@ -501,18 +501,54 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 12px;
+      max-width: 980px;
+      margin: 0 auto;
+      justify-items: center;
+      align-items: center;
     }
 
     .gallery img {
       width: 100%;
+      max-width: 230px;
       aspect-ratio: 4/5;
       object-fit: cover;
+      object-position: center;
       border-radius: 24px;
       border: 1px solid var(--border);
       background: var(--soft-pink);
       box-shadow: 0 12px 28px rgba(137,0,91,.12);
+    }
+
+    .gallery img.landscape-shot {
+      aspect-ratio: 16/10;
+      max-width: 260px;
+    }
+
+    .gallery img.portrait-shot {
+      object-position: center top;
+    }
+
+    .tracklist-callout {
+      margin-top: 20px;
+      padding: 16px;
+      border: 1px solid rgba(255,20,147,.22);
+      border-radius: 26px;
+      background: rgba(255,255,255,.58);
+    }
+
+    .tracklist-callout-title {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: .78rem;
     }
 
     .teaser {
@@ -681,20 +717,23 @@
           <p>
             This is the album page. The Proposition opens the door now, Boy Genius flashes May 16, and the full crash lands June 18.
           </p>
-          <div class="album-mini-list" aria-label="Album songs">
-            <span class="mini-track">01 Boy Genius</span>
-            <span class="mini-track">02 Jump!!!</span>
-            <span class="mini-track">03 Come to Life</span>
-            <span class="mini-track">04 The Proposition</span>
-            <span class="mini-track">05 Rude</span>
-            <span class="mini-track">06 PISA</span>
-            <span class="mini-track">07 Apple Pie</span>
-            <span class="mini-track">08 I Know</span>
-            <span class="mini-track">09 Felt It? My Darling</span>
-            <span class="mini-track">10 Crash Dummy</span>
-            <span class="mini-track">11 Mr. Please</span>
-            <span class="mini-track">12 WHO KNEW</span>
-            <span class="mini-track">13 Sky Is Falling</span>
+          <div class="tracklist-callout">
+            <span class="tracklist-callout-title">tracklist in the building</span>
+            <div class="album-mini-list" aria-label="Album songs">
+              <span class="mini-track">01 Boy Genius</span>
+              <span class="mini-track">02 Jump!!!</span>
+              <span class="mini-track">03 Come to Life</span>
+              <span class="mini-track">04 The Proposition</span>
+              <span class="mini-track">05 Rude</span>
+              <span class="mini-track">06 PISA</span>
+              <span class="mini-track">07 Apple Pie</span>
+              <span class="mini-track">08 I Know</span>
+              <span class="mini-track">09 Felt It? My Darling</span>
+              <span class="mini-track">10 Crash Dummy</span>
+              <span class="mini-track">11 Mr. Please</span>
+              <span class="mini-track">12 WHO KNEW</span>
+              <span class="mini-track">13 Sky Is Falling</span>
+            </div>
           </div>
         </div>
       </div>
@@ -706,10 +745,10 @@
         <p class="small-note">No heavy text over the photos. Just the era, the color, and the face card doing the work.</p>
       </div>
       <div class="gallery">
-        <img src="IMG_0373.jpeg" alt="Saint Jules visual 1" />
-        <img src="IMG_0375.jpeg" alt="Saint Jules visual 2" />
-        <img src="IMG_0768.jpeg" alt="Saint Jules visual 3" />
-        <img src="IMG_0769.jpeg" alt="Saint Jules visual 4" />
+        <img class="landscape-shot" src="IMG_0373.jpeg" alt="Saint Jules sunset road visual" />
+        <img class="landscape-shot" src="IMG_0375.jpeg" alt="Saint Jules water visual" />
+        <img class="portrait-shot" src="IMG_0768.jpeg" alt="Saint Jules pink hair portrait" />
+        <img class="portrait-shot" src="IMG_0769.jpeg" alt="Saint Jules pink hair portrait alternate" />
       </div>
     </section>
 
