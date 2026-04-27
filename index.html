@@ -552,24 +552,19 @@
 
     .gallery img {
       width: 100%;
-      height: 255px;
-      object-fit: cover;
+      height: 275px;
+      object-fit: contain;
       object-position: center;
       border-radius: 24px;
       border: 1px solid var(--border);
-      background: var(--soft-pink);
+      background: rgba(255, 250, 252, .72);
       box-shadow: 0 12px 28px rgba(137,0,91,.12);
       display: block;
+      padding: 6px;
     }
 
-    .gallery img.scene-person {
-      object-position: center center;
-    }
-
-    .gallery img.scene-water {
-      object-position: center center;
-    }
-
+    .gallery img.scene-person,
+    .gallery img.scene-water,
     .gallery img.scene-window {
       object-position: center center;
     }
@@ -753,7 +748,7 @@
     <section class="section" id="album">
       <div class="album-splash">
         <div class="album-art">
-          <img src="IMG_0373.jpeg" alt="Saint Jules sunset album visual" onerror="this.src='The%20Proposition/The%20Proposition%20Cover%20Art.jpg'" />
+          <img src="F996E043-8052-4D0E-A037-6CE05FC6438A.PNG" alt="Saint Jules pink hair angel tattoo photo" onerror="this.src='The%20Proposition/The%20Proposition%20Cover%20Art.jpg'" />
         </div>
         <div class="album-copy">
           <span class="release-date">album crashes June 18</span>
@@ -849,7 +844,7 @@
         number: "01",
         title: "Boy Genius",
         file: albumFolder + "01%20Boy%20Genius.wav",
-        art: "IMG_0373.jpeg",
+        art: pinkHairPhoto,
         status: "flashes May 16",
         playable: false,
         message: "Boy Genius flashes May 16. The dashboard light is blinking, but the keys are not in it yet.",
@@ -949,7 +944,7 @@
         number: "11",
         title: "Mr. Please",
         file: albumFolder + "11%20Mr.Please.wav",
-        art: "IMG_0373.jpeg",
+        art: pinkHairPhoto,
         status: "crash date June 18",
         playable: false,
         message: "Crash date: June 18. Mr. Please said please wait.",
