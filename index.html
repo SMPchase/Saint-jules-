@@ -644,6 +644,122 @@
     .link-card span:first-child { font-family: "Bagel Fat One", system-ui, sans-serif; font-size: 1.65rem; letter-spacing: -.035em; }
     .link-card span:last-child { font-size: .86rem; text-transform: uppercase; letter-spacing: .06em; opacity: .72; }
 
+    .super-pass {
+      display: grid;
+      grid-template-columns: 1fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .pass-card,
+    .signup-card {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(255,255,255,.62);
+      padding: clamp(18px, 3vw, 26px);
+      box-shadow: 0 14px 34px rgba(137,0,91,.12);
+    }
+
+    .pass-card h2,
+    .signup-card h2 {
+      font-size: clamp(2.05rem, 5vw, 4rem);
+      margin-bottom: 10px;
+    }
+
+    .pass-card p,
+    .signup-card p {
+      margin: 0 0 14px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .pass-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .pass-input,
+    .signup-input {
+      width: min(100%, 340px);
+      min-height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      color: var(--ink);
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 900;
+      outline: none;
+    }
+
+    .pass-input:focus,
+    .signup-input:focus {
+      border-color: rgba(255,20,147,.72);
+      box-shadow: 0 0 0 5px rgba(255,20,147,.13);
+    }
+
+    .pass-message,
+    .signup-message {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(23,0,15,.08);
+      font-weight: 900;
+      line-height: 1.35;
+      display: none;
+    }
+
+    .pass-message.show,
+    .signup-message.show { display: block; }
+
+    .signup-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .signup-input {
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    .super-mode .nav,
+    .super-mode .section,
+    .super-mode .cover-card,
+    .super-mode .player-panel,
+    .super-mode .pass-card,
+    .super-mode .signup-card {
+      animation: starPulse 1.2s ease-in-out infinite alternate;
+    }
+
+    .super-mode .track-row.locked { opacity: 1; }
+
+    .super-mode::after {
+      content: "★ full album mode ★";
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 50;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      box-shadow: 0 18px 42px rgba(23,0,15,.32);
+      pointer-events: none;
+    }
+
+    @keyframes starPulse {
+      from { box-shadow: 0 12px 34px rgba(255,20,147,.14); }
+      to { box-shadow: 0 18px 52px rgba(255,20,147,.32), 0 0 0 3px rgba(255,255,255,.22); }
+    }
+
     footer {
       display: flex;
       justify-content: space-between;
@@ -656,7 +772,7 @@
     }
 
     @media (max-width: 880px) {
-      .hero, .player-grid, .teaser, .album-splash { grid-template-columns: 1fr; }
+      .hero, .player-grid, .teaser, .album-splash, .super-pass { grid-template-columns: 1fr; }
       .cover-card, .album-art { transform: none; }
       .gallery { grid-template-columns: 1fr; }
       .links { grid-template-columns: repeat(2, 1fr); }
@@ -685,6 +801,7 @@
         <a class="pill" href="#listen">Listen</a>
         <a class="pill" href="#album">Album</a>
         <a class="pill" href="#boy-genius">Boy Genius</a>
+        <a class="pill" href="#superstar">Passcode</a>
         <a class="pill" href="#links">Links</a>
       </div>
     </nav>
@@ -797,6 +914,42 @@
       </div>
     </section>
 
+    <section class="section" id="superstar">
+      <div class="super-pass">
+        <div class="pass-card">
+          <span class="eyebrow">secret mode</span>
+          <h2>superstar pass</h2>
+          <p>
+            Got the code? Type it in and the site goes full album mode. Tracks also unlock themselves on schedule, so if I forget to come back, the crash still happens.
+          </p>
+          <div class="pass-row">
+            <input class="pass-input" id="passInput" type="text" inputmode="text" autocomplete="off" placeholder="enter passcode" aria-label="Enter passcode" />
+            <button class="button primary" id="passButton" type="button">unlock</button>
+          </div>
+          <div class="pass-message" id="passMessage"></div>
+        </div>
+
+        <div class="signup-card">
+          <span class="eyebrow">touring · events · weird ideas</span>
+          <h2>stay in the car</h2>
+          <p>
+            Want show dates, pop-ups, secret links, and whatever else I talk myself into doing? Drop your info and I’ll know you came from the website.
+          </p>
+          <form class="signup-form" id="signupForm" action="https://formsubmit.co/Jules@glasswallrecord.com" method="POST">
+            <input class="signup-input" name="name" type="text" placeholder="name" autocomplete="name" />
+            <input class="signup-input" name="email" type="email" placeholder="email" autocomplete="email" required />
+            <input class="signup-input" name="phone" type="tel" placeholder="phone / text me maybe" autocomplete="tel" />
+            <input type="hidden" name="source" value="saint-jules-website-signup" />
+            <input type="hidden" name="vip_code" value="PASSENGERPRINCESS" />
+            <input type="hidden" name="_subject" value="New Saint Jules website signup" />
+            <input type="hidden" name="_captcha" value="false" />
+            <button class="button primary" type="submit">get the secret code</button>
+          </form>
+          <div class="signup-message" id="signupMessage"></div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="links">
       <div class="section-head">
         <h2>find me</h2>
@@ -833,6 +986,10 @@
     const albumFolder = "Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/";
     const propositionArt = "F996E043-8052-4D0E-A037-6CE05FC6438A.PNG";
     const pinkHairPhoto = "F996E043-8052-4D0E-A037-6CE05FC6438A.PNG";
+    const boyGeniusRelease = new Date("2026-05-16T00:00:00");
+    const albumRelease = new Date("2026-06-18T00:00:00");
+    const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
+    const vipSignupCode = "PASSENGERPRINCESS";
 
     const tracks = [
       {
@@ -841,7 +998,7 @@
         file: albumFolder + "01%20Boy%20Genius.wav",
         art: pinkHairPhoto,
         status: "flashes May 16",
-        playable: false,
+        releaseDate: boyGeniusRelease,
         message: "Boy Genius flashes May 16. The dashboard light is blinking, but the keys are not in it yet.",
         blurb: "Duct tape, faith, bad ideas, and a passenger-seat kind of chaos. The pretty warning light before the crash."
       },
@@ -851,7 +1008,7 @@
         file: albumFolder + "02%20Jump%21%21%21.wav",
         art: "IMG_0375.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. Seatbelt on. This one is still behind the velvet rope.",
         blurb: "A parachute song for when the ground is coming fast and you still have to trust the process."
       },
@@ -861,7 +1018,7 @@
         file: albumFolder + "03%20Come%20to%20Life.wav",
         art: "IMG_0768.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. It is not dead, it is just dramatically unavailable.",
         blurb: "The emotional reboot. Soft light, second chances, and the part where the heart starts acting alive again."
       },
@@ -871,7 +1028,7 @@
         file: albumFolder + "04%20The%20Proposition.wav",
         art: propositionArt,
         status: "single · playable now",
-        playable: true,
+        releaseDate: new Date("2026-04-27T00:00:00"),
         message: "The single is live. Press play and accept The Proposition.",
         blurb: "The single. A broke-boy fairytale with passenger-princess energy, big plans, and a ride you can scream in."
       },
@@ -881,7 +1038,7 @@
         file: albumFolder + "05%20Rude.wav",
         art: "IMG_0769.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. This track is being rude and refusing to come outside yet.",
         blurb: "Sweet talk with teeth. It is romantic, reckless, and just rude enough to tell the truth out loud."
       },
@@ -891,7 +1048,7 @@
         file: albumFolder + "06%20PISA.wav",
         art: pinkHairPhoto,
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. The tower is leaning, but it has not fallen yet.",
         blurb: "Spanglish heartbreak in perfect weather. Peace disappears, feelings leak out, and the tower still leans pretty."
       },
@@ -901,7 +1058,7 @@
         file: albumFolder + "07%20Apple%20Pie.wav",
         art: "IMG_0797.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. The pie is cooling on the window sill. Do not touch.",
         blurb: "Sweet-as-apple-pie danger music. Best intentions, bad roads, and one bite turning into a whole interstate problem."
       },
@@ -911,7 +1068,7 @@
         file: albumFolder + "08%20I%20Know..wav",
         art: "IMG_0858.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. I know you want it. That is the problem.",
         blurb: "The caring-too-much record. Wanting better for somebody even when you cannot want it for them."
       },
@@ -921,7 +1078,7 @@
         file: albumFolder + "09%20Felt%20It%3F%3AMy%20Darling%20.wav",
         art: "IMG_3415.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. Darling, you felt it too early.",
         blurb: "No back-and-forth, no take-backs. Space bars, hidden figures, and feelings too loud to pretend they were accidents."
       },
@@ -931,7 +1088,7 @@
         file: albumFolder + "10%20Crash%20Dummy.wav",
         art: "Glowing%20Saint%20Jules%20Angel.png",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. The dummy is still in the test lab.",
         blurb: "Full-speed love with no survival instinct. The title track knows the wall is there and still hits the gas."
       },
@@ -941,7 +1098,7 @@
         file: albumFolder + "11%20Mr.Please.wav",
         art: pinkHairPhoto,
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. Mr. Please said please wait.",
         blurb: "A blessing song. Old-school, knees-bent, asking-the-father romance with gold-hearted intentions."
       },
@@ -951,7 +1108,7 @@
         file: albumFolder + "12%20WHO%20KNEW.wav",
         art: "IMG_0375.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. Who knew? Not the public. Not yet.",
         blurb: "Grief, brotherhood, smoke from one flame, and learning how to believe again without knowing why yet."
       },
@@ -961,7 +1118,7 @@
         file: albumFolder + "13%20Sky%20Is%20Falling.wav",
         art: "IMG_0768.jpeg",
         status: "crash date June 18",
-        playable: false,
+        releaseDate: albumRelease,
         message: "Crash date: June 18. The sky is falling on schedule.",
         blurb: "End-of-the-world pop. For when everything is falling, but somehow the chorus still looks cute doing it."
       }
@@ -973,8 +1130,25 @@
     const artwork = document.getElementById("artwork");
     const tracklist = document.getElementById("tracklist");
     const releaseMessage = document.getElementById("releaseMessage");
-
+    const passInput = document.getElementById("passInput");
+    const passButton = document.getElementById("passButton");
+    const passMessage = document.getElementById("passMessage");
+    const signupForm = document.getElementById("signupForm");
+    const signupMessage = document.getElementById("signupMessage");
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
+    let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
+
+    function isTrackUnlocked(track) {
+      return albumOverrideUnlocked || new Date() >= track.releaseDate;
+    }
+
+    function getTrackStatus(track) {
+      if (isTrackUnlocked(track)) {
+        if (track.title === "The Proposition") return "single · playable now";
+        return "playable now";
+      }
+      return track.status;
+    }
 
     function setActive(index) {
       document.querySelectorAll(".track-row").forEach((button, buttonIndex) => {
@@ -992,8 +1166,26 @@
       releaseMessage.classList.remove("show");
     }
 
+    function renderTracklist() {
+      tracklist.innerHTML = "";
+      tracks.forEach((track, index) => {
+        const unlocked = isTrackUnlocked(track);
+        const button = document.createElement("button");
+        button.className = `track-row${unlocked ? "" : " locked"}${index === leadIndex ? " lead active" : ""}`;
+        button.type = "button";
+        button.innerHTML = `
+          <span class="num">${track.number}</span>
+          <span>${track.title}</span>
+          <span class="status">${getTrackStatus(track)}</span>
+          <span class="track-blurb">${track.blurb}</span>
+        `;
+        button.addEventListener("click", () => loadTrack(track, index));
+        tracklist.appendChild(button);
+      });
+    }
+
     function loadTrack(track, index, autoplay = true) {
-      if (!track.playable) {
+      if (!isTrackUnlocked(track)) {
         player.pause();
         currentTitle.textContent = track.title;
         currentMeta.textContent = `Saint Jules · ${track.status}`;
@@ -1004,30 +1196,50 @@
       }
 
       currentTitle.textContent = track.title;
-      currentMeta.textContent = "Saint Jules · single · playable now";
+      currentMeta.textContent = `Saint Jules · ${getTrackStatus(track)}`;
       artwork.src = track.art;
       player.src = track.file;
       setActive(index);
       hideReleaseMessage();
 
-      if (autoplay) {
-        player.play().catch(() => {});
-      }
+      if (autoplay) player.play().catch(() => {});
     }
 
-    tracks.forEach((track, index) => {
-      const button = document.createElement("button");
-      button.className = `track-row${track.playable ? " lead" : " locked"}${index === leadIndex ? " active" : ""}`;
-      button.type = "button";
-      button.innerHTML = `
-        <span class="num">${track.number}</span>
-        <span>${track.title}</span>
-        <span class="status">${track.status}</span>
-        <span class="track-blurb">${track.blurb}</span>
-      `;
-      button.addEventListener("click", () => loadTrack(track, index));
-      tracklist.appendChild(button);
+    function enterSuperstarMode(message) {
+      albumOverrideUnlocked = true;
+      localStorage.setItem("saintJulesFullAlbum", "yes");
+      document.body.classList.add("super-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      renderTracklist();
+    }
+
+    passButton.addEventListener("click", () => {
+      const code = passInput.value.trim().toUpperCase().replaceAll(" ", "");
+      if (fullAlbumCodes.includes(code) || code === vipSignupCode) {
+        enterSuperstarMode(code === vipSignupCode ? "VIP code accepted. Passenger princess access granted." : "Superstar unlocked. Whole album mode is live.");
+      } else {
+        passMessage.textContent = "Wrong code. The car did not start. Try again.";
+        passMessage.classList.add("show");
+      }
     });
+
+    passInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") passButton.click();
+    });
+
+    signupForm.addEventListener("submit", () => {
+      signupMessage.textContent = `After you submit, use the VIP code: ${vipSignupCode}`;
+      signupMessage.classList.add("show");
+    });
+
+    if (new Date() >= albumRelease) {
+      albumOverrideUnlocked = true;
+      document.body.classList.add("super-mode");
+    }
+
+    if (albumOverrideUnlocked) document.body.classList.add("super-mode");
+    renderTracklist();
   </script>
 </body>
 </html>
