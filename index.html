@@ -1029,6 +1029,7 @@
           <div class="pass-row">
             <input class="pass-input" id="passInput" type="text" inputmode="text" autocomplete="off" placeholder="enter passcode" aria-label="Enter passcode" />
             <button class="button primary" id="passButton" type="button">unlock</button>
+            <button class="button secondary" id="resetPassButton" type="button">lock it back</button>
           </div>
           <div class="pass-message" id="passMessage"></div>
         </div>
@@ -1096,6 +1097,8 @@
     const albumRelease = new Date("2026-06-18T00:00:00");
     const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
     const vipSignupCode = "PASSENGERPRINCESS";
+    const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
+    const unlockTimeoutHours = 2;
     const logEndpoint = "https://formspree.io/f/xaqarqrp";
     const uniqueCodes = {
       "JULES001": "street code 001",
@@ -1286,18 +1289,44 @@
     const playerStats = document.getElementById("playerStats");
     const passInput = document.getElementById("passInput");
     const passButton = document.getElementById("passButton");
+    const resetPassButton = document.getElementById("resetPassButton");
     const passMessage = document.getElementById("passMessage");
     const signupForm = document.getElementById("signupForm");
     const signupMessage = document.getElementById("signupMessage");
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
     let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
     let activeUnlockCode = localStorage.getItem("saintJulesUnlockCode") || "none";
+    let activeUnlockExpiresAt = Number(localStorage.getItem("saintJulesUnlockExpiresAt") || 0);
     let currentTrackIndex = tracks.findIndex(track => track.title === "The Proposition");
     let progressLogCheckpoint = 0;
     let sessionStartedAt = Date.now();
 
+    function isUnlockStillValid() {
+      if (!albumOverrideUnlocked) return false;
+      if (new Date() >= albumRelease) return true;
+      return activeUnlockExpiresAt && Date.now() < activeUnlockExpiresAt;
+    }
+
+    function clearSuperstarMode(message = "Full album mode is locked again. Enter a code when you want to power back up.") {
+      albumOverrideUnlocked = false;
+      activeUnlockCode = "none";
+      activeUnlockExpiresAt = 0;
+      localStorage.removeItem("saintJulesFullAlbum");
+      localStorage.removeItem("saintJulesUnlockCode");
+      localStorage.removeItem("saintJulesUnlockExpiresAt");
+      document.body.classList.remove("super-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      logEvent("full_album_locked", { reason: message });
+      renderTracklist();
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    }
+
     function isTrackUnlocked(track) {
-      return albumOverrideUnlocked || new Date() >= track.releaseDate;
+      if (!isUnlockStillValid() && albumOverrideUnlocked && new Date() < albumRelease) {
+        clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
+      }
+      return isUnlockStillValid() || new Date() >= track.releaseDate;
     }
 
     function getTrackStatus(track) {
@@ -1434,20 +1463,29 @@
     function enterSuperstarMode(message, code = "unknown") {
       albumOverrideUnlocked = true;
       activeUnlockCode = code;
+      activeUnlockExpiresAt = Date.now() + unlockTimeoutHours * 60 * 60 * 1000;
       localStorage.setItem("saintJulesFullAlbum", "yes");
       localStorage.setItem("saintJulesUnlockCode", code);
+      localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
       document.body.classList.add("super-mode");
-      passMessage.textContent = message;
+      const timeoutLine = new Date() >= albumRelease ? "" : ` It will lock itself again in ${unlockTimeoutHours} hours.`;
+      passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
-      logEvent("full_album_unlocked", { code_used: code });
+      logEvent("full_album_unlocked", { code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
       renderTracklist();
     }
 
     passButton.addEventListener("click", () => {
       const code = passInput.value.trim().toUpperCase().replaceAll(" ", "");
+      const isResetCode = resetCodes.includes(code);
       const isPublicCode = fullAlbumCodes.includes(code);
       const isVipCode = code === vipSignupCode;
       const isUniqueCode = Object.prototype.hasOwnProperty.call(uniqueCodes, code);
+
+      if (isResetCode) {
+        clearSuperstarMode("Test reset accepted. Superstar mode is off and the cookies are cleared.");
+        return;
+      }
 
       if (isPublicCode || isVipCode || isUniqueCode) {
         const codeType = isVipCode ? "vip signup code" : isUniqueCode ? uniqueCodes[code] : "public passcode";
@@ -1465,6 +1503,10 @@
 
     passInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") passButton.click();
+    });
+
+    resetPassButton.addEventListener("click", () => {
+      clearSuperstarMode("Locked back up. Good for testing mobile reloads.");
     });
 
     prevTrackButton.addEventListener("click", () => playRelativeTrack(-1));
@@ -1501,9 +1543,15 @@
     if (new Date() >= albumRelease) {
       albumOverrideUnlocked = true;
       document.body.classList.add("super-mode");
+    } else if (albumOverrideUnlocked && !isUnlockStillValid()) {
+      clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
+    } else if (albumOverrideUnlocked) {
+      document.body.classList.add("super-mode");
+      const minutesLeft = Math.max(1, Math.round((activeUnlockExpiresAt - Date.now()) / 60000));
+      passMessage.textContent = `Full album mode is still active for about ${minutesLeft} more minutes. Use RESETSTAR or the lock button to test again.`;
+      passMessage.classList.add("show");
     }
 
-    if (albumOverrideUnlocked) document.body.classList.add("super-mode");
     renderTracklist();
 
     player.addEventListener("play", () => {
