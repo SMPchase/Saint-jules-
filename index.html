@@ -7,7 +7,7 @@
   <meta name="description" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy! Listen to The Proposition now. Album crashes June 18." />
   <meta property="og:title" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy!" />
   <meta property="og:description" content="The Proposition is playable now. Boy Genius flashes May 16. Album crashes June 18." />
-  <meta property="og:type" content="websitƒe" />
+  <meta property="og:type" content="website" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -935,16 +935,18 @@
           <p>
             Want show dates, pop-ups, secret links, and whatever else I talk myself into doing? Drop your info and I’ll know you came from the website.
           </p>
-          <form class="signup-form" id="signupForm" action="https://formsubmit.co/Jules@glasswallrecords.com" method="POST">
+          <form class="signup-form" id="signupForm" action="https://formsubmit.co/jules+info@glasswallrecords.com" method="POST" target="hiddenSignupFrame">
             <input class="signup-input" name="name" type="text" placeholder="name" autocomplete="name" />
             <input class="signup-input" name="email" type="email" placeholder="email" autocomplete="email" required />
             <input class="signup-input" name="phone" type="tel" placeholder="phone / text me maybe" autocomplete="tel" />
-            <input type="hidden" name="source" value="saint-jules-website-signup" />
+            <input type="hidden" name="source" value="saint-jules-website-info-signup" />
             <input type="hidden" name="vip_code" value="PASSENGERPRINCESS" />
             <input type="hidden" name="_subject" value="New Saint Jules website signup" />
             <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
             <button class="button primary" type="submit">get the secret code</button>
           </form>
+          <iframe name="hiddenSignupFrame" style="display:none;" title="Hidden signup form response"></iframe>
           <div class="signup-message" id="signupMessage"></div>
         </div>
       </div>
@@ -1229,8 +1231,12 @@
     });
 
     signupForm.addEventListener("submit", () => {
-      signupMessage.textContent = `After you submit, use the VIP code: ${vipSignupCode}`;
+      signupMessage.textContent = `You’re in. Your VIP code is ${vipSignupCode}. Type it into the superstar pass box to unlock full album mode.`;
       signupMessage.classList.add("show");
+      setTimeout(() => {
+        passInput.value = vipSignupCode;
+        passInput.focus();
+      }, 250);
     });
 
     if (new Date() >= albumRelease) {
