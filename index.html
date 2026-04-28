@@ -935,7 +935,7 @@
           <p>
             Want show dates, pop-ups, secret links, and whatever else I talk myself into doing? Drop your info and I’ll know you came from the website.
           </p>
-          <form class="signup-form" id="signupForm" data-endpoint="https://formspree.io/f/mnjlkyrb">
+          <form class="signup-form" id="signupForm" action="https://formspree.io/f/mnjlkyrb" method="POST" target="signupFrame">
             <input class="signup-input" name="name" type="text" placeholder="name" autocomplete="name" />
             <input class="signup-input" name="email" type="email" placeholder="email" autocomplete="email" required />
             <input class="signup-input" name="phone" type="tel" placeholder="phone / text me maybe" autocomplete="tel" />
@@ -946,6 +946,7 @@
             <input type="hidden" name="_template" value="table" />
             <button class="button primary" type="submit">get the secret code</button>
           </form>
+          <iframe name="signupFrame" title="Signup form response" style="display:none;"></iframe>
           <div class="signup-message" id="signupMessage"></div>
         </div>
       </div>
@@ -1229,50 +1230,11 @@
       if (event.key === "Enter") passButton.click();
     });
 
-    signupForm.addEventListener("submit", async (event) => {
-      event.preventDefault();
-
-      const endpoint = signupForm.dataset.endpoint;
-      const formData = new FormData(signupForm);
-      formData.set("vip_code", vipSignupCode);
-      formData.set("source", "saint-jules-website-info-signup");
-      formData.set("send_to", "jules+spree@glasswallrecords.com");
-
-      signupMessage.textContent = `You’re in. Your VIP code is ${vipSignupCode}. Type it into the superstar pass box to unlock full album mode.`;
+    signupForm.addEventListener("submit", () => {
+      signupMessage.textContent = `You’re in. Your VIP code is ${vipSignupCode}. I sent your info to the signup list. Type the code into the superstar pass box to unlock full album mode.`;
       signupMessage.classList.add("show");
       passInput.value = vipSignupCode;
-
-      if (!endpoint || endpoint === "PASTE_FORMSPREE_ENDPOINT_HERE") {
-        const name = encodeURIComponent(formData.get("name") || "");
-        const email = encodeURIComponent(formData.get("email") || "");
-        const phone = encodeURIComponent(formData.get("phone") || "");
-        const subject = encodeURIComponent("New Saint Jules website signup");
-        const body = encodeURIComponent(`Name: ${decodeURIComponent(name)}
-Email: ${decodeURIComponent(email)}
-Phone: ${decodeURIComponent(phone)}
-Source: saint-jules-website-info-signup
-VIP Code: ${vipSignupCode}`);
-        window.location.href = `mailto:jules+spree@glasswallrecords.com?subject=${subject}&body=${body}`;
-        return;
-      }
-
-      try {
-        const response = await fetch(endpoint, {
-          method: "POST",
-          body: formData,
-          headers: { "Accept": "application/json" }
-        });
-
-        if (response.ok) {
-          signupForm.reset();
-          passInput.value = vipSignupCode;
-          passInput.focus();
-        } else {
-          signupMessage.textContent = `Your VIP code is ${vipSignupCode}. The signup did not send yet, so screenshot this or text me your info.`;
-        }
-      } catch (error) {
-        signupMessage.textContent = `Your VIP code is ${vipSignupCode}. The signup did not send yet, so screenshot this or text me your info.`;
-      }
+      setTimeout(() => passInput.focus(), 250);
     });
 
     if (new Date() >= albumRelease) {
