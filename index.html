@@ -379,15 +379,13 @@
 
     .native-player {
       width: 100%;
-      margin-top: 6px;
+      margin-top: 10px;
       accent-color: var(--hot-pink);
+      border-radius: 999px;
     }
 
     .player-tools {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 8px;
+      display: none;
     }
 
     .mini-control {
@@ -418,14 +416,7 @@
     }
 
     .player-stats {
-      margin-top: 4px;
-      padding: 10px 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(23,0,15,.08);
-      font-size: .86rem;
-      font-weight: 850;
-      line-height: 1.35;
+      display: none;
     }
 
     .super-mode .mini-control.main {
@@ -983,7 +974,7 @@
               <button class="mini-control" id="nextTrack" type="button">next</button>
               <button class="mini-control" id="playUnlocked" type="button">play unlocked</button>
             </div>
-            <div class="player-stats" id="playerStats">The single is ready. Full player wakes up with the album.</div>
+            <div class="player-stats" id="playerStats">Player features are still running quietly: unlock schedule, passcodes, highlight, autoplay-next, and listening summary logs.</div>
             <div class="release-message" id="releaseMessage"></div>
           </div>
 
