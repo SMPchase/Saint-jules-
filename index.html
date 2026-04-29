@@ -1711,6 +1711,26 @@
           debug_mode: true,
           ...gaPayload
         });
+
+        if (details.song_title || details.track_title) {
+          window.gtag("event", "song_activity", {
+            event_category: "Saint Jules Music Player",
+            event_label: gaPayload.song_title || gaPayload.track_title,
+            activity_type: eventName,
+            song_title: gaPayload.song_title || gaPayload.track_title,
+            song_number: gaPayload.song_number || gaPayload.track_number,
+            song_status: gaPayload.song_status || gaPayload.track_status,
+            track_key: gaPayload.track_key,
+            player_mode: gaPayload.player_mode,
+            code_used: gaPayload.code_used,
+            tracker_id: gaPayload.tracker_id,
+            signup_code: gaPayload.signup_code,
+            timestamp_local: gaPayload.timestamp_local,
+            hour_local: gaPayload.hour_local,
+            day_of_week: gaPayload.day_of_week,
+            debug_mode: true
+          });
+        }
       }
 
       if (!analyticsEndpoint) return;
