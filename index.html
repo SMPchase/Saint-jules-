@@ -21,8 +21,8 @@
       'debug_mode': true,
       'send_page_view': false
     });
-    // Main page/music events are sent later after the site creates a tracker ID.
-    // This keeps reports cleaner so blank tracker rows do not dominate the tables.
+    // Main page/music events are sent later by the site script.
+    // Codes stay blank until somebody enters one or submits the signup form.
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1245,7 +1245,6 @@
             <button class="button secondary reset-pass-button" id="resetPassButton" type="button">lock it back</button>
           </div>
           <div class="pass-message" id="passMessage"></div>
-          <div class="pass-message" id="analyticsReceipt"></div>
         </div>
 
         <div class="signup-card">
@@ -1259,7 +1258,7 @@
             <input class="signup-input" name="email" type="email" placeholder="email" autocomplete="email" required />
             <input class="signup-input" name="phone" type="tel" placeholder="phone / text me maybe" autocomplete="tel" />
             <input type="hidden" name="source" value="saint-jules-website-info-signup" />
-            <input type="hidden" name="vip_code" id="signupCodeField" value="PASSENGERPRINCESS" />
+            <input type="hidden" name="vip_code" id="signupCodeField" value="none" />
             <input type="hidden" name="tracker_id" id="trackerField" value="" />
             <input type="hidden" name="analytics_note" value="Detailed listener analytics are no longer sent to Formspree. Formspree is signup-only." />
             <input type="hidden" name="_subject" value="New Saint Jules website signup" />
@@ -1317,7 +1316,6 @@
     const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
     const unlockTimeoutHours = 2;
     const analyticsEndpoint = "";
-    const gaMeasurementId = "G-9XSVZX83PH";
     const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
     const codePrefix = "SJ";
     const generatedCodeSalt = "CRASHDUMMYERA";
@@ -1518,14 +1516,16 @@
     const passButton = document.getElementById("passButton");
     const resetPassButton = document.getElementById("resetPassButton");
     const passMessage = document.getElementById("passMessage");
-    const analyticsReceipt = document.getElementById("analyticsReceipt");
     const signupForm = document.getElementById("signupForm");
     const signupMessage = document.getElementById("signupMessage");
 
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
-    let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
-    let activeUnlockCode = localStorage.getItem("saintJulesUnlockCode") || "none";
-    let activeUnlockExpiresAt = Number(localStorage.getItem("saintJulesUnlockExpiresAt") || 0);
+    localStorage.removeItem("saintJulesFullAlbum");
+    localStorage.removeItem("saintJulesUnlockCode");
+    localStorage.removeItem("saintJulesUnlockExpiresAt");
+    let albumOverrideUnlocked = false;
+    let activeUnlockCode = "none";
+    let activeUnlockExpiresAt = 0;
     let currentTrackIndex = leadIndex;
     let sessionStartedAt = Date.now();
     let lastPlayStartedAt = null;
@@ -1555,6 +1555,8 @@
         .replace(/[–—−]/g, "-")
         .replace(/\s+/g, "");
 
+      if (!raw || raw === "NONE" || raw === "NO_CODE" || raw === "NO_CODE_ENTERED") return "none";
+
       const compact = raw.replace(/-/g, "");
       if (compact.length === 10 && compact.startsWith(codePrefix)) {
         return `${compact.slice(0, 2)}-${compact.slice(2, 5)}-${compact.slice(5, 8)}-${compact.slice(8)}`;
@@ -1583,7 +1585,7 @@
 
     function isGeneratedPasscode(code) {
       const clean = normalizeAnalyticsCode(code);
-      if (!clean) return false;
+      if (!clean || clean === "none") return false;
       const parts = clean.split("-");
       if (parts.length !== 4 || parts[0] !== codePrefix) return false;
       const body = `${parts[1]}${parts[2]}`;
@@ -1602,15 +1604,31 @@
     }
 
     let visitorTracker = localStorage.getItem("saintJulesTracker") || makeTrackerId();
-    let signupAssignedCode = normalizeAnalyticsCode(localStorage.getItem("saintJulesSignupCode") || makeGeneratedPasscode());
+    localStorage.removeItem("saintJulesSignupCode");
+    let signupAssignedCode = "";
     activeUnlockCode = normalizeAnalyticsCode(activeUnlockCode || "none") || "none";
     localStorage.setItem("saintJulesTracker", visitorTracker);
-    localStorage.setItem("saintJulesSignupCode", signupAssignedCode);
+
+    function hasEnteredReportingCode() {
+      const cleanCode = normalizeAnalyticsCode(activeUnlockCode);
+      return Boolean(cleanCode && cleanCode !== "none");
+    }
 
     function getCurrentReportingCode() {
-      const cleanUnlockCode = normalizeAnalyticsCode(activeUnlockCode);
-      if (cleanUnlockCode && cleanUnlockCode !== "NONE" && cleanUnlockCode !== "EMPTY_ATTEMPT") return cleanUnlockCode;
-      return normalizeAnalyticsCode(signupAssignedCode) || "NO_CODE";
+      return hasEnteredReportingCode() ? normalizeAnalyticsCode(activeUnlockCode) : "none";
+    }
+
+    function getGoogleUserId() {
+      const reportingCode = getCurrentReportingCode();
+      return reportingCode !== "none" ? reportingCode : visitorTracker;
+    }
+
+    function ensureSignupAssignedCode() {
+      if (!signupAssignedCode || signupAssignedCode === "none") {
+        signupAssignedCode = makeGeneratedPasscode();
+        localStorage.setItem("saintJulesSignupCode", signupAssignedCode);
+      }
+      return signupAssignedCode;
     }
 
     function setHiddenFormField(name, value) {
@@ -1625,8 +1643,9 @@
       field.value = value;
     }
 
-    function syncFormCodeFields(reason = "sync") {
-      const reportingCode = getCurrentReportingCode();
+    function syncFormCodeFields(reason = "sync", codeOverride = "") {
+      const overrideCode = normalizeAnalyticsCode(codeOverride);
+      const reportingCode = overrideCode !== "none" ? overrideCode : getCurrentReportingCode();
       const fields = {
         tracker_id: visitorTracker,
         listener_id: visitorTracker,
@@ -1636,41 +1655,13 @@
         sj_signup_code: reportingCode,
         code_used: reportingCode,
         vip_code: reportingCode,
-        assigned_signup_code: signupAssignedCode,
+        assigned_signup_code: signupAssignedCode || "none",
         active_unlock_code: activeUnlockCode || "none",
         analytics_reason: reason,
         analytics_last_synced: new Date().toISOString()
       };
 
       Object.entries(fields).forEach(([name, value]) => setHiddenFormField(name, value));
-    }
-
-    function showAnalyticsReceipt(reason = "ready") {
-      if (!analyticsReceipt) return;
-      const reportingCode = getCurrentReportingCode();
-      analyticsReceipt.textContent = `Tracking receipt: ${reportingCode} is the code being sent to Google/Formspree. Device tracker: ${visitorTracker}. Reason: ${reason}.`;
-      analyticsReceipt.classList.add("show");
-    }
-
-    function buildIdentityPayload(reason = "page_load", details = {}) {
-      const reportingCode = getCurrentReportingCode();
-      return {
-        event_category: "Saint Jules Identity",
-        event_label: reportingCode,
-        debug_mode: true,
-        reason,
-        listener_id: visitorTracker,
-        tracker_id: visitorTracker,
-        sj_tracker_id: visitorTracker,
-        pass_code: reportingCode,
-        signup_code: reportingCode,
-        sj_signup_code: reportingCode,
-        code_used: reportingCode,
-        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
-        timestamp_local: new Date().toLocaleString(),
-        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown",
-        ...details
-      };
     }
 
     function syncGoogleIdentity(reason = "identity_sync") {
@@ -1680,7 +1671,7 @@
       if (typeof window.gtag !== "function") return;
 
       window.gtag("set", {
-        user_id: reportingCode,
+        user_id: getGoogleUserId(),
         listener_id: visitorTracker,
         tracker_id: visitorTracker,
         sj_tracker_id: visitorTracker,
@@ -1694,35 +1685,42 @@
         sj_tracker_id: visitorTracker,
         sj_signup_code: reportingCode,
         listener_id: visitorTracker,
-        pass_code: reportingCode,
-        assigned_signup_code: signupAssignedCode
+        pass_code: reportingCode
       });
+    }
 
-      window.gtag("config", gaMeasurementId, {
-        send_page_view: false,
+    function reportIdentityToGoogle(reason = "page_load") {
+      const reportingCode = getCurrentReportingCode();
+      const idPayload = {
+        event_category: "Saint Jules Identity",
+        event_label: reportingCode,
         debug_mode: true,
-        user_id: reportingCode,
+        reason,
         listener_id: visitorTracker,
         tracker_id: visitorTracker,
         sj_tracker_id: visitorTracker,
         pass_code: reportingCode,
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
-        code_used: reportingCode
-      });
-    }
+        code_used: reportingCode,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        timestamp_local: new Date().toLocaleString(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      };
 
-    function reportIdentityToGoogle(reason = "page_load") {
-      const idPayload = buildIdentityPayload(reason);
+      syncFormCodeFields(reason);
       saveLocalAnalytics({ event: "identity_seen", ...idPayload });
-      saveLocalAnalytics({ event: "sj_code_assigned", ...idPayload });
-      syncGoogleIdentity(reason);
+      window.sjAnalyticsIdentity = idPayload;
 
       if (typeof window.gtag !== "function") return;
 
+      syncGoogleIdentity(reason);
       window.gtag("event", "identity_seen", idPayload);
-      window.gtag("event", "sj_code_assigned", idPayload);
-      showAnalyticsReceipt(reason);
+      if (reportingCode !== "none") {
+        window.gtag("event", "sj_code_assigned", idPayload);
+      }
     }
 
     function isUnlockStillValid() {
@@ -1843,8 +1841,8 @@
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
         code_used: reportingCode,
-        assigned_signup_code: signupAssignedCode,
-        active_unlock_code: activeUnlockCode || "none"
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none"
       };
 
       const eventPayload = {
@@ -1859,6 +1857,7 @@
         mode: playerMode
       };
 
+      syncFormCodeFields(eventName);
       saveLocalAnalytics(eventPayload);
       window.sjAnalyticsLastPayload = eventPayload;
       window.sjAnalyticsRecent = JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]");
@@ -1904,8 +1903,6 @@
           });
         }
       }
-
-      showAnalyticsReceipt(eventName);
 
       if (!analyticsEndpoint) return;
 
@@ -2120,24 +2117,14 @@
       localStorage.setItem("saintJulesFullAlbum", "yes");
       localStorage.setItem("saintJulesUnlockCode", cleanCode);
       localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
-      syncFormCodeFields("full_album_unlock");
       document.body.classList.add("super-mode");
       const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
       passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
-      const unlockCodeType = getUnlockCodeType(cleanCode);
+      const unlockCodeType = getUnlockCodeType(code);
       reportIdentityToGoogle("full_album_unlock");
-      logEvent("sj_full_album_unlocked", {
-        code_type: unlockCodeType,
-        code_label: getCodeLabel(cleanCode),
-        entered_code: cleanCode,
-        expires_at: new Date(activeUnlockExpiresAt).toISOString()
-      });
-      logEvent(`unlock_${unlockCodeType}`, {
-        code_type: unlockCodeType,
-        code_label: getCodeLabel(cleanCode),
-        entered_code: cleanCode
-      });
+      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, code_used: code });
       renderTracklist();
     }
 
@@ -2158,13 +2145,12 @@
         const codeType = getCodeLabel(code);
         enterSuperstarMode(isVipCode ? "VIP accepted. Passenger princess access granted." : `You got the star. ${codeType} accepted. Full album mode is live.`, code);
       } else {
-        const badCode = code || "empty";
         logEvent("sj_bad_passcode", {
-          code_attempted: badCode,
+          code_attempted: code || "empty",
           code_type: "bad"
         });
         logEvent("bad_code_attempt", {
-          code_attempted: badCode,
+          code_attempted: code || "empty",
           code_type: "bad"
         });
         passMessage.textContent = "That code didn’t hit. Check the spelling and try again.";
@@ -2206,18 +2192,21 @@
     });
 
     signupForm.addEventListener("submit", () => {
-      syncFormCodeFields("signup_submit");
+      const assignedCode = ensureSignupAssignedCode();
+      const codeForThisSignup = getCurrentReportingCode() !== "none" ? getCurrentReportingCode() : assignedCode;
+      if (getCurrentReportingCode() === "none") activeUnlockCode = codeForThisSignup;
+      syncFormCodeFields("signup_submit", codeForThisSignup);
       reportIdentityToGoogle("signup_submit");
 
       logEvent("sj_signup_submitted", {
-        code_given: signupAssignedCode,
-        reporting_code_at_signup: getCurrentReportingCode(),
+        code_given: assignedCode,
+        reporting_code_at_signup: codeForThisSignup,
         signup_source: "saint-jules-website-info-signup"
       });
 
-      signupMessage.textContent = `You got the star. Your secret pass is ${signupAssignedCode}. I sent your info to the list with tracker ${visitorTracker} — now hit unlock and go full album mode.`;
+      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}. I sent your info to the list with tracker ${visitorTracker} — now hit unlock and go full album mode.`;
       signupMessage.classList.add("show");
-      passInput.value = signupAssignedCode;
+      passInput.value = assignedCode;
       setTimeout(() => passInput.focus(), 250);
     });
 
@@ -2234,7 +2223,6 @@
     }
 
     syncFormCodeFields("page_ready");
-    showAnalyticsReceipt("page_ready");
     renderTracklist();
 
     player.addEventListener("play", () => {
