@@ -9,6 +9,22 @@
   <meta property="og:description" content="The Proposition is playable now. Boy Genius flashes May 16. Album crashes June 18." />
   <meta property="og:type" content="website" />
 
+  <!-- Google Analytics 4
+    Formspree stays signup-only. Listener events go to GA4 instead of filling Formspree.
+  -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XSVZX83PH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9XSVZX83PH', { 'debug_mode': true });
+    gtag('event', 'saint_jules_site_loaded', {
+      event_category: 'Saint Jules Site',
+      event_label: 'GA4 install test',
+      debug_mode: true
+    });
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1244,6 +1260,7 @@
             <input type="hidden" name="source" value="saint-jules-website-info-signup" />
             <input type="hidden" name="vip_code" id="signupCodeField" value="PASSENGERPRINCESS" />
             <input type="hidden" name="tracker_id" id="trackerField" value="" />
+            <input type="hidden" name="analytics_note" value="Detailed listener analytics are no longer sent to Formspree. Formspree is signup-only." />
             <input type="hidden" name="_subject" value="New Saint Jules website signup" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
@@ -1298,7 +1315,8 @@
     const vipSignupCode = "PASSENGERPRINCESS";
     const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
     const unlockTimeoutHours = 2;
-    const logEndpoint = "https://formspree.io/f/xaqarqrp";
+    const analyticsEndpoint = "";
+    const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
     const codePrefix = "SJ";
     const generatedCodeSalt = "CRASHDUMMYERA";
 
@@ -1574,19 +1592,56 @@
       return listeningSummary[key];
     }
 
+    function saveLocalAnalytics(eventPayload) {
+      try {
+        const existing = JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]");
+        existing.push(eventPayload);
+        localStorage.setItem(analyticsLocalStorageKey, JSON.stringify(existing.slice(-200)));
+      } catch (error) {}
+    }
+
     function logEvent(eventName, details = {}) {
-      const payload = new FormData();
-      payload.set("event", eventName);
-      payload.set("time", new Date().toISOString());
-      payload.set("code", activeUnlockCode);
-      payload.set("tracker", visitorTracker);
-      payload.set("signup_code", signupAssignedCode);
-      payload.set("page", window.location.pathname);
-      Object.entries(details).forEach(([key, value]) => payload.set(key, String(value)));
+      const eventPayload = {
+        event: eventName,
+        time: new Date().toISOString(),
+        code: activeUnlockCode,
+        tracker: visitorTracker,
+        signup_code: signupAssignedCode,
+        page: window.location.pathname,
+        referrer: document.referrer || "direct",
+        mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        ...details
+      };
+
+      saveLocalAnalytics(eventPayload);
+
+      if (typeof window.gtag === "function") {
+        const gaPayload = {
+          event_category: "Saint Jules Player",
+          event_label: eventPayload.last_track || eventPayload.code_used || eventPayload.code || eventName,
+          saint_jules_code: eventPayload.code,
+          saint_jules_tracker: eventPayload.tracker,
+          saint_jules_signup_code: eventPayload.signup_code,
+          saint_jules_mode: eventPayload.mode,
+          debug_mode: true,
+          ...details
+        };
+        window.gtag("event", eventName, gaPayload);
+      }
+
+      if (typeof window.plausible === "function") {
+        window.plausible(eventName, { props: eventPayload });
+      }
+
+      if (!analyticsEndpoint || analyticsEndpoint === "PASTE_SUPABASE_OR_ANALYTICS_ENDPOINT_HERE") return;
 
       try {
-        if (navigator.sendBeacon) navigator.sendBeacon(logEndpoint, payload);
-        else fetch(logEndpoint, { method: "POST", body: payload, keepalive: true, mode: "no-cors" }).catch(() => {});
+        fetch(analyticsEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventPayload),
+          keepalive: true
+        }).catch(() => {});
       } catch (error) {}
     }
 
@@ -1609,7 +1664,7 @@
       logEvent("listening_session_summary", {
         reason,
         session_seconds: Math.round((Date.now() - sessionStartedAt) / 1000),
-        summary: JSON.stringify(listeningSummary),
+        summary: listeningSummary,
         last_track: currentTitle.textContent || "none"
       });
     }
