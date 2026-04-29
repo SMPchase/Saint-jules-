@@ -346,8 +346,8 @@
     .now-playing {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      padding: 16px;
+      gap: 7px;
+      padding: 12px;
       border: 1px solid rgba(255,20,147,.22);
       border-radius: 26px;
       background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,210,239,.72));
@@ -364,7 +364,7 @@
 
     .track-title {
       font-family: "Bagel Fat One", system-ui, sans-serif;
-      font-size: clamp(2.35rem, 6vw, 5rem);
+      font-size: clamp(2rem, 5vw, 4.1rem);
       line-height: .88;
       letter-spacing: -.045em;
       margin: 0;
@@ -378,51 +378,177 @@
     }
 
     .native-player {
-      width: 100%;
-      margin-top: 10px;
-      accent-color: var(--hot-pink);
-      border-radius: 999px;
-    }
-
-    .player-tools {
       display: none;
     }
 
-    .mini-control {
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(255,255,255,.76);
-      color: var(--ink);
-      padding: 10px 13px;
+    .lux-player {
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(23,0,15,.12);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.85), transparent 30%),
+        linear-gradient(135deg, rgba(23,0,15,.92), rgba(68,0,45,.9));
+      color: var(--white);
+      box-shadow: 0 18px 44px rgba(23,0,15,.2), inset 0 0 0 1px rgba(255,255,255,.12);
+    }
+
+    .lux-topline,
+    .lux-bottomline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .74rem;
+      font-weight: 950;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+      color: rgba(255,250,252,.75);
+    }
+
+    .lux-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0 10px;
+    }
+
+    .lux-btn {
+      display: inline-grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
       font-family: inherit;
-      font-size: .82rem;
+      font-weight: 950;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .lux-btn.ghost {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .lux-btn.play {
+      width: 58px;
+      height: 58px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 1.3rem;
+      box-shadow: 0 16px 34px rgba(0,0,0,.28);
+    }
+
+    .lux-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+    }
+
+    .lux-progress-wrap {
+      display: grid;
+      grid-template-columns: 42px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .lux-time {
+      font-size: .78rem;
+      font-weight: 900;
+      color: rgba(255,250,252,.7);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lux-progress {
+      width: 100%;
+      appearance: none;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--hot-pink) var(--progress, 0%), rgba(255,255,255,.2) var(--progress, 0%));
+      outline: none;
+      cursor: pointer;
+    }
+
+    .lux-progress::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--hot-pink);
+      box-shadow: 0 5px 16px rgba(0,0,0,.25);
+    }
+
+    .lux-progress::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--hot-pink);
+      box-shadow: 0 5px 16px rgba(0,0,0,.25);
+    }
+
+    .lux-bottomline {
+      margin-top: 10px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: .8rem;
+      color: rgba(255,250,252,.72);
+    }
+
+    .lux-chip {
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      padding: 8px 11px;
+      font-family: inherit;
+      font-size: .72rem;
       font-weight: 950;
       text-transform: uppercase;
-      letter-spacing: .055em;
+      letter-spacing: .06em;
       cursor: pointer;
-      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
     }
 
-    .mini-control:hover {
-      transform: translateY(-2px);
-      background: var(--white);
-      box-shadow: 0 10px 26px rgba(137,0,91,.14);
-    }
-
-    .mini-control.main {
-      background: var(--ink);
-      color: var(--white);
-      min-width: 74px;
-    }
-
-    .player-stats {
+    body:not(.super-mode) .lux-chip {
       display: none;
     }
 
-    .super-mode .mini-control.main {
-      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #7cf7ff, #17000f);
+    .super-mode .lux-player {
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.95), transparent 28%),
+        linear-gradient(135deg, #fffafc, #ffffff 38%, #ffe1f4 72%, #fffafc);
+      color: var(--ink);
+      border-color: rgba(255,20,147,.25);
+      box-shadow: 0 20px 55px rgba(255,20,147,.18), inset 0 0 0 1px rgba(255,255,255,.8);
+    }
+
+    .super-mode .lux-topline,
+    .super-mode .lux-bottomline,
+    .super-mode .lux-time {
+      color: rgba(23,0,15,.68);
+    }
+
+    .super-mode .lux-btn.ghost {
+      background: rgba(255,20,147,.12);
+      color: var(--ink);
+    }
+
+    .super-mode .lux-btn.play {
+      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #ffffff, #ff1493);
       background-size: 280% 100%;
+      color: var(--white);
       animation: rainbowRoad 2.4s linear infinite;
+    }
+
+    .super-mode .lux-chip {
+      color: var(--ink);
+      background: rgba(255,20,147,.12);
+      border-color: rgba(255,20,147,.24);
     }
 
     .release-message {
@@ -495,6 +621,25 @@
       border-color: rgba(255,20,147,.55);
       background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,210,239,.9));
       box-shadow: 0 12px 30px rgba(255,20,147,.14);
+    }
+
+    body:not(.super-mode) .track-row:not(.lead) {
+      display: none;
+    }
+
+    body:not(.super-mode) .tracklist::after {
+      content: "full album unlocks with the superstar pass";
+      display: block;
+      margin-top: 4px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.58);
+      border: 1px dashed rgba(23,0,15,.18);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      font-size: .78rem;
+      opacity: .76;
     }
 
     .track-row.locked { opacity: .78; }
@@ -834,20 +979,24 @@
     }
 
     body.super-mode {
+      color: #17000f;
       background:
-        radial-gradient(circle at 14% 18%, rgba(255,255,255,.98) 0 6%, transparent 7%),
-        radial-gradient(circle at 78% 20%, rgba(255,255,255,.9) 0 4%, transparent 5%),
-        linear-gradient(90deg, #ff4fb8 0%, #fff4fb 18%, #ffd700 34%, #ff4fb8 52%, #7cf7ff 70%, #fff4fb 86%, #ff4fb8 100%);
-      background-size: 100% 100%, 100% 100%, 320% 320%;
-      animation: rainbowRoad 4s linear infinite;
+        radial-gradient(circle at 12% 10%, rgba(255,20,147,.18) 0 8%, transparent 9%),
+        radial-gradient(circle at 78% 18%, rgba(255,215,0,.22) 0 6%, transparent 7%),
+        radial-gradient(circle at 82% 82%, rgba(124,247,255,.18) 0 8%, transparent 9%),
+        linear-gradient(135deg, #fffafc 0%, #ffffff 34%, #fff0fa 62%, #ffe1f4 100%);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 320% 320%;
+      animation: rainbowRoad 5s linear infinite;
     }
 
     body.super-mode::before {
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.78) 0 2px, transparent 3px),
-        linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px);
-      background-size: 44px 44px, 38px 38px, 38px 38px;
+        radial-gradient(circle, rgba(255,20,147,.28) 0 2px, transparent 3px),
+        radial-gradient(circle, rgba(255,215,0,.28) 0 2px, transparent 3px),
+        linear-gradient(rgba(255,20,147,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,20,147,.12) 1px, transparent 1px);
+      background-position: 0 0, 22px 22px, 0 0, 0 0;
+      background-size: 44px 44px, 44px 44px, 38px 38px, 38px 38px;
       mask-image: none;
     }
 
@@ -855,16 +1004,25 @@
     .super-mode .lead-badge,
     .super-mode .release-date,
     .super-mode .tracklist-callout-title {
-      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #17000f);
+      background: linear-gradient(90deg, #17000f, #ff1493, #ffffff, #ffd700, #ff1493, #17000f);
       color: var(--white);
       background-size: 240% 100%;
       animation: rainbowRoad 2.4s linear infinite;
     }
 
+    .super-mode .section,
+    .super-mode .nav,
+    .super-mode .player-panel,
+    .super-mode .pass-card,
+    .super-mode .signup-card {
+      background: rgba(255,255,255,.82);
+      border-color: rgba(255,20,147,.24);
+    }
+
     .super-mode .track-row:hover,
     .super-mode .track-row.active {
       transform: translateX(8px) scale(1.015);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.78), 0 18px 45px rgba(255,20,147,.26);
+      box-shadow: 0 0 0 3px rgba(255,20,147,.18), 0 18px 45px rgba(255,20,147,.22);
     }
 
     .super-mode .track-title::after,
@@ -965,16 +1123,33 @@
             <span class="eyebrow">Single</span>
             <h3 class="track-title" id="currentTitle">The Proposition</h3>
             <p class="track-meta" id="currentMeta">Saint Jules · single · playable now</p>
-            <audio class="native-player" id="audioPlayer" controls preload="metadata" src="Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/04%20The%20Proposition.wav">
+            <audio class="native-player" id="audioPlayer" preload="metadata" src="Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/04%20The%20Proposition.wav">
               Your browser does not support the audio element.
             </audio>
-            <div class="player-tools" aria-label="Player controls">
-              <button class="mini-control" id="prevTrack" type="button">back</button>
-              <button class="mini-control main" id="togglePlay" type="button">play</button>
-              <button class="mini-control" id="nextTrack" type="button">next</button>
-              <button class="mini-control" id="playUnlocked" type="button">play unlocked</button>
+
+            <div class="lux-player" aria-label="Saint Jules music player">
+              <div class="lux-topline">
+                <span id="playerModeLabel">single player</span>
+                <span id="playerUnlockCount">1/13 unlocked</span>
+              </div>
+
+              <div class="lux-controls">
+                <button class="lux-btn ghost" id="prevTrack" type="button" aria-label="Previous track">‹</button>
+                <button class="lux-btn play" id="togglePlay" type="button" aria-label="Play or pause">▶</button>
+                <button class="lux-btn ghost" id="nextTrack" type="button" aria-label="Next track">›</button>
+              </div>
+
+              <div class="lux-progress-wrap">
+                <span class="lux-time" id="currentTimeText">0:00</span>
+                <input class="lux-progress" id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Song progress" />
+                <span class="lux-time" id="durationText">0:00</span>
+              </div>
+
+              <div class="lux-bottomline">
+                <button class="lux-chip" id="playUnlocked" type="button">play unlocked</button>
+                <span id="playerStats">The Proposition is ready.</span>
+              </div>
             </div>
-            <div class="player-stats" id="playerStats">Player features are still running quietly: unlock schedule, passcodes, highlight, autoplay-next, and listening summary logs.</div>
             <div class="release-message" id="releaseMessage"></div>
           </div>
 
@@ -1314,6 +1489,11 @@
     const nextTrackButton = document.getElementById("nextTrack");
     const playUnlockedButton = document.getElementById("playUnlocked");
     const playerStats = document.getElementById("playerStats");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeText = document.getElementById("currentTimeText");
+    const durationText = document.getElementById("durationText");
+    const playerModeLabel = document.getElementById("playerModeLabel");
+    const playerUnlockCount = document.getElementById("playerUnlockCount");
     const passInput = document.getElementById("passInput");
     const passButton = document.getElementById("passButton");
     const resetPassButton = document.getElementById("resetPassButton");
@@ -1479,8 +1659,15 @@
       const unlockedCount = getUnlockedIndexes().length;
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       const duration = player.duration ? formatTime(player.duration) : "loading";
-      playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)} • ${unlockedCount}/${tracks.length} tracks unlocked • ${formatTime(player.currentTime || 0)} / ${duration}`;
-      togglePlayButton.textContent = player.paused ? "play" : "pause";
+      playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)}`;
+      playerUnlockCount.textContent = `${unlockedCount}/${tracks.length} unlocked`;
+      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "full album player" : "single player";
+      currentTimeText.textContent = formatTime(player.currentTime || 0);
+      durationText.textContent = duration;
+      const percent = player.duration ? Math.min(100, (player.currentTime / player.duration) * 100) : 0;
+      progressBar.value = percent;
+      progressBar.style.setProperty("--progress", `${percent}%`);
+      togglePlayButton.textContent = player.paused ? "▶" : "Ⅱ";
     }
 
     function setActive(index) {
@@ -1610,6 +1797,12 @@
 
     prevTrackButton.addEventListener("click", () => playRelativeTrack(-1));
     nextTrackButton.addEventListener("click", () => playRelativeTrack(1));
+
+    progressBar.addEventListener("input", () => {
+      if (!player.duration) return;
+      player.currentTime = (Number(progressBar.value) / 100) * player.duration;
+      updatePlayerStats();
+    });
 
     togglePlayButton.addEventListener("click", () => {
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
