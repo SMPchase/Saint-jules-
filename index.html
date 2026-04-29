@@ -1528,6 +1528,9 @@
     let lastPlayStartedAt = null;
     let hasSentSessionSummary = false;
     let hasLoggedFirstPlay = false;
+    let currentLoadKey = "";
+    let hasLoggedPlayForCurrentLoad = false;
+    let currentLoadStartedAt = 0;
     const sessionPlayCounts = {};
     const sessionStartCounts = {};
     const sessionCompleteCounts = {};
@@ -1885,6 +1888,9 @@
     function loadTrack(track, index, autoplay = true) {
       addListeningTime();
       currentTrackIndex = index;
+      currentLoadKey = `${track.number} ${track.title}`;
+      currentLoadStartedAt = Date.now();
+      hasLoggedPlayForCurrentLoad = false;
       const summary = getTrackSummary(track);
 
       if (!isTrackUnlocked(track)) {
@@ -1920,10 +1926,10 @@
       if (autoplay) player.play().catch(() => {});
     }
 
-    function playRelativeTrack(direction) {
+    function playRelativeTrack(direction, countAsSkip = true) {
       addListeningTime();
       const previousTrack = tracks[currentTrackIndex] || tracks[leadIndex];
-      getTrackSummary(previousTrack).skips += 1;
+      if (countAsSkip) getTrackSummary(previousTrack).skips += 1;
 
       const unlocked = getUnlockedIndexes();
       const currentPosition = unlocked.indexOf(currentTrackIndex);
@@ -1984,8 +1990,8 @@
       clearSuperstarMode("Back to regular mode. The star power wore off.");
     });
 
-    prevTrackButton.addEventListener("click", () => playRelativeTrack(-1));
-    nextTrackButton.addEventListener("click", () => playRelativeTrack(1));
+    prevTrackButton.addEventListener("click", () => playRelativeTrack(-1, true));
+    nextTrackButton.addEventListener("click", () => playRelativeTrack(1, true));
 
     progressBar.addEventListener("input", () => {
       if (!player.duration) return;
@@ -2045,41 +2051,47 @@
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       const summary = getTrackSummary(track);
       const trackKey = `${track.number} ${track.title}`;
-      sessionPlayCounts[trackKey] = (sessionPlayCounts[trackKey] || 0) + 1;
-      summary.plays += 1;
 
-      const isRepeat = sessionPlayCounts[trackKey] > 1;
-      if (isRepeat) sessionRepeatCounts[trackKey] = (sessionRepeatCounts[trackKey] || 0) + 1;
+      if (!lastPlayStartedAt) lastPlayStartedAt = Date.now();
 
-      const props = simpleTrackProps(track, {
-        session_play_count_for_track: sessionPlayCounts[trackKey],
-        repeat_tally_for_track: sessionRepeatCounts[trackKey] || 0,
-        total_session_plays: Object.values(sessionPlayCounts).reduce((sum, count) => sum + count, 0),
-        is_repeat_play: isRepeat ? "yes" : "no"
-      });
+      if (!hasLoggedPlayForCurrentLoad) {
+        hasLoggedPlayForCurrentLoad = true;
+        sessionPlayCounts[trackKey] = (sessionPlayCounts[trackKey] || 0) + 1;
+        summary.plays += 1;
 
-      logEvent("sj_track_play", props);
-      logEvent(trackEventName("play", track), props);
+        const isRepeat = sessionPlayCounts[trackKey] > 1;
+        if (isRepeat) sessionRepeatCounts[trackKey] = (sessionRepeatCounts[trackKey] || 0) + 1;
 
-      if (!hasLoggedFirstPlay) {
-        hasLoggedFirstPlay = true;
-        sessionStartCounts[trackKey] = (sessionStartCounts[trackKey] || 0) + 1;
-        logEvent("sj_first_track_started", simpleTrackProps(track, {
-          first_track_started: trackKey,
-          first_start_tally_for_track: sessionStartCounts[trackKey]
-        }));
-        logEvent(trackEventName("start", track), simpleTrackProps(track, {
-          first_track_started: trackKey,
-          first_start_tally_for_track: sessionStartCounts[trackKey]
-        }));
+        const props = simpleTrackProps(track, {
+          session_play_count_for_track: sessionPlayCounts[trackKey],
+          repeat_tally_for_track: sessionRepeatCounts[trackKey] || 0,
+          total_session_plays: Object.values(sessionPlayCounts).reduce((sum, count) => sum + count, 0),
+          is_repeat_play: isRepeat ? "yes" : "no",
+          play_source: Date.now() - currentLoadStartedAt < 2500 ? "fresh_track_load" : "resume_after_pause"
+        });
+
+        logEvent("sj_track_play", props);
+        logEvent(trackEventName("play", track), props);
+
+        if (!hasLoggedFirstPlay) {
+          hasLoggedFirstPlay = true;
+          sessionStartCounts[trackKey] = (sessionStartCounts[trackKey] || 0) + 1;
+          logEvent("sj_first_track_started", simpleTrackProps(track, {
+            first_track_started: trackKey,
+            first_start_tally_for_track: sessionStartCounts[trackKey]
+          }));
+          logEvent(trackEventName("start", track), simpleTrackProps(track, {
+            first_track_started: trackKey,
+            first_start_tally_for_track: sessionStartCounts[trackKey]
+          }));
+        }
+
+        if (isRepeat) {
+          logEvent("sj_track_repeated", props);
+          logEvent(trackEventName("repeat", track), props);
+        }
       }
 
-      if (isRepeat) {
-        logEvent("sj_track_repeated", props);
-        logEvent(trackEventName("repeat", track), props);
-      }
-
-      lastPlayStartedAt = Date.now();
       updatePlayerStats();
       setActive(currentTrackIndex);
     });
@@ -2109,7 +2121,7 @@
       logEvent("sj_track_complete", completeProps);
       logEvent(trackEventName("complete", track), completeProps);
       setActive(currentTrackIndex);
-      playRelativeTrack(1);
+      playRelativeTrack(1, false);
     });
 
     player.addEventListener("loadedmetadata", updatePlayerStats);
