@@ -1590,25 +1590,32 @@
     function reportIdentityToGoogle(reason = "page_load") {
       if (typeof window.gtag !== "function") return;
 
-      window.gtag("set", "user_properties", {
-        sj_tracker_id: visitorTracker,
-        sj_signup_code: signupAssignedCode
-      });
-
-      window.gtag("event", "sj_code_assigned", {
+      const idPayload = {
         event_category: "Saint Jules Identity",
         event_label: signupAssignedCode,
         debug_mode: true,
-        song_title: "identity check",
-        song_number: "none",
         reason,
+        listener_id: visitorTracker,
+        pass_code: signupAssignedCode,
         tracker_id: visitorTracker,
         signup_code: signupAssignedCode,
+        sj_tracker_id: visitorTracker,
+        sj_signup_code: signupAssignedCode,
         code_used: activeUnlockCode,
         player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
         timestamp_local: new Date().toLocaleString(),
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      };
+
+      window.gtag("set", "user_properties", {
+        sj_tracker_id: visitorTracker,
+        sj_signup_code: signupAssignedCode,
+        listener_id: visitorTracker,
+        pass_code: signupAssignedCode
       });
+
+      window.gtag("event", "identity_seen", idPayload);
+      window.gtag("event", "sj_code_assigned", idPayload);
     }
 
     function isUnlockStillValid() {
@@ -1698,6 +1705,23 @@
       return "unknown";
     }
 
+    function getReadableAlias(eventName) {
+      const aliases = {
+        sj_track_play: "music_play",
+        sj_track_repeated: "music_repeat",
+        sj_track_complete: "music_complete",
+        sj_first_track_started: "music_start",
+        sj_locked_track_click: "locked_song_click",
+        sj_full_album_unlocked: "album_unlock",
+        sj_full_album_locked: "album_lock",
+        sj_signup_submitted: "lead_signup",
+        sj_bad_passcode: "bad_passcode",
+        sj_session_end: "listen_session_end",
+        sj_site_ready: "site_ready"
+      };
+      return aliases[eventName] || "";
+    }
+
     function logEvent(eventName, details = {}) {
       const playerMode = document.body.classList.contains("super-mode") ? "superstar" : "single";
       const timeParts = getTimeStampParts();
@@ -1705,9 +1729,13 @@
         event: eventName,
         time: timeParts.timestamp_iso,
         ...timeParts,
-        code_used: activeUnlockCode,
+        listener_id: visitorTracker,
+        pass_code: signupAssignedCode,
         tracker_id: visitorTracker,
         signup_code: signupAssignedCode,
+        sj_tracker_id: visitorTracker,
+        sj_signup_code: signupAssignedCode,
+        code_used: activeUnlockCode,
         page: window.location.pathname,
         player_mode: playerMode,
         mode: playerMode,
@@ -1724,38 +1752,33 @@
 
         window.gtag("set", "user_properties", {
           sj_tracker_id: visitorTracker,
-          sj_signup_code: signupAssignedCode
+          sj_signup_code: signupAssignedCode,
+          listener_id: visitorTracker,
+          pass_code: signupAssignedCode
         });
 
-        window.gtag("config", "G-9XSVZX83PH", {
-          user_id: visitorTracker,
-          send_page_view: false
-        });
+        const sendGA = (name) => {
+          window.gtag("event", name, {
+            event_category: "Saint Jules Music Player",
+            event_label: gaPayload.song_title || gaPayload.track_title || gaPayload.code_type || gaPayload.reason || name,
+            debug_mode: true,
+            ...gaPayload
+          });
+        };
 
-        window.gtag("event", eventName, {
-          event_category: "Saint Jules Music Player",
-          event_label: gaPayload.song_title || gaPayload.track_title || gaPayload.code_type || gaPayload.reason || eventName,
-          debug_mode: true,
-          ...gaPayload
-        });
+        sendGA(eventName);
 
-        if (details.song_title || details.track_title) {
+        const aliasName = getReadableAlias(eventName);
+        if (aliasName) sendGA(aliasName);
+
+        if (gaPayload.song_title && gaPayload.song_title !== "none") {
           window.gtag("event", "song_activity", {
             event_category: "Saint Jules Music Player",
-            event_label: gaPayload.song_title || gaPayload.track_title,
+            event_label: gaPayload.song_title,
+            debug_mode: true,
             activity_type: eventName,
-            song_title: gaPayload.song_title || gaPayload.track_title,
-            song_number: gaPayload.song_number || gaPayload.track_number,
-            song_status: gaPayload.song_status || gaPayload.track_status,
-            track_key: gaPayload.track_key,
-            player_mode: gaPayload.player_mode,
-            code_used: gaPayload.code_used,
-            tracker_id: gaPayload.tracker_id,
-            signup_code: gaPayload.signup_code,
-            timestamp_local: gaPayload.timestamp_local,
-            hour_local: gaPayload.hour_local,
-            day_of_week: gaPayload.day_of_week,
-            debug_mode: true
+            readable_activity: aliasName || eventName,
+            ...gaPayload
           });
         }
       }
@@ -1977,8 +2000,8 @@
       passMessage.classList.add("show");
       const unlockCodeType = getUnlockCodeType(code);
       reportIdentityToGoogle("full_album_unlock");
-      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
-      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code });
+      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, code_used: code });
       renderTracklist();
     }
 
@@ -2050,6 +2073,11 @@
       logEvent("sj_signup_submitted", {
         code_given: signupAssignedCode,
         tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        listener_id: visitorTracker,
+        signup_code: signupAssignedCode,
+        sj_signup_code: signupAssignedCode,
+        pass_code: signupAssignedCode,
         signup_source: "saint-jules-website-info-signup"
       });
 
@@ -2156,10 +2184,7 @@
     updatePlayerStats();
     reportIdentityToGoogle("page_ready");
     logEvent("sj_site_ready", {
-      reason: "clean_tracked_page_load",
-      song_title: "site ready",
-      song_number: "none",
-      song_status: "identity event"
+      reason: "clean_tracked_page_load"
     });
   </script>
 </body>
