@@ -17,12 +17,12 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-9XSVZX83PH', { 'debug_mode': true });
-    gtag('event', 'saint_jules_site_loaded', {
-      event_category: 'Saint Jules Site',
-      event_label: 'GA4 install test',
-      debug_mode: true
+    gtag('config', 'G-9XSVZX83PH', {
+      'debug_mode': true,
+      'send_page_view': false
     });
+    // Main page/music events are sent later after the site creates a tracker ID.
+    // This keeps reports cleaner so blank tracker rows do not dominate the tables.
   </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1599,6 +1599,8 @@
         event_category: "Saint Jules Identity",
         event_label: signupAssignedCode,
         debug_mode: true,
+        song_title: "identity check",
+        song_number: "none",
         reason,
         tracker_id: visitorTracker,
         signup_code: signupAssignedCode,
@@ -2153,6 +2155,12 @@
     window.addEventListener("beforeunload", () => sendSessionSummary("beforeunload"));
     updatePlayerStats();
     reportIdentityToGoogle("page_ready");
+    logEvent("sj_site_ready", {
+      reason: "clean_tracked_page_load",
+      song_title: "site ready",
+      song_number: "none",
+      song_status: "identity event"
+    });
   </script>
 </body>
 </html>
