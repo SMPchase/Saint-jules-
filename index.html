@@ -1374,7 +1374,7 @@
       const check = parts[3];
       if (body.length !== 6 || check.length !== 2) return false;
       return codeChecksum(body) === check;
-    \}
+    }
 
     function getCodeLabel(code) {
       if (Object.prototype.hasOwnProperty.call(uniqueCodes, code)) return uniqueCodes[code];
