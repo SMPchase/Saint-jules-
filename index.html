@@ -1648,6 +1648,29 @@
       return value;
     }
 
+    function toEventSlug(value) {
+      return String(value || "none")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .slice(0, 32);
+    }
+
+    function trackEventName(prefix, track) {
+      const number = toEventSlug(track?.number || "00");
+      const title = toEventSlug(track?.title || "unknown");
+      return `${prefix}_${number}_${title}`;
+    }
+
+    function getUnlockCodeType(code) {
+      if (fullAlbumCodes.includes(code)) return "public";
+      if (code === vipSignupCode) return "signup_vip";
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, code)) return "manual_unique";
+      if (isGeneratedPasscode(code)) return "generated_unique";
+      if (resetCodes.includes(code)) return "reset";
+      return "unknown";
+    }
+
     function logEvent(eventName, details = {}) {
       const playerMode = document.body.classList.contains("super-mode") ? "superstar" : "single";
       const timeParts = getTimeStampParts();
@@ -1675,6 +1698,11 @@
         window.gtag("set", "user_properties", {
           sj_tracker_id: visitorTracker,
           sj_signup_code: signupAssignedCode
+        });
+
+        window.gtag("config", "G-9XSVZX83PH", {
+          user_id: visitorTracker,
+          send_page_view: false
         });
 
         window.gtag("event", eventName, {
@@ -1846,6 +1874,9 @@
         logEvent("sj_locked_track_click", simpleTrackProps(track, {
           locked_click_tally_for_track: sessionLockedClickCounts[lockedKey]
         }));
+        logEvent(trackEventName("locked", track), simpleTrackProps(track, {
+          locked_click_tally_for_track: sessionLockedClickCounts[lockedKey]
+        }));
         player.pause();
         currentTitle.textContent = track.title;
         currentMeta.textContent = `Saint Jules · ${track.status}`;
@@ -1857,6 +1888,7 @@
       }
 
       logEvent("sj_track_selected", simpleTrackProps(track));
+      logEvent(trackEventName("selected", track), simpleTrackProps(track));
       currentTitle.textContent = track.title;
       currentMeta.textContent = `Saint Jules · ${getTrackStatus(track)}`;
       artwork.src = track.art;
@@ -1893,7 +1925,9 @@
       const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
       passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
-      logEvent("sj_full_album_unlocked", { code_type: getCodeLabel(code), entered_code: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      const unlockCodeType = getUnlockCodeType(code);
+      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code });
       renderTracklist();
     }
 
@@ -1916,6 +1950,7 @@
       } else {
         activeUnlockCode = code || "empty_attempt";
         logEvent("sj_bad_passcode", { code_attempted: code || "empty" });
+        logEvent("bad_code_attempt", { code_attempted: code || "empty" });
         passMessage.textContent = "That code didn’t hit. Check the spelling and try again.";
         passMessage.classList.add("show");
       }
@@ -2004,6 +2039,7 @@
       });
 
       logEvent("sj_track_play", props);
+      logEvent(trackEventName("play", track), props);
 
       if (!hasLoggedFirstPlay) {
         hasLoggedFirstPlay = true;
@@ -2012,10 +2048,15 @@
           first_track_started: trackKey,
           first_start_tally_for_track: sessionStartCounts[trackKey]
         }));
+        logEvent(trackEventName("start", track), simpleTrackProps(track, {
+          first_track_started: trackKey,
+          first_start_tally_for_track: sessionStartCounts[trackKey]
+        }));
       }
 
       if (isRepeat) {
         logEvent("sj_track_repeated", props);
+        logEvent(trackEventName("repeat", track), props);
       }
 
       lastPlayStartedAt = Date.now();
@@ -2041,10 +2082,12 @@
       getTrackSummary(track).completed += 1;
       const completeKey = `${track.number} ${track.title}`;
       sessionCompleteCounts[completeKey] = (sessionCompleteCounts[completeKey] || 0) + 1;
-      logEvent("sj_track_complete", simpleTrackProps(track, {
+      const completeProps = simpleTrackProps(track, {
         complete_tally_for_track: sessionCompleteCounts[completeKey],
         total_session_completes: Object.values(sessionCompleteCounts).reduce((sum, count) => sum + count, 0)
-      }));
+      });
+      logEvent("sj_track_complete", completeProps);
+      logEvent(trackEventName("complete", track), completeProps);
       setActive(currentTrackIndex);
       playRelativeTrack(1);
     });
