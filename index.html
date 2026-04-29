@@ -1578,7 +1578,7 @@
       localStorage.setItem("saintJulesUnlockCode", code);
       localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
       document.body.classList.add("super-mode");
-      const timeoutLine = new Date() >= albumRelease ? "" : ` It will lock itself again in ${unlockTimeoutHours} hours.`;
+      const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
       passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
       logEvent("full_album_unlocked", { code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
@@ -1594,17 +1594,17 @@
       const isGeneratedCode = isGeneratedPasscode(code);
 
       if (isResetCode) {
-        clearSuperstarMode("Test reset accepted. Superstar mode is off and the cookies are cleared.");
+        clearSuperstarMode("Reset code accepted. Star power cleared.");
         return;
       }
 
       if (isPublicCode || isVipCode || isUniqueCode || isGeneratedCode) {
         const codeType = getCodeLabel(code);
-        enterSuperstarMode(isVipCode ? "VIP code accepted. Passenger princess access granted." : `Superstar unlocked. ${codeType} accepted. Whole album mode is live.`, code);
+        enterSuperstarMode(isVipCode ? "VIP accepted. Passenger princess access granted." : `You got the star. ${codeType} accepted. Full album mode is live.`, code);
       } else {
         activeUnlockCode = code || "empty_attempt";
         logEvent("bad_passcode_attempt", { code_attempted: code || "empty" });
-        passMessage.textContent = "Wrong code. The car did not start. Try again.";
+        passMessage.textContent = "That code didn’t hit. Check the spelling and try again.";
         passMessage.classList.add("show");
       }
     });
@@ -1614,7 +1614,7 @@
     });
 
     resetPassButton.addEventListener("click", () => {
-      clearSuperstarMode("Locked back up. Good for testing mobile reloads.");
+      clearSuperstarMode("Back to regular mode. The star power wore off.");
     });
 
     prevTrackButton.addEventListener("click", () => playRelativeTrack(-1));
@@ -1648,7 +1648,7 @@
         signup_source: "saint-jules-website-info-signup"
       });
 
-      signupMessage.textContent = `You’re in. Your tracker code is ${signupAssignedCode}. I sent your info with tracker ${visitorTracker}. Type the code into the superstar pass box to unlock full album mode.`;
+      signupMessage.textContent = `You got the star. Your secret pass is ${signupAssignedCode}. I sent your info to the list — now hit unlock and go full album mode.`;
       signupMessage.classList.add("show");
       passInput.value = signupAssignedCode;
       setTimeout(() => passInput.focus(), 250);
@@ -1662,7 +1662,7 @@
     } else if (albumOverrideUnlocked) {
       document.body.classList.add("super-mode");
       const minutesLeft = Math.max(1, Math.round((activeUnlockExpiresAt - Date.now()) / 60000));
-      passMessage.textContent = `Full album mode is still active for about ${minutesLeft} more minutes. Use RESETSTAR or the lock button to test again.`;
+      passMessage.textContent = `Superstar mode is still glowing for about ${minutesLeft} more minutes.`;
       passMessage.classList.add("show");
     }
 
