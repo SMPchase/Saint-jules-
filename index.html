@@ -1587,6 +1587,28 @@
     localStorage.setItem("saintJulesTracker", visitorTracker);
     localStorage.setItem("saintJulesSignupCode", signupAssignedCode);
 
+    function reportIdentityToGoogle(reason = "page_load") {
+      if (typeof window.gtag !== "function") return;
+
+      window.gtag("set", "user_properties", {
+        sj_tracker_id: visitorTracker,
+        sj_signup_code: signupAssignedCode
+      });
+
+      window.gtag("event", "sj_code_assigned", {
+        event_category: "Saint Jules Identity",
+        event_label: signupAssignedCode,
+        debug_mode: true,
+        reason,
+        tracker_id: visitorTracker,
+        signup_code: signupAssignedCode,
+        code_used: activeUnlockCode,
+        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        timestamp_local: new Date().toLocaleString(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      });
+    }
+
     function isUnlockStillValid() {
       if (!albumOverrideUnlocked) return false;
       if (new Date() >= albumRelease) return true;
@@ -1952,6 +1974,7 @@
       passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
       const unlockCodeType = getUnlockCodeType(code);
+      reportIdentityToGoogle("full_album_unlock");
       logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
       logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code });
       renderTracklist();
@@ -2020,6 +2043,7 @@
       const trackerField = document.getElementById("trackerField");
       if (codeField) codeField.value = signupAssignedCode;
       if (trackerField) trackerField.value = visitorTracker;
+      reportIdentityToGoogle("signup_submit");
 
       logEvent("sj_signup_submitted", {
         code_given: signupAssignedCode,
@@ -2128,6 +2152,7 @@
     window.addEventListener("pagehide", () => sendSessionSummary("pagehide"));
     window.addEventListener("beforeunload", () => sendSessionSummary("beforeunload"));
     updatePlayerStats();
+    reportIdentityToGoogle("page_ready");
   </script>
 </body>
 </html>
