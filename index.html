@@ -2204,7 +2204,8 @@
         signup_source: "saint-jules-website-info-signup"
       });
 
-      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}.`;      signupMessage.classList.add("show");
+      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}.`;
+      signupMessage.classList.add("show");
       passInput.value = assignedCode;
       setTimeout(() => passInput.focus(), 250);
     });
