@@ -2204,8 +2204,7 @@
         signup_source: "saint-jules-website-info-signup"
       });
 
-      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}. I sent your info to the list with tracker ${visitorTracker} — now hit unlock and go full album mode.`;
-      signupMessage.classList.add("show");
+      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}.`;      signupMessage.classList.add("show");
       passInput.value = assignedCode;
       setTimeout(() => passInput.focus(), 250);
     });
