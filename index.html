@@ -1312,10 +1312,17 @@
     const albumRelease = new Date("2026-06-18T00:00:00");
 
     const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
+    const ownerDefaultCodeLocations = {
+      "FRANK1738": "owner default/private code · Frank 1738",
+      "TRAPQUEEN1738": "owner default/private code · Trap Queen 1738",
+      "FETTYTRUCK": "owner default/private code · Fetty Truck",
+      "SUPERSTAR": "owner default/private code · Superstar"
+    };
     const vipSignupCode = "PASSENGERPRINCESS";
     const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
     const unlockTimeoutHours = 2;
     const analyticsEndpoint = "";
+    const passcodeUsesEndpoint = "https://formspree.io/f/xaqarqrp";
     const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
     const codePrefix = "SJ";
     const generatedCodeSalt = "CRASHDUMMYERA";
@@ -1598,7 +1605,7 @@
       const clean = normalizeAnalyticsCode(code);
       if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
       if (isGeneratedPasscode(clean)) return "generated tracker pass " + clean;
-      if (fullAlbumCodes.includes(clean)) return "public passcode";
+      if (fullAlbumCodes.includes(clean)) return ownerDefaultCodeLocations[clean] || "owner default/private passcode";
       if (clean === vipSignupCode) return "legacy vip signup code";
       return "unknown code";
     }
@@ -1803,12 +1810,72 @@
 
     function getUnlockCodeType(code) {
       const clean = normalizeAnalyticsCode(code);
-      if (fullAlbumCodes.includes(clean)) return "public";
+      if (fullAlbumCodes.includes(clean)) return "default_private";
       if (clean === vipSignupCode) return "signup_vip";
       if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return "manual_unique";
       if (isGeneratedPasscode(clean)) return "generated_unique";
       if (resetCodes.includes(clean)) return "reset";
       return "unknown";
+    }
+
+    function getPasscodeLocation(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, clean)) return ownerDefaultCodeLocations[clean];
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
+      if (isGeneratedPasscode(clean)) return "website signup generated passcode";
+      if (clean === vipSignupCode) return "legacy VIP/signup code";
+      if (resetCodes.includes(clean)) return "reset/admin code";
+      return "unknown passcode location";
+    }
+
+    function isOwnerDefaultCode(code) {
+      return Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, normalizeAnalyticsCode(code));
+    }
+
+    function reportPasscodeUseToFormspree(eventName, code, extra = {}) {
+      if (!passcodeUsesEndpoint) return;
+
+      const cleanCode = normalizeAnalyticsCode(code);
+      const payload = {
+        _subject: "Saint Jules passcode use",
+        source: "saint-jules-passcode-use-tracker",
+        event_name: eventName,
+        passcode_result: extra.result || eventName,
+        code_used: cleanCode || "empty",
+        code_attempted: cleanCode || "empty",
+        code_type: getUnlockCodeType(cleanCode),
+        code_label: getCodeLabel(cleanCode),
+        code_location: getPasscodeLocation(cleanCode),
+        owner_default_private_code: isOwnerDefaultCode(cleanCode) ? "yes" : "no",
+        known_only_if_told_by_owner: isOwnerDefaultCode(cleanCode) ? "yes" : "no",
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        page: window.location.pathname,
+        page_location: window.location.href,
+        referrer: document.referrer || "none",
+        user_agent: navigator.userAgent || "unknown",
+        ...getTimeStampParts(),
+        ...extra
+      };
+
+      try {
+        fetch(passcodeUsesEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) {}
+
+      saveLocalAnalytics({ event: "formspree_passcode_use", ...payload });
+      window.sjLastPasscodeUseReport = payload;
     }
 
     function getReadableAlias(eventName) {
@@ -2123,8 +2190,13 @@
       passMessage.classList.add("show");
       const unlockCodeType = getUnlockCodeType(code);
       reportIdentityToGoogle("full_album_unlock");
-      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
-      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), entered_code: code, code_used: code });
+      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), code_location: getPasscodeLocation(code), owner_default_private_code: isOwnerDefaultCode(code) ? "yes" : "no", entered_code: code, code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), code_location: getPasscodeLocation(code), owner_default_private_code: isOwnerDefaultCode(code) ? "yes" : "no", entered_code: code, code_used: code });
+      reportPasscodeUseToFormspree("accepted_passcode", code, {
+        result: "accepted",
+        unlock_message: message,
+        expires_at: new Date(activeUnlockExpiresAt).toISOString()
+      });
       renderTracklist();
     }
 
@@ -2137,6 +2209,10 @@
       const isGeneratedCode = isGeneratedPasscode(code);
 
       if (isResetCode) {
+        reportPasscodeUseToFormspree("reset_passcode", code, {
+          result: "reset",
+          reset_message: "Reset code accepted. Star power cleared."
+        });
         clearSuperstarMode("Reset code accepted. Star power cleared.");
         return;
       }
@@ -2151,6 +2227,10 @@
         });
         logEvent("bad_code_attempt", {
           code_attempted: code || "empty",
+          code_type: "bad"
+        });
+        reportPasscodeUseToFormspree("bad_passcode", code || "empty", {
+          result: "bad",
           code_type: "bad"
         });
         passMessage.textContent = "That code didn’t hit. Check the spelling and try again.";
@@ -2200,6 +2280,12 @@
 
       logEvent("sj_signup_submitted", {
         code_given: assignedCode,
+        reporting_code_at_signup: codeForThisSignup,
+        signup_source: "saint-jules-website-info-signup"
+      });
+
+      reportPasscodeUseToFormspree("signup_code_issued", assignedCode, {
+        result: "issued",
         reporting_code_at_signup: codeForThisSignup,
         signup_source: "saint-jules-website-info-signup"
       });
