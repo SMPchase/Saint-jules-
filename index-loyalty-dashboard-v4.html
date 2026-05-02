@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saint Jules — Listener Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Space+Grotesk:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --hot-pink: #ff1493;
+      --soft-pink: #ffd2ef;
+      --ink: #17000f;
+      --white: #fffafc;
+      --border: rgba(23, 0, 15, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.92) 0 8%, transparent 9%),
+        radial-gradient(circle at 82% 18%, rgba(255,255,255,.76) 0 6%, transparent 7%),
+        linear-gradient(135deg, #ff77c8 0%, #ff4fb8 45%, #ffd2ef 100%);
+    }
+
+    .page {
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 28px 0 56px;
+    }
+
+    .hero, .card {
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      background: rgba(255,255,255,.68);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(137,0,91,.15);
+      padding: clamp(18px, 4vw, 34px);
+      margin-top: 18px;
+    }
+
+    h1, h2 {
+      margin: 0;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      line-height: .86;
+      letter-spacing: -.045em;
+      text-transform: lowercase;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 7.4rem);
+      color: var(--white);
+      text-shadow: 0 4px 0 rgba(23,0,15,.92), 0 18px 45px rgba(255,20,147,.38);
+    }
+
+    h2 { font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 12px; }
+
+    p {
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .note {
+      padding: 14px 16px;
+      border-radius: 22px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 850;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .stat {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255,255,255,.72);
+      padding: 16px;
+      min-height: 118px;
+    }
+
+    .stat span {
+      display: block;
+      font-size: .76rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      opacity: .68;
+    }
+
+    .stat strong {
+      display: block;
+      margin-top: 8px;
+      font-size: clamp(1.7rem, 4vw, 3rem);
+      line-height: .95;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 20px;
+      background: rgba(255,255,255,.75);
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(23,0,15,.12);
+      text-align: left;
+      font-size: .92rem;
+      vertical-align: top;
+    }
+
+    th {
+      background: rgba(23,0,15,.9);
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      font-size: .76rem;
+    }
+
+    tr:last-child td { border-bottom: 0; }
+
+    .progress-mini {
+      display: block;
+      width: 100%;
+      height: 10px;
+      margin-top: 7px;
+      border-radius: 999px;
+      background: rgba(23,0,15,.12);
+      overflow: hidden;
+    }
+
+    .progress-mini span {
+      display: block;
+      height: 100%;
+      width: var(--progress, 0%);
+      border-radius: inherit;
+      background: var(--ink);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button, a.button {
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 12px 16px;
+      font-family: inherit;
+      font-weight: 950;
+      background: var(--ink);
+      color: var(--white);
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    button.secondary {
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+    }
+
+    pre {
+      white-space: pre-wrap;
+      word-break: break-word;
+      padding: 16px;
+      border-radius: 22px;
+      background: rgba(23,0,15,.88);
+      color: var(--white);
+      max-height: 360px;
+      overflow: auto;
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      table { font-size: .86rem; }
+    }
+
+    @media (max-width: 560px) {
+      .grid { grid-template-columns: 1fr; }
+      th, td { padding: 10px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>listener dashboard</h1>
+      <div class="actions">
+        <a class="button" href="./index.html">back to site</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>listener overview</h2>
+      <div class="grid" id="summaryGrid"></div>
+    </section>
+
+    <section class="card">
+      <h2>song activity</h2>
+      <div id="songTable"></div>
+    </section>
+
+    <section class="card">
+      <h2>awards + unlocks</h2>
+      <div id="awardTable"></div>
+    </section>
+
+  </main>
+
+  <script>
+    const keys = {
+      loyalty: "saintJulesLoyaltyStats",
+      analytics: "saintJulesPendingAnalytics",
+      tracker: "saintJulesTracker",
+      alias: "saintJulesListenerAlias",
+      bonus: "saintJulesBonusUnlockedTracks",
+      featuredFive: "saintJulesFeaturedFiveUnlockedTracks",
+      full: "saintJulesLoyaltyFullAlbum",
+      listenerPanel: "saintJulesListenerPanelUnlocked",
+      promptSeen: "saintJulesBonusPromptSeen",
+      fivePackPromptSeen: "saintJulesFivePackPromptSeen",
+      postReleaseNudge: "saintJulesPostReleaseAwardNudgeSeen"
+    };
+
+    function safeJSON(value, fallback) {
+      try { return value ? JSON.parse(value) : fallback; }
+      catch (error) { return fallback; }
+    }
+
+    function getCache() {
+      return {
+        tracker: localStorage.getItem(keys.tracker) || "none",
+        listenerAlias: localStorage.getItem(keys.alias) || "none",
+        loyalty: safeJSON(localStorage.getItem(keys.loyalty), {}),
+        analytics: safeJSON(localStorage.getItem(keys.analytics), []),
+        bonusIndexes: safeJSON(localStorage.getItem(keys.bonus), []),
+        featuredFiveIndexes: safeJSON(localStorage.getItem(keys.featuredFive), []),
+        fullAlbum: localStorage.getItem(keys.full) === "yes",
+        listenerPanelOpen: localStorage.getItem(keys.listenerPanel) === "yes",
+        promptSeen: localStorage.getItem(keys.promptSeen) === "yes",
+        fivePackPromptSeen: localStorage.getItem(keys.fivePackPromptSeen) === "yes",
+        postReleaseNudgeSeen: localStorage.getItem(keys.postReleaseNudge) === "yes"
+      };
+    }
+
+    function number(value) {
+      return Number(value || 0);
+    }
+
+    function equivalentListens(loyalty, track) {
+      const completions = number(loyalty.track_completions?.[track]);
+      const seconds = number(loyalty.track_seconds?.[track]);
+      const duration = Math.max(20, number(loyalty.track_durations?.[track]) || 180);
+      return Math.max(completions, seconds / duration);
+    }
+
+    function progressHtml(value, goal = 10) {
+      const pct = Math.max(0, Math.min(100, (value / goal) * 100));
+      return `<span class="progress-mini"><span style="--progress:${pct}%"></span></span>`;
+    }
+
+    function table(headers, rows) {
+      if (!rows.length) return "<p>No data yet. Play music on the main site first.</p>";
+      return `
+        <table>
+          <thead><tr>${headers.map(header => `<th>${header}</th>`).join("")}</tr></thead>
+          <tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${cell}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table>
+      `;
+    }
+
+    function render() {
+      const cache = getCache();
+      const loyalty = cache.loyalty || {};
+      const plays = loyalty.track_plays || {};
+      const completions = loyalty.track_completions || {};
+      const allTracks = [...new Set([...Object.keys(plays), ...Object.keys(completions)])];
+
+      const totalPlays = Object.values(plays).reduce((sum, count) => sum + number(count), 0);
+      const totalCompletions = Object.values(completions).reduce((sum, count) => sum + number(count), 0);
+      const topTrack = allTracks
+        .map(track => [track, number(plays[track]) + number(completions[track])])
+        .sort((a, b) => b[1] - a[1])[0] || ["none", 0];
+
+      document.getElementById("summaryGrid").innerHTML = [
+        ["crash name", cache.listenerAlias],
+        ["plays", totalPlays],
+        ["full listens", totalCompletions],
+        ["top song", topTrack[0]],
+        ["two-pack", cache.bonusIndexes.length],
+        ["five-pack", cache.featuredFiveIndexes.length],
+        ["full album", cache.fullAlbum ? "yes" : "no"],
+        ["awards", (loyalty.awards || []).length]
+      ].map(([label, value]) => `
+        <div class="stat">
+          <span>${label}</span>
+          <strong>${value}</strong>
+        </div>
+      `).join("");
+
+      const seconds = loyalty.track_seconds || {};
+      const songRows = allTracks
+        .map(track => {
+          const equivalent = equivalentListens(loyalty, track);
+          return [track, number(plays[track]), number(completions[track]), Math.round(number(seconds[track])), equivalent];
+        })
+        .sort((a, b) => b[4] - a[4])
+        .map(row => [row[0], row[1], row[2], `${Math.floor(row[3] / 60)}:${String(row[3] % 60).padStart(2, "0")}`, `${row[4].toFixed(1).replace(/\.0$/, "")} / 10${progressHtml(row[4])}`]);
+      document.getElementById("songTable").innerHTML = table(["song", "plays", "full listens", "time", "milestone progress"], songRows);
+
+      const awardRows = (loyalty.awards || []).map(award => [
+        award.type || "award",
+        award.track_key || "none",
+        award.reward || "none",
+        award.earned_at || "unknown",
+        (award.unlocked_tracks || []).join("<br>")
+      ]);
+
+      if (cache.fullAlbum) {
+        awardRows.unshift(["full_album", loyalty.full_album_unlock_reason || "loyalty", "full album", loyalty.full_album_unlocked_by_loyalty_at || "stored", "all tracks"]);
+      }
+
+      if ((loyalty.five_pack_unlocks || []).length) {
+        awardRows.unshift(["five_song_pack", "two-pack milestone", "five songs", loyalty.five_pack_unlocked_at || "stored", loyalty.five_pack_unlocks.join("<br>")]);
+      }
+
+      if ((loyalty.bonus_unlocks || []).length) {
+        awardRows.unshift(["two_song_bonus", "The Proposition", "two songs", loyalty.bonus_unlocked_at || "stored", loyalty.bonus_unlocks.join("<br>")]);
+      }
+
+      document.getElementById("awardTable").innerHTML = table(["type", "trigger", "reward", "earned", "tracks"], awardRows);
+    }
+
+    render();
+  </script>
+</body>
+</html>
