@@ -1,0 +1,3747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saint Jules — Lord Have Mercy, He's A Crash Dummy!</title>
+  <meta name="description" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy! Stream The Proposition now on Apple Music and Spotify. Album crashes June 18." />
+  <meta property="og:title" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy!" />
+  <meta property="og:description" content="The Proposition is streaming now. Boy Genius flashes May 16. Album crashes June 18." />
+  <meta property="og:type" content="website" />
+  <!-- Merged loyalty build: based on index-loyalty-v4, with working Apple Music/Spotify links preserved from the stream-link build. -->
+
+  <!-- Google Analytics 4
+    Formspree stays signup-only. Listener events go to GA4 instead of filling Formspree.
+  -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XSVZX83PH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9XSVZX83PH', {
+      'debug_mode': true,
+      'send_page_view': false
+    });
+    // Main page/music events are sent later by the site script.
+    // Codes stay blank until somebody enters one or submits the signup form.
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --hair-pink: #ff4fb8;
+      --hot-pink: #ff1493;
+      --soft-pink: #ffd2ef;
+      --baby-pink: #fff0fa;
+      --ink: #17000f;
+      --white: #fffafc;
+      --glass: rgba(255, 255, 255, 0.62);
+      --shadow: 0 22px 65px rgba(255, 20, 147, 0.24);
+      --border: rgba(23, 0, 15, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.95) 0 7%, transparent 8%),
+        radial-gradient(circle at 84% 16%, rgba(255,255,255,.8) 0 5%, transparent 6%),
+        radial-gradient(circle at 80% 82%, rgba(255,255,255,.75) 0 8%, transparent 9%),
+        linear-gradient(135deg, #ff77c8 0%, #ff4fb8 38%, #ffd2ef 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.13) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.7), transparent 78%);
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: 24px 0 56px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.52);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 36px rgba(137, 0, 91, .14);
+      position: sticky;
+      top: 14px;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      font-size: .95rem;
+    }
+
+    .dot {
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--hot-pink);
+      box-shadow: 0 0 0 7px rgba(255, 20, 147, .16), 0 0 28px rgba(255, 20, 147, .9);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.54);
+      padding: 9px 14px;
+      border-radius: 999px;
+      font-size: .86rem;
+      font-weight: 700;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .pill:hover { transform: translateY(-2px); background: var(--white); }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 34px;
+      align-items: center;
+      padding: 42px 0 24px;
+    }
+
+    .tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.55);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-size: .78rem;
+      box-shadow: 0 10px 28px rgba(137, 0, 91, .12);
+    }
+
+    h1 {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(3.1rem, 8vw, 8.2rem);
+      line-height: .78;
+      margin: 16px 0 16px;
+      letter-spacing: -.055em;
+      text-transform: lowercase;
+      color: var(--white);
+      text-shadow: 0 4px 0 rgba(23,0,15,.92), 0 18px 45px rgba(255,20,147,.4);
+    }
+
+    .hero-copy {
+      max-width: 560px;
+      font-size: clamp(1rem, 1.7vw, 1.16rem);
+      line-height: 1.5;
+      font-weight: 700;
+      background: rgba(255,255,255,.5);
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      backdrop-filter: blur(14px);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 13px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-weight: 900;
+      letter-spacing: .01em;
+      box-shadow: 0 12px 28px rgba(137,0,91,.18);
+      transition: transform .2s ease, box-shadow .2s ease;
+      cursor: pointer;
+    }
+
+    .button:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 18px 38px rgba(137,0,91,.24); }
+    .button.primary { background: var(--ink); color: var(--white); }
+    .button.secondary { background: rgba(255,255,255,.65); }
+
+    .stream-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stream-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 17px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: .93rem;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(137,0,91,.14);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .stream-btn:hover {
+      transform: translateY(-2px) rotate(-1deg);
+      box-shadow: 0 14px 30px rgba(137,0,91,.22);
+    }
+
+    .stream-btn.apple {
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    .stream-btn.spotify {
+      background: #1ed760;
+      color: #07140b;
+      border-color: rgba(7, 20, 11, .18);
+    }
+
+    .cover-card {
+      position: relative;
+      border-radius: 42px;
+      padding: 14px;
+      background: rgba(255,255,255,.48);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      transform: rotate(1deg);
+    }
+
+    .cover-card::before {
+      content: "boy genius · may 16";
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      z-index: 2;
+      transform: rotate(3deg);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1rem, 2.4vw, 1.55rem);
+      letter-spacing: -.02em;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 999px;
+      padding: 8px 16px 11px;
+      box-shadow: 0 14px 30px rgba(23,0,15,.22);
+      animation: flashTag 1.45s infinite steps(2, end);
+    }
+
+    @keyframes flashTag {
+      0%, 100% { background: var(--ink); color: var(--white); transform: rotate(8deg) scale(1); }
+      50% { background: var(--white); color: var(--hot-pink); transform: rotate(5deg) scale(1.04); }
+    }
+
+    .cover-card img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      background: var(--soft-pink);
+    }
+
+    .caption-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 12px 4px;
+      font-size: .9rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .section {
+      margin-top: 24px;
+      padding: clamp(18px, 3vw, 30px);
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      background: rgba(255,255,255,.55);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(137,0,91,.14);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: .86;
+      letter-spacing: -.04em;
+      text-transform: lowercase;
+    }
+
+    .small-note {
+      max-width: 440px;
+      margin: 0;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .single-art {
+      min-height: 360px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--soft-pink), var(--hair-pink));
+      position: relative;
+    }
+
+    .single-art img {
+      width: 100%;
+      height: 100%;
+      min-height: 360px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .single-art .label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .lead-badge {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      padding: 10px 14px;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 999px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      box-shadow: 0 12px 26px rgba(23,0,15,.24);
+    }
+
+    .player-panel {
+      border: 1px solid var(--border);
+      background: rgba(255,250,252,.7);
+      border-radius: 30px;
+      padding: clamp(18px, 3vw, 28px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .now-playing {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      padding: 12px;
+      border: 1px solid rgba(255,20,147,.22);
+      border-radius: 26px;
+      background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,210,239,.72));
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.45);
+    }
+
+    .eyebrow {
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: rgba(23,0,15,.68);
+    }
+
+    .track-title {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(2rem, 5vw, 4.1rem);
+      line-height: .88;
+      letter-spacing: -.045em;
+      margin: 0;
+    }
+
+    .track-meta {
+      margin: 0;
+      font-weight: 750;
+      font-size: 1.02rem;
+      line-height: 1.5;
+    }
+
+    .native-player {
+      display: none;
+    }
+
+    .lux-player {
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(23,0,15,.12);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.85), transparent 30%),
+        linear-gradient(135deg, rgba(23,0,15,.92), rgba(68,0,45,.9));
+      color: var(--white);
+      box-shadow: 0 18px 44px rgba(23,0,15,.2), inset 0 0 0 1px rgba(255,255,255,.12);
+    }
+
+    .lux-topline,
+    .lux-bottomline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .74rem;
+      font-weight: 950;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+      color: rgba(255,250,252,.75);
+    }
+
+    .lux-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0 10px;
+    }
+
+    .lux-btn {
+      display: inline-grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .lux-btn.ghost {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .lux-btn.play {
+      width: 58px;
+      height: 58px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 1.3rem;
+      box-shadow: 0 16px 34px rgba(0,0,0,.28);
+    }
+
+    .lux-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+    }
+
+    .lux-progress-wrap {
+      display: grid;
+      grid-template-columns: 42px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .lux-time {
+      font-size: .78rem;
+      font-weight: 900;
+      color: rgba(255,250,252,.7);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lux-progress {
+      width: 100%;
+      appearance: none;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--hot-pink) var(--progress, 0%), rgba(255,255,255,.2) var(--progress, 0%));
+      outline: none;
+      cursor: pointer;
+    }
+
+    .lux-progress::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--hot-pink);
+      box-shadow: 0 5px 16px rgba(0,0,0,.25);
+    }
+
+    .lux-progress::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--hot-pink);
+      box-shadow: 0 5px 16px rgba(0,0,0,.25);
+    }
+
+    .lux-bottomline {
+      margin-top: 10px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: .8rem;
+      color: rgba(255,250,252,.72);
+    }
+
+    .lux-chip {
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      padding: 8px 11px;
+      font-family: inherit;
+      font-size: .72rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    body:not(.super-mode) .lux-chip {
+      display: none;
+    }
+
+    .super-mode .lux-player {
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.95), transparent 28%),
+        linear-gradient(135deg, #fffafc, #ffffff 38%, #ffe1f4 72%, #fffafc);
+      color: var(--ink);
+      border-color: rgba(255,20,147,.25);
+      box-shadow: 0 20px 55px rgba(255,20,147,.18), inset 0 0 0 1px rgba(255,255,255,.8);
+    }
+
+    .super-mode .lux-topline,
+    .super-mode .lux-bottomline,
+    .super-mode .lux-time {
+      color: rgba(23,0,15,.68);
+    }
+
+    .super-mode .lux-btn.ghost {
+      background: rgba(255,20,147,.12);
+      color: var(--ink);
+    }
+
+    .super-mode .lux-btn.play {
+      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #ffffff, #ff1493);
+      background-size: 280% 100%;
+      color: var(--white);
+      animation: rainbowRoad 2.4s linear infinite;
+    }
+
+    .super-mode .lux-chip {
+      color: var(--ink);
+      background: rgba(255,20,147,.12);
+      border-color: rgba(255,20,147,.24);
+    }
+
+    .release-message {
+      display: none;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .release-message.show { display: block; }
+
+    .tracklist {
+      display: grid;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .track-row {
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 12px;
+      align-items: center;
+      padding: 15px 16px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(255,255,255,.62);
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 900;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .track-row:hover, .track-row.active {
+      transform: translateX(4px);
+      background: var(--white);
+    }
+
+    .track-row.playing {
+      transform: translateX(8px) scale(1.015);
+      background: linear-gradient(135deg, rgba(255,255,255,.98), rgba(255,210,239,.96));
+      border-color: rgba(255,20,147,.75);
+      box-shadow: 0 0 0 3px rgba(255,255,255,.55), 0 18px 45px rgba(255,20,147,.24);
+    }
+
+    .track-row.playing::before {
+      content: "playing";
+      position: absolute;
+      right: 12px;
+      top: -12px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-size: .66rem;
+      font-weight: 950;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 22px rgba(23,0,15,.22);
+    }
+
+    .track-row.lead {
+      border-color: rgba(255,20,147,.55);
+      background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,210,239,.9));
+      box-shadow: 0 12px 30px rgba(255,20,147,.14);
+    }
+
+    body:not(.super-mode) .track-row:not(.lead) {
+      display: none;
+    }
+
+    body:not(.super-mode) .tracklist::after {
+      content: "full album unlocks with the superstar pass";
+      display: block;
+      margin-top: 4px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.58);
+      border: 1px dashed rgba(23,0,15,.18);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      font-size: .78rem;
+      opacity: .76;
+    }
+
+    .track-row.locked { opacity: .78; }
+    .track-row .num { opacity: .58; }
+    .track-row .status { font-size: .86rem; text-transform: uppercase; letter-spacing: .06em; opacity: .78; }
+
+    .track-blurb {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 8px);
+      transform: translate(-50%, 8px) scale(.98);
+      width: min(330px, calc(100vw - 48px));
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.44);
+      background: rgba(23, 0, 15, .88);
+      color: var(--white);
+      box-shadow: 0 18px 42px rgba(23,0,15,.24);
+      backdrop-filter: blur(16px);
+      font-size: .86rem;
+      font-weight: 800;
+      line-height: 1.35;
+      letter-spacing: 0;
+      text-transform: none;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 20;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+
+    .track-blurb::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      transform: translateX(-50%);
+      border: 8px solid transparent;
+      border-top-color: rgba(23, 0, 15, .88);
+    }
+
+    .track-row:hover .track-blurb,
+    .track-row:focus-visible .track-blurb {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+
+    .album-splash {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .album-art {
+      display: none;
+    }
+
+    .album-art img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+    }
+
+    .album-copy {
+      padding: clamp(20px, 4vw, 38px);
+      border-radius: 34px;
+      background: rgba(255,255,255,.6);
+      border: 1px solid var(--border);
+    }
+
+    .release-date {
+      display: inline-flex;
+      margin-bottom: 14px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 900;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    .album-copy p {
+      margin: 14px 0 0;
+      font-weight: 750;
+      line-height: 1.55;
+      font-size: 1.06rem;
+    }
+
+    .album-mini-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .mini-track {
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.68);
+      font-size: .86rem;
+      font-weight: 800;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      max-width: 920px;
+      margin: 0 auto;
+      align-items: center;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255, 250, 252, .72);
+      box-shadow: 0 12px 28px rgba(137,0,91,.12);
+      display: block;
+      padding: 8px;
+    }
+
+    .gallery img.scene-person,
+    .gallery img.scene-water,
+    .gallery img.scene-window {
+      object-position: center center;
+    }
+
+    .tracklist-callout {
+      margin-top: 20px;
+      padding: 16px;
+      border: 1px solid rgba(255,20,147,.22);
+      border-radius: 26px;
+      background: rgba(255,255,255,.58);
+    }
+
+    .tracklist-callout-title {
+      display: inline-flex;
+      margin-bottom: 12px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      font-size: .78rem;
+    }
+
+    .teaser {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      background: var(--ink);
+      color: var(--white);
+      border-radius: 32px;
+      padding: clamp(20px, 4vw, 34px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .teaser::after {
+      content: "may 16 may 16 may 16 may 16";
+      position: absolute;
+      inset: auto -30px -14px auto;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(3rem, 8vw, 8rem);
+      color: rgba(255,255,255,.08);
+      white-space: nowrap;
+      transform: rotate(-4deg);
+      animation: flashText 1.15s infinite steps(2, end);
+    }
+
+    @keyframes flashText {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .28; }
+    }
+
+    .teaser h2, .teaser p, .teaser a { position: relative; z-index: 1; }
+    .teaser p { margin: 10px 0 0; max-width: 660px; font-weight: 750; line-height: 1.5; color: rgba(255,255,255,.82); }
+    .teaser .button { background: var(--white); color: var(--ink); }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .link-card {
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.62);
+      font-weight: 900;
+      box-shadow: 0 14px 34px rgba(137,0,91,.12);
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .link-card:hover { transform: translateY(-4px); background: var(--white); }
+    .link-card span:first-child { font-family: "Bagel Fat One", system-ui, sans-serif; font-size: 1.65rem; letter-spacing: -.035em; }
+    .link-card span:last-child { font-size: .86rem; text-transform: uppercase; letter-spacing: .06em; opacity: .72; }
+
+    .super-pass {
+      display: grid;
+      grid-template-columns: 1fr .95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .pass-card,
+    .signup-card {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: rgba(255,255,255,.62);
+      padding: clamp(18px, 3vw, 26px);
+      box-shadow: 0 14px 34px rgba(137,0,91,.12);
+    }
+
+    .pass-card h2,
+    .signup-card h2 {
+      font-size: clamp(2.05rem, 5vw, 4rem);
+      margin-bottom: 10px;
+    }
+
+    .pass-card p,
+    .signup-card p {
+      margin: 0 0 14px;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .pass-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .pass-input,
+    .signup-input {
+      width: min(100%, 340px);
+      min-height: 52px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      color: var(--ink);
+      padding: 12px 16px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 900;
+      outline: none;
+    }
+
+    .pass-input:focus,
+    .signup-input:focus {
+      border-color: rgba(255,20,147,.72);
+      box-shadow: 0 0 0 5px rgba(255,20,147,.13);
+    }
+
+    .reset-pass-button {
+      display: none;
+    }
+
+    .super-mode .reset-pass-button {
+      display: inline-flex;
+    }
+
+    .pass-message,
+    .signup-message {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(23,0,15,.08);
+      font-weight: 900;
+      line-height: 1.35;
+      display: none;
+    }
+
+    .pass-message.show,
+    .signup-message.show { display: block; }
+
+    .signup-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .testing-panel {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(0, 168, 153, .38);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.2), transparent 35%),
+        linear-gradient(135deg, rgba(0, 35, 32, .94), rgba(0, 73, 66, .9));
+      color: var(--white);
+      box-shadow: 0 18px 42px rgba(0, 72, 66, .18);
+    }
+
+    .testing-mode .testing-panel {
+      display: block;
+    }
+
+    .testing-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .testing-panel-head .eyebrow,
+    .testing-panel p,
+    .testing-status {
+      color: rgba(255,250,252,.78);
+    }
+
+    .testing-panel-head strong {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -.04em;
+    }
+
+    .testing-panel p {
+      margin: 0 0 14px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .testing-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .test-button {
+      min-height: 44px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      padding: 10px 12px;
+      transition: transform .16s ease, background .16s ease;
+    }
+
+    .test-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.22);
+    }
+
+    .test-button.danger {
+      background: rgba(255, 20, 147, .28);
+      border-color: rgba(255, 20, 147, .42);
+    }
+
+    .testing-status {
+      margin-top: 12px;
+      padding: 11px 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+
+
+    .testing-mode-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 2px 0 12px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.22);
+      color: var(--white);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: .82rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .test-toggle-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      margin: 12px 0;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+    }
+
+    .test-toggle-row strong {
+      display: block;
+      font-size: .9rem;
+      letter-spacing: .02em;
+    }
+
+    .test-toggle-row span {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255,250,252,.72);
+      font-size: .78rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .test-toggle-button {
+      min-width: 92px;
+      min-height: 40px;
+      border: 1px solid rgba(255,255,255,.26);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      padding: 8px 12px;
+    }
+
+    .test-toggle-button.on {
+      background: #ffffff;
+      color: #002320;
+      border-color: #ffffff;
+    }
+
+    .stats-float-button {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: 82px;
+      z-index: 60;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: #002320;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.3);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 950;
+      box-shadow: 0 18px 44px rgba(0,35,32,.28);
+    }
+
+    body.stats-button-visible .stats-float-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stats-page {
+      display: none;
+    }
+
+    body.stats-button-visible .stats-page,
+    body.testing-mode .stats-page {
+      display: block;
+    }
+
+    .stats-page-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .stats-card {
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.66);
+      box-shadow: 0 12px 28px rgba(137,0,91,.1);
+    }
+
+    .stats-card span {
+      display: block;
+      font-size: .72rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .62;
+    }
+
+    .stats-card strong {
+      display: block;
+      margin-top: 6px;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      line-height: .92;
+      letter-spacing: -.035em;
+    }
+
+    .stats-table-wrap {
+      overflow-x: auto;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.62);
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .stats-table th,
+    .stats-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(23,0,15,.1);
+      text-align: left;
+    }
+
+    .stats-table th {
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .7;
+    }
+
+    .stats-note {
+      margin: 0;
+      max-width: 780px;
+      font-weight: 800;
+      line-height: 1.45;
+      opacity: .82;
+    }
+
+    body.testing-mode:not(.super-mode) {
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.85) 0 7%, transparent 8%),
+        radial-gradient(circle at 88% 14%, rgba(0,255,226,.22) 0 7%, transparent 8%),
+        radial-gradient(circle at 78% 78%, rgba(255,20,147,.22) 0 8%, transparent 9%),
+        linear-gradient(135deg, #ff77c8 0%, #f9d9ff 40%, #dffffa 100%);
+    }
+
+    body.testing-mode:not(.super-mode) .nav,
+    body.testing-mode:not(.super-mode) .section,
+    body.testing-mode:not(.super-mode) .pass-card,
+    body.testing-mode:not(.super-mode) .player-panel {
+      border-color: rgba(0, 168, 153, .35);
+      box-shadow: 0 18px 52px rgba(0, 168, 153, .16);
+    }
+
+    body.testing-mode:not(.super-mode)::after {
+      content: "🧪 testing mode";
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 50;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #002320;
+      color: var(--white);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1rem, 3vw, 1.45rem);
+      box-shadow: 0 18px 42px rgba(0, 35, 32, .32);
+      pointer-events: none;
+    }
+
+    body.testing-mode .reset-pass-button,
+    body.testing-mode .lux-chip {
+      display: inline-flex;
+    }
+
+    body.testing-mode .track-row {
+      display: grid !important;
+    }
+
+    body.testing-mode:not(.super-mode) .tracklist::after {
+      content: "testing mode: buttons control which songs are temporarily unlocked in this browser";
+      display: block;
+      margin-top: 4px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(0,35,32,.82);
+      color: var(--white);
+      border: 1px dashed rgba(255,255,255,.3);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      font-size: .78rem;
+    }
+
+
+
+    .pick-helper,
+    .rider-name-card {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 20, 147, .22);
+      background: rgba(255, 255, 255, .58);
+      box-shadow: 0 12px 28px rgba(137,0,91,.1);
+    }
+
+    .pick-helper-head,
+    .rider-name-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .pick-helper-head strong,
+    .rider-name-head strong {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      line-height: .9;
+      letter-spacing: -.04em;
+    }
+
+    .pick-helper-copy,
+    .rider-name-copy {
+      margin: 0 0 12px;
+      font-weight: 800;
+      line-height: 1.4;
+      opacity: .82;
+    }
+
+    .random-five-actions,
+    .name-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .mini-button,
+    .name-button {
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      padding: 10px 13px;
+      transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+
+    .mini-button:hover,
+    .name-button:hover {
+      transform: translateY(-2px) rotate(-1deg);
+      background: var(--white);
+      box-shadow: 0 12px 26px rgba(137,0,91,.16);
+    }
+
+    .mini-button.primary,
+    .name-button.primary {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .mini-button:disabled,
+    .name-button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .random-five-result {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .random-five-empty {
+      padding: 12px 13px;
+      border-radius: 18px;
+      border: 1px dashed rgba(23,0,15,.18);
+      background: rgba(255,255,255,.58);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .random-five-track {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(23,0,15,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 950;
+      padding: 11px 12px;
+      cursor: pointer;
+    }
+
+    .random-five-track:hover {
+      background: var(--white);
+      transform: translateX(4px);
+    }
+
+    .random-five-track span:first-child {
+      opacity: .58;
+    }
+
+    .random-five-track span:last-child {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .68;
+    }
+
+    .rider-name-display {
+      display: inline-flex;
+      margin: 4px 0 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 950;
+      letter-spacing: .02em;
+    }
+
+    .name-select,
+    .name-input {
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      color: var(--ink);
+      padding: 10px 13px;
+      font-family: inherit;
+      font-weight: 900;
+      outline: none;
+    }
+
+    .name-select {
+      min-width: min(100%, 250px);
+    }
+
+    .name-input {
+      flex: 1 1 220px;
+      min-width: min(100%, 220px);
+    }
+
+    .name-select:focus,
+    .name-input:focus {
+      border-color: rgba(255,20,147,.72);
+      box-shadow: 0 0 0 5px rgba(255,20,147,.13);
+    }
+
+    body.testing-mode .pick-helper,
+    body.testing-mode .rider-name-card {
+      border-color: rgba(0, 168, 153, .35);
+      box-shadow: 0 18px 42px rgba(0, 168, 153, .12);
+    }
+
+
+    .signup-input {
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    .super-mode .nav,
+    .super-mode .section,
+    .super-mode .cover-card,
+    .super-mode .player-panel,
+    .super-mode .pass-card,
+    .super-mode .signup-card {
+      animation: starPulse 1.2s ease-in-out infinite alternate;
+    }
+
+    .super-mode .track-row.locked { opacity: 1; }
+
+    .super-mode::after {
+      content: "★ full album mode ★";
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 50;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1rem, 3vw, 1.5rem);
+      box-shadow: 0 18px 42px rgba(23,0,15,.32);
+      pointer-events: none;
+    }
+
+    @keyframes starPulse {
+      from { box-shadow: 0 12px 34px rgba(255,20,147,.14); }
+      to { box-shadow: 0 18px 52px rgba(255,20,147,.32), 0 0 0 3px rgba(255,255,255,.22); }
+    }
+
+    body.super-mode {
+      color: #17000f;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,20,147,.18) 0 8%, transparent 9%),
+        radial-gradient(circle at 78% 18%, rgba(255,215,0,.22) 0 6%, transparent 7%),
+        radial-gradient(circle at 82% 82%, rgba(124,247,255,.18) 0 8%, transparent 9%),
+        linear-gradient(135deg, #fffafc 0%, #ffffff 34%, #fff0fa 62%, #ffe1f4 100%);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 320% 320%;
+      animation: rainbowRoad 5s linear infinite;
+    }
+
+    body.super-mode::before {
+      background-image:
+        radial-gradient(circle, rgba(255,20,147,.28) 0 2px, transparent 3px),
+        radial-gradient(circle, rgba(255,215,0,.28) 0 2px, transparent 3px),
+        linear-gradient(rgba(255,20,147,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,20,147,.12) 1px, transparent 1px);
+      background-position: 0 0, 22px 22px, 0 0, 0 0;
+      background-size: 44px 44px, 44px 44px, 38px 38px, 38px 38px;
+      mask-image: none;
+    }
+
+    .super-mode .button.primary,
+    .super-mode .lead-badge,
+    .super-mode .release-date,
+    .super-mode .tracklist-callout-title {
+      background: linear-gradient(90deg, #17000f, #ff1493, #ffffff, #ffd700, #ff1493, #17000f);
+      color: var(--white);
+      background-size: 240% 100%;
+      animation: rainbowRoad 2.4s linear infinite;
+    }
+
+    .super-mode .section,
+    .super-mode .nav,
+    .super-mode .player-panel,
+    .super-mode .pass-card,
+    .super-mode .signup-card {
+      background: rgba(255,255,255,.82);
+      border-color: rgba(255,20,147,.24);
+    }
+
+    .super-mode .track-row:hover,
+    .super-mode .track-row.active {
+      transform: translateX(8px) scale(1.015);
+      box-shadow: 0 0 0 3px rgba(255,20,147,.18), 0 18px 45px rgba(255,20,147,.22);
+    }
+
+    .super-mode .track-title::after,
+    .super-mode h2::after {
+      content: " ✦";
+      color: var(--hot-pink);
+      text-shadow: 0 0 14px rgba(255,20,147,.65);
+    }
+
+    @keyframes rainbowRoad {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 320% 50%; }
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding: 28px 4px 0;
+      font-weight: 800;
+      font-size: .9rem;
+      opacity: .78;
+    }
+
+    @media (max-width: 880px) {
+      .hero, .player-grid, .teaser, .album-splash, .super-pass { grid-template-columns: 1fr; }
+      .cover-card, .album-art { transform: none; }
+      .gallery { grid-template-columns: 1fr; }
+      .links, .stats-page-grid { grid-template-columns: repeat(2, 1fr); }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+
+    @media (max-width: 560px) {
+      .page { width: min(100% - 18px, 1180px); padding-top: 10px; }
+      .nav { border-radius: 24px; align-items: flex-start; flex-direction: column; }
+      .nav-links { justify-content: flex-start; }
+      .pill { padding: 8px 11px; }
+      .hero { padding-top: 36px; }
+      .gallery, .links, .album-mini-list, .stats-page-grid { grid-template-columns: 1fr; }
+      .cover-card::before { right: 8px; top: 16px; }
+      .track-row { grid-template-columns: auto 1fr; }
+      .track-row .status { display: none; }
+      .testing-buttons { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="stats-float-button" id="statsPageButton" href="#stats-page" aria-label="Open local stats page">📊 Stats Page</a>
+  <main class="page">
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#top" class="brand"><span class="dot"></span><span>Saint Jules</span></a>
+      <div class="nav-links">
+        <a class="pill" href="#listen">Listen</a>
+        <a class="pill" href="#album">Album</a>
+        <a class="pill" href="#boy-genius">Boy Genius</a>
+        <a class="pill" href="#superstar">Passcode</a>
+        <a class="pill" href="#links">Links</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="top">
+      <div>
+        <div class="tagline">new music · crash dummy era</div>
+        <h1>lord have mercy.</h1>
+        <p class="hero-copy">
+          Saint Jules crash dummy pop era. “The Proposition” is the single — playable now. Boy Genius flashes May 16. The album crashes June 18.
+        </p>
+        <div class="hero-buttons">
+          <a class="button primary" href="#listen">Play The Proposition</a>
+          <a class="button secondary" href="#album">See the album</a>
+        </div>
+      </div>
+
+      <figure class="cover-card">
+        <img src="F996E043-8052-4D0E-A037-6CE05FC6438A.PNG" alt="Saint Jules pink hair angel tattoo photo" onerror="this.src='IMG_0769.jpeg'" />
+        <figcaption class="caption-strip">
+          <span>Saint Jules</span>
+          <span>album crashes June 18</span>
+        </figcaption>
+      </figure>
+    </section>
+
+    <section class="section" id="listen">
+      <div class="section-head">
+        <h2>listen now</h2>
+        <p class="small-note">The playlist stays in album order, but Track 04 gets the spotlight because it’s my favorite — and it’s the single, so it plays right here.</p>
+      </div>
+
+      <div class="player-grid">
+        <div class="single-art">
+          <img id="artwork" src="F996E043-8052-4D0E-A037-6CE05FC6438A.PNG" alt="Saint Jules pink hair angel tattoo photo" onerror="this.src='The%20Proposition/The%20Proposition%20Cover%20Art.jpg'" />
+          <div class="lead-badge">single out now</div>
+          <div class="label">Tracklisting</div>
+        </div>
+
+        <div class="player-panel">
+          <div class="now-playing">
+            <span class="eyebrow">Single</span>
+            <h3 class="track-title" id="currentTitle">The Proposition</h3>
+            <p class="track-meta" id="currentMeta">Saint Jules · single · playable now</p>
+            <audio class="native-player" id="audioPlayer" preload="metadata" src="Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/04%20The%20Proposition.wav">
+              Your browser does not support the audio element.
+            </audio>
+
+            <div class="lux-player" aria-label="Saint Jules music player">
+              <div class="lux-topline">
+                <span id="playerModeLabel">single player</span>
+                <span id="playerUnlockCount">1/13 unlocked</span>
+              </div>
+
+              <div class="lux-controls">
+                <button class="lux-btn ghost" id="prevTrack" type="button" aria-label="Previous track">‹</button>
+                <button class="lux-btn play" id="togglePlay" type="button" aria-label="Play or pause">▶</button>
+                <button class="lux-btn ghost" id="nextTrack" type="button" aria-label="Next track">›</button>
+              </div>
+
+              <div class="lux-progress-wrap">
+                <span class="lux-time" id="currentTimeText">0:00</span>
+                <input class="lux-progress" id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Song progress" />
+                <span class="lux-time" id="durationText">0:00</span>
+              </div>
+
+              <div class="lux-bottomline">
+                <button class="lux-chip" id="playUnlocked" type="button">play unlocked</button>
+                <span id="playerStats">The Proposition is ready.</span>
+              </div>
+            </div>
+            <div class="release-message" id="releaseMessage"></div>
+            <div class="stream-buttons" aria-label="The Proposition streaming links">
+              <a class="stream-btn apple" href="https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201" target="_blank" rel="noopener" data-stream-platform="apple_music" data-stream-location="player_panel">Listen on Apple Music</a>
+              <a class="stream-btn spotify" href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener" data-stream-platform="spotify" data-stream-location="player_panel">Listen on Spotify</a>
+            </div>
+          </div>
+
+          <div class="tracklist" id="tracklist" aria-label="Album tracklist"></div>
+
+          <div class="pick-helper" id="songPickerPanel" aria-label="Random song picker">
+            <div class="pick-helper-head">
+              <strong>can’t pick?</strong>
+              <button class="mini-button primary" id="randomFiveButton" type="button">roll 5 songs</button>
+            </div>
+            <p class="pick-helper-copy">When the 5-pack is open, this throws five unlocked songs at them so they can stop acting like choosing music is a tax form.</p>
+            <div class="random-five-actions">
+              <button class="mini-button" id="playRandomPickButton" type="button" disabled>play first pick</button>
+              <button class="mini-button" id="clearRandomFiveButton" type="button">clear picks</button>
+            </div>
+            <div class="random-five-result" id="randomFiveResult">
+              <div class="random-five-empty">Unlock at least 5 songs first. The randomizer refuses to hallucinate a rollout.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="album">
+      <div class="album-splash">
+        <div class="album-art">
+          <img src="F996E043-8052-4D0E-A037-6CE05FC6438A.PNG" alt="Saint Jules pink hair angel tattoo photo" onerror="this.src='The%20Proposition/The%20Proposition%20Cover%20Art.jpg'" />
+        </div>
+        <div class="album-copy">
+          <span class="release-date">album crashes June 18</span>
+          <h2>lord have mercy, he's a crash dummy!</h2>
+          <p>
+            Welcome to the crash site. The Proposition is already outside acting bad, Boy Genius flashes May 16 like a dashboard warning light, and the full album crashes June 18. Bring a helmet and a little emotional support.
+          </p>
+          <div class="tracklist-callout">
+            <span class="tracklist-callout-title">tracklist in the building</span>
+            <div class="album-mini-list" aria-label="Album songs">
+              <span class="mini-track">01 Boy Genius</span>
+              <span class="mini-track">02 Jump!!!</span>
+              <span class="mini-track">03 Come to Life</span>
+              <span class="mini-track">04 The Proposition</span>
+              <span class="mini-track">05 Rude</span>
+              <span class="mini-track">06 PISA</span>
+              <span class="mini-track">07 Apple Pie</span>
+              <span class="mini-track">08 I Know</span>
+              <span class="mini-track">09 Felt It? My Darling</span>
+              <span class="mini-track">10 Crash Dummy</span>
+              <span class="mini-track">11 Mr. Please</span>
+              <span class="mini-track">12 WHO KNEW</span>
+              <span class="mini-track">13 Sky Is Falling</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>crash evidence</h2>
+        <p class="small-note">Three witnesses from the scene: me in the field, the water acting dramatic, and the dog who definitely knows too much.</p>
+      </div>
+      <div class="gallery">
+        <img class="scene-person" src="IMG_0769.jpeg" alt="Saint Jules field portrait with album watermark" />
+        <img class="scene-water" src="IMG_0375.jpeg" alt="Water photo with Lord Have Mercy watermark" />
+        <img class="scene-window" src="IMG_3415.jpeg" alt="Dog in window photo with album watermark" />
+      </div>
+    </section>
+
+    <section class="section" id="boy-genius">
+      <div class="teaser">
+        <div>
+          <h2>boy genius flashes may 16</h2>
+          <p>
+            Not playing yet. Just blinking at you like a warning light on the dashboard.
+          </p>
+        </div>
+        <a class="button" href="#listen">see playlist</a>
+      </div>
+    </section>
+
+    <section class="section" id="superstar">
+      <div class="super-pass">
+        <div class="pass-card">
+          <span class="eyebrow">secret mode</span>
+          <h2>superstar pass</h2>
+          <p>
+            Got the code? Type it in and the site goes full album mode. Tracks also unlock themselves on schedule, so if I forget to come back, the crash still happens.
+          </p>
+          <div class="pass-row">
+            <input class="pass-input" id="passInput" type="text" inputmode="text" autocomplete="off" placeholder="enter passcode" aria-label="Enter passcode" />
+            <button class="button primary" id="passButton" type="button">unlock</button>
+            <button class="button secondary reset-pass-button" id="resetPassButton" type="button">lock it back</button>
+          </div>
+          <div class="pass-message" id="passMessage"></div>
+
+          <div class="testing-panel" id="testingPanel" aria-label="Testing controls">
+            <div class="testing-mode-title">🧪 testing mode</div>
+            <div class="testing-panel-head">
+              <span class="eyebrow">owner testing mode</span>
+              <strong>Testing console</strong>
+            </div>
+            <p>
+              Testing mode is separate from full album mode. Use these buttons to preview locked states, fake release states, stats buttons, and local events without turning every test code into a real superstar pass.
+            </p>
+            <div class="test-toggle-row">
+              <div>
+                <strong>Automatic permanent stats page button</strong>
+                <span>When this is on, the Stats Page button appears forever after full album mode starts or the listener reaches 10 full-listen equivalents.</span>
+              </div>
+              <button class="test-toggle-button" id="testToggleAutoStats" type="button">off</button>
+            </div>
+            <div class="testing-buttons">
+              <button class="test-button" id="testSingleMode" type="button">regular locked view</button>
+              <button class="test-button" id="testBoyGenius" type="button">unlock Boy Genius only</button>
+              <button class="test-button" id="testTwoPack" type="button">unlock 2-pack</button>
+              <button class="test-button" id="testFivePack" type="button">unlock 5-pack</button>
+              <button class="test-button" id="testAlbumRelease" type="button">fake album release</button>
+              <button class="test-button danger" id="testRealFullAlbum" type="button">trigger real full album mode</button>
+              <button class="test-button" id="testLockFullAlbum" type="button">lock full album only</button>
+              <button class="test-button" id="testLockedMessage" type="button">show locked message</button>
+              <button class="test-button" id="testIssueSignupCode" type="button">issue test signup code</button>
+              <button class="test-button" id="testFakeAnalytics" type="button">save fake analytics event</button>
+              <button class="test-button" id="testForceStatsButton" type="button">force stats button on</button>
+              <button class="test-button" id="testHideStatsButton" type="button">hide stats button</button>
+              <button class="test-button" id="testEnoughListens" type="button">fake enough listens</button>
+              <button class="test-button danger" id="testClearCache" type="button">clear local test/cache</button>
+              <button class="test-button" id="testExitMode" type="button">exit testing mode</button>
+            </div>
+            <div class="testing-status" id="testingStatus">Testing mode ready. Pick a button.</div>
+          </div>
+        </div>
+
+        <div class="signup-card">
+          <span class="eyebrow">touring · events · weird ideas</span>
+          <h2>stay in the car</h2>
+          <p>
+            Want show dates, pop-ups, secret links, and whatever else I talk myself into doing? Drop your info and I’ll know you came from the website.
+          </p>
+          <form class="signup-form" id="signupForm" action="https://formspree.io/f/mnjlkyrb" method="POST" target="signupFrame">
+            <input class="signup-input" name="name" type="text" placeholder="name" autocomplete="name" />
+            <input class="signup-input" name="email" type="email" placeholder="email" autocomplete="email" required />
+            <input class="signup-input" name="phone" type="tel" placeholder="phone / text me maybe" autocomplete="tel" />
+            <input type="hidden" name="source" value="saint-jules-website-info-signup" />
+            <input type="hidden" name="vip_code" id="signupCodeField" value="none" />
+            <input type="hidden" name="tracker_id" id="trackerField" value="" />
+            <input type="hidden" name="analytics_note" value="Detailed listener analytics are no longer sent to Formspree. Formspree is signup-only." />
+            <input type="hidden" name="_subject" value="New Saint Jules website signup" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <button class="button primary" type="submit">get the secret code</button>
+          </form>
+          <iframe name="signupFrame" title="Signup form response" style="display:none;"></iframe>
+          <div class="signup-message" id="signupMessage"></div>
+
+          <div class="rider-name-card" id="riderNameCard" aria-label="Passenger name changer">
+            <div class="rider-name-head">
+              <span class="eyebrow">passenger name</span>
+              <strong>pick your tag</strong>
+            </div>
+            <span class="rider-name-display" id="visitorNameDisplay">Loading name…</span>
+            <p class="rider-name-copy" id="visitorNameMessage">Use a name from the list or keep the SJ number. Custom names are allowed, but the website will judge you a little.</p>
+            <div class="name-controls">
+              <select class="name-select" id="presetNameSelect" aria-label="Pick a passenger name from the list"></select>
+              <button class="name-button primary" id="usePresetNameButton" type="button">use list name</button>
+              <button class="name-button" id="randomPresetNameButton" type="button">random name</button>
+            </div>
+            <div class="name-controls" style="margin-top:9px;">
+              <input class="name-input" id="customNameInput" type="text" maxlength="32" placeholder="type your own name if you must" aria-label="Custom passenger name" />
+              <button class="name-button" id="saveCustomNameButton" type="button">use my own</button>
+              <button class="name-button" id="resetVisitorNameButton" type="button">back to SJ number</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+
+    <section class="section stats-page" id="stats-page">
+      <div class="section-head">
+        <h2>local stats page</h2>
+        <p class="small-note">Private browser-side numbers for testing the listener ladder, passcodes, and the permanent stats button. This page reads only this browser’s local Saint Jules data.</p>
+      </div>
+      <p class="stats-note" id="statsPageStatus">Stats page is ready.</p>
+      <div class="stats-page-grid" aria-label="Local listener stats summary">
+        <div class="stats-card"><span>mode</span><strong id="statsModeValue">single</strong></div>
+        <div class="stats-card"><span>auto button</span><strong id="statsAutoValue">off</strong></div>
+        <div class="stats-card"><span>listen progress</span><strong id="statsListenValue">0/10</strong></div>
+        <div class="stats-card"><span>events saved</span><strong id="statsEventsValue">0</strong></div>
+      </div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" aria-label="Local song stats">
+          <thead>
+            <tr>
+              <th>Track</th>
+              <th>Status</th>
+              <th>Plays</th>
+              <th>Completed</th>
+              <th>Seconds</th>
+              <th>Locked clicks</th>
+            </tr>
+          </thead>
+          <tbody id="statsSongRows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section" id="links">
+      <div class="section-head">
+        <h2>find me</h2>
+        <p class="small-note">If you still can’t find me after this, that’s between you and God.</p>
+      </div>
+
+      <div class="links">
+        <a class="link-card" href="https://www.instagram.com/saint__jules/" target="_blank" rel="noopener">
+          <span>Instagram</span>
+          <span>@saint__jules</span>
+        </a>
+        <a class="link-card" href="https://www.youtube.com/@SaintJulezz" target="_blank" rel="noopener">
+          <span>YouTube</span>
+          <span>@SaintJulezz</span>
+        </a>
+        <a class="link-card" href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener" data-stream-platform="spotify" data-stream-location="find_me_card">
+          <span>Spotify</span>
+          <span>The Proposition</span>
+        </a>
+        <a class="link-card" href="https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201" target="_blank" rel="noopener" data-stream-platform="apple_music" data-stream-location="find_me_card">
+          <span>Apple Music</span>
+          <span>The Proposition</span>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <span>© Saint Jules</span>
+      <span>Lord Have Mercy, He's A Crash Dummy! · June 18</span>
+    </footer>
+  </main>
+
+  <script>
+    const albumFolder = "Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/";
+    const propositionArt = "F996E043-8052-4D0E-A037-6CE05FC6438A.PNG";
+    const pinkHairPhoto = "F996E043-8052-4D0E-A037-6CE05FC6438A.PNG";
+    const boyGeniusRelease = new Date("2026-05-16T00:00:00");
+    const albumRelease = new Date("2026-06-18T00:00:00");
+
+    const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
+    const testingCodes = ["PASSCODE", "TEST", "TESTING", "TESTCODE", "ALBUMTEST", "CRASHDUMMY", "SAINTJULES"];
+    const ownerDefaultCodeLocations = {
+      "FRANK1738": "owner default/private code · Frank 1738",
+      "TRAPQUEEN1738": "owner default/private code · Trap Queen 1738",
+      "FETTYTRUCK": "owner default/private code · Fetty Truck",
+      "SUPERSTAR": "owner default/private code · Superstar"
+    };
+    const testingCodeLocations = {
+      "PASSCODE": "testing/admin code · Passcode",
+      "TEST": "testing/admin code · Test",
+      "TESTING": "testing/admin code · Testing",
+      "TESTCODE": "testing/admin code · Test Code",
+      "ALBUMTEST": "testing/admin code · Album Test",
+      "CRASHDUMMY": "testing/admin code · Crash Dummy",
+      "SAINTJULES": "testing/admin code · Saint Jules"
+    };
+    const vipSignupCode = "PASSENGERPRINCESS";
+    const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
+    const unlockTimeoutHours = 24;
+    const analyticsEndpoint = "";
+    const passcodeUsesEndpoint = "https://formspree.io/f/xaqarqrp";
+    const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
+    const autoStatsButtonStorageKey = "saintJulesAutoStatsButton";
+    const statsButtonStorageKey = "saintJulesStatsPageButtonUnlocked";
+    const statsProgressStorageKey = "saintJulesStatsProgress";
+    const listenEnoughGoal = 10;
+    const codePrefix = "SJ";
+    const generatedCodeSalt = "CRASHDUMMYERA";
+
+    const visitorNameStorageKey = "saintJulesVisitorName";
+    const visitorNameModeStorageKey = "saintJulesVisitorNameMode";
+    const visitorPresetNames = [
+      "Redstone Romeo",
+      "Creeper Passenger",
+      "Diamond Cart Driver",
+      "Netherite Nepo Baby",
+      "Ender Baddie",
+      "Blockhead Deluxe",
+      "Spiral Crash Pilot",
+      "Drill Bit Prince",
+      "Galaxy-Brain Side Character",
+      "Team Rocket Science",
+      "Nine-Tail Pit Crew",
+      "Shadow Clone Chauffeur",
+      "Hidden Village Menace",
+      "Ramen Runaway",
+      "Metal Fusion Menace",
+      "Beyblade Breakfast Club",
+      "Pegasus Parking Ticket",
+      "L-Drago Liability",
+      "Straw Hat Seatbelt",
+      "Grand Line Backseat Driver",
+      "Going Merry Go-Round",
+      "Pirate Radio Passenger",
+      "Miata Menace",
+      "Civic Type Heartbreak",
+      "Altima Activities",
+      "Pink Slip Princess",
+      "Passenger Princess 1738",
+      "Crash Test Cutie",
+      "Dashboard Warning Light",
+      "Emotional Support Seatbelt",
+      "Aux Cord Villain",
+      "Parking Lot Philosopher",
+      "Saint Jules Witness",
+      "The Proposition Accepted"
+    ];
+    const customNameRoasts = [
+      "Custom name? Bold choice. You saw the cool list and said, ‘nah, I brought a clipboard.’ Fine.",
+      "You really looked at all these names and chose homework. Respectfully, the website is concerned.",
+      "Fine, main character. The list was right there, but apparently we needed a director’s cut.",
+      "Using your own name is legal. Stylish? The jury is still listening to The Proposition.",
+      "A custom name? Somebody woke up and chose administrative privileges. Saved."
+    ];
+
+
+    const uniqueCodes = {
+      "JULES001": "street code 001",
+      "JULES002": "street code 002",
+      "JULES003": "street code 003",
+      "JULES004": "street code 004",
+      "JULES005": "street code 005",
+      "JULES006": "street code 006",
+      "JULES007": "street code 007",
+      "JULES008": "street code 008",
+      "JULES009": "street code 009",
+      "JULES010": "street code 010",
+      "CRASH001": "crash pass 001",
+      "CRASH002": "crash pass 002",
+      "CRASH003": "crash pass 003",
+      "CRASH004": "crash pass 004",
+      "CRASH005": "crash pass 005",
+      "CRASH006": "crash pass 006",
+      "CRASH007": "crash pass 007",
+      "CRASH008": "crash pass 008",
+      "CRASH009": "crash pass 009",
+      "CRASH010": "crash pass 010",
+      "BOYGENIUS01": "boy genius code 01",
+      "BOYGENIUS02": "boy genius code 02",
+      "BOYGENIUS03": "boy genius code 03",
+      "BOYGENIUS04": "boy genius code 04",
+      "BOYGENIUS05": "boy genius code 05",
+      "PINKHAIR01": "pink hair code 01",
+      "PINKHAIR02": "pink hair code 02",
+      "PINKHAIR03": "pink hair code 03",
+      "PASSENGER01": "passenger code 01",
+      "PASSENGER02": "passenger code 02",
+      "PASSENGER03": "passenger code 03",
+      "RIDEOUT01": "ride out code 01",
+      "RIDEOUT02": "ride out code 02",
+      "RIDEOUT03": "ride out code 03",
+      "FRANKOCEAN01": "frank ocean joke code 01",
+      "FRANKOCEAN02": "frank ocean joke code 02",
+      "TRAPQUEEN01": "trap queen code 01",
+      "TRAPQUEEN02": "trap queen code 02",
+      "1738VIP01": "1738 vip code 01",
+      "1738VIP02": "1738 vip code 02"
+    };
+
+    const tracks = [
+      {
+        number: "01",
+        title: "Boy Genius",
+        file: albumFolder + "01%20Boy%20Genius.wav",
+        art: pinkHairPhoto,
+        status: "flashes May 16",
+        releaseDate: boyGeniusRelease,
+        message: "Boy Genius flashes May 16. The dashboard light is blinking, but the keys are not in it yet.",
+        blurb: "Duct tape, faith, bad ideas, and a passenger-seat kind of chaos. The pretty warning light before the crash."
+      },
+      {
+        number: "02",
+        title: "Jump!!!",
+        file: albumFolder + "02%20Jump%21%21%21.wav",
+        art: "IMG_0375.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. Seatbelt on. This one is still behind the velvet rope.",
+        blurb: "A parachute song for when the ground is coming fast and you still have to trust the process."
+      },
+      {
+        number: "03",
+        title: "Come to Life",
+        file: albumFolder + "03%20Come%20to%20Life.wav",
+        art: "IMG_0768.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. It is not dead, it is just dramatically unavailable.",
+        blurb: "The emotional reboot. Soft light, second chances, and the part where the heart starts acting alive again."
+      },
+      {
+        number: "04",
+        title: "The Proposition",
+        file: albumFolder + "04%20The%20Proposition.wav",
+        art: propositionArt,
+        status: "single · playable now",
+        releaseDate: new Date("2026-04-27T00:00:00"),
+        message: "The single is live. Press play and accept The Proposition.",
+        blurb: "The single. A broke-boy fairytale with passenger-princess energy, big plans, and a ride you can scream in."
+      },
+      {
+        number: "05",
+        title: "Rude",
+        file: albumFolder + "05%20Rude.wav",
+        art: "IMG_0769.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. This track is being rude and refusing to come outside yet.",
+        blurb: "Sweet talk with teeth. It is romantic, reckless, and just rude enough to tell the truth out loud."
+      },
+      {
+        number: "06",
+        title: "PISA",
+        file: albumFolder + "06%20PISA.wav",
+        art: pinkHairPhoto,
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. The tower is leaning, but it has not fallen yet.",
+        blurb: "Spanglish heartbreak in perfect weather. Peace disappears, feelings leak out, and the tower still leans pretty."
+      },
+      {
+        number: "07",
+        title: "Apple Pie",
+        file: albumFolder + "07%20Apple%20Pie.wav",
+        art: "IMG_0797.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. The pie is cooling on the window sill. Do not touch.",
+        blurb: "Sweet-as-apple-pie danger music. Best intentions, bad roads, and one bite turning into a whole interstate problem."
+      },
+      {
+        number: "08",
+        title: "I Know",
+        file: albumFolder + "08%20I%20Know..wav",
+        art: "IMG_0858.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. I know you want it. That is the problem.",
+        blurb: "The caring-too-much record. Wanting better for somebody even when you cannot want it for them."
+      },
+      {
+        number: "09",
+        title: "Felt It? My Darling",
+        file: albumFolder + "09%20Felt%20It%3F%3AMy%20Darling%20.wav",
+        art: "IMG_3415.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. Darling, you felt it too early.",
+        blurb: "No back-and-forth, no take-backs. Space bars, hidden figures, and feelings too loud to pretend they were accidents."
+      },
+      {
+        number: "10",
+        title: "Crash Dummy",
+        file: albumFolder + "10%20Crash%20Dummy.wav",
+        art: "Glowing%20Saint%20Jules%20Angel.png",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. The dummy is still in the test lab.",
+        blurb: "Full-speed love with no survival instinct. The title track knows the wall is there and still hits the gas."
+      },
+      {
+        number: "11",
+        title: "Mr. Please",
+        file: albumFolder + "11%20Mr.Please.wav",
+        art: pinkHairPhoto,
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. Mr. Please said please wait.",
+        blurb: "A blessing song. Old-school, knees-bent, asking-the-father romance with gold-hearted intentions."
+      },
+      {
+        number: "12",
+        title: "WHO KNEW",
+        file: albumFolder + "12%20WHO%20KNEW.wav",
+        art: "IMG_0375.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. Who knew? Not the public. Not yet.",
+        blurb: "Grief, brotherhood, smoke from one flame, and learning how to believe again without knowing why yet."
+      },
+      {
+        number: "13",
+        title: "Sky Is Falling",
+        file: albumFolder + "13%20Sky%20Is%20Falling.wav",
+        art: "IMG_0768.jpeg",
+        status: "crash date June 18",
+        releaseDate: albumRelease,
+        message: "Crash date: June 18. The sky is falling on schedule.",
+        blurb: "End-of-the-world pop. For when everything is falling, but somehow the chorus still looks cute doing it."
+      }
+    ];
+
+    const player = document.getElementById("audioPlayer");
+    const currentTitle = document.getElementById("currentTitle");
+    const currentMeta = document.getElementById("currentMeta");
+    const artwork = document.getElementById("artwork");
+    const tracklist = document.getElementById("tracklist");
+    const releaseMessage = document.getElementById("releaseMessage");
+    const prevTrackButton = document.getElementById("prevTrack");
+    const togglePlayButton = document.getElementById("togglePlay");
+    const nextTrackButton = document.getElementById("nextTrack");
+    const playUnlockedButton = document.getElementById("playUnlocked");
+    const playerStats = document.getElementById("playerStats");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeText = document.getElementById("currentTimeText");
+    const durationText = document.getElementById("durationText");
+    const playerModeLabel = document.getElementById("playerModeLabel");
+    const playerUnlockCount = document.getElementById("playerUnlockCount");
+    const passInput = document.getElementById("passInput");
+    const passButton = document.getElementById("passButton");
+    const resetPassButton = document.getElementById("resetPassButton");
+    const passMessage = document.getElementById("passMessage");
+    const signupForm = document.getElementById("signupForm");
+    const signupMessage = document.getElementById("signupMessage");
+    const testingStatus = document.getElementById("testingStatus");
+    const testSingleModeButton = document.getElementById("testSingleMode");
+    const testBoyGeniusButton = document.getElementById("testBoyGenius");
+    const testTwoPackButton = document.getElementById("testTwoPack");
+    const testFivePackButton = document.getElementById("testFivePack");
+    const testAlbumReleaseButton = document.getElementById("testAlbumRelease");
+    const testRealFullAlbumButton = document.getElementById("testRealFullAlbum");
+    const testLockFullAlbumButton = document.getElementById("testLockFullAlbum");
+    const testLockedMessageButton = document.getElementById("testLockedMessage");
+    const testIssueSignupCodeButton = document.getElementById("testIssueSignupCode");
+    const testFakeAnalyticsButton = document.getElementById("testFakeAnalytics");
+    const testToggleAutoStatsButton = document.getElementById("testToggleAutoStats");
+    const testForceStatsButton = document.getElementById("testForceStatsButton");
+    const testHideStatsButton = document.getElementById("testHideStatsButton");
+    const testEnoughListensButton = document.getElementById("testEnoughListens");
+    const testClearCacheButton = document.getElementById("testClearCache");
+    const testExitModeButton = document.getElementById("testExitMode");
+    const statsPageStatus = document.getElementById("statsPageStatus");
+    const statsModeValue = document.getElementById("statsModeValue");
+    const statsAutoValue = document.getElementById("statsAutoValue");
+    const statsListenValue = document.getElementById("statsListenValue");
+    const statsEventsValue = document.getElementById("statsEventsValue");
+    const statsSongRows = document.getElementById("statsSongRows");
+
+    const randomFiveButton = document.getElementById("randomFiveButton");
+    const playRandomPickButton = document.getElementById("playRandomPickButton");
+    const clearRandomFiveButton = document.getElementById("clearRandomFiveButton");
+    const randomFiveResult = document.getElementById("randomFiveResult");
+    const visitorNameDisplay = document.getElementById("visitorNameDisplay");
+    const visitorNameMessage = document.getElementById("visitorNameMessage");
+    const presetNameSelect = document.getElementById("presetNameSelect");
+    const usePresetNameButton = document.getElementById("usePresetNameButton");
+    const randomPresetNameButton = document.getElementById("randomPresetNameButton");
+    const customNameInput = document.getElementById("customNameInput");
+    const saveCustomNameButton = document.getElementById("saveCustomNameButton");
+    const resetVisitorNameButton = document.getElementById("resetVisitorNameButton");
+
+
+    const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
+    // Keep successful passcodes alive across refreshes. Reset/lock codes still clear these on purpose.
+    let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
+    let activeUnlockCode = localStorage.getItem("saintJulesUnlockCode") || "none";
+    let activeUnlockExpiresAt = Number(localStorage.getItem("saintJulesUnlockExpiresAt") || 0);
+    let testingModeUnlocked = localStorage.getItem("saintJulesTestingMode") === "yes";
+    let testingUnlockState = localStorage.getItem("saintJulesTestingUnlockState") || "single";
+    let activeTestingCode = localStorage.getItem("saintJulesTestingCode") || "none";
+    let autoStatsButtonEnabled = localStorage.getItem(autoStatsButtonStorageKey) === "yes";
+    let statsButtonUnlocked = localStorage.getItem(statsButtonStorageKey) === "yes";
+    let currentTrackIndex = leadIndex;
+    let sessionStartedAt = Date.now();
+    let lastPlayStartedAt = null;
+    let hasSentSessionSummary = false;
+    let hasLoggedFirstPlay = false;
+    let currentLoadKey = "";
+    let hasLoggedPlayForCurrentLoad = false;
+    let currentLoadStartedAt = 0;
+    const sessionPlayCounts = {};
+    const sessionStartCounts = {};
+    const sessionCompleteCounts = {};
+    const sessionRepeatCounts = {};
+    const sessionLockedClickCounts = {};
+
+    const listeningSummary = {};
+
+    function makeTrackerId() {
+      const randomPart = Math.random().toString(36).slice(2, 8).toUpperCase();
+      const timePart = Date.now().toString(36).slice(-5).toUpperCase();
+      return "SJ-" + timePart + "-" + randomPart;
+    }
+
+    function normalizeAnalyticsCode(value) {
+      const raw = String(value || "")
+        .trim()
+        .toUpperCase()
+        .replace(/[–—−]/g, "-")
+        .replace(/\s+/g, "");
+
+      if (!raw || raw === "NONE" || raw === "NO_CODE" || raw === "NO_CODE_ENTERED") return "none";
+
+      const compact = raw.replace(/-/g, "");
+      if (compact.length === 10 && compact.startsWith(codePrefix)) {
+        return `${compact.slice(0, 2)}-${compact.slice(2, 5)}-${compact.slice(5, 8)}-${compact.slice(8)}`;
+      }
+
+      return raw;
+    }
+
+    function codeChecksum(body) {
+      let total = 0;
+      const text = `${body}${generatedCodeSalt}`;
+      for (let i = 0; i < text.length; i += 1) {
+        total = (total * 31 + text.charCodeAt(i)) % 1296;
+      }
+      return total.toString(36).toUpperCase().padStart(2, "0");
+    }
+
+    function makeGeneratedPasscode() {
+      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+      let body = "";
+      for (let i = 0; i < 6; i += 1) {
+        body += chars[Math.floor(Math.random() * chars.length)];
+      }
+      return `${codePrefix}-${body.slice(0, 3)}-${body.slice(3)}-${codeChecksum(body)}`;
+    }
+
+    function isGeneratedPasscode(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (!clean || clean === "none") return false;
+      const parts = clean.split("-");
+      if (parts.length !== 4 || parts[0] !== codePrefix) return false;
+      const body = `${parts[1]}${parts[2]}`;
+      const check = parts[3];
+      if (body.length !== 6 || check.length !== 2) return false;
+      return codeChecksum(body) === check;
+    }
+
+    function getCodeLabel(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
+      if (isGeneratedPasscode(clean)) return "generated tracker pass " + clean;
+      if (fullAlbumCodes.includes(clean)) return ownerDefaultCodeLocations[clean] || "owner default/private passcode";
+      if (testingCodes.includes(clean)) return testingCodeLocations[clean] || "testing/admin code";
+      if (clean === vipSignupCode) return "legacy vip signup code";
+      return "unknown code";
+    }
+
+    let visitorTracker = localStorage.getItem("saintJulesTracker") || makeTrackerId();
+    localStorage.removeItem("saintJulesSignupCode");
+    let signupAssignedCode = "";
+    activeUnlockCode = normalizeAnalyticsCode(activeUnlockCode || "none") || "none";
+    localStorage.setItem("saintJulesTracker", visitorTracker);
+
+    let visitorDisplayName = localStorage.getItem(visitorNameStorageKey) || visitorTracker;
+    let visitorNameMode = localStorage.getItem(visitorNameModeStorageKey) || "sj_number";
+    let currentRandomFiveIndexes = [];
+
+
+    function hasEnteredReportingCode() {
+      const cleanCode = normalizeAnalyticsCode(activeUnlockCode);
+      return Boolean(cleanCode && cleanCode !== "none");
+    }
+
+    function getCurrentReportingCode() {
+      return hasEnteredReportingCode() ? normalizeAnalyticsCode(activeUnlockCode) : "none";
+    }
+
+    function getGoogleUserId() {
+      const reportingCode = getCurrentReportingCode();
+      return reportingCode !== "none" ? reportingCode : visitorTracker;
+    }
+
+
+    function cleanVisitorName(value) {
+      return String(value || "")
+        .replace(/[<>]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 32);
+    }
+
+    function getVisitorDisplayName() {
+      return cleanVisitorName(visitorDisplayName) || visitorTracker;
+    }
+
+    function randomFromList(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function populatePresetNames() {
+      if (!presetNameSelect) return;
+      presetNameSelect.innerHTML = "";
+      visitorPresetNames.forEach((name) => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        presetNameSelect.appendChild(option);
+      });
+    }
+
+    function saveVisitorName(name, mode = "preset", message = "Passenger name saved.") {
+      const cleanName = cleanVisitorName(name);
+      if (!cleanName) return;
+      visitorDisplayName = cleanName;
+      visitorNameMode = mode;
+      if (mode === "sj_number") {
+        localStorage.removeItem(visitorNameStorageKey);
+        localStorage.setItem(visitorNameModeStorageKey, "sj_number");
+      } else {
+        localStorage.setItem(visitorNameStorageKey, visitorDisplayName);
+        localStorage.setItem(visitorNameModeStorageKey, visitorNameMode);
+      }
+      syncFormCodeFields(`visitor_name_${mode}`);
+      reportIdentityToGoogle(`visitor_name_${mode}`);
+      logEvent("sj_visitor_name_changed", {
+        new_listener_name: getVisitorDisplayName(),
+        name_mode: visitorNameMode
+      });
+      updateVisitorNameUI(message);
+    }
+
+    function updateVisitorNameUI(message = "") {
+      const displayName = getVisitorDisplayName();
+      if (visitorNameDisplay) visitorNameDisplay.textContent = displayName;
+      if (visitorNameMessage) {
+        visitorNameMessage.textContent = message || (visitorNameMode === "sj_number"
+          ? "You are still riding around as the SJ number. Mysterious, but also very DMV paperwork."
+          : visitorNameMode === "custom"
+            ? "Custom name saved. The website judged you, but it did save it."
+            : "List name saved. Good. You let the machine cook for once.");
+      }
+      if (customNameInput && visitorNameMode === "custom") customNameInput.value = displayName;
+    }
+
+    function chooseRandomPresetName() {
+      const name = randomFromList(visitorPresetNames);
+      if (presetNameSelect) presetNameSelect.value = name;
+      saveVisitorName(name, "preset", `Random name assigned: ${name}. Honestly, it could have been worse.`);
+    }
+
+    function saveSelectedPresetName() {
+      const name = presetNameSelect?.value || randomFromList(visitorPresetNames);
+      saveVisitorName(name, "preset", `${name} is locked in. Much better than being called a receipt number.`);
+    }
+
+    function saveCustomVisitorName() {
+      const cleanName = cleanVisitorName(customNameInput?.value || "");
+      if (!cleanName) {
+        updateVisitorNameUI("Type a name first. I cannot roast an empty text box.");
+        return;
+      }
+      const roast = randomFromList(customNameRoasts);
+      const confirmed = window.confirm(`${roast}\n\nUse “${cleanName}” anyway?`);
+      if (!confirmed) {
+        updateVisitorNameUI("Good call. The list was sitting right there looking useful.");
+        return;
+      }
+      saveVisitorName(cleanName, "custom", roast);
+    }
+
+    function resetVisitorNameToTracker() {
+      visitorDisplayName = visitorTracker;
+      visitorNameMode = "sj_number";
+      localStorage.removeItem(visitorNameStorageKey);
+      localStorage.setItem(visitorNameModeStorageKey, "sj_number");
+      syncFormCodeFields("visitor_name_reset");
+      logEvent("sj_visitor_name_reset", { new_listener_name: visitorTracker, name_mode: "sj_number" });
+      updateVisitorNameUI("Back to the SJ number. Anonymous behavior. Respectfully suspicious.");
+    }
+
+    function ensureSignupAssignedCode() {
+      if (!signupAssignedCode || signupAssignedCode === "none") {
+        signupAssignedCode = makeGeneratedPasscode();
+        localStorage.setItem("saintJulesSignupCode", signupAssignedCode);
+      }
+      return signupAssignedCode;
+    }
+
+    function setHiddenFormField(name, value) {
+      if (!signupForm) return;
+      let field = signupForm.querySelector(`[name="${name}"]`);
+      if (!field) {
+        field = document.createElement("input");
+        field.type = "hidden";
+        field.name = name;
+        signupForm.appendChild(field);
+      }
+      field.value = value;
+    }
+
+    function syncFormCodeFields(reason = "sync", codeOverride = "") {
+      const overrideCode = normalizeAnalyticsCode(codeOverride);
+      const reportingCode = overrideCode !== "none" ? overrideCode : getCurrentReportingCode();
+      const fields = {
+        tracker_id: visitorTracker,
+        listener_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        vip_code: reportingCode,
+        assigned_signup_code: signupAssignedCode || "none",
+        active_unlock_code: activeUnlockCode || "none",
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        testing_state: testingUnlockState || "single",
+        testing_code: activeTestingCode || "none",
+        analytics_reason: reason,
+        analytics_last_synced: new Date().toISOString()
+      };
+
+      Object.entries(fields).forEach(([name, value]) => setHiddenFormField(name, value));
+    }
+
+    function syncGoogleIdentity(reason = "identity_sync") {
+      const reportingCode = getCurrentReportingCode();
+      syncFormCodeFields(reason);
+
+      if (typeof window.gtag !== "function") return;
+
+      window.gtag("set", {
+        user_id: getGoogleUserId(),
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        testing_state: testingUnlockState || "single",
+        testing_code: activeTestingCode || "none"
+      });
+
+      window.gtag("set", "user_properties", {
+        sj_tracker_id: visitorTracker,
+        sj_signup_code: reportingCode,
+        listener_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
+        pass_code: reportingCode,
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        testing_state: testingUnlockState || "single"
+      });
+    }
+
+    function reportIdentityToGoogle(reason = "page_load") {
+      const reportingCode = getCurrentReportingCode();
+      const idPayload = {
+        event_category: "Saint Jules Identity",
+        event_label: reportingCode,
+        debug_mode: true,
+        reason,
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        testing_code: activeTestingCode || "none",
+        testing_state: testingUnlockState || "single",
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        player_mode: getPlayerModeName(),
+        timestamp_local: new Date().toLocaleString(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      };
+
+      syncFormCodeFields(reason);
+      saveLocalAnalytics({ event: "identity_seen", ...idPayload });
+      window.sjAnalyticsIdentity = idPayload;
+
+      if (typeof window.gtag !== "function") return;
+
+      syncGoogleIdentity(reason);
+      window.gtag("event", "identity_seen", idPayload);
+      if (reportingCode !== "none") {
+        window.gtag("event", "sj_code_assigned", idPayload);
+      }
+    }
+
+    function isUnlockStillValid() {
+      if (!albumOverrideUnlocked) return false;
+      if (new Date() >= albumRelease) return true;
+      return activeUnlockExpiresAt && Date.now() < activeUnlockExpiresAt;
+    }
+
+    function isTestingModeActive() {
+      return testingModeUnlocked || document.body.classList.contains("testing-mode");
+    }
+
+    function getPlayerModeName() {
+      if (document.body.classList.contains("super-mode")) return "superstar";
+      if (isTestingModeActive()) return `testing_${testingUnlockState}`;
+      return "single";
+    }
+
+
+    function readLocalJson(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function writeLocalJson(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (error) {}
+    }
+
+    function getStatsProgress() {
+      const fallback = { equivalentListens: 0, seconds: 0, completed: 0, trackSeconds: {}, trackPlays: {}, trackCompleted: {}, trackLockedClicks: {}, unlockedReason: "none" };
+      const data = readLocalJson(statsProgressStorageKey, fallback) || fallback;
+      data.equivalentListens = Number(data.equivalentListens || 0);
+      data.seconds = Number(data.seconds || 0);
+      data.completed = Number(data.completed || 0);
+      data.trackSeconds = data.trackSeconds || {};
+      data.trackPlays = data.trackPlays || {};
+      data.trackCompleted = data.trackCompleted || {};
+      data.trackLockedClicks = data.trackLockedClicks || {};
+      data.unlockedReason = data.unlockedReason || "none";
+      return data;
+    }
+
+    function saveStatsProgress(data) {
+      writeLocalJson(statsProgressStorageKey, data);
+    }
+
+    function getRecentEventCount() {
+      try {
+        return JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]").length;
+      } catch (error) {
+        return 0;
+      }
+    }
+
+    function syncStatsButtonState(reason = "sync") {
+      document.body.classList.toggle("stats-button-visible", statsButtonUnlocked);
+      if (testToggleAutoStatsButton) {
+        testToggleAutoStatsButton.textContent = autoStatsButtonEnabled ? "on" : "off";
+        testToggleAutoStatsButton.classList.toggle("on", autoStatsButtonEnabled);
+      }
+      updateStatsPage(reason);
+    }
+
+    function setStatsButtonVisible(visible, reason = "manual") {
+      statsButtonUnlocked = Boolean(visible);
+      if (statsButtonUnlocked) localStorage.setItem(statsButtonStorageKey, "yes");
+      else localStorage.removeItem(statsButtonStorageKey);
+      const data = getStatsProgress();
+      if (statsButtonUnlocked) data.unlockedReason = reason;
+      else data.unlockedReason = "hidden";
+      saveStatsProgress(data);
+      syncStatsButtonState(reason);
+      logEvent(statsButtonUnlocked ? "sj_stats_button_unlocked" : "sj_stats_button_hidden", { reason, auto_stats_button: autoStatsButtonEnabled ? "on" : "off" });
+    }
+
+    function maybeTriggerStatsButton(reason = "auto_trigger") {
+      if (!autoStatsButtonEnabled || statsButtonUnlocked) {
+        syncStatsButtonState(reason);
+        return false;
+      }
+      setStatsButtonVisible(true, reason);
+      return true;
+    }
+
+    function toggleAutoStatsButton() {
+      autoStatsButtonEnabled = !autoStatsButtonEnabled;
+      if (autoStatsButtonEnabled) localStorage.setItem(autoStatsButtonStorageKey, "yes");
+      else localStorage.removeItem(autoStatsButtonStorageKey);
+      logEvent("sj_testing_auto_stats_toggle", { auto_stats_button: autoStatsButtonEnabled ? "on" : "off" });
+      if (autoStatsButtonEnabled && document.body.classList.contains("super-mode")) {
+        maybeTriggerStatsButton("full_album_mode_already_on");
+      } else {
+        syncStatsButtonState("auto_stats_toggle");
+      }
+      updateTestingStatus(autoStatsButtonEnabled ? "Automatic stats button is on." : "Automatic stats button is off.");
+    }
+
+    function addStatsListeningTime(track, seconds) {
+      if (!track || !seconds) return;
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      const safeDuration = Number(player.duration || 180) || 180;
+      data.seconds += seconds;
+      data.equivalentListens += seconds / Math.max(30, safeDuration);
+      data.trackSeconds[trackKey] = (Number(data.trackSeconds[trackKey] || 0) + seconds);
+      saveStatsProgress(data);
+      if (data.equivalentListens >= listenEnoughGoal) {
+        maybeTriggerStatsButton("listener_reached_10_full_listen_equivalents");
+      } else {
+        updateStatsPage("listening_progress");
+      }
+    }
+
+    function markStatsPlay(track) {
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      data.trackPlays[trackKey] = (Number(data.trackPlays[trackKey] || 0) + 1);
+      saveStatsProgress(data);
+      updateStatsPage("track_play");
+    }
+
+    function markStatsComplete(track) {
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      data.completed += 1;
+      data.trackCompleted[trackKey] = (Number(data.trackCompleted[trackKey] || 0) + 1);
+      saveStatsProgress(data);
+      updateStatsPage("track_complete");
+    }
+
+    function markStatsLockedClick(track) {
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      data.trackLockedClicks[trackKey] = (Number(data.trackLockedClicks[trackKey] || 0) + 1);
+      saveStatsProgress(data);
+      updateStatsPage("locked_click");
+    }
+
+    function updateStatsPage(reason = "refresh") {
+      const data = getStatsProgress();
+      if (statsModeValue) statsModeValue.textContent = getPlayerModeName().replace(/_/g, " ");
+      if (statsAutoValue) statsAutoValue.textContent = autoStatsButtonEnabled ? "on" : "off";
+      if (statsListenValue) statsListenValue.textContent = `${Math.min(listenEnoughGoal, data.equivalentListens).toFixed(1)}/${listenEnoughGoal}`;
+      if (statsEventsValue) statsEventsValue.textContent = String(getRecentEventCount());
+      if (statsPageStatus) {
+        const buttonState = statsButtonUnlocked ? "visible" : "hidden";
+        statsPageStatus.textContent = `Stats button is ${buttonState}. Trigger: ${data.unlockedReason || "none"}. Name: ${getVisitorDisplayName()}. Code: ${getCurrentReportingCode()}. Tracker: ${visitorTracker}. Last update: ${reason}.`;
+      }
+      if (statsSongRows) {
+        statsSongRows.innerHTML = tracks.map((track) => {
+          const key = `${track.number} ${track.title}`;
+          return `<tr><td>${key}</td><td>${getTrackStatus(track)}</td><td>${Number(data.trackPlays[key] || 0)}</td><td>${Number(data.trackCompleted[key] || 0)}</td><td>${Math.round(Number(data.trackSeconds[key] || 0))}</td><td>${Number(data.trackLockedClicks[key] || 0)}</td></tr>`;
+        }).join("");
+      }
+    }
+
+    function isTestingTrackUnlocked(track) {
+      if (!isTestingModeActive()) return false;
+      const index = tracks.indexOf(track);
+      if (testingUnlockState === "boy_genius") return track.title === "Boy Genius" || track.title === "The Proposition";
+      if (testingUnlockState === "two_pack") return track.title === "The Proposition" || (index >= 0 && index < 2);
+      if (testingUnlockState === "five_pack") return index >= 0 && index < 5;
+      if (testingUnlockState === "album_release") return true;
+      return false;
+    }
+
+    function updateTestingStatus(message = "") {
+      if (!testingStatus) return;
+      const modeLine = `Testing state: ${testingUnlockState.replace(/_/g, " ")}. Full album mode: ${document.body.classList.contains("super-mode") ? "on" : "off"}. Auto stats button: ${autoStatsButtonEnabled ? "on" : "off"}. Stats button: ${statsButtonUnlocked ? "visible" : "hidden"}.`;
+      testingStatus.textContent = message ? `${message} ${modeLine}` : modeLine;
+    }
+
+    function clearFullAlbumOnly() {
+      albumOverrideUnlocked = false;
+      activeUnlockCode = "none";
+      activeUnlockExpiresAt = 0;
+      localStorage.removeItem("saintJulesFullAlbum");
+      localStorage.removeItem("saintJulesUnlockCode");
+      localStorage.removeItem("saintJulesUnlockExpiresAt");
+      document.body.classList.remove("super-mode");
+      syncFormCodeFields("full_album_locked_only");
+    }
+
+    function setTestingUnlockState(state, message = "Testing state changed.") {
+      testingModeUnlocked = true;
+      testingUnlockState = state;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      localStorage.setItem("saintJulesTestingUnlockState", testingUnlockState);
+      document.body.classList.add("testing-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      logEvent("sj_testing_state_changed", { testing_state: testingUnlockState, testing_message: message, testing_code: activeTestingCode || "none" });
+      renderTracklist();
+      updatePlayerStats();
+      updateTestingStatus(message);
+    }
+
+    function enterTestingMode(code = "TESTING") {
+      const cleanCode = normalizeAnalyticsCode(code);
+      clearFullAlbumOnly();
+      testingModeUnlocked = true;
+      testingUnlockState = localStorage.getItem("saintJulesTestingUnlockState") || "single";
+      activeTestingCode = cleanCode;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      localStorage.setItem("saintJulesTestingCode", cleanCode);
+      document.body.classList.add("testing-mode");
+      passMessage.textContent = "Testing mode is on. Full album mode stayed separate.";
+      passMessage.classList.add("show");
+      logEvent("sj_testing_mode_unlocked", { testing_code: cleanCode, testing_state: testingUnlockState, code_location: getPasscodeLocation(cleanCode) });
+      renderTracklist();
+      updatePlayerStats();
+      updateTestingStatus("Testing mode is on.");
+    }
+
+    function exitTestingMode(message = "Testing mode is off. Back to the regular visitor view.") {
+      testingModeUnlocked = false;
+      testingUnlockState = "single";
+      activeTestingCode = "none";
+      localStorage.removeItem("saintJulesTestingMode");
+      localStorage.removeItem("saintJulesTestingUnlockState");
+      localStorage.removeItem("saintJulesTestingCode");
+      document.body.classList.remove("testing-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      logEvent("sj_testing_mode_locked", { reason: message });
+      renderTracklist();
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    }
+
+    function getTrackSummary(track) {
+      const key = `${track.number} ${track.title}`;
+      if (!listeningSummary[key]) {
+        listeningSummary[key] = { plays: 0, seconds: 0, completed: 0, skips: 0, lockedClicks: 0 };
+      }
+      return listeningSummary[key];
+    }
+
+    function saveLocalAnalytics(eventPayload) {
+      try {
+        const existing = JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]");
+        existing.push(eventPayload);
+        localStorage.setItem(analyticsLocalStorageKey, JSON.stringify(existing.slice(-200)));
+      } catch (error) {}
+    }
+
+    function getTimeStampParts() {
+      const now = new Date();
+      return {
+        timestamp_iso: now.toISOString(),
+        timestamp_local: now.toLocaleString(),
+        date_local: now.toLocaleDateString(),
+        hour_local: now.getHours(),
+        day_of_week: now.toLocaleDateString(undefined, { weekday: "long" }),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      };
+    }
+
+    function simpleTrackProps(track, extra = {}) {
+      const seconds = Math.floor(player.currentTime || 0);
+      const startBucket = seconds < 5 ? "0-5s" : seconds < 15 ? "5-15s" : seconds < 30 ? "15-30s" : "30s+";
+      const trackKey = track ? `${track.number} ${track.title}` : "none";
+
+      return {
+        track_number: track?.number || "none",
+        track_title: track?.title || "none",
+        track_status: track ? getTrackStatus(track) : "none",
+        song_number: track?.number || "none",
+        song_title: track?.title || "none",
+        song_status: track ? getTrackStatus(track) : "none",
+        track_key: trackKey,
+        start_position_seconds: seconds,
+        start_position_bucket: startBucket,
+        session_track_plays: sessionPlayCounts[trackKey] || 0,
+        session_track_starts: sessionStartCounts[trackKey] || 0,
+        session_track_completes: sessionCompleteCounts[trackKey] || 0,
+        session_track_repeats: sessionRepeatCounts[trackKey] || 0,
+        session_locked_clicks: sessionLockedClickCounts[trackKey] || 0,
+        ...extra
+      };
+    }
+
+    function cleanForGoogleAnalytics(value) {
+      if (value === undefined || value === null) return "none";
+      if (typeof value === "object") return JSON.stringify(value);
+      return value;
+    }
+
+    function toEventSlug(value) {
+      return String(value || "none")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .slice(0, 32);
+    }
+
+    function trackEventName(prefix, track) {
+      const number = toEventSlug(track?.number || "00");
+      const title = toEventSlug(track?.title || "unknown");
+      return `${prefix}_${number}_${title}`;
+    }
+
+    function getUnlockCodeType(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (fullAlbumCodes.includes(clean)) return "default_private";
+      if (testingCodes.includes(clean)) return "testing_admin";
+      if (clean === vipSignupCode) return "signup_vip";
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return "manual_unique";
+      if (isGeneratedPasscode(clean)) return "generated_unique";
+      if (resetCodes.includes(clean)) return "reset";
+      return "unknown";
+    }
+
+    function getPasscodeLocation(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, clean)) return ownerDefaultCodeLocations[clean];
+      if (Object.prototype.hasOwnProperty.call(testingCodeLocations, clean)) return testingCodeLocations[clean];
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
+      if (isGeneratedPasscode(clean)) return "website signup generated passcode";
+      if (clean === vipSignupCode) return "legacy VIP/signup code";
+      if (resetCodes.includes(clean)) return "reset/admin code";
+      return "unknown passcode location";
+    }
+
+    function isOwnerDefaultCode(code) {
+      return Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, normalizeAnalyticsCode(code));
+    }
+
+    function reportPasscodeUseToFormspree(eventName, code, extra = {}) {
+      if (!passcodeUsesEndpoint) return;
+
+      const cleanCode = normalizeAnalyticsCode(code);
+      const payload = {
+        _subject: "Saint Jules passcode use",
+        source: "saint-jules-passcode-use-tracker",
+        event_name: eventName,
+        passcode_result: extra.result || eventName,
+        code_used: cleanCode || "empty",
+        code_attempted: cleanCode || "empty",
+        code_type: getUnlockCodeType(cleanCode),
+        code_label: getCodeLabel(cleanCode),
+        code_location: getPasscodeLocation(cleanCode),
+        owner_default_private_code: isOwnerDefaultCode(cleanCode) ? "yes" : "no",
+        known_only_if_told_by_owner: isOwnerDefaultCode(cleanCode) ? "yes" : "no",
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        testing_code: activeTestingCode || "none",
+        testing_state: testingUnlockState || "single",
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        player_mode: getPlayerModeName(),
+        page: window.location.pathname,
+        page_location: window.location.href,
+        referrer: document.referrer || "none",
+        user_agent: navigator.userAgent || "unknown",
+        ...getTimeStampParts(),
+        ...extra
+      };
+
+      try {
+        fetch(passcodeUsesEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) {}
+
+      saveLocalAnalytics({ event: "formspree_passcode_use", ...payload });
+      window.sjLastPasscodeUseReport = payload;
+    }
+
+    function getReadableAlias(eventName) {
+      const aliases = {
+        sj_track_play: "music_play",
+        sj_track_repeated: "music_repeat",
+        sj_track_complete: "music_complete",
+        sj_first_track_started: "music_start",
+        sj_locked_track_click: "locked_song_click",
+        sj_full_album_unlocked: "album_unlock",
+        sj_full_album_locked: "album_lock",
+        sj_signup_submitted: "lead_signup",
+        sj_bad_passcode: "bad_passcode",
+        sj_stream_link_click: "stream_link_click",
+        sj_session_end: "listen_session_end",
+        sj_site_ready: "site_ready"
+      };
+      return aliases[eventName] || "";
+    }
+
+    function logEvent(eventName, details = {}) {
+      const playerMode = getPlayerModeName();
+      const timeParts = getTimeStampParts();
+      const reportingCode = getCurrentReportingCode();
+
+      const identityFields = {
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        testing_code: activeTestingCode || "none",
+        testing_state: testingUnlockState || "single"
+      };
+
+      const eventPayload = {
+        event: eventName,
+        time: timeParts.timestamp_iso,
+        ...timeParts,
+        ...details,
+        ...identityFields,
+        page: window.location.pathname,
+        page_location: window.location.href,
+        player_mode: playerMode,
+        mode: playerMode
+      };
+
+      syncFormCodeFields(eventName);
+      saveLocalAnalytics(eventPayload);
+      window.sjAnalyticsLastPayload = eventPayload;
+      window.sjAnalyticsRecent = JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]");
+      console.info("[Saint Jules analytics]", eventName, eventPayload);
+
+      if (typeof window.gtag === "function") {
+        const gaPayload = {};
+        Object.entries(eventPayload).forEach(([key, value]) => {
+          gaPayload[key] = cleanForGoogleAnalytics(value);
+        });
+
+        syncGoogleIdentity(eventName);
+
+        const makeEventLabel = (fallbackName) => {
+          const mainThing = gaPayload.song_title || gaPayload.track_title || gaPayload.code_type || gaPayload.reason || gaPayload.code_attempted || fallbackName;
+          return `${gaPayload.pass_code || reportingCode} | ${mainThing}`;
+        };
+
+        const sendGA = (name) => {
+          window.gtag("event", name, {
+            event_category: "Saint Jules Music Player",
+            event_label: makeEventLabel(name),
+            debug_mode: true,
+            transport_type: "beacon",
+            ...gaPayload
+          });
+        };
+
+        sendGA(eventName);
+
+        const aliasName = getReadableAlias(eventName);
+        if (aliasName) sendGA(aliasName);
+
+        if (gaPayload.song_title && gaPayload.song_title !== "none") {
+          window.gtag("event", "song_activity", {
+            event_category: "Saint Jules Music Player",
+            event_label: makeEventLabel("song_activity"),
+            debug_mode: true,
+            transport_type: "beacon",
+            activity_type: eventName,
+            readable_activity: aliasName || eventName,
+            ...gaPayload
+          });
+        }
+      }
+
+      if (!analyticsEndpoint) return;
+
+      try {
+        fetch(analyticsEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventPayload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) {}
+    }
+
+    function addListeningTime() {
+      if (!lastPlayStartedAt) return;
+      const track = tracks[currentTrackIndex] || tracks[leadIndex];
+      const seconds = Math.max(0, Math.round((Date.now() - lastPlayStartedAt) / 1000));
+      getTrackSummary(track).seconds += seconds;
+      addStatsListeningTime(track, seconds);
+      lastPlayStartedAt = null;
+    }
+
+    function sendSessionSummary(reason = "session_end") {
+      addListeningTime();
+      if (hasSentSessionSummary) return;
+      hasSentSessionSummary = true;
+
+      const summaryKeys = Object.keys(listeningSummary);
+      if (!summaryKeys.length && reason !== "pagehide") return;
+
+      const repeatedEntries = Object.entries(sessionPlayCounts).sort((a, b) => b[1] - a[1]);
+      const topRepeat = repeatedEntries[0] || ["none", 0];
+      const completedEntries = Object.entries(sessionCompleteCounts).sort((a, b) => b[1] - a[1]);
+      const topComplete = completedEntries[0] || ["none", 0];
+      const totalPlays = Object.values(sessionPlayCounts).reduce((sum, count) => sum + count, 0);
+      const totalRepeats = Object.values(sessionRepeatCounts).reduce((sum, count) => sum + count, 0);
+      const totalCompletes = Object.values(sessionCompleteCounts).reduce((sum, count) => sum + count, 0);
+      const totalLockedClicks = Object.values(sessionLockedClickCounts).reduce((sum, count) => sum + count, 0);
+
+      logEvent("sj_session_end", {
+        reason,
+        session_seconds: Math.round((Date.now() - sessionStartedAt) / 1000),
+        tracks_touched: summaryKeys.length,
+        total_track_plays: totalPlays,
+        total_track_repeats: totalRepeats,
+        total_track_completes: totalCompletes,
+        total_locked_track_clicks: totalLockedClicks,
+        last_track: currentTitle.textContent || "none",
+        top_repeated_track: topRepeat[0],
+        top_repeated_count: topRepeat[1],
+        top_completed_track: topComplete[0],
+        top_completed_count: topComplete[1],
+        play_tally: JSON.stringify(sessionPlayCounts),
+        repeat_tally: JSON.stringify(sessionRepeatCounts),
+        complete_tally: JSON.stringify(sessionCompleteCounts),
+        locked_click_tally: JSON.stringify(sessionLockedClickCounts)
+      });
+    }
+
+    function clearSuperstarMode(message = "Full album mode is locked again. Enter a code when you want to power back up.") {
+      albumOverrideUnlocked = false;
+      activeUnlockCode = "none";
+      activeUnlockExpiresAt = 0;
+      localStorage.removeItem("saintJulesFullAlbum");
+      localStorage.removeItem("saintJulesUnlockCode");
+      localStorage.removeItem("saintJulesUnlockExpiresAt");
+      syncFormCodeFields("full_album_locked");
+      document.body.classList.remove("super-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      logEvent("sj_full_album_locked", { reason: message });
+      renderTracklist();
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    }
+
+    function isTrackUnlocked(track) {
+      if (!isUnlockStillValid() && albumOverrideUnlocked && new Date() < albumRelease) {
+        clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
+      }
+      return isUnlockStillValid() || isTestingTrackUnlocked(track) || new Date() >= track.releaseDate;
+    }
+
+    function getTrackStatus(track) {
+      if (isTrackUnlocked(track)) {
+        if (track.title === "The Proposition") return "single · playable now";
+        if (isTestingTrackUnlocked(track) && !isUnlockStillValid() && new Date() < track.releaseDate) return "testing unlock";
+        return "playable now";
+      }
+      return track.status;
+    }
+
+    function getUnlockedIndexes() {
+      return tracks.map((track, index) => ({ track, index })).filter(item => isTrackUnlocked(item.track)).map(item => item.index);
+    }
+
+
+    function shuffleIndexes(indexes) {
+      const copy = [...indexes];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function getRandomFivePool() {
+      return getUnlockedIndexes();
+    }
+
+    function renderRandomFiveMessage(message) {
+      if (!randomFiveResult) return;
+      randomFiveResult.innerHTML = "";
+      const box = document.createElement("div");
+      box.className = "random-five-empty";
+      box.textContent = message;
+      randomFiveResult.appendChild(box);
+    }
+
+    function refreshRandomFiveButtons(updateMessage = true) {
+      const pool = getRandomFivePool();
+      const canRoll = pool.length >= 5;
+      const poolSet = new Set(pool);
+      if (currentRandomFiveIndexes.some((index) => !poolSet.has(index))) {
+        currentRandomFiveIndexes = [];
+      }
+      if (randomFiveButton) randomFiveButton.disabled = !canRoll;
+      if (playRandomPickButton) playRandomPickButton.disabled = currentRandomFiveIndexes.length === 0;
+      if (updateMessage && currentRandomFiveIndexes.length === 0) {
+        renderRandomFiveMessage(canRoll
+          ? "5-pack is open. Roll five songs when the aux cord starts feeling like a responsibility."
+          : "Unlock at least 5 songs first. The randomizer refuses to hallucinate a rollout.");
+      }
+    }
+
+    function rollRandomFiveSongs() {
+      const pool = getRandomFivePool();
+      if (pool.length < 5) {
+        currentRandomFiveIndexes = [];
+        refreshRandomFiveButtons();
+        logEvent("sj_random_five_blocked", { unlocked_count: pool.length, needed_count: 5 });
+        return;
+      }
+
+      currentRandomFiveIndexes = shuffleIndexes(pool).slice(0, 5);
+      if (!randomFiveResult) return;
+      randomFiveResult.innerHTML = "";
+      currentRandomFiveIndexes.forEach((trackIndex, pickIndex) => {
+        const track = tracks[trackIndex];
+        const button = document.createElement("button");
+        button.className = "random-five-track";
+        button.type = "button";
+        button.innerHTML = `<span>${String(pickIndex + 1).padStart(2, "0")}</span><strong>${track.number} ${track.title}</strong><span>play</span>`;
+        button.addEventListener("click", () => loadTrack(track, trackIndex, true));
+        randomFiveResult.appendChild(button);
+      });
+      refreshRandomFiveButtons();
+      logEvent("sj_random_five_rolled", {
+        random_five_tracks: currentRandomFiveIndexes.map((index) => `${tracks[index].number} ${tracks[index].title}`).join(" | "),
+        unlocked_count: pool.length
+      });
+    }
+
+    function playFirstRandomPick() {
+      const firstIndex = currentRandomFiveIndexes[0];
+      if (firstIndex === undefined) {
+        rollRandomFiveSongs();
+        return;
+      }
+      loadTrack(tracks[firstIndex], firstIndex, true);
+    }
+
+    function clearRandomFiveSongs() {
+      currentRandomFiveIndexes = [];
+      renderRandomFiveMessage("Picks cleared. Emotional reset. Roll again when the aux cord gets scary.");
+      refreshRandomFiveButtons(false);
+    }
+
+    function formatTime(seconds) {
+      if (!Number.isFinite(seconds)) return "0:00";
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
+      return `${mins}:${secs}`;
+    }
+
+    function updatePlayerStats() {
+      const unlockedCount = getUnlockedIndexes().length;
+      const track = tracks[currentTrackIndex] || tracks[leadIndex];
+      const duration = player.duration ? formatTime(player.duration) : "loading";
+      playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)}`;
+      playerUnlockCount.textContent = `${unlockedCount}/${tracks.length} unlocked`;
+      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "full album player" : (isTestingModeActive() ? `testing · ${testingUnlockState.replace(/_/g, " ")}` : "single player");
+      currentTimeText.textContent = formatTime(player.currentTime || 0);
+      durationText.textContent = duration;
+      const percent = player.duration ? Math.min(100, (player.currentTime / player.duration) * 100) : 0;
+      progressBar.value = percent;
+      progressBar.style.setProperty("--progress", `${percent}%`);
+      togglePlayButton.textContent = player.paused ? "▶" : "Ⅱ";
+    }
+
+    function setActive(index) {
+      document.querySelectorAll(".track-row").forEach((button, buttonIndex) => {
+        button.classList.toggle("active", buttonIndex === index);
+        button.classList.toggle("playing", buttonIndex === index && !player.paused);
+      });
+    }
+
+    function showReleaseMessage(message) {
+      releaseMessage.textContent = message;
+      releaseMessage.classList.add("show");
+    }
+
+    function hideReleaseMessage() {
+      releaseMessage.textContent = "";
+      releaseMessage.classList.remove("show");
+    }
+
+    function renderTracklist() {
+      tracklist.innerHTML = "";
+      tracks.forEach((track, index) => {
+        const unlocked = isTrackUnlocked(track);
+        const button = document.createElement("button");
+        button.className = `track-row${unlocked ? "" : " locked"}${index === leadIndex ? " lead active" : ""}`;
+        button.type = "button";
+        button.innerHTML = `
+          <span class="num">${track.number}</span>
+          <span>${track.title}</span>
+          <span class="status">${getTrackStatus(track)}</span>
+          <span class="track-blurb">${track.blurb}</span>
+        `;
+        button.addEventListener("click", () => loadTrack(track, index));
+        tracklist.appendChild(button);
+      });
+      setActive(currentTrackIndex);
+      refreshRandomFiveButtons();
+    }
+
+    function loadTrack(track, index, autoplay = true) {
+      addListeningTime();
+      currentTrackIndex = index;
+      currentLoadKey = `${track.number} ${track.title}`;
+      currentLoadStartedAt = Date.now();
+      hasLoggedPlayForCurrentLoad = false;
+      const summary = getTrackSummary(track);
+
+      if (!isTrackUnlocked(track)) {
+        summary.lockedClicks += 1;
+        markStatsLockedClick(track);
+        const lockedKey = `${track.number} ${track.title}`;
+        sessionLockedClickCounts[lockedKey] = (sessionLockedClickCounts[lockedKey] || 0) + 1;
+        logEvent("sj_locked_track_click", simpleTrackProps(track, {
+          locked_click_tally_for_track: sessionLockedClickCounts[lockedKey]
+        }));
+        logEvent(trackEventName("locked", track), simpleTrackProps(track, {
+          locked_click_tally_for_track: sessionLockedClickCounts[lockedKey]
+        }));
+        player.pause();
+        currentTitle.textContent = track.title;
+        currentMeta.textContent = `Saint Jules · ${track.status}`;
+        artwork.src = track.art;
+        setActive(index);
+        showReleaseMessage(track.message);
+        updatePlayerStats();
+        return;
+      }
+
+      logEvent("sj_track_selected", simpleTrackProps(track));
+      logEvent(trackEventName("selected", track), simpleTrackProps(track));
+      currentTitle.textContent = track.title;
+      currentMeta.textContent = `Saint Jules · ${getTrackStatus(track)}`;
+      artwork.src = track.art;
+      player.src = track.file;
+      hideReleaseMessage();
+      updatePlayerStats();
+      setActive(index);
+
+      if (autoplay) player.play().catch(() => {});
+    }
+
+    function playRelativeTrack(direction, countAsSkip = true) {
+      addListeningTime();
+      const previousTrack = tracks[currentTrackIndex] || tracks[leadIndex];
+      if (countAsSkip) getTrackSummary(previousTrack).skips += 1;
+
+      const unlocked = getUnlockedIndexes();
+      const currentPosition = unlocked.indexOf(currentTrackIndex);
+      if (!unlocked.length) return;
+      const safePosition = currentPosition === -1 ? 0 : currentPosition;
+      const nextPosition = (safePosition + direction + unlocked.length) % unlocked.length;
+      const nextIndex = unlocked[nextPosition];
+      loadTrack(tracks[nextIndex], nextIndex, true);
+    }
+
+    function enterSuperstarMode(message, code = "unknown") {
+      const cleanCode = normalizeAnalyticsCode(code);
+      albumOverrideUnlocked = true;
+      activeUnlockCode = cleanCode;
+      activeUnlockExpiresAt = Date.now() + unlockTimeoutHours * 60 * 60 * 1000;
+      localStorage.setItem("saintJulesFullAlbum", "yes");
+      localStorage.setItem("saintJulesUnlockCode", cleanCode);
+      localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
+      document.body.classList.add("super-mode");
+      maybeTriggerStatsButton("full_album_mode_entered");
+      const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
+      passMessage.textContent = `${message}${timeoutLine}`;
+      passMessage.classList.add("show");
+      const unlockCodeType = getUnlockCodeType(code);
+      reportIdentityToGoogle("full_album_unlock");
+      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), code_location: getPasscodeLocation(code), owner_default_private_code: isOwnerDefaultCode(code) ? "yes" : "no", entered_code: code, code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), code_location: getPasscodeLocation(code), owner_default_private_code: isOwnerDefaultCode(code) ? "yes" : "no", entered_code: code, code_used: code });
+      reportPasscodeUseToFormspree("accepted_passcode", code, {
+        result: "accepted",
+        unlock_message: message,
+        expires_at: new Date(activeUnlockExpiresAt).toISOString()
+      });
+      renderTracklist();
+    }
+
+    passButton.addEventListener("click", () => {
+      const code = normalizeAnalyticsCode(passInput.value);
+      const isResetCode = resetCodes.includes(code);
+      const isTestingCode = testingCodes.includes(code);
+      const isPublicCode = fullAlbumCodes.includes(code);
+      const isVipCode = code === vipSignupCode;
+      const isUniqueCode = Object.prototype.hasOwnProperty.call(uniqueCodes, code);
+      const isGeneratedCode = isGeneratedPasscode(code);
+
+      if (isTestingCode) {
+        enterTestingMode(code);
+        return;
+      }
+
+      if (isResetCode) {
+        reportPasscodeUseToFormspree("reset_passcode", code, {
+          result: "reset",
+          reset_message: "Reset code accepted. Star power cleared."
+        });
+        clearSuperstarMode("Reset code accepted. Star power cleared.");
+        return;
+      }
+
+      if (isPublicCode || isVipCode || isUniqueCode || isGeneratedCode) {
+        const codeType = getCodeLabel(code);
+        enterSuperstarMode(isVipCode ? "VIP accepted. Passenger princess access granted." : `You got the star. ${codeType} accepted. Full album mode is live.`, code);
+      } else {
+        logEvent("sj_bad_passcode", {
+          code_attempted: code || "empty",
+          code_type: "bad"
+        });
+        logEvent("bad_code_attempt", {
+          code_attempted: code || "empty",
+          code_type: "bad"
+        });
+        reportPasscodeUseToFormspree("bad_passcode", code || "empty", {
+          result: "bad",
+          code_type: "bad"
+        });
+        passMessage.textContent = "That code didn’t hit. Check the spelling and try again.";
+        passMessage.classList.add("show");
+      }
+    });
+
+    passInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") passButton.click();
+    });
+
+    resetPassButton.addEventListener("click", () => {
+      clearSuperstarMode("Back to regular mode. The star power wore off.");
+    });
+
+    prevTrackButton.addEventListener("click", () => playRelativeTrack(-1, true));
+    nextTrackButton.addEventListener("click", () => playRelativeTrack(1, true));
+
+    progressBar.addEventListener("input", () => {
+      if (!player.duration) return;
+      player.currentTime = (Number(progressBar.value) / 100) * player.duration;
+      updatePlayerStats();
+    });
+
+    togglePlayButton.addEventListener("click", () => {
+      const track = tracks[currentTrackIndex] || tracks[leadIndex];
+      if (!isTrackUnlocked(track)) {
+        loadTrack(track, currentTrackIndex, false);
+        return;
+      }
+      if (player.paused) player.play().catch(() => {});
+      else player.pause();
+    });
+
+    playUnlockedButton.addEventListener("click", () => {
+      const unlocked = getUnlockedIndexes();
+      const firstIndex = unlocked[0] ?? leadIndex;
+      loadTrack(tracks[firstIndex], firstIndex, true);
+    });
+
+
+    randomFiveButton?.addEventListener("click", rollRandomFiveSongs);
+    playRandomPickButton?.addEventListener("click", playFirstRandomPick);
+    clearRandomFiveButton?.addEventListener("click", clearRandomFiveSongs);
+    usePresetNameButton?.addEventListener("click", saveSelectedPresetName);
+    randomPresetNameButton?.addEventListener("click", chooseRandomPresetName);
+    saveCustomNameButton?.addEventListener("click", saveCustomVisitorName);
+    customNameInput?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") saveCustomVisitorName();
+    });
+    resetVisitorNameButton?.addEventListener("click", resetVisitorNameToTracker);
+
+    testSingleModeButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("single", "Regular locked view loaded for testing.");
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    });
+
+    testBoyGeniusButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("boy_genius", "Boy Genius is temporarily unlocked in testing mode.");
+      loadTrack(tracks[0], 0, false);
+    });
+
+    testTwoPackButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("two_pack", "The two-pack test is live: Boy Genius + The Proposition.");
+      loadTrack(tracks[0], 0, false);
+    });
+
+    testFivePackButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("five_pack", "The five-pack test is live: tracks 01-05 are clickable.");
+      loadTrack(tracks[0], 0, false);
+    });
+
+    testAlbumReleaseButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("album_release", "Fake album release test is live. This is not superstar mode.");
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    });
+
+    testRealFullAlbumButton?.addEventListener("click", () => {
+      testingModeUnlocked = true;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      document.body.classList.add("testing-mode");
+      enterSuperstarMode("Testing button triggered the real full album system.", "TESTING_BUTTON");
+      updateTestingStatus("Real full album mode is on through the testing console.");
+    });
+
+    testLockFullAlbumButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      passMessage.textContent = "Full album mode locked. Testing mode stayed on.";
+      passMessage.classList.add("show");
+      renderTracklist();
+      updatePlayerStats();
+      updateTestingStatus("Full album mode locked.");
+    });
+
+    testLockedMessageButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("single", "Locked-track message test loaded.");
+      const firstLockedIndex = tracks.findIndex(track => !isTrackUnlocked(track));
+      const targetIndex = firstLockedIndex === -1 ? 0 : firstLockedIndex;
+      loadTrack(tracks[targetIndex], targetIndex, false);
+    });
+
+    testIssueSignupCodeButton?.addEventListener("click", () => {
+      const assignedCode = ensureSignupAssignedCode();
+      passInput.value = assignedCode;
+      signupMessage.textContent = `Testing issued signup code: ${assignedCode}.`;
+      signupMessage.classList.add("show");
+      logEvent("sj_testing_signup_code_issued", { code_given: assignedCode });
+      updateTestingStatus("A test signup code was placed in the passcode box.");
+    });
+
+    testFakeAnalyticsButton?.addEventListener("click", () => {
+      logEvent("sj_testing_button_event", { testing_state: testingUnlockState, testing_code: activeTestingCode || "none", note: "manual test button clicked" });
+      updateTestingStatus("Fake analytics event saved locally and sent to GA if available.");
+    });
+
+    testToggleAutoStatsButton?.addEventListener("click", toggleAutoStatsButton);
+
+    testForceStatsButton?.addEventListener("click", () => {
+      setStatsButtonVisible(true, "testing_force_button_on");
+      updateTestingStatus("Stats page button forced on.");
+    });
+
+    testHideStatsButton?.addEventListener("click", () => {
+      setStatsButtonVisible(false, "testing_hide_button");
+      updateTestingStatus("Stats page button hidden. Auto trigger setting stayed the same.");
+    });
+
+    testEnoughListensButton?.addEventListener("click", () => {
+      const data = getStatsProgress();
+      data.equivalentListens = listenEnoughGoal;
+      data.seconds = Math.max(Number(data.seconds || 0), 1800);
+      data.unlockedReason = data.unlockedReason || "testing_fake_enough_listens";
+      saveStatsProgress(data);
+      const triggered = maybeTriggerStatsButton("testing_fake_enough_listens");
+      updateTestingStatus(triggered ? "Enough-listens trigger fired and the stats button appeared." : "Enough-listens progress faked. Auto stats button is off or the stats button was already visible.");
+    });
+
+    testClearCacheButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      localStorage.removeItem(analyticsLocalStorageKey);
+      localStorage.removeItem(statsButtonStorageKey);
+      localStorage.removeItem(statsProgressStorageKey);
+      localStorage.removeItem("saintJulesTestingMode");
+      localStorage.removeItem("saintJulesTestingUnlockState");
+      localStorage.removeItem("saintJulesTestingCode");
+      testingModeUnlocked = true;
+      testingUnlockState = "single";
+      activeTestingCode = "none";
+      statsButtonUnlocked = false;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      document.body.classList.add("testing-mode");
+      renderTracklist();
+      loadTrack(tracks[leadIndex], leadIndex, false);
+      syncStatsButtonState("clear_cache");
+      updateTestingStatus("Local analytics cache, stats button, and unlock states were cleared. Testing mode stayed open.");
+    });
+
+    testExitModeButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      exitTestingMode();
+    });
+
+    document.querySelectorAll("[data-stream-platform]").forEach((link) => {
+      link.addEventListener("click", () => {
+        logEvent("sj_stream_link_click", {
+          track_number: "04",
+          track_title: "The Proposition",
+          song_number: "04",
+          song_title: "The Proposition",
+          stream_platform: link.dataset.streamPlatform || "unknown",
+          link_location: link.dataset.streamLocation || "unknown",
+          external_url: link.href
+        });
+      });
+    });
+
+    signupForm.addEventListener("submit", () => {
+      const assignedCode = ensureSignupAssignedCode();
+      const codeForThisSignup = getCurrentReportingCode() !== "none" ? getCurrentReportingCode() : assignedCode;
+      if (getCurrentReportingCode() === "none") activeUnlockCode = codeForThisSignup;
+      syncFormCodeFields("signup_submit", codeForThisSignup);
+      reportIdentityToGoogle("signup_submit");
+
+      logEvent("sj_signup_submitted", {
+        code_given: assignedCode,
+        reporting_code_at_signup: codeForThisSignup,
+        signup_source: "saint-jules-website-info-signup"
+      });
+
+      reportPasscodeUseToFormspree("signup_code_issued", assignedCode, {
+        result: "issued",
+        reporting_code_at_signup: codeForThisSignup,
+        signup_source: "saint-jules-website-info-signup"
+      });
+
+      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}.`;
+      signupMessage.classList.add("show");
+      passInput.value = assignedCode;
+      setTimeout(() => passInput.focus(), 250);
+    });
+
+
+
+    populatePresetNames();
+    updateVisitorNameUI();
+    refreshRandomFiveButtons();
+
+    if (testingModeUnlocked) {
+      document.body.classList.add("testing-mode");
+      activeTestingCode = normalizeAnalyticsCode(activeTestingCode || "none");
+      updateTestingStatus("Testing mode restored from this browser.");
+    }
+
+    if (new Date() >= albumRelease) {
+      albumOverrideUnlocked = true;
+      document.body.classList.add("super-mode");
+      maybeTriggerStatsButton("album_release_full_album_live");
+    } else if (albumOverrideUnlocked && !isUnlockStillValid()) {
+      clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
+    } else if (albumOverrideUnlocked) {
+      document.body.classList.add("super-mode");
+      maybeTriggerStatsButton("restored_full_album_mode");
+      const minutesLeft = Math.max(1, Math.round((activeUnlockExpiresAt - Date.now()) / 60000));
+      passMessage.textContent = `Superstar mode is still glowing for about ${minutesLeft} more minutes.`;
+      passMessage.classList.add("show");
+    }
+
+    syncFormCodeFields("page_ready");
+    syncStatsButtonState("page_ready");
+    renderTracklist();
+
+    player.addEventListener("play", () => {
+      const track = tracks[currentTrackIndex] || tracks[leadIndex];
+      const summary = getTrackSummary(track);
+      const trackKey = `${track.number} ${track.title}`;
+
+      if (!lastPlayStartedAt) lastPlayStartedAt = Date.now();
+
+      if (!hasLoggedPlayForCurrentLoad) {
+        hasLoggedPlayForCurrentLoad = true;
+        sessionPlayCounts[trackKey] = (sessionPlayCounts[trackKey] || 0) + 1;
+        summary.plays += 1;
+        markStatsPlay(track);
+
+        const isRepeat = sessionPlayCounts[trackKey] > 1;
+        if (isRepeat) sessionRepeatCounts[trackKey] = (sessionRepeatCounts[trackKey] || 0) + 1;
+
+        const props = simpleTrackProps(track, {
+          session_play_count_for_track: sessionPlayCounts[trackKey],
+          repeat_tally_for_track: sessionRepeatCounts[trackKey] || 0,
+          total_session_plays: Object.values(sessionPlayCounts).reduce((sum, count) => sum + count, 0),
+          is_repeat_play: isRepeat ? "yes" : "no",
+          play_source: Date.now() - currentLoadStartedAt < 2500 ? "fresh_track_load" : "resume_after_pause"
+        });
+
+        logEvent("sj_track_play", props);
+        logEvent(trackEventName("play", track), props);
+
+        if (!hasLoggedFirstPlay) {
+          hasLoggedFirstPlay = true;
+          sessionStartCounts[trackKey] = (sessionStartCounts[trackKey] || 0) + 1;
+          logEvent("sj_first_track_started", simpleTrackProps(track, {
+            first_track_started: trackKey,
+            first_start_tally_for_track: sessionStartCounts[trackKey]
+          }));
+          logEvent(trackEventName("start", track), simpleTrackProps(track, {
+            first_track_started: trackKey,
+            first_start_tally_for_track: sessionStartCounts[trackKey]
+          }));
+        }
+
+        if (isRepeat) {
+          logEvent("sj_track_repeated", props);
+          logEvent(trackEventName("repeat", track), props);
+        }
+      }
+
+      updatePlayerStats();
+      setActive(currentTrackIndex);
+    });
+
+    player.addEventListener("pause", () => {
+      addListeningTime();
+      updatePlayerStats();
+      setActive(currentTrackIndex);
+    });
+
+    player.addEventListener("timeupdate", () => {
+      updatePlayerStats();
+      const track = tracks[currentTrackIndex] || tracks[leadIndex];
+      localStorage.setItem(`saintJulesProgress_${track.number}`, Math.floor(player.currentTime || 0).toString());
+    });
+
+    player.addEventListener("ended", () => {
+      addListeningTime();
+      const track = tracks[currentTrackIndex] || tracks[leadIndex];
+      getTrackSummary(track).completed += 1;
+      markStatsComplete(track);
+      const completeKey = `${track.number} ${track.title}`;
+      sessionCompleteCounts[completeKey] = (sessionCompleteCounts[completeKey] || 0) + 1;
+      const completeProps = simpleTrackProps(track, {
+        complete_tally_for_track: sessionCompleteCounts[completeKey],
+        total_session_completes: Object.values(sessionCompleteCounts).reduce((sum, count) => sum + count, 0)
+      });
+      logEvent("sj_track_complete", completeProps);
+      logEvent(trackEventName("complete", track), completeProps);
+      setActive(currentTrackIndex);
+      playRelativeTrack(1, false);
+    });
+
+    player.addEventListener("loadedmetadata", updatePlayerStats);
+    window.addEventListener("pagehide", () => sendSessionSummary("pagehide"));
+    window.addEventListener("beforeunload", () => sendSessionSummary("beforeunload"));
+    updatePlayerStats();
+    reportIdentityToGoogle("page_ready");
+    logEvent("sj_site_ready", {
+      reason: "clean_tracked_page_load"
+    });
+  </script>
+</body>
+</html>
