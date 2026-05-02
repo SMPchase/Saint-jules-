@@ -1,13 +1,314 @@
+
+
+Library
+
+
+Upload
+
+All
+
+Images
+
+Files
+
+
+
+
+Name
+Modified
+Size
+
+script_2(1).js
+Today
+104 KB
+
+
+script_1(1).js
+Today
+370 B
+
+
+saint-jules-combined-index.html
+Today
+155 KB
+
+
+Pasted text(5).txt
+Today
+85.0 KB
+
+
+index-loyalty-v4(2).html
+Today
+153 KB
+
+
+saint_jules_stream_links_updated.html
+Today
+85.0 KB
+
+
+Pasted text(4).txt
+Today
+82.7 KB
+
+
+index-loyalty-v4(1).html
+Today
+153 KB
+
+
+index-loyalty-dashboard-v4(1).html
+Today
+10.7 KB
+
+
+index-loyalty-v4.html
+Today
+153 KB
+
+
+index-loyalty-dashboard-v4.html
+Today
+10.7 KB
+
+
+index-loyalty-dashboard-v3(1).html
+Today
+13.2 KB
+
+
+index-loyalty-dashboard-v3.html
+Today
+13.2 KB
+
+
+check-v3.js
+Today
+103 KB
+
+
+index-loyalty-v3(1).html
+Today
+153 KB
+
+
+index-loyalty-v3.html
+Today
+152 KB
+
+
+index-loyalty-v2.html
+Today
+150 KB
+
+
+dashboard-v2.js
+Today
+6.94 KB
+
+
+index-loyalty-dashboard-v2(1).html
+Today
+13.2 KB
+
+
+script3.js
+Today
+101 KB
+
+
+script2.js
+Today
+370 B
+
+
+Screenshot 2026-05-01 at 12.08.07 PM.png
+Today
+224 KB
+
+
+index(3).html
+Today
+106 KB
+
+
+index-loyalty-dashboard(1).html
+Today
+11.1 KB
+
+
+index-loyalty-dashboard-v2.html
+Today
+11.8 KB
+
+
+saint-jules-loyalty-ladder-v2.html
+Today
+115 KB
+
+
+index-loyalty-dashboard.html
+Today
+11.1 KB
+
+
+saint-jules-loyalty-unlocks.html
+Today
+106 KB
+
+
+saint-jules-passcode-use-tracking.html
+Today
+82.7 KB
+
+
+saint-jules-cleaned-signup-message.html
+Today
+78.9 KB
+
+
+Pasted text(3).txt
+Today
+78.9 KB
+
+
+Pasted text(2).txt
+Today
+79.0 KB
+
+
+saint-jules-keep-look-local-numbers-v5(2).html
+Wednesday
+93.8 KB
+
+
+v5_check_2(1).js
+Wednesday
+50.7 KB
+
+
+v5_check_1(1).js
+Wednesday
+370 B
+
+
+saint-jules-keep-look-local-numbers-v5(1).html
+Wednesday
+93.7 KB
+
+
+v5_check_2.js
+Wednesday
+50.7 KB
+
+
+v5_check_1.js
+Wednesday
+370 B
+
+
+v5_script_2.js
+Wednesday
+50.2 KB
+
+
+v5_script_1.js
+Wednesday
+370 B
+
+
+saint-jules-combined-index.html
+More actions
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Saint Jules — Lord Have Mercy, He's A Crash Dummy!</title>
-  <meta name="description" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy! Listen to The Proposition now. Album crashes June 18." />
+  <meta name="description" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy! Stream The Proposition now on Apple Music and Spotify. Album crashes June 18." />
   <meta property="og:title" content="Saint Jules — Lord Have Mercy, He's A Crash Dummy!" />
-  <meta property="og:description" content="The Proposition is playable now. Boy Genius flashes May 16. Album crashes June 18." />
+  <meta property="og:description" content="The Proposition is streaming now. Boy Genius flashes May 16. Album crashes June 18." />
   <meta property="og:type" content="website" />
+  <!-- Merged loyalty build: based on index-loyalty-v4, with working Apple Music/Spotify links preserved from the stream-link build. -->
+
+  <!-- Google Analytics 4
+    Formspree stays signup-only. Listener events go to GA4 instead of filling Formspree.
+  -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-9XSVZX83PH"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9XSVZX83PH', {
+      'debug_mode': true,
+      'send_page_view': false
+    });
+    // Main page/music events are sent later by the site script.
+    // Codes stay blank until somebody enters one or submits the signup form.
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +319,32 @@
       --hair-pink: #ff4fb8;
       --hot-pink: #ff1493;
       --soft-pink: #ffd2ef;
+      --baby-pink: #fff0fa;
+      --ink: #17000f;
+      --white: #fffafc;
+      --glass: rgba(255, 255, 255, 0.62);
+      --shadow: 0 22px 65px rgba(255, 20, 147, 0.24);
+      --border: rgba(23, 0, 15, 0.14);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.95) 0 7%, transparent 8%),
+        radial-gradient(circle at 84% 16%, rgba(255,255,255,.8) 0 5%, transparent 6%),
+        radial-gradient(circle at 80% 82%, rgba(255,255,255,.75) 0 8%, transparent 9%),
+        linear-gradient(135deg, #ff77c8 0%, #ff4fb8 38%, #ffd2ef 100%);
+      overflow-x: hidden;
+    }
+
+
       --baby-pink: #fff0fa;
       --ink: #17000f;
       --white: #fffafc;
@@ -192,6 +519,45 @@
     .button.primary { background: var(--ink); color: var(--white); }
     .button.secondary { background: rgba(255,255,255,.65); }
 
+    .stream-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .stream-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 12px 17px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: .93rem;
+      font-weight: 950;
+      cursor: pointer;
+      box-shadow: 0 10px 24px rgba(137,0,91,.14);
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .stream-btn:hover {
+      transform: translateY(-2px) rotate(-1deg);
+      box-shadow: 0 14px 30px rgba(137,0,91,.22);
+    }
+
+    .stream-btn.apple {
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    .stream-btn.spotify {
+      background: #1ed760;
+      color: #07140b;
+      border-color: rgba(7, 20, 11, .18);
+    }
+
     .cover-card {
       position: relative;
       border-radius: 42px;
@@ -346,8 +712,8 @@
     .now-playing {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      padding: 16px;
+      gap: 7px;
+      padding: 12px;
       border: 1px solid rgba(255,20,147,.22);
       border-radius: 26px;
       background: linear-gradient(135deg, rgba(255,255,255,.8), rgba(255,210,239,.72));
@@ -364,7 +730,7 @@
 
     .track-title {
       font-family: "Bagel Fat One", system-ui, sans-serif;
-      font-size: clamp(2.35rem, 6vw, 5rem);
+      font-size: clamp(2rem, 5vw, 4.1rem);
       line-height: .88;
       letter-spacing: -.045em;
       margin: 0;
@@ -378,60 +744,177 @@
     }
 
     .native-player {
-      width: 100%;
-      margin-top: 6px;
-      accent-color: var(--hot-pink);
+      display: none;
     }
 
-    .player-tools {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+    .lux-player {
       margin-top: 8px;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(23,0,15,.12);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.85), transparent 30%),
+        linear-gradient(135deg, rgba(23,0,15,.92), rgba(68,0,45,.9));
+      color: var(--white);
+      box-shadow: 0 18px 44px rgba(23,0,15,.2), inset 0 0 0 1px rgba(255,255,255,.12);
     }
 
-    .mini-control {
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: rgba(255,255,255,.76);
-      color: var(--ink);
-      padding: 10px 13px;
+    .lux-topline,
+    .lux-bottomline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: .74rem;
+      font-weight: 950;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+      color: rgba(255,250,252,.75);
+    }
+
+    .lux-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0 10px;
+    }
+
+    .lux-btn {
+      display: inline-grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
       font-family: inherit;
-      font-size: .82rem;
+      font-weight: 950;
+      cursor: pointer;
+      transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+    }
+
+    .lux-btn.ghost {
+      width: 42px;
+      height: 42px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .lux-btn.play {
+      width: 58px;
+      height: 58px;
+      background: var(--white);
+      color: var(--ink);
+      font-size: 1.3rem;
+      box-shadow: 0 16px 34px rgba(0,0,0,.28);
+    }
+
+    .lux-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 30px rgba(0,0,0,.22);
+    }
+
+    .lux-progress-wrap {
+      display: grid;
+      grid-template-columns: 42px 1fr 42px;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .lux-time {
+      font-size: .78rem;
+      font-weight: 900;
+      color: rgba(255,250,252,.7);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .lux-progress {
+      width: 100%;
+      appearance: none;
+      height: 8px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--hot-pink) var(--progress, 0%), rgba(255,255,255,.2) var(--progress, 0%));
+      outline: none;
+      cursor: pointer;
+    }
+
+    .lux-progress::-webkit-slider-thumb {
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--hot-pink);
+      box-shadow: 0 5px 16px rgba(0,0,0,.25);
+    }
+
+    .lux-progress::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--white);
+      border: 3px solid var(--hot-pink);
+      box-shadow: 0 5px 16px rgba(0,0,0,.25);
+    }
+
+    .lux-bottomline {
+      margin-top: 10px;
+      text-transform: none;
+      letter-spacing: 0;
+      font-size: .8rem;
+      color: rgba(255,250,252,.72);
+    }
+
+    .lux-chip {
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      padding: 8px 11px;
+      font-family: inherit;
+      font-size: .72rem;
       font-weight: 950;
       text-transform: uppercase;
-      letter-spacing: .055em;
+      letter-spacing: .06em;
       cursor: pointer;
-      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      white-space: nowrap;
     }
 
-    .mini-control:hover {
-      transform: translateY(-2px);
-      background: var(--white);
-      box-shadow: 0 10px 26px rgba(137,0,91,.14);
+    body:not(.super-mode) .lux-chip {
+      display: none;
     }
 
-    .mini-control.main {
-      background: var(--ink);
-      color: var(--white);
-      min-width: 74px;
+    .super-mode .lux-player {
+      background:
+        radial-gradient(circle at 18% 14%, rgba(255,255,255,.95), transparent 28%),
+        linear-gradient(135deg, #fffafc, #ffffff 38%, #ffe1f4 72%, #fffafc);
+      color: var(--ink);
+      border-color: rgba(255,20,147,.25);
+      box-shadow: 0 20px 55px rgba(255,20,147,.18), inset 0 0 0 1px rgba(255,255,255,.8);
     }
 
-    .player-stats {
-      margin-top: 4px;
-      padding: 10px 12px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.58);
-      border: 1px solid rgba(23,0,15,.08);
-      font-size: .86rem;
-      font-weight: 850;
-      line-height: 1.35;
+    .super-mode .lux-topline,
+    .super-mode .lux-bottomline,
+    .super-mode .lux-time {
+      color: rgba(23,0,15,.68);
     }
 
-    .super-mode .mini-control.main {
-      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #7cf7ff, #17000f);
+    .super-mode .lux-btn.ghost {
+      background: rgba(255,20,147,.12);
+      color: var(--ink);
+    }
+
+    .super-mode .lux-btn.play {
+      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #ffffff, #ff1493);
       background-size: 280% 100%;
+      color: var(--white);
       animation: rainbowRoad 2.4s linear infinite;
+    }
+
+    .super-mode .lux-chip {
+      color: var(--ink);
+      background: rgba(255,20,147,.12);
+      border-color: rgba(255,20,147,.24);
     }
 
     .release-message {
@@ -504,6 +987,25 @@
       border-color: rgba(255,20,147,.55);
       background: linear-gradient(135deg, rgba(255,255,255,.94), rgba(255,210,239,.9));
       box-shadow: 0 12px 30px rgba(255,20,147,.14);
+    }
+
+    body:not(.super-mode) .track-row:not(.lead) {
+      display: none;
+    }
+
+    body:not(.super-mode) .tracklist::after {
+      content: "full album unlocks with the superstar pass";
+      display: block;
+      margin-top: 4px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.58);
+      border: 1px dashed rgba(23,0,15,.18);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      font-size: .78rem;
+      opacity: .76;
     }
 
     .track-row.locked { opacity: .78; }
@@ -843,20 +1345,24 @@
     }
 
     body.super-mode {
+      color: #17000f;
       background:
-        radial-gradient(circle at 14% 18%, rgba(255,255,255,.98) 0 6%, transparent 7%),
-        radial-gradient(circle at 78% 20%, rgba(255,255,255,.9) 0 4%, transparent 5%),
-        linear-gradient(90deg, #ff4fb8 0%, #fff4fb 18%, #ffd700 34%, #ff4fb8 52%, #7cf7ff 70%, #fff4fb 86%, #ff4fb8 100%);
-      background-size: 100% 100%, 100% 100%, 320% 320%;
-      animation: rainbowRoad 4s linear infinite;
+        radial-gradient(circle at 12% 10%, rgba(255,20,147,.18) 0 8%, transparent 9%),
+        radial-gradient(circle at 78% 18%, rgba(255,215,0,.22) 0 6%, transparent 7%),
+        radial-gradient(circle at 82% 82%, rgba(124,247,255,.18) 0 8%, transparent 9%),
+        linear-gradient(135deg, #fffafc 0%, #ffffff 34%, #fff0fa 62%, #ffe1f4 100%);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 320% 320%;
+      animation: rainbowRoad 5s linear infinite;
     }
 
     body.super-mode::before {
       background-image:
-        radial-gradient(circle, rgba(255,255,255,.78) 0 2px, transparent 3px),
-        linear-gradient(rgba(255,255,255,.18) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.18) 1px, transparent 1px);
-      background-size: 44px 44px, 38px 38px, 38px 38px;
+        radial-gradient(circle, rgba(255,20,147,.28) 0 2px, transparent 3px),
+        radial-gradient(circle, rgba(255,215,0,.28) 0 2px, transparent 3px),
+        linear-gradient(rgba(255,20,147,.12) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,20,147,.12) 1px, transparent 1px);
+      background-position: 0 0, 22px 22px, 0 0, 0 0;
+      background-size: 44px 44px, 44px 44px, 38px 38px, 38px 38px;
       mask-image: none;
     }
 
@@ -864,16 +1370,25 @@
     .super-mode .lead-badge,
     .super-mode .release-date,
     .super-mode .tracklist-callout-title {
-      background: linear-gradient(90deg, #17000f, #ff1493, #ffd700, #17000f);
+      background: linear-gradient(90deg, #17000f, #ff1493, #ffffff, #ffd700, #ff1493, #17000f);
       color: var(--white);
       background-size: 240% 100%;
       animation: rainbowRoad 2.4s linear infinite;
     }
 
+    .super-mode .section,
+    .super-mode .nav,
+    .super-mode .player-panel,
+    .super-mode .pass-card,
+    .super-mode .signup-card {
+      background: rgba(255,255,255,.82);
+      border-color: rgba(255,20,147,.24);
+    }
+
     .super-mode .track-row:hover,
     .super-mode .track-row.active {
       transform: translateX(8px) scale(1.015);
-      box-shadow: 0 0 0 3px rgba(255,255,255,.78), 0 18px 45px rgba(255,20,147,.26);
+      box-shadow: 0 0 0 3px rgba(255,20,147,.18), 0 18px 45px rgba(255,20,147,.22);
     }
 
     .super-mode .track-title::after,
@@ -974,17 +1489,38 @@
             <span class="eyebrow">Single</span>
             <h3 class="track-title" id="currentTitle">The Proposition</h3>
             <p class="track-meta" id="currentMeta">Saint Jules · single · playable now</p>
-            <audio class="native-player" id="audioPlayer" controls preload="metadata" src="Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/04%20The%20Proposition.wav">
+            <audio class="native-player" id="audioPlayer" preload="metadata" src="Lord%20Have%20Mercy%2C%20He%27s%20A%20Crash%20Dummy%21/04%20The%20Proposition.wav">
               Your browser does not support the audio element.
             </audio>
-            <div class="player-tools" aria-label="Player controls">
-              <button class="mini-control" id="prevTrack" type="button">back</button>
-              <button class="mini-control main" id="togglePlay" type="button">play</button>
-              <button class="mini-control" id="nextTrack" type="button">next</button>
-              <button class="mini-control" id="playUnlocked" type="button">play unlocked</button>
+
+            <div class="lux-player" aria-label="Saint Jules music player">
+              <div class="lux-topline">
+                <span id="playerModeLabel">single player</span>
+                <span id="playerUnlockCount">1/13 unlocked</span>
+              </div>
+
+              <div class="lux-controls">
+                <button class="lux-btn ghost" id="prevTrack" type="button" aria-label="Previous track">‹</button>
+                <button class="lux-btn play" id="togglePlay" type="button" aria-label="Play or pause">▶</button>
+                <button class="lux-btn ghost" id="nextTrack" type="button" aria-label="Next track">›</button>
+              </div>
+
+              <div class="lux-progress-wrap">
+                <span class="lux-time" id="currentTimeText">0:00</span>
+                <input class="lux-progress" id="progressBar" type="range" min="0" max="100" value="0" step="0.1" aria-label="Song progress" />
+                <span class="lux-time" id="durationText">0:00</span>
+              </div>
+
+              <div class="lux-bottomline">
+                <button class="lux-chip" id="playUnlocked" type="button">play unlocked</button>
+                <span id="playerStats">The Proposition is ready.</span>
+              </div>
             </div>
-            <div class="player-stats" id="playerStats">The single is ready. Full player wakes up with the album.</div>
             <div class="release-message" id="releaseMessage"></div>
+            <div class="stream-buttons" aria-label="The Proposition streaming links">
+              <a class="stream-btn apple" href="https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201" target="_blank" rel="noopener" data-stream-platform="apple_music" data-stream-location="player_panel">Listen on Apple Music</a>
+              <a class="stream-btn spotify" href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener" data-stream-platform="spotify" data-stream-location="player_panel">Listen on Spotify</a>
+            </div>
           </div>
 
           <div class="tracklist" id="tracklist" aria-label="Album tracklist"></div>
@@ -1076,8 +1612,9 @@
             <input class="signup-input" name="email" type="email" placeholder="email" autocomplete="email" required />
             <input class="signup-input" name="phone" type="tel" placeholder="phone / text me maybe" autocomplete="tel" />
             <input type="hidden" name="source" value="saint-jules-website-info-signup" />
-            <input type="hidden" name="vip_code" id="signupCodeField" value="PASSENGERPRINCESS" />
+            <input type="hidden" name="vip_code" id="signupCodeField" value="none" />
             <input type="hidden" name="tracker_id" id="trackerField" value="" />
+            <input type="hidden" name="analytics_note" value="Detailed listener analytics are no longer sent to Formspree. Formspree is signup-only." />
             <input type="hidden" name="_subject" value="New Saint Jules website signup" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
@@ -1104,13 +1641,13 @@
           <span>YouTube</span>
           <span>@SaintJulezz</span>
         </a>
-        <a class="link-card" href="#listen">
+        <a class="link-card" href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener" data-stream-platform="spotify" data-stream-location="find_me_card">
           <span>Spotify</span>
-          <span>coming soon</span>
+          <span>The Proposition</span>
         </a>
-        <a class="link-card" href="#listen">
+        <a class="link-card" href="https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201" target="_blank" rel="noopener" data-stream-platform="apple_music" data-stream-location="find_me_card">
           <span>Apple Music</span>
-          <span>coming soon</span>
+          <span>The Proposition</span>
         </a>
       </div>
     </section>
@@ -1129,10 +1666,18 @@
     const albumRelease = new Date("2026-06-18T00:00:00");
 
     const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
+    const ownerDefaultCodeLocations = {
+      "FRANK1738": "owner default/private code · Frank 1738",
+      "TRAPQUEEN1738": "owner default/private code · Trap Queen 1738",
+      "FETTYTRUCK": "owner default/private code · Fetty Truck",
+      "SUPERSTAR": "owner default/private code · Superstar"
+    };
     const vipSignupCode = "PASSENGERPRINCESS";
     const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
     const unlockTimeoutHours = 2;
-    const logEndpoint = "https://formspree.io/f/xaqarqrp";
+    const analyticsEndpoint = "";
+    const passcodeUsesEndpoint = "https://formspree.io/f/xaqarqrp";
+    const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
     const codePrefix = "SJ";
     const generatedCodeSalt = "CRASHDUMMYERA";
 
@@ -1323,6 +1868,11 @@
     const nextTrackButton = document.getElementById("nextTrack");
     const playUnlockedButton = document.getElementById("playUnlocked");
     const playerStats = document.getElementById("playerStats");
+    const progressBar = document.getElementById("progressBar");
+    const currentTimeText = document.getElementById("currentTimeText");
+    const durationText = document.getElementById("durationText");
+    const playerModeLabel = document.getElementById("playerModeLabel");
+    const playerUnlockCount = document.getElementById("playerUnlockCount");
     const passInput = document.getElementById("passInput");
     const passButton = document.getElementById("passButton");
     const resetPassButton = document.getElementById("resetPassButton");
@@ -1331,13 +1881,25 @@
     const signupMessage = document.getElementById("signupMessage");
 
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
-    let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
-    let activeUnlockCode = localStorage.getItem("saintJulesUnlockCode") || "none";
-    let activeUnlockExpiresAt = Number(localStorage.getItem("saintJulesUnlockExpiresAt") || 0);
+    localStorage.removeItem("saintJulesFullAlbum");
+    localStorage.removeItem("saintJulesUnlockCode");
+    localStorage.removeItem("saintJulesUnlockExpiresAt");
+    let albumOverrideUnlocked = false;
+    let activeUnlockCode = "none";
+    let activeUnlockExpiresAt = 0;
     let currentTrackIndex = leadIndex;
     let sessionStartedAt = Date.now();
     let lastPlayStartedAt = null;
     let hasSentSessionSummary = false;
+    let hasLoggedFirstPlay = false;
+    let currentLoadKey = "";
+    let hasLoggedPlayForCurrentLoad = false;
+    let currentLoadStartedAt = 0;
+    const sessionPlayCounts = {};
+    const sessionStartCounts = {};
+    const sessionCompleteCounts = {};
+    const sessionRepeatCounts = {};
+    const sessionLockedClickCounts = {};
 
     const listeningSummary = {};
 
@@ -1345,6 +1907,23 @@
       const randomPart = Math.random().toString(36).slice(2, 8).toUpperCase();
       const timePart = Date.now().toString(36).slice(-5).toUpperCase();
       return "SJ-" + timePart + "-" + randomPart;
+    }
+
+    function normalizeAnalyticsCode(value) {
+      const raw = String(value || "")
+        .trim()
+        .toUpperCase()
+        .replace(/[–—−]/g, "-")
+        .replace(/\s+/g, "");
+
+      if (!raw || raw === "NONE" || raw === "NO_CODE" || raw === "NO_CODE_ENTERED") return "none";
+
+      const compact = raw.replace(/-/g, "");
+      if (compact.length === 10 && compact.startsWith(codePrefix)) {
+        return `${compact.slice(0, 2)}-${compact.slice(2, 5)}-${compact.slice(5, 8)}-${compact.slice(8)}`;
+      }
+
+      return raw;
     }
 
     function codeChecksum(body) {
@@ -1366,8 +1945,8 @@
     }
 
     function isGeneratedPasscode(code) {
-      if (!code) return false;
-      const clean = code.toUpperCase().replaceAll(" ", "");
+      const clean = normalizeAnalyticsCode(code);
+      if (!clean || clean === "none") return false;
       const parts = clean.split("-");
       if (parts.length !== 4 || parts[0] !== codePrefix) return false;
       const body = `${parts[1]}${parts[2]}`;
@@ -1377,17 +1956,133 @@
     }
 
     function getCodeLabel(code) {
-      if (Object.prototype.hasOwnProperty.call(uniqueCodes, code)) return uniqueCodes[code];
-      if (isGeneratedPasscode(code)) return "generated tracker pass " + code;
-      if (fullAlbumCodes.includes(code)) return "public passcode";
-      if (code === vipSignupCode) return "legacy vip signup code";
+      const clean = normalizeAnalyticsCode(code);
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
+      if (isGeneratedPasscode(clean)) return "generated tracker pass " + clean;
+      if (fullAlbumCodes.includes(clean)) return ownerDefaultCodeLocations[clean] || "owner default/private passcode";
+      if (clean === vipSignupCode) return "legacy vip signup code";
       return "unknown code";
     }
 
     let visitorTracker = localStorage.getItem("saintJulesTracker") || makeTrackerId();
-    let signupAssignedCode = localStorage.getItem("saintJulesSignupCode") || makeGeneratedPasscode();
+    localStorage.removeItem("saintJulesSignupCode");
+    let signupAssignedCode = "";
+    activeUnlockCode = normalizeAnalyticsCode(activeUnlockCode || "none") || "none";
     localStorage.setItem("saintJulesTracker", visitorTracker);
-    localStorage.setItem("saintJulesSignupCode", signupAssignedCode);
+
+    function hasEnteredReportingCode() {
+      const cleanCode = normalizeAnalyticsCode(activeUnlockCode);
+      return Boolean(cleanCode && cleanCode !== "none");
+    }
+
+    function getCurrentReportingCode() {
+      return hasEnteredReportingCode() ? normalizeAnalyticsCode(activeUnlockCode) : "none";
+    }
+
+    function getGoogleUserId() {
+      const reportingCode = getCurrentReportingCode();
+      return reportingCode !== "none" ? reportingCode : visitorTracker;
+    }
+
+    function ensureSignupAssignedCode() {
+      if (!signupAssignedCode || signupAssignedCode === "none") {
+        signupAssignedCode = makeGeneratedPasscode();
+        localStorage.setItem("saintJulesSignupCode", signupAssignedCode);
+      }
+      return signupAssignedCode;
+    }
+
+    function setHiddenFormField(name, value) {
+      if (!signupForm) return;
+      let field = signupForm.querySelector(`[name="${name}"]`);
+      if (!field) {
+        field = document.createElement("input");
+        field.type = "hidden";
+        field.name = name;
+        signupForm.appendChild(field);
+      }
+      field.value = value;
+    }
+
+    function syncFormCodeFields(reason = "sync", codeOverride = "") {
+      const overrideCode = normalizeAnalyticsCode(codeOverride);
+      const reportingCode = overrideCode !== "none" ? overrideCode : getCurrentReportingCode();
+      const fields = {
+        tracker_id: visitorTracker,
+        listener_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        vip_code: reportingCode,
+        assigned_signup_code: signupAssignedCode || "none",
+        active_unlock_code: activeUnlockCode || "none",
+        analytics_reason: reason,
+        analytics_last_synced: new Date().toISOString()
+      };
+
+      Object.entries(fields).forEach(([name, value]) => setHiddenFormField(name, value));
+    }
+
+    function syncGoogleIdentity(reason = "identity_sync") {
+      const reportingCode = getCurrentReportingCode();
+      syncFormCodeFields(reason);
+
+      if (typeof window.gtag !== "function") return;
+
+      window.gtag("set", {
+        user_id: getGoogleUserId(),
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode
+      });
+
+      window.gtag("set", "user_properties", {
+        sj_tracker_id: visitorTracker,
+        sj_signup_code: reportingCode,
+        listener_id: visitorTracker,
+        pass_code: reportingCode
+      });
+    }
+
+    function reportIdentityToGoogle(reason = "page_load") {
+      const reportingCode = getCurrentReportingCode();
+      const idPayload = {
+        event_category: "Saint Jules Identity",
+        event_label: reportingCode,
+        debug_mode: true,
+        reason,
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        timestamp_local: new Date().toLocaleString(),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      };
+
+      syncFormCodeFields(reason);
+      saveLocalAnalytics({ event: "identity_seen", ...idPayload });
+      window.sjAnalyticsIdentity = idPayload;
+
+      if (typeof window.gtag !== "function") return;
+
+      syncGoogleIdentity(reason);
+      window.gtag("event", "identity_seen", idPayload);
+      if (reportingCode !== "none") {
+        window.gtag("event", "sj_code_assigned", idPayload);
+      }
+    }
 
     function isUnlockStillValid() {
       if (!albumOverrideUnlocked) return false;
@@ -1403,19 +2098,243 @@
       return listeningSummary[key];
     }
 
-    function logEvent(eventName, details = {}) {
-      const payload = new FormData();
-      payload.set("event", eventName);
-      payload.set("time", new Date().toISOString());
-      payload.set("code", activeUnlockCode);
-      payload.set("tracker", visitorTracker);
-      payload.set("signup_code", signupAssignedCode);
-      payload.set("page", window.location.pathname);
-      Object.entries(details).forEach(([key, value]) => payload.set(key, String(value)));
+    function saveLocalAnalytics(eventPayload) {
+      try {
+        const existing = JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]");
+        existing.push(eventPayload);
+        localStorage.setItem(analyticsLocalStorageKey, JSON.stringify(existing.slice(-200)));
+      } catch (error) {}
+    }
+
+    function getTimeStampParts() {
+      const now = new Date();
+      return {
+        timestamp_iso: now.toISOString(),
+        timestamp_local: now.toLocaleString(),
+        date_local: now.toLocaleDateString(),
+        hour_local: now.getHours(),
+        day_of_week: now.toLocaleDateString(undefined, { weekday: "long" }),
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
+      };
+    }
+
+    function simpleTrackProps(track, extra = {}) {
+      const seconds = Math.floor(player.currentTime || 0);
+      const startBucket = seconds < 5 ? "0-5s" : seconds < 15 ? "5-15s" : seconds < 30 ? "15-30s" : "30s+";
+      const trackKey = track ? `${track.number} ${track.title}` : "none";
+
+      return {
+        track_number: track?.number || "none",
+        track_title: track?.title || "none",
+        track_status: track ? getTrackStatus(track) : "none",
+        song_number: track?.number || "none",
+        song_title: track?.title || "none",
+        song_status: track ? getTrackStatus(track) : "none",
+        track_key: trackKey,
+        start_position_seconds: seconds,
+        start_position_bucket: startBucket,
+        session_track_plays: sessionPlayCounts[trackKey] || 0,
+        session_track_starts: sessionStartCounts[trackKey] || 0,
+        session_track_completes: sessionCompleteCounts[trackKey] || 0,
+        session_track_repeats: sessionRepeatCounts[trackKey] || 0,
+        session_locked_clicks: sessionLockedClickCounts[trackKey] || 0,
+        ...extra
+      };
+    }
+
+    function cleanForGoogleAnalytics(value) {
+      if (value === undefined || value === null) return "none";
+      if (typeof value === "object") return JSON.stringify(value);
+      return value;
+    }
+
+    function toEventSlug(value) {
+      return String(value || "none")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "_")
+        .replace(/^_+|_+$/g, "")
+        .slice(0, 32);
+    }
+
+    function trackEventName(prefix, track) {
+      const number = toEventSlug(track?.number || "00");
+      const title = toEventSlug(track?.title || "unknown");
+      return `${prefix}_${number}_${title}`;
+    }
+
+    function getUnlockCodeType(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (fullAlbumCodes.includes(clean)) return "default_private";
+      if (clean === vipSignupCode) return "signup_vip";
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return "manual_unique";
+      if (isGeneratedPasscode(clean)) return "generated_unique";
+      if (resetCodes.includes(clean)) return "reset";
+      return "unknown";
+    }
+
+    function getPasscodeLocation(code) {
+      const clean = normalizeAnalyticsCode(code);
+      if (Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, clean)) return ownerDefaultCodeLocations[clean];
+      if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
+      if (isGeneratedPasscode(clean)) return "website signup generated passcode";
+      if (clean === vipSignupCode) return "legacy VIP/signup code";
+      if (resetCodes.includes(clean)) return "reset/admin code";
+      return "unknown passcode location";
+    }
+
+    function isOwnerDefaultCode(code) {
+      return Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, normalizeAnalyticsCode(code));
+    }
+
+    function reportPasscodeUseToFormspree(eventName, code, extra = {}) {
+      if (!passcodeUsesEndpoint) return;
+
+      const cleanCode = normalizeAnalyticsCode(code);
+      const payload = {
+        _subject: "Saint Jules passcode use",
+        source: "saint-jules-passcode-use-tracker",
+        event_name: eventName,
+        passcode_result: extra.result || eventName,
+        code_used: cleanCode || "empty",
+        code_attempted: cleanCode || "empty",
+        code_type: getUnlockCodeType(cleanCode),
+        code_label: getCodeLabel(cleanCode),
+        code_location: getPasscodeLocation(cleanCode),
+        owner_default_private_code: isOwnerDefaultCode(cleanCode) ? "yes" : "no",
+        known_only_if_told_by_owner: isOwnerDefaultCode(cleanCode) ? "yes" : "no",
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none",
+        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        page: window.location.pathname,
+        page_location: window.location.href,
+        referrer: document.referrer || "none",
+        user_agent: navigator.userAgent || "unknown",
+        ...getTimeStampParts(),
+        ...extra
+      };
 
       try {
-        if (navigator.sendBeacon) navigator.sendBeacon(logEndpoint, payload);
-        else fetch(logEndpoint, { method: "POST", body: payload, keepalive: true, mode: "no-cors" }).catch(() => {});
+        fetch(passcodeUsesEndpoint, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(payload),
+          keepalive: true
+        }).catch(() => {});
+      } catch (error) {}
+
+      saveLocalAnalytics({ event: "formspree_passcode_use", ...payload });
+      window.sjLastPasscodeUseReport = payload;
+    }
+
+    function getReadableAlias(eventName) {
+      const aliases = {
+        sj_track_play: "music_play",
+        sj_track_repeated: "music_repeat",
+        sj_track_complete: "music_complete",
+        sj_first_track_started: "music_start",
+        sj_locked_track_click: "locked_song_click",
+        sj_full_album_unlocked: "album_unlock",
+        sj_full_album_locked: "album_lock",
+        sj_signup_submitted: "lead_signup",
+        sj_bad_passcode: "bad_passcode",
+        sj_stream_link_click: "stream_link_click",
+        sj_session_end: "listen_session_end",
+        sj_site_ready: "site_ready"
+      };
+      return aliases[eventName] || "";
+    }
+
+    function logEvent(eventName, details = {}) {
+      const playerMode = document.body.classList.contains("super-mode") ? "superstar" : "single";
+      const timeParts = getTimeStampParts();
+      const reportingCode = getCurrentReportingCode();
+
+      const identityFields = {
+        listener_id: visitorTracker,
+        tracker_id: visitorTracker,
+        sj_tracker_id: visitorTracker,
+        pass_code: reportingCode,
+        signup_code: reportingCode,
+        sj_signup_code: reportingCode,
+        code_used: reportingCode,
+        active_unlock_code: activeUnlockCode || "none",
+        assigned_signup_code: signupAssignedCode || "none"
+      };
+
+      const eventPayload = {
+        event: eventName,
+        time: timeParts.timestamp_iso,
+        ...timeParts,
+        ...details,
+        ...identityFields,
+        page: window.location.pathname,
+        page_location: window.location.href,
+        player_mode: playerMode,
+        mode: playerMode
+      };
+
+      syncFormCodeFields(eventName);
+      saveLocalAnalytics(eventPayload);
+      window.sjAnalyticsLastPayload = eventPayload;
+      window.sjAnalyticsRecent = JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]");
+      console.info("[Saint Jules analytics]", eventName, eventPayload);
+
+      if (typeof window.gtag === "function") {
+        const gaPayload = {};
+        Object.entries(eventPayload).forEach(([key, value]) => {
+          gaPayload[key] = cleanForGoogleAnalytics(value);
+        });
+
+        syncGoogleIdentity(eventName);
+
+        const makeEventLabel = (fallbackName) => {
+          const mainThing = gaPayload.song_title || gaPayload.track_title || gaPayload.code_type || gaPayload.reason || gaPayload.code_attempted || fallbackName;
+          return `${gaPayload.pass_code || reportingCode} | ${mainThing}`;
+        };
+
+        const sendGA = (name) => {
+          window.gtag("event", name, {
+            event_category: "Saint Jules Music Player",
+            event_label: makeEventLabel(name),
+            debug_mode: true,
+            transport_type: "beacon",
+            ...gaPayload
+          });
+        };
+
+        sendGA(eventName);
+
+        const aliasName = getReadableAlias(eventName);
+        if (aliasName) sendGA(aliasName);
+
+        if (gaPayload.song_title && gaPayload.song_title !== "none") {
+          window.gtag("event", "song_activity", {
+            event_category: "Saint Jules Music Player",
+            event_label: makeEventLabel("song_activity"),
+            debug_mode: true,
+            transport_type: "beacon",
+            activity_type: eventName,
+            readable_activity: aliasName || eventName,
+            ...gaPayload
+          });
+        }
+      }
+
+      if (!analyticsEndpoint) return;
+
+      try {
+        fetch(analyticsEndpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(eventPayload),
+          keepalive: true
+        }).catch(() => {});
       } catch (error) {}
     }
 
@@ -1435,11 +2354,32 @@
       const summaryKeys = Object.keys(listeningSummary);
       if (!summaryKeys.length && reason !== "pagehide") return;
 
-      logEvent("listening_session_summary", {
+      const repeatedEntries = Object.entries(sessionPlayCounts).sort((a, b) => b[1] - a[1]);
+      const topRepeat = repeatedEntries[0] || ["none", 0];
+      const completedEntries = Object.entries(sessionCompleteCounts).sort((a, b) => b[1] - a[1]);
+      const topComplete = completedEntries[0] || ["none", 0];
+      const totalPlays = Object.values(sessionPlayCounts).reduce((sum, count) => sum + count, 0);
+      const totalRepeats = Object.values(sessionRepeatCounts).reduce((sum, count) => sum + count, 0);
+      const totalCompletes = Object.values(sessionCompleteCounts).reduce((sum, count) => sum + count, 0);
+      const totalLockedClicks = Object.values(sessionLockedClickCounts).reduce((sum, count) => sum + count, 0);
+
+      logEvent("sj_session_end", {
         reason,
         session_seconds: Math.round((Date.now() - sessionStartedAt) / 1000),
-        summary: JSON.stringify(listeningSummary),
-        last_track: currentTitle.textContent || "none"
+        tracks_touched: summaryKeys.length,
+        total_track_plays: totalPlays,
+        total_track_repeats: totalRepeats,
+        total_track_completes: totalCompletes,
+        total_locked_track_clicks: totalLockedClicks,
+        last_track: currentTitle.textContent || "none",
+        top_repeated_track: topRepeat[0],
+        top_repeated_count: topRepeat[1],
+        top_completed_track: topComplete[0],
+        top_completed_count: topComplete[1],
+        play_tally: JSON.stringify(sessionPlayCounts),
+        repeat_tally: JSON.stringify(sessionRepeatCounts),
+        complete_tally: JSON.stringify(sessionCompleteCounts),
+        locked_click_tally: JSON.stringify(sessionLockedClickCounts)
       });
     }
 
@@ -1450,10 +2390,11 @@
       localStorage.removeItem("saintJulesFullAlbum");
       localStorage.removeItem("saintJulesUnlockCode");
       localStorage.removeItem("saintJulesUnlockExpiresAt");
+      syncFormCodeFields("full_album_locked");
       document.body.classList.remove("super-mode");
       passMessage.textContent = message;
       passMessage.classList.add("show");
-      logEvent("full_album_locked", { reason: message });
+      logEvent("sj_full_album_locked", { reason: message });
       renderTracklist();
       loadTrack(tracks[leadIndex], leadIndex, false);
     }
@@ -1488,8 +2429,15 @@
       const unlockedCount = getUnlockedIndexes().length;
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       const duration = player.duration ? formatTime(player.duration) : "loading";
-      playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)} • ${unlockedCount}/${tracks.length} tracks unlocked • ${formatTime(player.currentTime || 0)} / ${duration}`;
-      togglePlayButton.textContent = player.paused ? "play" : "pause";
+      playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)}`;
+      playerUnlockCount.textContent = `${unlockedCount}/${tracks.length} unlocked`;
+      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "full album player" : "single player";
+      currentTimeText.textContent = formatTime(player.currentTime || 0);
+      durationText.textContent = duration;
+      const percent = player.duration ? Math.min(100, (player.currentTime / player.duration) * 100) : 0;
+      progressBar.value = percent;
+      progressBar.style.setProperty("--progress", `${percent}%`);
+      togglePlayButton.textContent = player.paused ? "▶" : "Ⅱ";
     }
 
     function setActive(index) {
@@ -1531,10 +2479,21 @@
     function loadTrack(track, index, autoplay = true) {
       addListeningTime();
       currentTrackIndex = index;
+      currentLoadKey = `${track.number} ${track.title}`;
+      currentLoadStartedAt = Date.now();
+      hasLoggedPlayForCurrentLoad = false;
       const summary = getTrackSummary(track);
 
       if (!isTrackUnlocked(track)) {
         summary.lockedClicks += 1;
+        const lockedKey = `${track.number} ${track.title}`;
+        sessionLockedClickCounts[lockedKey] = (sessionLockedClickCounts[lockedKey] || 0) + 1;
+        logEvent("sj_locked_track_click", simpleTrackProps(track, {
+          locked_click_tally_for_track: sessionLockedClickCounts[lockedKey]
+        }));
+        logEvent(trackEventName("locked", track), simpleTrackProps(track, {
+          locked_click_tally_for_track: sessionLockedClickCounts[lockedKey]
+        }));
         player.pause();
         currentTitle.textContent = track.title;
         currentMeta.textContent = `Saint Jules · ${track.status}`;
@@ -1545,6 +2504,8 @@
         return;
       }
 
+      logEvent("sj_track_selected", simpleTrackProps(track));
+      logEvent(trackEventName("selected", track), simpleTrackProps(track));
       currentTitle.textContent = track.title;
       currentMeta.textContent = `Saint Jules · ${getTrackStatus(track)}`;
       artwork.src = track.art;
@@ -1556,10 +2517,10 @@
       if (autoplay) player.play().catch(() => {});
     }
 
-    function playRelativeTrack(direction) {
+    function playRelativeTrack(direction, countAsSkip = true) {
       addListeningTime();
       const previousTrack = tracks[currentTrackIndex] || tracks[leadIndex];
-      getTrackSummary(previousTrack).skips += 1;
+      if (countAsSkip) getTrackSummary(previousTrack).skips += 1;
 
       const unlocked = getUnlockedIndexes();
       const currentPosition = unlocked.indexOf(currentTrackIndex);
@@ -1571,22 +2532,31 @@
     }
 
     function enterSuperstarMode(message, code = "unknown") {
+      const cleanCode = normalizeAnalyticsCode(code);
       albumOverrideUnlocked = true;
-      activeUnlockCode = code;
+      activeUnlockCode = cleanCode;
       activeUnlockExpiresAt = Date.now() + unlockTimeoutHours * 60 * 60 * 1000;
       localStorage.setItem("saintJulesFullAlbum", "yes");
-      localStorage.setItem("saintJulesUnlockCode", code);
+      localStorage.setItem("saintJulesUnlockCode", cleanCode);
       localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
       document.body.classList.add("super-mode");
       const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
       passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
-      logEvent("full_album_unlocked", { code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      const unlockCodeType = getUnlockCodeType(code);
+      reportIdentityToGoogle("full_album_unlock");
+      logEvent("sj_full_album_unlocked", { code_type: unlockCodeType, code_label: getCodeLabel(code), code_location: getPasscodeLocation(code), owner_default_private_code: isOwnerDefaultCode(code) ? "yes" : "no", entered_code: code, code_used: code, expires_at: new Date(activeUnlockExpiresAt).toISOString() });
+      logEvent(`unlock_${unlockCodeType}`, { code_type: unlockCodeType, code_label: getCodeLabel(code), code_location: getPasscodeLocation(code), owner_default_private_code: isOwnerDefaultCode(code) ? "yes" : "no", entered_code: code, code_used: code });
+      reportPasscodeUseToFormspree("accepted_passcode", code, {
+        result: "accepted",
+        unlock_message: message,
+        expires_at: new Date(activeUnlockExpiresAt).toISOString()
+      });
       renderTracklist();
     }
 
     passButton.addEventListener("click", () => {
-      const code = passInput.value.trim().toUpperCase().replaceAll(" ", "");
+      const code = normalizeAnalyticsCode(passInput.value);
       const isResetCode = resetCodes.includes(code);
       const isPublicCode = fullAlbumCodes.includes(code);
       const isVipCode = code === vipSignupCode;
@@ -1594,6 +2564,10 @@
       const isGeneratedCode = isGeneratedPasscode(code);
 
       if (isResetCode) {
+        reportPasscodeUseToFormspree("reset_passcode", code, {
+          result: "reset",
+          reset_message: "Reset code accepted. Star power cleared."
+        });
         clearSuperstarMode("Reset code accepted. Star power cleared.");
         return;
       }
@@ -1602,8 +2576,18 @@
         const codeType = getCodeLabel(code);
         enterSuperstarMode(isVipCode ? "VIP accepted. Passenger princess access granted." : `You got the star. ${codeType} accepted. Full album mode is live.`, code);
       } else {
-        activeUnlockCode = code || "empty_attempt";
-        logEvent("bad_passcode_attempt", { code_attempted: code || "empty" });
+        logEvent("sj_bad_passcode", {
+          code_attempted: code || "empty",
+          code_type: "bad"
+        });
+        logEvent("bad_code_attempt", {
+          code_attempted: code || "empty",
+          code_type: "bad"
+        });
+        reportPasscodeUseToFormspree("bad_passcode", code || "empty", {
+          result: "bad",
+          code_type: "bad"
+        });
         passMessage.textContent = "That code didn’t hit. Check the spelling and try again.";
         passMessage.classList.add("show");
       }
@@ -1617,8 +2601,14 @@
       clearSuperstarMode("Back to regular mode. The star power wore off.");
     });
 
-    prevTrackButton.addEventListener("click", () => playRelativeTrack(-1));
-    nextTrackButton.addEventListener("click", () => playRelativeTrack(1));
+    prevTrackButton.addEventListener("click", () => playRelativeTrack(-1, true));
+    nextTrackButton.addEventListener("click", () => playRelativeTrack(1, true));
+
+    progressBar.addEventListener("input", () => {
+      if (!player.duration) return;
+      player.currentTime = (Number(progressBar.value) / 100) * player.duration;
+      updatePlayerStats();
+    });
 
     togglePlayButton.addEventListener("click", () => {
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
@@ -1636,21 +2626,42 @@
       loadTrack(tracks[firstIndex], firstIndex, true);
     });
 
-    signupForm.addEventListener("submit", () => {
-      const codeField = document.getElementById("signupCodeField");
-      const trackerField = document.getElementById("trackerField");
-      if (codeField) codeField.value = signupAssignedCode;
-      if (trackerField) trackerField.value = visitorTracker;
+    document.querySelectorAll("[data-stream-platform]").forEach((link) => {
+      link.addEventListener("click", () => {
+        logEvent("sj_stream_link_click", {
+          track_number: "04",
+          track_title: "The Proposition",
+          song_number: "04",
+          song_title: "The Proposition",
+          stream_platform: link.dataset.streamPlatform || "unknown",
+          link_location: link.dataset.streamLocation || "unknown",
+          external_url: link.href
+        });
+      });
+    });
 
-      logEvent("signup_submitted", {
-        code_given: signupAssignedCode,
-        tracker_id: visitorTracker,
+    signupForm.addEventListener("submit", () => {
+      const assignedCode = ensureSignupAssignedCode();
+      const codeForThisSignup = getCurrentReportingCode() !== "none" ? getCurrentReportingCode() : assignedCode;
+      if (getCurrentReportingCode() === "none") activeUnlockCode = codeForThisSignup;
+      syncFormCodeFields("signup_submit", codeForThisSignup);
+      reportIdentityToGoogle("signup_submit");
+
+      logEvent("sj_signup_submitted", {
+        code_given: assignedCode,
+        reporting_code_at_signup: codeForThisSignup,
         signup_source: "saint-jules-website-info-signup"
       });
 
-      signupMessage.textContent = `You got the star. Your secret pass is ${signupAssignedCode}. I sent your info to the list — now hit unlock and go full album mode.`;
+      reportPasscodeUseToFormspree("signup_code_issued", assignedCode, {
+        result: "issued",
+        reporting_code_at_signup: codeForThisSignup,
+        signup_source: "saint-jules-website-info-signup"
+      });
+
+      signupMessage.textContent = `You got the star. Your secret pass is ${assignedCode}.`;
       signupMessage.classList.add("show");
-      passInput.value = signupAssignedCode;
+      passInput.value = assignedCode;
       setTimeout(() => passInput.focus(), 250);
     });
 
@@ -1666,12 +2677,54 @@
       passMessage.classList.add("show");
     }
 
+    syncFormCodeFields("page_ready");
     renderTracklist();
 
     player.addEventListener("play", () => {
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
-      getTrackSummary(track).plays += 1;
-      lastPlayStartedAt = Date.now();
+      const summary = getTrackSummary(track);
+      const trackKey = `${track.number} ${track.title}`;
+
+      if (!lastPlayStartedAt) lastPlayStartedAt = Date.now();
+
+      if (!hasLoggedPlayForCurrentLoad) {
+        hasLoggedPlayForCurrentLoad = true;
+        sessionPlayCounts[trackKey] = (sessionPlayCounts[trackKey] || 0) + 1;
+        summary.plays += 1;
+
+        const isRepeat = sessionPlayCounts[trackKey] > 1;
+        if (isRepeat) sessionRepeatCounts[trackKey] = (sessionRepeatCounts[trackKey] || 0) + 1;
+
+        const props = simpleTrackProps(track, {
+          session_play_count_for_track: sessionPlayCounts[trackKey],
+          repeat_tally_for_track: sessionRepeatCounts[trackKey] || 0,
+          total_session_plays: Object.values(sessionPlayCounts).reduce((sum, count) => sum + count, 0),
+          is_repeat_play: isRepeat ? "yes" : "no",
+          play_source: Date.now() - currentLoadStartedAt < 2500 ? "fresh_track_load" : "resume_after_pause"
+        });
+
+        logEvent("sj_track_play", props);
+        logEvent(trackEventName("play", track), props);
+
+        if (!hasLoggedFirstPlay) {
+          hasLoggedFirstPlay = true;
+          sessionStartCounts[trackKey] = (sessionStartCounts[trackKey] || 0) + 1;
+          logEvent("sj_first_track_started", simpleTrackProps(track, {
+            first_track_started: trackKey,
+            first_start_tally_for_track: sessionStartCounts[trackKey]
+          }));
+          logEvent(trackEventName("start", track), simpleTrackProps(track, {
+            first_track_started: trackKey,
+            first_start_tally_for_track: sessionStartCounts[trackKey]
+          }));
+        }
+
+        if (isRepeat) {
+          logEvent("sj_track_repeated", props);
+          logEvent(trackEventName("repeat", track), props);
+        }
+      }
+
       updatePlayerStats();
       setActive(currentTrackIndex);
     });
@@ -1692,14 +2745,26 @@
       addListeningTime();
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       getTrackSummary(track).completed += 1;
+      const completeKey = `${track.number} ${track.title}`;
+      sessionCompleteCounts[completeKey] = (sessionCompleteCounts[completeKey] || 0) + 1;
+      const completeProps = simpleTrackProps(track, {
+        complete_tally_for_track: sessionCompleteCounts[completeKey],
+        total_session_completes: Object.values(sessionCompleteCounts).reduce((sum, count) => sum + count, 0)
+      });
+      logEvent("sj_track_complete", completeProps);
+      logEvent(trackEventName("complete", track), completeProps);
       setActive(currentTrackIndex);
-      playRelativeTrack(1);
+      playRelativeTrack(1, false);
     });
 
     player.addEventListener("loadedmetadata", updatePlayerStats);
     window.addEventListener("pagehide", () => sendSessionSummary("pagehide"));
     window.addEventListener("beforeunload", () => sendSessionSummary("beforeunload"));
     updatePlayerStats();
+    reportIdentityToGoogle("page_ready");
+    logEvent("sj_site_ready", {
+      reason: "clean_tracked_page_load"
+    });
   </script>
 </body>
 </html>
