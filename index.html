@@ -439,14 +439,376 @@
 
     .lux-player {
       margin-top: 8px;
-      padding: 14px;
-      border-radius: 24px;
+      padding: 16px;
+      border-radius: 32px;
       border: 1px solid rgba(23,0,15,.12);
       background:
-        radial-gradient(circle at 12% 10%, rgba(255,255,255,.85), transparent 30%),
-        linear-gradient(135deg, rgba(23,0,15,.92), rgba(68,0,45,.9));
+        radial-gradient(circle at 15% 12%, rgba(255,255,255,.88), transparent 25%),
+        radial-gradient(circle at 92% 18%, rgba(255,20,147,.42), transparent 28%),
+        radial-gradient(circle at 20% 95%, rgba(255,210,239,.28), transparent 34%),
+        linear-gradient(135deg, rgba(23,0,15,.96), rgba(55,0,42,.94) 48%, rgba(116,0,78,.92));
       color: var(--white);
-      box-shadow: 0 18px 44px rgba(23,0,15,.2), inset 0 0 0 1px rgba(255,255,255,.12);
+      box-shadow: 0 22px 54px rgba(23,0,15,.24), inset 0 0 0 1px rgba(255,255,255,.12);
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .lux-player::before {
+      content: "CRASH FM 173.8  •  SAINT JULES RADIO  •  CRASH FM 173.8";
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      top: 12px;
+      color: rgba(255,255,255,.07);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      line-height: .8;
+      white-space: nowrap;
+      letter-spacing: -.05em;
+      transform: rotate(-4deg);
+      pointer-events: none;
+      z-index: -2;
+      animation: radioMarquee 13s linear infinite;
+    }
+
+    .lux-player::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -46px -40px;
+      height: 112px;
+      background:
+        linear-gradient(90deg, transparent 0 45%, rgba(255,255,255,.3) 46% 54%, transparent 55% 100%) center/70px 100% repeat-x,
+        linear-gradient(180deg, rgba(255,255,255,.08), transparent 45%),
+        rgba(23,0,15,.28);
+      transform: perspective(180px) rotateX(64deg);
+      transform-origin: bottom;
+      opacity: .7;
+      pointer-events: none;
+      z-index: -1;
+      animation: roadMove 1.35s linear infinite;
+    }
+
+    @keyframes radioMarquee {
+      from { transform: translateX(0) rotate(-4deg); }
+      to { transform: translateX(-220px) rotate(-4deg); }
+    }
+
+    @keyframes roadMove {
+      from { background-position: 0 0, 0 0, 0 0; }
+      to { background-position: 70px 0, 0 0, 0 0; }
+    }
+
+    .dash-stickers {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin: 10px 0 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .dash-stickers span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.1);
+      color: rgba(255,250,252,.82);
+      font-size: .67rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04), 0 10px 22px rgba(0,0,0,.12);
+      transform: rotate(-1.5deg);
+    }
+
+    .dash-stickers span:nth-child(2) {
+      background: rgba(255,20,147,.2);
+      transform: rotate(1.5deg);
+    }
+
+    .dash-stickers span:nth-child(3) {
+      background: rgba(255,255,255,.16);
+      transform: rotate(-.6deg);
+    }
+
+    .lux-player.playing .dash-stickers span {
+      animation: stickerBlink 1.2s ease-in-out infinite alternate;
+    }
+
+    .lux-player.playing .dash-stickers span:nth-child(2) { animation-delay: .18s; }
+    .lux-player.playing .dash-stickers span:nth-child(3) { animation-delay: .36s; }
+
+    @keyframes stickerBlink {
+      from { transform: translateY(0) rotate(-1.5deg); filter: brightness(1); }
+      to { transform: translateY(-2px) rotate(1.5deg); filter: brightness(1.25); }
+    }
+
+    .lux-player.playing {
+      animation: radioBodyBounce 1.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes radioBodyBounce {
+      from { transform: translateY(0) rotate(0deg); }
+      to { transform: translateY(-2px) rotate(-.15deg); }
+    }
+
+    .lux-face {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.15), rgba(255,255,255,.06)),
+        rgba(255,255,255,.08);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 18px 38px rgba(0,0,0,.14);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lux-face::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border-radius: 24px;
+      border: 1px dashed rgba(255,255,255,.11);
+      pointer-events: none;
+    }
+
+    .radio-orbit {
+      width: 98px;
+      height: 98px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .radio-orbit::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(255,20,147,.05), rgba(255,255,255,.26), rgba(255,20,147,.05), rgba(255,210,239,.32), rgba(255,20,147,.05));
+      filter: blur(.2px);
+      animation: orbitPulse 3.2s ease-in-out infinite alternate;
+    }
+
+    .lux-disc {
+      width: 82px;
+      height: 82px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: 1.78rem;
+      letter-spacing: -.06em;
+      background:
+        radial-gradient(circle at center, rgba(23,0,15,.96) 0 15%, rgba(255,250,252,.95) 16% 21%, rgba(23,0,15,.88) 22% 28%, transparent 29%),
+        repeating-radial-gradient(circle, rgba(255,255,255,.14) 0 2px, rgba(255,255,255,0) 3px 8px),
+        conic-gradient(from 120deg, #ff1493, #ffffff, #ffd2ef, #17000f, #ff1493);
+      box-shadow: 0 16px 34px rgba(0,0,0,.32), inset 0 0 0 8px rgba(23,0,15,.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    .lux-disc::after {
+      content: "";
+      position: absolute;
+      inset: 13px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.28);
+      box-shadow: inset 0 0 22px rgba(255,255,255,.1);
+    }
+
+    .lux-player.playing .lux-disc {
+      animation: recordSpin 3.8s linear infinite;
+    }
+
+    .lux-player.playing .eq-bars i {
+      animation-play-state: running;
+    }
+
+    @keyframes recordSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes orbitPulse {
+      from { transform: scale(.94); opacity: .62; }
+      to { transform: scale(1.04); opacity: 1; }
+    }
+
+    .radio-spark {
+      position: absolute;
+      z-index: 3;
+      color: rgba(255,255,255,.85);
+      text-shadow: 0 0 14px rgba(255,255,255,.6);
+      animation: sparkFloat 2.8s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    .spark-one { top: -2px; right: 12px; }
+    .spark-two { left: 4px; bottom: 10px; animation-delay: .45s; }
+    .spark-three { right: 0; bottom: 2px; animation-delay: .9s; color: rgba(255,210,239,.95); }
+
+    @keyframes sparkFloat {
+      from { transform: translateY(0) rotate(-8deg) scale(.9); opacity: .55; }
+      to { transform: translateY(-7px) rotate(10deg) scale(1.08); opacity: 1; }
+    }
+
+    .lux-face-copy {
+      display: grid;
+      gap: 5px;
+      min-width: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .lux-face-kicker {
+      width: fit-content;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .68rem;
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,250,252,.78);
+    }
+
+    .lux-face-copy strong {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.6rem, 3.6vw, 2.6rem);
+      line-height: .84;
+      letter-spacing: -.052em;
+      text-shadow: 0 10px 26px rgba(0,0,0,.18);
+    }
+
+    .lux-face-copy span:last-of-type {
+      color: rgba(255,250,252,.78);
+      font-weight: 850;
+      line-height: 1.3;
+      font-size: .86rem;
+      max-width: 380px;
+    }
+
+    .eq-bars {
+      display: flex;
+      align-items: end;
+      gap: 4px;
+      height: 28px;
+      margin-top: 6px;
+    }
+
+    .eq-bars i {
+      display: block;
+      width: 9px;
+      height: 11px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fffafc, #ffd2ef, #ff1493);
+      box-shadow: 0 0 18px rgba(255,20,147,.35);
+      animation: eqBounce .72s ease-in-out infinite alternate;
+      animation-play-state: paused;
+      opacity: .84;
+    }
+
+    .eq-bars i:nth-child(2) { height: 19px; animation-delay: .08s; }
+    .eq-bars i:nth-child(3) { height: 25px; animation-delay: .16s; }
+    .eq-bars i:nth-child(4) { height: 14px; animation-delay: .24s; }
+    .eq-bars i:nth-child(5) { height: 22px; animation-delay: .32s; }
+    .eq-bars i:nth-child(6) { height: 16px; animation-delay: .4s; }
+    .eq-bars i:nth-child(7) { height: 24px; animation-delay: .48s; }
+
+    @keyframes eqBounce {
+      from { transform: scaleY(.55); opacity: .58; }
+      to { transform: scaleY(1.12); opacity: 1; }
+    }
+
+    .listen-ladder {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.16);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.04)),
+        rgba(255,255,255,.08);
+      position: relative;
+    }
+
+    .listen-ladder::before {
+      content: "signal";
+      position: absolute;
+      top: -10px;
+      left: 14px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(23,0,15,.82);
+      color: rgba(255,250,252,.78);
+      border: 1px solid rgba(255,255,255,.14);
+      font-size: .62rem;
+      font-weight: 950;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .listen-ladder-meter {
+      height: 13px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
+    }
+
+    .listen-ladder-meter span {
+      display: block;
+      height: 100%;
+      width: var(--ladder-progress, 0%);
+      border-radius: inherit;
+      background: linear-gradient(90deg, #ff1493, #ffd2ef, #ffffff);
+      box-shadow: 0 0 20px rgba(255,20,147,.4);
+      transition: width .35s ease;
+    }
+
+    .listen-ladder-text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 9px;
+      font-size: .78rem;
+      font-weight: 900;
+      color: rgba(255,250,252,.74);
+      line-height: 1.25;
+    }
+
+    .listener-full-mode .lux-player {
+      box-shadow: 0 22px 58px rgba(255,20,147,.24), inset 0 0 0 1px rgba(255,255,255,.18);
+    }
+
+    .track-row.ladder-unlocked {
+      border-color: rgba(255,20,147,.42);
+      background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,210,239,.76));
+    }
+
+    .super-mode .lux-face,
+    .super-mode .listen-ladder {
+      background: rgba(255,20,147,.08);
+      border-color: rgba(255,20,147,.2);
+    }
+
+    .super-mode .lux-face-kicker,
+    .super-mode .lux-face-copy span:last-of-type,
+    .super-mode .listen-ladder-text {
+      color: rgba(23,0,15,.68);
     }
 
     .lux-topline,
@@ -679,12 +1041,12 @@
       box-shadow: 0 12px 30px rgba(255,20,147,.14);
     }
 
-    body:not(.super-mode) .track-row:not(.lead) {
+    body:not(.super-mode):not(.testing-mode) .track-row.locked {
       display: none;
     }
 
     body:not(.super-mode) .tracklist::after {
-      content: "full album unlocks with the superstar pass";
+      content: "some songs are waiting their turn. keep the crash site open.";
       display: block;
       margin-top: 4px;
       padding: 12px 14px;
@@ -1287,7 +1649,7 @@
     }
 
     body.testing-mode:not(.super-mode) .tracklist::after {
-      content: "testing mode: buttons control which songs are temporarily unlocked in this browser";
+      content: "testing mode: preview the site states without changing the live public mood";
       display: block;
       margin-top: 4px;
       padding: 12px 14px;
@@ -1302,6 +1664,21 @@
     }
 
 
+
+    body:not(.deep-tools-visible) .pick-helper,
+    body:not(.deep-tools-visible) .rider-name-card {
+      display: none !important;
+    }
+
+    body.deep-tools-visible .pick-helper,
+    body.deep-tools-visible .rider-name-card {
+      animation: secretPanelRise .28s ease both;
+    }
+
+    @keyframes secretPanelRise {
+      from { opacity: 0; transform: translateY(10px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
 
     .pick-helper,
     .rider-name-card {
@@ -1492,7 +1869,7 @@
     .super-mode .track-row.locked { opacity: 1; }
 
     .super-mode::after {
-      content: "★ full album mode ★";
+      content: "★ crash mode ★";
       position: fixed;
       left: 50%;
       bottom: 18px;
@@ -1583,6 +1960,14 @@
       opacity: .78;
     }
 
+
+    @media (max-width: 640px) {
+      .lux-face { grid-template-columns: 1fr; text-align: center; justify-items: center; }
+      .lux-face-copy { justify-items: center; }
+      .listen-ladder-text { flex-direction: column; align-items: flex-start; }
+      .lux-player::before { font-size: 3rem; }
+    }
+
     @media (max-width: 880px) {
       .hero, .player-grid, .teaser, .album-splash, .super-pass { grid-template-columns: 1fr; }
       .cover-card, .album-art { transform: none; }
@@ -1602,6 +1987,9 @@
       .track-row { grid-template-columns: auto 1fr; }
       .track-row .status { display: none; }
       .testing-buttons { grid-template-columns: 1fr; }
+      .lux-face { grid-template-columns: 1fr; }
+      .lux-disc { margin: 0 auto; }
+      .listen-ladder-text { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -1666,8 +2054,39 @@
 
             <div class="lux-player" aria-label="Saint Jules music player">
               <div class="lux-topline">
-                <span id="playerModeLabel">single player</span>
-                <span id="playerUnlockCount">1/13 unlocked</span>
+                <span id="playerModeLabel">crash radio</span>
+                <span id="playerUnlockCount">1/13 in rotation</span>
+              </div>
+
+              <div class="dash-stickers" aria-hidden="true">
+                <span>pink alert</span>
+                <span>173.8 fm</span>
+                <span>no brakes</span>
+              </div>
+
+              <div class="lux-face">
+                <div class="radio-orbit" aria-hidden="true">
+                  <div class="lux-disc" id="playerDisc">04</div>
+                  <span class="radio-spark spark-one">✦</span>
+                  <span class="radio-spark spark-two">✧</span>
+                  <span class="radio-spark spark-three">★</span>
+                </div>
+                <div class="lux-face-copy">
+                  <span class="lux-face-kicker" id="ladderStageLabel">crash radio</span>
+                  <strong id="ladderStageTitle">The Proposition</strong>
+                  <span id="ladderStageCopy">Press play. Let the dashboard breathe.</span>
+                  <div class="eq-bars" aria-hidden="true">
+                    <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="listen-ladder" aria-label="Crash radio signal">
+                <div class="listen-ladder-meter"><span id="listenLadderBar"></span></div>
+                <div class="listen-ladder-text">
+                  <span id="listenLadderText">Signal warming up.</span>
+                  <span id="listenLadderNext">stay in the car</span>
+                </div>
               </div>
 
               <div class="lux-controls">
@@ -1683,7 +2102,7 @@
               </div>
 
               <div class="lux-bottomline">
-                <button class="lux-chip" id="playUnlocked" type="button">play unlocked</button>
+                <button class="lux-chip" id="playUnlocked" type="button">play available</button>
                 <span id="playerStats">The Proposition is ready.</span>
               </div>
             </div>
@@ -1701,13 +2120,13 @@
               <strong>can’t pick?</strong>
               <button class="mini-button primary" id="randomFiveButton" type="button">roll 5 songs</button>
             </div>
-            <p class="pick-helper-copy">When the 5-pack is open, this throws five unlocked songs at them so they can stop acting like choosing music is a tax form.</p>
+            <p class="pick-helper-copy">When this panel wakes up, it throws five songs at the room so nobody has to fight over the aux cord.</p>
             <div class="random-five-actions">
               <button class="mini-button" id="playRandomPickButton" type="button" disabled>play first pick</button>
               <button class="mini-button" id="clearRandomFiveButton" type="button">clear picks</button>
             </div>
             <div class="random-five-result" id="randomFiveResult">
-              <div class="random-five-empty">Unlock at least 5 songs first. The randomizer refuses to hallucinate a rollout.</div>
+              <div class="random-five-empty">The deck is quiet right now. Come back when the car starts talking.</div>
             </div>
           </div>
 
@@ -1775,15 +2194,15 @@
     <section class="section" id="superstar">
       <div class="super-pass">
         <div class="pass-card">
-          <span class="eyebrow">secret mode</span>
+          <span class="eyebrow">backseat access</span>
           <h2>superstar pass</h2>
           <p>
-            Got the code? Type it in and the site goes full album mode. Tracks also unlock themselves on schedule, so if I forget to come back, the crash still happens.
+            Got a code? Type it in. The site will know what to do.
           </p>
           <div class="pass-row">
             <input class="pass-input" id="passInput" type="text" inputmode="text" autocomplete="off" placeholder="enter passcode" aria-label="Enter passcode" />
-            <button class="button primary" id="passButton" type="button">unlock</button>
-            <button class="button secondary reset-pass-button" id="resetPassButton" type="button">lock it back</button>
+            <button class="button primary" id="passButton" type="button">enter</button>
+            <button class="button secondary reset-pass-button" id="resetPassButton" type="button">clear pass</button>
           </div>
           <div class="pass-message" id="passMessage"></div>
 
@@ -1794,29 +2213,29 @@
               <strong>Testing console</strong>
             </div>
             <p>
-              Testing mode is separate from full album mode. Use these buttons to preview locked states, fake release states, stats buttons, and local events without turning every test code into a real superstar pass.
+              Testing mode is separate from the public site. Use these buttons to preview states, timing, buttons, and local events without changing the real public mood.
             </p>
             <div class="test-toggle-row">
               <div>
                 <strong>Automatic permanent stats page button</strong>
-                <span>When this is on, the Stats Page button appears forever after full album mode starts or the listener reaches 10 full-listen equivalents.</span>
+                <span>When this is on, the Stats Page button can stay available after the site reaches a deeper state in this browser.</span>
               </div>
               <button class="test-toggle-button" id="testToggleAutoStats" type="button">off</button>
             </div>
             <div class="testing-buttons">
               <button class="test-button" id="testSingleMode" type="button">regular locked view</button>
-              <button class="test-button" id="testBoyGenius" type="button">unlock Boy Genius only</button>
-              <button class="test-button" id="testTwoPack" type="button">unlock 2-pack</button>
-              <button class="test-button" id="testFivePack" type="button">unlock 5-pack</button>
+              <button class="test-button" id="testBoyGenius" type="button">preview Boy Genius</button>
+              <button class="test-button" id="testTwoPack" type="button">preview 2-song state</button>
+              <button class="test-button" id="testFivePack" type="button">preview 5-song state</button>
               <button class="test-button" id="testAlbumRelease" type="button">fake album release</button>
-              <button class="test-button danger" id="testRealFullAlbum" type="button">trigger real full album mode</button>
-              <button class="test-button" id="testLockFullAlbum" type="button">lock full album only</button>
+              <button class="test-button danger" id="testRealFullAlbum" type="button">trigger crash mode</button>
+              <button class="test-button" id="testLockFullAlbum" type="button">clear crash mode</button>
               <button class="test-button" id="testLockedMessage" type="button">show locked message</button>
               <button class="test-button" id="testIssueSignupCode" type="button">issue test signup code</button>
               <button class="test-button" id="testFakeAnalytics" type="button">save fake analytics event</button>
               <button class="test-button" id="testForceStatsButton" type="button">force stats button on</button>
               <button class="test-button" id="testHideStatsButton" type="button">hide stats button</button>
-              <button class="test-button" id="testEnoughListens" type="button">fake enough listens</button>
+              <button class="test-button" id="testEnoughListens" type="button">fake next radio state</button>
               <button class="test-button danger" id="testClearCache" type="button">clear local test/cache</button>
               <button class="test-button" id="testExitMode" type="button">exit testing mode</button>
             </div>
@@ -1828,7 +2247,7 @@
           <span class="eyebrow">touring · events · weird ideas</span>
           <h2>stay in the car</h2>
           <p>
-            Want show dates, pop-ups, secret links, and whatever else I talk myself into doing? Drop your info and I’ll know you came from the website.
+            Want show dates, pop-ups, new links, and whatever else I talk myself into doing? Drop your info and I’ll know you came from the website.
           </p>
           <form class="signup-form" id="signupForm" action="https://formspree.io/f/mnjlkyrb" method="POST" target="signupFrame">
             <input class="signup-input" name="name" type="text" placeholder="name" autocomplete="name" />
@@ -1841,7 +2260,7 @@
             <input type="hidden" name="_subject" value="New Saint Jules website signup" />
             <input type="hidden" name="_captcha" value="false" />
             <input type="hidden" name="_template" value="table" />
-            <button class="button primary" type="submit">get the secret code</button>
+            <button class="button primary" type="submit">get in the car</button>
           </form>
           <iframe name="signupFrame" title="Signup form response" style="display:none;"></iframe>
           <div class="signup-message" id="signupMessage"></div>
@@ -1874,13 +2293,13 @@
     <section class="section stats-page" id="stats-page">
       <div class="section-head">
         <h2>local stats page</h2>
-        <p class="small-note">Private browser-side numbers for testing the listener ladder, passcodes, and the permanent stats button. This page reads only this browser’s local Saint Jules data.</p>
+        <p class="small-note">Private browser-side numbers for checking how this copy of the site is behaving. This page reads only this browser’s local Saint Jules data.</p>
       </div>
       <p class="stats-note" id="statsPageStatus">Stats page is ready.</p>
       <div class="stats-page-grid" aria-label="Local listener stats summary">
         <div class="stats-card"><span>mode</span><strong id="statsModeValue">single</strong></div>
-        <div class="stats-card"><span>auto button</span><strong id="statsAutoValue">off</strong></div>
-        <div class="stats-card"><span>listen progress</span><strong id="statsListenValue">0/10</strong></div>
+        <div class="stats-card"><span>owner button</span><strong id="statsAutoValue">off</strong></div>
+        <div class="stats-card"><span>radio signal</span><strong id="statsListenValue">0%</strong></div>
         <div class="stats-card"><span>events saved</span><strong id="statsEventsValue">0</strong></div>
       </div>
       <div class="stats-table-wrap">
@@ -1965,7 +2384,9 @@
     const autoStatsButtonStorageKey = "saintJulesAutoStatsButton";
     const statsButtonStorageKey = "saintJulesStatsPageButtonUnlocked";
     const statsProgressStorageKey = "saintJulesStatsProgress";
+    const listenerLadderStorageKey = "saintJulesListenerLadderV2";
     const listenEnoughGoal = 10;
+    const ladderGoal = 10;
     const codePrefix = "SJ";
     const generatedCodeSalt = "CRASHDUMMYERA";
 
@@ -2208,6 +2629,13 @@
     const durationText = document.getElementById("durationText");
     const playerModeLabel = document.getElementById("playerModeLabel");
     const playerUnlockCount = document.getElementById("playerUnlockCount");
+    const playerDisc = document.getElementById("playerDisc");
+    const ladderStageLabel = document.getElementById("ladderStageLabel");
+    const ladderStageTitle = document.getElementById("ladderStageTitle");
+    const ladderStageCopy = document.getElementById("ladderStageCopy");
+    const listenLadderBar = document.getElementById("listenLadderBar");
+    const listenLadderText = document.getElementById("listenLadderText");
+    const listenLadderNext = document.getElementById("listenLadderNext");
     const passInput = document.getElementById("passInput");
     const passButton = document.getElementById("passButton");
     const resetPassButton = document.getElementById("resetPassButton");
@@ -2596,10 +3024,24 @@
       return testingModeUnlocked || document.body.classList.contains("testing-mode");
     }
 
+    function hasTwoVisibleSongsWithoutOwnerMode() {
+      const now = new Date();
+      const ladder = getListenerLadder();
+      if (ladder.stage >= 1) return true;
+      return tracks.filter(track => now >= track.releaseDate).length >= 2;
+    }
+
+    function syncDeepToolsVisibility(reason = "sync") {
+      const visible = Boolean(isUnlockStillValid() || isTestingModeActive() || hasTwoVisibleSongsWithoutOwnerMode());
+      document.body.classList.toggle("deep-tools-visible", visible);
+    }
+
     function getPlayerModeName() {
       if (document.body.classList.contains("super-mode")) return "superstar";
       if (isTestingModeActive()) return `testing_${testingUnlockState}`;
-      return "single";
+      const ladder = getListenerLadder();
+      const config = getLadderConfig(ladder.stage);
+      return `listener_${config.key}`;
     }
 
 
@@ -2634,6 +3076,195 @@
 
     function saveStatsProgress(data) {
       writeLocalJson(statsProgressStorageKey, data);
+    }
+
+
+    function getListenerLadder() {
+      const fallback = { stage: 0, stageEquivalentListens: 0, totalEquivalentListens: 0, totalSeconds: 0, lastUnlock: "single", lastUnlockAt: "none" };
+      const ladder = readLocalJson(listenerLadderStorageKey, fallback) || fallback;
+      ladder.stage = Math.max(0, Math.min(3, Number(ladder.stage || 0)));
+      ladder.stageEquivalentListens = Math.max(0, Number(ladder.stageEquivalentListens || 0));
+      ladder.totalEquivalentListens = Math.max(0, Number(ladder.totalEquivalentListens || 0));
+      ladder.totalSeconds = Math.max(0, Number(ladder.totalSeconds || 0));
+      ladder.lastUnlock = ladder.lastUnlock || "single";
+      ladder.lastUnlockAt = ladder.lastUnlockAt || "none";
+      return ladder;
+    }
+
+    function saveListenerLadder(ladder) {
+      writeLocalJson(listenerLadderStorageKey, ladder);
+    }
+
+    function getLadderConfig(stage = getListenerLadder().stage) {
+      const safeStage = Math.max(0, Math.min(3, Number(stage || 0)));
+      if (safeStage >= 3) {
+        return {
+          stage: 3,
+          key: "full_album",
+          label: "crash radio",
+          title: "Crash site humming",
+          copy: "The dashboard is glowing. Stay dangerous.",
+          next: "signal maxed",
+          nextInstruction: "Keep riding.",
+          unlockedIndexes: tracks.map((_, index) => index),
+          unlockedMessage: "The dashboard blinked. Check the tracklist."
+        };
+      }
+
+      if (safeStage === 2) {
+        return {
+          stage: 2,
+          key: "five_pack",
+          label: "crash radio",
+          title: "The car got louder",
+          copy: "The aux is getting reckless. Keep it on the road.",
+          next: "signal building",
+          nextInstruction: "Keep riding.",
+          unlockedIndexes: [0, 1, 2, 3, 4],
+          unlockedMessage: "The dashboard blinked. The dice are awake."
+        };
+      }
+
+      if (safeStage === 1) {
+        return {
+          stage: 1,
+          key: "two_pack",
+          label: "crash radio",
+          title: "Passenger door open",
+          copy: "Something shifted in the car. Do not ask the dashboard questions.",
+          next: "signal building",
+          nextInstruction: "Keep riding.",
+          unlockedIndexes: [leadIndex, 0],
+          unlockedMessage: "The dashboard blinked. There is more on the aux."
+        };
+      }
+
+      return {
+        stage: 0,
+        key: "single",
+        label: "crash radio",
+        title: "The Proposition",
+        copy: "Press play. Let the dashboard breathe.",
+        next: "stay in the car",
+        nextInstruction: "Keep riding.",
+        unlockedIndexes: [leadIndex],
+        unlockedMessage: "The Proposition is ready."
+      };
+    }
+
+    function isListenerTrackUnlocked(track) {
+      const index = tracks.indexOf(track);
+      if (index < 0) return false;
+      const config = getLadderConfig();
+      return config.unlockedIndexes.includes(index);
+    }
+
+    function isTrackEligibleForLadderProgress(track) {
+      if (!track || isTestingModeActive() || document.body.classList.contains("super-mode")) return false;
+      const index = tracks.indexOf(track);
+      if (index < 0) return false;
+      const ladder = getListenerLadder();
+      if (ladder.stage >= 3) return false;
+      return getLadderConfig(ladder.stage).unlockedIndexes.includes(index);
+    }
+
+    function syncListenerLadderState(reason = "sync") {
+      const ladder = getListenerLadder();
+      document.body.classList.toggle("listener-full-mode", ladder.stage >= 3);
+      updateLadderUI(reason);
+      syncDeepToolsVisibility(reason);
+    }
+
+    function advanceListenerLadder(reason = "listener_progress") {
+      const ladder = getListenerLadder();
+      if (ladder.stage >= 3) return false;
+      ladder.stage += 1;
+      ladder.stageEquivalentListens = 0;
+      ladder.lastUnlock = getLadderConfig(ladder.stage).key;
+      ladder.lastUnlockAt = new Date().toISOString();
+      saveListenerLadder(ladder);
+      const config = getLadderConfig(ladder.stage);
+      logEvent("sj_listener_ladder_unlocked", {
+        reason,
+        listener_ladder_stage: config.key,
+        listener_ladder_label: config.label,
+        listener_ladder_unlocked_count: config.unlockedIndexes.length
+      });
+      if (ladder.stage >= 3) maybeTriggerStatsButton("listener_unlocked_full_album");
+      passMessage.textContent = config.unlockedMessage;
+      passMessage.classList.add("show");
+      showReleaseMessage(config.unlockedMessage);
+      syncListenerLadderState(reason);
+      renderTracklist();
+      updatePlayerStats();
+      return true;
+    }
+
+    function addListenerLadderTime(track, seconds, safeDuration) {
+      if (!isTrackEligibleForLadderProgress(track) || !seconds) return;
+      const ladder = getListenerLadder();
+      const increment = seconds / Math.max(30, Number(safeDuration || player.duration || 180) || 180);
+      ladder.stageEquivalentListens += increment;
+      ladder.totalEquivalentListens += increment;
+      ladder.totalSeconds += seconds;
+      saveListenerLadder(ladder);
+
+      if (ladder.stageEquivalentListens >= ladderGoal && ladder.stage < 3) {
+        advanceListenerLadder("listening_meter_reached_goal");
+      } else {
+        syncListenerLadderState("listening_progress");
+      }
+    }
+
+    function forceNextListenerUnlock(reason = "testing_force_listener_unlock") {
+      const ladder = getListenerLadder();
+      if (ladder.stage >= 3) {
+        ladder.stage = 0;
+        ladder.stageEquivalentListens = 0;
+        ladder.totalEquivalentListens = 0;
+        ladder.totalSeconds = 0;
+        ladder.lastUnlock = "single";
+        ladder.lastUnlockAt = new Date().toISOString();
+        saveListenerLadder(ladder);
+        clearFullAlbumOnly();
+        syncListenerLadderState(reason);
+        renderTracklist();
+        updatePlayerStats();
+        return "Listener ladder reset to single mode.";
+      }
+      ladder.stageEquivalentListens = ladderGoal;
+      saveListenerLadder(ladder);
+      advanceListenerLadder(reason);
+      return `${getLadderConfig().label} forced on for testing.`;
+    }
+
+    function getLockedTrackMessage(track) {
+      const config = getLadderConfig();
+      if (new Date() >= track.releaseDate) return track.message;
+      return `${track.message} Keep the radio on.`;
+    }
+
+    function updateLadderUI(reason = "refresh") {
+      const ladder = getListenerLadder();
+      const config = getLadderConfig(ladder.stage);
+      const progress = config.stage >= 3 ? 100 : Math.min(100, (ladder.stageEquivalentListens / ladderGoal) * 100);
+      if (ladderStageLabel) ladderStageLabel.textContent = config.label;
+      if (ladderStageTitle) ladderStageTitle.textContent = config.title;
+      if (ladderStageCopy) ladderStageCopy.textContent = config.copy;
+      if (listenLadderBar) listenLadderBar.style.setProperty("--ladder-progress", `${progress}%`);
+      if (listenLadderText) {
+        listenLadderText.textContent = config.stage >= 3
+          ? `Signal maxed. The car is hot.`
+          : `Signal: ${Math.round(progress)}%. Keep the radio on.`;
+      }
+      if (listenLadderNext) listenLadderNext.textContent = config.next;
+      if (statsListenValue) {
+        statsListenValue.textContent = config.stage >= 3
+          ? `max`
+          : `${Math.round(progress)}%`;
+      }
+      document.body.classList.toggle("listener-full-mode", config.stage >= 3);
+      syncDeepToolsVisibility(reason);
     }
 
     function getRecentEventCount() {
@@ -2696,6 +3327,7 @@
       data.equivalentListens += seconds / Math.max(30, safeDuration);
       data.trackSeconds[trackKey] = (Number(data.trackSeconds[trackKey] || 0) + seconds);
       saveStatsProgress(data);
+      addListenerLadderTime(track, seconds, safeDuration);
       if (data.equivalentListens >= listenEnoughGoal) {
         maybeTriggerStatsButton("listener_reached_10_full_listen_equivalents");
       } else {
@@ -2732,7 +3364,7 @@
       const data = getStatsProgress();
       if (statsModeValue) statsModeValue.textContent = getPlayerModeName().replace(/_/g, " ");
       if (statsAutoValue) statsAutoValue.textContent = autoStatsButtonEnabled ? "on" : "off";
-      if (statsListenValue) statsListenValue.textContent = `${Math.min(listenEnoughGoal, data.equivalentListens).toFixed(1)}/${listenEnoughGoal}`;
+      updateLadderUI(reason);
       if (statsEventsValue) statsEventsValue.textContent = String(getRecentEventCount());
       if (statsPageStatus) {
         const buttonState = statsButtonUnlocked ? "visible" : "hidden";
@@ -2758,7 +3390,7 @@
 
     function updateTestingStatus(message = "") {
       if (!testingStatus) return;
-      const modeLine = `Testing state: ${testingUnlockState.replace(/_/g, " ")}. Full album mode: ${document.body.classList.contains("super-mode") ? "on" : "off"}. Auto stats button: ${autoStatsButtonEnabled ? "on" : "off"}. Stats button: ${statsButtonUnlocked ? "visible" : "hidden"}.`;
+      const modeLine = `Testing state: ${testingUnlockState.replace(/_/g, " ")}. Crash mode: ${document.body.classList.contains("super-mode") ? "on" : "off"}. Owner stats button: ${autoStatsButtonEnabled ? "on" : "off"}. Stats button: ${statsButtonUnlocked ? "visible" : "hidden"}.`;
       testingStatus.textContent = message ? `${message} ${modeLine}` : modeLine;
     }
 
@@ -2771,6 +3403,7 @@
       localStorage.removeItem("saintJulesUnlockExpiresAt");
       document.body.classList.remove("super-mode");
       syncFormCodeFields("full_album_locked_only");
+      syncDeepToolsVisibility("full_album_locked_only");
     }
 
     function setTestingUnlockState(state, message = "Testing state changed.") {
@@ -2779,6 +3412,7 @@
       localStorage.setItem("saintJulesTestingMode", "yes");
       localStorage.setItem("saintJulesTestingUnlockState", testingUnlockState);
       document.body.classList.add("testing-mode");
+      syncDeepToolsVisibility("testing_state_changed");
       passMessage.textContent = message;
       passMessage.classList.add("show");
       logEvent("sj_testing_state_changed", { testing_state: testingUnlockState, testing_message: message, testing_code: activeTestingCode || "none" });
@@ -2796,7 +3430,8 @@
       localStorage.setItem("saintJulesTestingMode", "yes");
       localStorage.setItem("saintJulesTestingCode", cleanCode);
       document.body.classList.add("testing-mode");
-      passMessage.textContent = "Testing mode is on. Full album mode stayed separate.";
+      syncDeepToolsVisibility("testing_mode_on");
+      passMessage.textContent = "Testing mode is on. Public mode stayed separate.";
       passMessage.classList.add("show");
       logEvent("sj_testing_mode_unlocked", { testing_code: cleanCode, testing_state: testingUnlockState, code_location: getPasscodeLocation(cleanCode) });
       renderTracklist();
@@ -2812,6 +3447,7 @@
       localStorage.removeItem("saintJulesTestingUnlockState");
       localStorage.removeItem("saintJulesTestingCode");
       document.body.classList.remove("testing-mode");
+      syncDeepToolsVisibility("testing_mode_off");
       passMessage.textContent = message;
       passMessage.classList.add("show");
       logEvent("sj_testing_mode_locked", { reason: message });
@@ -3123,7 +3759,7 @@
       });
     }
 
-    function clearSuperstarMode(message = "Full album mode is locked again. Enter a code when you want to power back up.") {
+    function clearSuperstarMode(message = "Pass cleared. Enter a code when you want to power back up.") {
       albumOverrideUnlocked = false;
       activeUnlockCode = "none";
       activeUnlockExpiresAt = 0;
@@ -3132,6 +3768,7 @@
       localStorage.removeItem("saintJulesUnlockExpiresAt");
       syncFormCodeFields("full_album_locked");
       document.body.classList.remove("super-mode");
+      syncDeepToolsVisibility("full_album_locked");
       passMessage.textContent = message;
       passMessage.classList.add("show");
       logEvent("sj_full_album_locked", { reason: message });
@@ -3141,18 +3778,19 @@
 
     function isTrackUnlocked(track) {
       if (!isUnlockStillValid() && albumOverrideUnlocked && new Date() < albumRelease) {
-        clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
+        clearSuperstarMode("Pass cooled off. Enter a code to power back up.");
       }
-      return isUnlockStillValid() || isTestingTrackUnlocked(track) || new Date() >= track.releaseDate;
+      return isUnlockStillValid() || isTestingTrackUnlocked(track) || isListenerTrackUnlocked(track) || new Date() >= track.releaseDate;
     }
 
     function getTrackStatus(track) {
       if (isTrackUnlocked(track)) {
         if (track.title === "The Proposition") return "single · playable now";
-        if (isTestingTrackUnlocked(track) && !isUnlockStillValid() && new Date() < track.releaseDate) return "testing unlock";
+        if (isTestingTrackUnlocked(track) && !isUnlockStillValid() && new Date() < track.releaseDate) return "testing preview";
+        if (isListenerTrackUnlocked(track) && new Date() < track.releaseDate && !isUnlockStillValid()) return "radio signal";
         return "playable now";
       }
-      return track.status;
+      return "not yet · stay close";
     }
 
     function getUnlockedIndexes() {
@@ -3193,8 +3831,8 @@
       if (playRandomPickButton) playRandomPickButton.disabled = currentRandomFiveIndexes.length === 0;
       if (updateMessage && currentRandomFiveIndexes.length === 0) {
         renderRandomFiveMessage(canRoll
-          ? "5-pack is open. Roll five songs when the aux cord starts feeling like a responsibility."
-          : "Unlock at least 5 songs first. The randomizer refuses to hallucinate a rollout.");
+          ? "The dice are awake. Roll five songs when the aux cord starts feeling like a responsibility."
+          : "The deck is quiet right now. Come back when the car starts talking.");
       }
     }
 
@@ -3252,15 +3890,20 @@
       const unlockedCount = getUnlockedIndexes().length;
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       const duration = player.duration ? formatTime(player.duration) : "loading";
+      const ladder = getListenerLadder();
+      const config = getLadderConfig(ladder.stage);
+      updateLadderUI("player_refresh");
       playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)}`;
-      playerUnlockCount.textContent = `${unlockedCount}/${tracks.length} unlocked`;
-      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "full album player" : (isTestingModeActive() ? `testing · ${testingUnlockState.replace(/_/g, " ")}` : "single player");
+      playerUnlockCount.textContent = `${unlockedCount}/${tracks.length} in rotation`;
+      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "crash radio" : (isTestingModeActive() ? `testing · ${testingUnlockState.replace(/_/g, " ")}` : "crash radio");
+      if (playerDisc) playerDisc.textContent = track.number;
       currentTimeText.textContent = formatTime(player.currentTime || 0);
       durationText.textContent = duration;
       const percent = player.duration ? Math.min(100, (player.currentTime / player.duration) * 100) : 0;
       progressBar.value = percent;
       progressBar.style.setProperty("--progress", `${percent}%`);
       togglePlayButton.textContent = player.paused ? "▶" : "Ⅱ";
+      document.querySelector(".lux-player")?.classList.toggle("playing", !player.paused);
     }
 
     function setActive(index) {
@@ -3285,7 +3928,8 @@
       tracks.forEach((track, index) => {
         const unlocked = isTrackUnlocked(track);
         const button = document.createElement("button");
-        button.className = `track-row${unlocked ? "" : " locked"}${index === leadIndex ? " lead active" : ""}`;
+        const ladderUnlocked = isListenerTrackUnlocked(track) && new Date() < track.releaseDate && !isUnlockStillValid() && !isTestingTrackUnlocked(track);
+        button.className = `track-row${unlocked ? "" : " locked"}${ladderUnlocked ? " ladder-unlocked" : ""}${index === leadIndex ? " lead active" : ""}`;
         button.type = "button";
         button.innerHTML = `
           <span class="num">${track.number}</span>
@@ -3297,6 +3941,7 @@
         tracklist.appendChild(button);
       });
       setActive(currentTrackIndex);
+      syncDeepToolsVisibility("tracklist_render");
       refreshRandomFiveButtons();
     }
 
@@ -3324,7 +3969,7 @@
         currentMeta.textContent = `Saint Jules · ${track.status}`;
         artwork.src = track.art;
         setActive(index);
-        showReleaseMessage(track.message);
+        showReleaseMessage(getLockedTrackMessage(track));
         updatePlayerStats();
         return;
       }
@@ -3365,6 +4010,7 @@
       localStorage.setItem("saintJulesUnlockCode", cleanCode);
       localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
       document.body.classList.add("super-mode");
+      syncDeepToolsVisibility("full_album_mode_entered");
       maybeTriggerStatsButton("full_album_mode_entered");
       const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
       passMessage.textContent = `${message}${timeoutLine}`;
@@ -3504,13 +4150,14 @@
       testingModeUnlocked = true;
       localStorage.setItem("saintJulesTestingMode", "yes");
       document.body.classList.add("testing-mode");
-      enterSuperstarMode("Testing button triggered the real full album system.", "TESTING_BUTTON");
-      updateTestingStatus("Real full album mode is on through the testing console.");
+      syncDeepToolsVisibility("testing_superstar_button");
+      enterSuperstarMode("Testing button triggered the crash-radio system.", "TESTING_BUTTON");
+      updateTestingStatus("Crash-radio state is on through the testing console.");
     });
 
     testLockFullAlbumButton?.addEventListener("click", () => {
       clearFullAlbumOnly();
-      passMessage.textContent = "Full album mode locked. Testing mode stayed on.";
+      passMessage.textContent = "Pass cleared. Testing mode stayed on.";
       passMessage.classList.add("show");
       renderTracklist();
       updatePlayerStats();
@@ -3552,13 +4199,8 @@
     });
 
     testEnoughListensButton?.addEventListener("click", () => {
-      const data = getStatsProgress();
-      data.equivalentListens = listenEnoughGoal;
-      data.seconds = Math.max(Number(data.seconds || 0), 1800);
-      data.unlockedReason = data.unlockedReason || "testing_fake_enough_listens";
-      saveStatsProgress(data);
-      const triggered = maybeTriggerStatsButton("testing_fake_enough_listens");
-      updateTestingStatus(triggered ? "Enough-listens trigger fired and the stats button appeared." : "Enough-listens progress faked. Auto stats button is off or the stats button was already visible.");
+      const result = forceNextListenerUnlock("testing_fake_next_listener_unlock");
+      updateTestingStatus(result);
     });
 
     testClearCacheButton?.addEventListener("click", () => {
@@ -3566,6 +4208,7 @@
       localStorage.removeItem(analyticsLocalStorageKey);
       localStorage.removeItem(statsButtonStorageKey);
       localStorage.removeItem(statsProgressStorageKey);
+      localStorage.removeItem(listenerLadderStorageKey);
       localStorage.removeItem("saintJulesTestingMode");
       localStorage.removeItem("saintJulesTestingUnlockState");
       localStorage.removeItem("saintJulesTestingCode");
@@ -3575,6 +4218,7 @@
       statsButtonUnlocked = false;
       localStorage.setItem("saintJulesTestingMode", "yes");
       document.body.classList.add("testing-mode");
+      syncDeepToolsVisibility("testing_clear_cache");
       renderTracklist();
       loadTrack(tracks[leadIndex], leadIndex, false);
       syncStatsButtonState("clear_cache");
@@ -3633,6 +4277,7 @@
 
     if (testingModeUnlocked) {
       document.body.classList.add("testing-mode");
+      syncDeepToolsVisibility("restored_testing_mode");
       activeTestingCode = normalizeAnalyticsCode(activeTestingCode || "none");
       updateTestingStatus("Testing mode restored from this browser.");
     }
@@ -3640,11 +4285,13 @@
     if (new Date() >= albumRelease) {
       albumOverrideUnlocked = true;
       document.body.classList.add("super-mode");
+      syncDeepToolsVisibility("album_release_full_album_live");
       maybeTriggerStatsButton("album_release_full_album_live");
     } else if (albumOverrideUnlocked && !isUnlockStillValid()) {
-      clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
+      clearSuperstarMode("Pass cooled off. Enter a code to power back up.");
     } else if (albumOverrideUnlocked) {
       document.body.classList.add("super-mode");
+      syncDeepToolsVisibility("restored_full_album_mode");
       maybeTriggerStatsButton("restored_full_album_mode");
       const minutesLeft = Math.max(1, Math.round((activeUnlockExpiresAt - Date.now()) / 60000));
       passMessage.textContent = `Superstar mode is still glowing for about ${minutesLeft} more minutes.`;
@@ -3652,6 +4299,8 @@
     }
 
     syncFormCodeFields("page_ready");
+    syncDeepToolsVisibility("page_ready");
+    syncListenerLadderState("page_ready");
     syncStatsButtonState("page_ready");
     renderTracklist();
 
