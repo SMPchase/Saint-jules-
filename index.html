@@ -996,6 +996,145 @@
       margin-top: 14px;
     }
 
+    .testing-panel {
+      display: none;
+      margin-top: 18px;
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(0, 168, 153, .38);
+      background:
+        radial-gradient(circle at 12% 0%, rgba(255,255,255,.2), transparent 35%),
+        linear-gradient(135deg, rgba(0, 35, 32, .94), rgba(0, 73, 66, .9));
+      color: var(--white);
+      box-shadow: 0 18px 42px rgba(0, 72, 66, .18);
+    }
+
+    .testing-mode .testing-panel {
+      display: block;
+    }
+
+    .testing-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .testing-panel-head .eyebrow,
+    .testing-panel p,
+    .testing-status {
+      color: rgba(255,250,252,.78);
+    }
+
+    .testing-panel-head strong {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      letter-spacing: -.04em;
+    }
+
+    .testing-panel p {
+      margin: 0 0 14px;
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    .testing-buttons {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .test-button {
+      min-height: 44px;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      padding: 10px 12px;
+      transition: transform .16s ease, background .16s ease;
+    }
+
+    .test-button:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.22);
+    }
+
+    .test-button.danger {
+      background: rgba(255, 20, 147, .28);
+      border-color: rgba(255, 20, 147, .42);
+    }
+
+    .testing-status {
+      margin-top: 12px;
+      padding: 11px 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 16px;
+      background: rgba(255,255,255,.08);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    body.testing-mode:not(.super-mode) {
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255,255,255,.85) 0 7%, transparent 8%),
+        radial-gradient(circle at 88% 14%, rgba(0,255,226,.22) 0 7%, transparent 8%),
+        radial-gradient(circle at 78% 78%, rgba(255,20,147,.22) 0 8%, transparent 9%),
+        linear-gradient(135deg, #ff77c8 0%, #f9d9ff 40%, #dffffa 100%);
+    }
+
+    body.testing-mode:not(.super-mode) .nav,
+    body.testing-mode:not(.super-mode) .section,
+    body.testing-mode:not(.super-mode) .pass-card,
+    body.testing-mode:not(.super-mode) .player-panel {
+      border-color: rgba(0, 168, 153, .35);
+      box-shadow: 0 18px 52px rgba(0, 168, 153, .16);
+    }
+
+    body.testing-mode:not(.super-mode)::after {
+      content: "🧪 testing mode";
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 50;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: #002320;
+      color: var(--white);
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1rem, 3vw, 1.45rem);
+      box-shadow: 0 18px 42px rgba(0, 35, 32, .32);
+      pointer-events: none;
+    }
+
+    body.testing-mode .reset-pass-button,
+    body.testing-mode .lux-chip {
+      display: inline-flex;
+    }
+
+    body.testing-mode .track-row {
+      display: grid !important;
+    }
+
+    body.testing-mode:not(.super-mode) .tracklist::after {
+      content: "testing mode: buttons control which songs are temporarily unlocked in this browser";
+      display: block;
+      margin-top: 4px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(0,35,32,.82);
+      color: var(--white);
+      border: 1px dashed rgba(255,255,255,.3);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      font-size: .78rem;
+    }
+
     .signup-input {
       width: 100%;
       border-radius: 18px;
@@ -1122,6 +1261,7 @@
       .cover-card::before { right: 8px; top: 16px; }
       .track-row { grid-template-columns: auto 1fr; }
       .track-row .status { display: none; }
+      .testing-buttons { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -1289,6 +1429,31 @@
             <button class="button secondary reset-pass-button" id="resetPassButton" type="button">lock it back</button>
           </div>
           <div class="pass-message" id="passMessage"></div>
+
+          <div class="testing-panel" id="testingPanel" aria-label="Testing controls">
+            <div class="testing-panel-head">
+              <span class="eyebrow">owner testing mode</span>
+              <strong>Testing console</strong>
+            </div>
+            <p>
+              Testing mode is separate from full album mode. Use these buttons to preview locked states, fake release states, and local events without turning every test code into a real superstar pass.
+            </p>
+            <div class="testing-buttons">
+              <button class="test-button" id="testSingleMode" type="button">regular locked view</button>
+              <button class="test-button" id="testBoyGenius" type="button">unlock Boy Genius only</button>
+              <button class="test-button" id="testTwoPack" type="button">unlock 2-pack</button>
+              <button class="test-button" id="testFivePack" type="button">unlock 5-pack</button>
+              <button class="test-button" id="testAlbumRelease" type="button">fake album release</button>
+              <button class="test-button danger" id="testRealFullAlbum" type="button">trigger real full album mode</button>
+              <button class="test-button" id="testLockFullAlbum" type="button">lock full album only</button>
+              <button class="test-button" id="testLockedMessage" type="button">show locked message</button>
+              <button class="test-button" id="testIssueSignupCode" type="button">issue test signup code</button>
+              <button class="test-button" id="testFakeAnalytics" type="button">save fake analytics event</button>
+              <button class="test-button danger" id="testClearCache" type="button">clear local test/cache</button>
+              <button class="test-button" id="testExitMode" type="button">exit testing mode</button>
+            </div>
+            <div class="testing-status" id="testingStatus">Testing mode ready. Pick a button.</div>
+          </div>
         </div>
 
         <div class="signup-card">
@@ -1355,19 +1520,22 @@
     const boyGeniusRelease = new Date("2026-05-16T00:00:00");
     const albumRelease = new Date("2026-06-18T00:00:00");
 
-    const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR", "PASSCODE", "TEST", "TESTING", "TESTCODE", "ALBUMTEST", "CRASHDUMMY", "SAINTJULES"];
+    const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
+    const testingCodes = ["PASSCODE", "TEST", "TESTING", "TESTCODE", "ALBUMTEST", "CRASHDUMMY", "SAINTJULES"];
     const ownerDefaultCodeLocations = {
       "FRANK1738": "owner default/private code · Frank 1738",
       "TRAPQUEEN1738": "owner default/private code · Trap Queen 1738",
       "FETTYTRUCK": "owner default/private code · Fetty Truck",
-      "SUPERSTAR": "owner default/private code · Superstar",
-      "PASSCODE": "testing code · Passcode",
-      "TEST": "testing code · Test",
-      "TESTING": "testing code · Testing",
-      "TESTCODE": "testing code · Test Code",
-      "ALBUMTEST": "testing code · Album Test",
-      "CRASHDUMMY": "testing code · Crash Dummy",
-      "SAINTJULES": "testing code · Saint Jules"
+      "SUPERSTAR": "owner default/private code · Superstar"
+    };
+    const testingCodeLocations = {
+      "PASSCODE": "testing/admin code · Passcode",
+      "TEST": "testing/admin code · Test",
+      "TESTING": "testing/admin code · Testing",
+      "TESTCODE": "testing/admin code · Test Code",
+      "ALBUMTEST": "testing/admin code · Album Test",
+      "CRASHDUMMY": "testing/admin code · Crash Dummy",
+      "SAINTJULES": "testing/admin code · Saint Jules"
     };
     const vipSignupCode = "PASSENGERPRINCESS";
     const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
@@ -1576,12 +1744,28 @@
     const passMessage = document.getElementById("passMessage");
     const signupForm = document.getElementById("signupForm");
     const signupMessage = document.getElementById("signupMessage");
+    const testingStatus = document.getElementById("testingStatus");
+    const testSingleModeButton = document.getElementById("testSingleMode");
+    const testBoyGeniusButton = document.getElementById("testBoyGenius");
+    const testTwoPackButton = document.getElementById("testTwoPack");
+    const testFivePackButton = document.getElementById("testFivePack");
+    const testAlbumReleaseButton = document.getElementById("testAlbumRelease");
+    const testRealFullAlbumButton = document.getElementById("testRealFullAlbum");
+    const testLockFullAlbumButton = document.getElementById("testLockFullAlbum");
+    const testLockedMessageButton = document.getElementById("testLockedMessage");
+    const testIssueSignupCodeButton = document.getElementById("testIssueSignupCode");
+    const testFakeAnalyticsButton = document.getElementById("testFakeAnalytics");
+    const testClearCacheButton = document.getElementById("testClearCache");
+    const testExitModeButton = document.getElementById("testExitMode");
 
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
     // Keep successful passcodes alive across refreshes. Reset/lock codes still clear these on purpose.
     let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
     let activeUnlockCode = localStorage.getItem("saintJulesUnlockCode") || "none";
     let activeUnlockExpiresAt = Number(localStorage.getItem("saintJulesUnlockExpiresAt") || 0);
+    let testingModeUnlocked = localStorage.getItem("saintJulesTestingMode") === "yes";
+    let testingUnlockState = localStorage.getItem("saintJulesTestingUnlockState") || "single";
+    let activeTestingCode = localStorage.getItem("saintJulesTestingCode") || "none";
     let currentTrackIndex = leadIndex;
     let sessionStartedAt = Date.now();
     let lastPlayStartedAt = null;
@@ -1655,6 +1839,7 @@
       if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
       if (isGeneratedPasscode(clean)) return "generated tracker pass " + clean;
       if (fullAlbumCodes.includes(clean)) return ownerDefaultCodeLocations[clean] || "owner default/private passcode";
+      if (testingCodes.includes(clean)) return testingCodeLocations[clean] || "testing/admin code";
       if (clean === vipSignupCode) return "legacy vip signup code";
       return "unknown code";
     }
@@ -1713,6 +1898,9 @@
         vip_code: reportingCode,
         assigned_signup_code: signupAssignedCode || "none",
         active_unlock_code: activeUnlockCode || "none",
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        testing_state: testingUnlockState || "single",
+        testing_code: activeTestingCode || "none",
         analytics_reason: reason,
         analytics_last_synced: new Date().toISOString()
       };
@@ -1734,14 +1922,19 @@
         pass_code: reportingCode,
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
-        code_used: reportingCode
+        code_used: reportingCode,
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        testing_state: testingUnlockState || "single",
+        testing_code: activeTestingCode || "none"
       });
 
       window.gtag("set", "user_properties", {
         sj_tracker_id: visitorTracker,
         sj_signup_code: reportingCode,
         listener_id: visitorTracker,
-        pass_code: reportingCode
+        pass_code: reportingCode,
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        testing_state: testingUnlockState || "single"
       });
     }
 
@@ -1761,7 +1954,10 @@
         code_used: reportingCode,
         active_unlock_code: activeUnlockCode || "none",
         assigned_signup_code: signupAssignedCode || "none",
-        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        testing_code: activeTestingCode || "none",
+        testing_state: testingUnlockState || "single",
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        player_mode: getPlayerModeName(),
         timestamp_local: new Date().toLocaleString(),
         timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || "unknown"
       };
@@ -1783,6 +1979,89 @@
       if (!albumOverrideUnlocked) return false;
       if (new Date() >= albumRelease) return true;
       return activeUnlockExpiresAt && Date.now() < activeUnlockExpiresAt;
+    }
+
+    function isTestingModeActive() {
+      return testingModeUnlocked || document.body.classList.contains("testing-mode");
+    }
+
+    function getPlayerModeName() {
+      if (document.body.classList.contains("super-mode")) return "superstar";
+      if (isTestingModeActive()) return `testing_${testingUnlockState}`;
+      return "single";
+    }
+
+    function isTestingTrackUnlocked(track) {
+      if (!isTestingModeActive()) return false;
+      const index = tracks.indexOf(track);
+      if (testingUnlockState === "boy_genius") return track.title === "Boy Genius" || track.title === "The Proposition";
+      if (testingUnlockState === "two_pack") return track.title === "The Proposition" || (index >= 0 && index < 2);
+      if (testingUnlockState === "five_pack") return index >= 0 && index < 5;
+      if (testingUnlockState === "album_release") return true;
+      return false;
+    }
+
+    function updateTestingStatus(message = "") {
+      if (!testingStatus) return;
+      const modeLine = `Testing state: ${testingUnlockState.replace(/_/g, " ")}. Full album mode: ${document.body.classList.contains("super-mode") ? "on" : "off"}.`;
+      testingStatus.textContent = message ? `${message} ${modeLine}` : modeLine;
+    }
+
+    function clearFullAlbumOnly() {
+      albumOverrideUnlocked = false;
+      activeUnlockCode = "none";
+      activeUnlockExpiresAt = 0;
+      localStorage.removeItem("saintJulesFullAlbum");
+      localStorage.removeItem("saintJulesUnlockCode");
+      localStorage.removeItem("saintJulesUnlockExpiresAt");
+      document.body.classList.remove("super-mode");
+      syncFormCodeFields("full_album_locked_only");
+    }
+
+    function setTestingUnlockState(state, message = "Testing state changed.") {
+      testingModeUnlocked = true;
+      testingUnlockState = state;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      localStorage.setItem("saintJulesTestingUnlockState", testingUnlockState);
+      document.body.classList.add("testing-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      logEvent("sj_testing_state_changed", { testing_state: testingUnlockState, testing_message: message, testing_code: activeTestingCode || "none" });
+      renderTracklist();
+      updatePlayerStats();
+      updateTestingStatus(message);
+    }
+
+    function enterTestingMode(code = "TESTING") {
+      const cleanCode = normalizeAnalyticsCode(code);
+      clearFullAlbumOnly();
+      testingModeUnlocked = true;
+      testingUnlockState = localStorage.getItem("saintJulesTestingUnlockState") || "single";
+      activeTestingCode = cleanCode;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      localStorage.setItem("saintJulesTestingCode", cleanCode);
+      document.body.classList.add("testing-mode");
+      passMessage.textContent = "Testing mode is on. Full album mode stayed separate.";
+      passMessage.classList.add("show");
+      logEvent("sj_testing_mode_unlocked", { testing_code: cleanCode, testing_state: testingUnlockState, code_location: getPasscodeLocation(cleanCode) });
+      renderTracklist();
+      updatePlayerStats();
+      updateTestingStatus("Testing mode is on.");
+    }
+
+    function exitTestingMode(message = "Testing mode is off. Back to the regular visitor view.") {
+      testingModeUnlocked = false;
+      testingUnlockState = "single";
+      activeTestingCode = "none";
+      localStorage.removeItem("saintJulesTestingMode");
+      localStorage.removeItem("saintJulesTestingUnlockState");
+      localStorage.removeItem("saintJulesTestingCode");
+      document.body.classList.remove("testing-mode");
+      passMessage.textContent = message;
+      passMessage.classList.add("show");
+      logEvent("sj_testing_mode_locked", { reason: message });
+      renderTracklist();
+      loadTrack(tracks[leadIndex], leadIndex, false);
     }
 
     function getTrackSummary(track) {
@@ -1860,6 +2139,7 @@
     function getUnlockCodeType(code) {
       const clean = normalizeAnalyticsCode(code);
       if (fullAlbumCodes.includes(clean)) return "default_private";
+      if (testingCodes.includes(clean)) return "testing_admin";
       if (clean === vipSignupCode) return "signup_vip";
       if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return "manual_unique";
       if (isGeneratedPasscode(clean)) return "generated_unique";
@@ -1870,6 +2150,7 @@
     function getPasscodeLocation(code) {
       const clean = normalizeAnalyticsCode(code);
       if (Object.prototype.hasOwnProperty.call(ownerDefaultCodeLocations, clean)) return ownerDefaultCodeLocations[clean];
+      if (Object.prototype.hasOwnProperty.call(testingCodeLocations, clean)) return testingCodeLocations[clean];
       if (Object.prototype.hasOwnProperty.call(uniqueCodes, clean)) return uniqueCodes[clean];
       if (isGeneratedPasscode(clean)) return "website signup generated passcode";
       if (clean === vipSignupCode) return "legacy VIP/signup code";
@@ -1902,7 +2183,10 @@
         sj_tracker_id: visitorTracker,
         active_unlock_code: activeUnlockCode || "none",
         assigned_signup_code: signupAssignedCode || "none",
-        player_mode: document.body.classList.contains("super-mode") ? "superstar" : "single",
+        testing_code: activeTestingCode || "none",
+        testing_state: testingUnlockState || "single",
+        testing_mode: isTestingModeActive() ? "yes" : "no",
+        player_mode: getPlayerModeName(),
         page: window.location.pathname,
         page_location: window.location.href,
         referrer: document.referrer || "none",
@@ -1946,7 +2230,7 @@
     }
 
     function logEvent(eventName, details = {}) {
-      const playerMode = document.body.classList.contains("super-mode") ? "superstar" : "single";
+      const playerMode = getPlayerModeName();
       const timeParts = getTimeStampParts();
       const reportingCode = getCurrentReportingCode();
 
@@ -1959,7 +2243,9 @@
         sj_signup_code: reportingCode,
         code_used: reportingCode,
         active_unlock_code: activeUnlockCode || "none",
-        assigned_signup_code: signupAssignedCode || "none"
+        assigned_signup_code: signupAssignedCode || "none",
+        testing_code: activeTestingCode || "none",
+        testing_state: testingUnlockState || "single"
       };
 
       const eventPayload = {
@@ -2098,12 +2384,13 @@
       if (!isUnlockStillValid() && albumOverrideUnlocked && new Date() < albumRelease) {
         clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
       }
-      return isUnlockStillValid() || new Date() >= track.releaseDate;
+      return isUnlockStillValid() || isTestingTrackUnlocked(track) || new Date() >= track.releaseDate;
     }
 
     function getTrackStatus(track) {
       if (isTrackUnlocked(track)) {
         if (track.title === "The Proposition") return "single · playable now";
+        if (isTestingTrackUnlocked(track) && !isUnlockStillValid() && new Date() < track.releaseDate) return "testing unlock";
         return "playable now";
       }
       return track.status;
@@ -2126,7 +2413,7 @@
       const duration = player.duration ? formatTime(player.duration) : "loading";
       playerStats.textContent = `${track.number} ${track.title} • ${getTrackStatus(track)}`;
       playerUnlockCount.textContent = `${unlockedCount}/${tracks.length} unlocked`;
-      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "full album player" : "single player";
+      playerModeLabel.textContent = document.body.classList.contains("super-mode") ? "full album player" : (isTestingModeActive() ? `testing · ${testingUnlockState.replace(/_/g, " ")}` : "single player");
       currentTimeText.textContent = formatTime(player.currentTime || 0);
       durationText.textContent = duration;
       const percent = player.duration ? Math.min(100, (player.currentTime / player.duration) * 100) : 0;
@@ -2253,10 +2540,16 @@
     passButton.addEventListener("click", () => {
       const code = normalizeAnalyticsCode(passInput.value);
       const isResetCode = resetCodes.includes(code);
+      const isTestingCode = testingCodes.includes(code);
       const isPublicCode = fullAlbumCodes.includes(code);
       const isVipCode = code === vipSignupCode;
       const isUniqueCode = Object.prototype.hasOwnProperty.call(uniqueCodes, code);
       const isGeneratedCode = isGeneratedPasscode(code);
+
+      if (isTestingCode) {
+        enterTestingMode(code);
+        return;
+      }
 
       if (isResetCode) {
         reportPasscodeUseToFormspree("reset_passcode", code, {
@@ -2321,6 +2614,96 @@
       loadTrack(tracks[firstIndex], firstIndex, true);
     });
 
+    testSingleModeButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("single", "Regular locked view loaded for testing.");
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    });
+
+    testBoyGeniusButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("boy_genius", "Boy Genius is temporarily unlocked in testing mode.");
+      loadTrack(tracks[0], 0, false);
+    });
+
+    testTwoPackButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("two_pack", "The two-pack test is live: Boy Genius + The Proposition.");
+      loadTrack(tracks[0], 0, false);
+    });
+
+    testFivePackButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("five_pack", "The five-pack test is live: tracks 01-05 are clickable.");
+      loadTrack(tracks[0], 0, false);
+    });
+
+    testAlbumReleaseButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("album_release", "Fake album release test is live. This is not superstar mode.");
+      loadTrack(tracks[leadIndex], leadIndex, false);
+    });
+
+    testRealFullAlbumButton?.addEventListener("click", () => {
+      testingModeUnlocked = true;
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      document.body.classList.add("testing-mode");
+      enterSuperstarMode("Testing button triggered the real full album system.", "TESTING_BUTTON");
+      updateTestingStatus("Real full album mode is on through the testing console.");
+    });
+
+    testLockFullAlbumButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      passMessage.textContent = "Full album mode locked. Testing mode stayed on.";
+      passMessage.classList.add("show");
+      renderTracklist();
+      updatePlayerStats();
+      updateTestingStatus("Full album mode locked.");
+    });
+
+    testLockedMessageButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      setTestingUnlockState("single", "Locked-track message test loaded.");
+      const firstLockedIndex = tracks.findIndex(track => !isTrackUnlocked(track));
+      const targetIndex = firstLockedIndex === -1 ? 0 : firstLockedIndex;
+      loadTrack(tracks[targetIndex], targetIndex, false);
+    });
+
+    testIssueSignupCodeButton?.addEventListener("click", () => {
+      const assignedCode = ensureSignupAssignedCode();
+      passInput.value = assignedCode;
+      signupMessage.textContent = `Testing issued signup code: ${assignedCode}.`;
+      signupMessage.classList.add("show");
+      logEvent("sj_testing_signup_code_issued", { code_given: assignedCode });
+      updateTestingStatus("A test signup code was placed in the passcode box.");
+    });
+
+    testFakeAnalyticsButton?.addEventListener("click", () => {
+      logEvent("sj_testing_button_event", { testing_state: testingUnlockState, testing_code: activeTestingCode || "none", note: "manual test button clicked" });
+      updateTestingStatus("Fake analytics event saved locally and sent to GA if available.");
+    });
+
+    testClearCacheButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      localStorage.removeItem(analyticsLocalStorageKey);
+      localStorage.removeItem("saintJulesTestingMode");
+      localStorage.removeItem("saintJulesTestingUnlockState");
+      localStorage.removeItem("saintJulesTestingCode");
+      testingModeUnlocked = true;
+      testingUnlockState = "single";
+      activeTestingCode = "none";
+      localStorage.setItem("saintJulesTestingMode", "yes");
+      document.body.classList.add("testing-mode");
+      renderTracklist();
+      loadTrack(tracks[leadIndex], leadIndex, false);
+      updateTestingStatus("Local analytics cache and unlock states were cleared. Testing mode stayed open.");
+    });
+
+    testExitModeButton?.addEventListener("click", () => {
+      clearFullAlbumOnly();
+      exitTestingMode();
+    });
+
     document.querySelectorAll("[data-stream-platform]").forEach((link) => {
       link.addEventListener("click", () => {
         logEvent("sj_stream_link_click", {
@@ -2359,6 +2742,12 @@
       passInput.value = assignedCode;
       setTimeout(() => passInput.focus(), 250);
     });
+
+    if (testingModeUnlocked) {
+      document.body.classList.add("testing-mode");
+      activeTestingCode = normalizeAnalyticsCode(activeTestingCode || "none");
+      updateTestingStatus("Testing mode restored from this browser.");
+    }
 
     if (new Date() >= albumRelease) {
       albumOverrideUnlocked = true;
