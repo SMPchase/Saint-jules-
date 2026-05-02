@@ -1355,16 +1355,23 @@
     const boyGeniusRelease = new Date("2026-05-16T00:00:00");
     const albumRelease = new Date("2026-06-18T00:00:00");
 
-    const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR"];
+    const fullAlbumCodes = ["FRANK1738", "TRAPQUEEN1738", "FETTYTRUCK", "SUPERSTAR", "PASSCODE", "TEST", "TESTING", "TESTCODE", "ALBUMTEST", "CRASHDUMMY", "SAINTJULES"];
     const ownerDefaultCodeLocations = {
       "FRANK1738": "owner default/private code · Frank 1738",
       "TRAPQUEEN1738": "owner default/private code · Trap Queen 1738",
       "FETTYTRUCK": "owner default/private code · Fetty Truck",
-      "SUPERSTAR": "owner default/private code · Superstar"
+      "SUPERSTAR": "owner default/private code · Superstar",
+      "PASSCODE": "testing code · Passcode",
+      "TEST": "testing code · Test",
+      "TESTING": "testing code · Testing",
+      "TESTCODE": "testing code · Test Code",
+      "ALBUMTEST": "testing code · Album Test",
+      "CRASHDUMMY": "testing code · Crash Dummy",
+      "SAINTJULES": "testing code · Saint Jules"
     };
     const vipSignupCode = "PASSENGERPRINCESS";
     const resetCodes = ["RESETSTAR", "LOCKTHECAR", "TESTRESET", "NOSTAR"];
-    const unlockTimeoutHours = 2;
+    const unlockTimeoutHours = 24;
     const analyticsEndpoint = "";
     const passcodeUsesEndpoint = "https://formspree.io/f/xaqarqrp";
     const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
@@ -1571,12 +1578,10 @@
     const signupMessage = document.getElementById("signupMessage");
 
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
-    localStorage.removeItem("saintJulesFullAlbum");
-    localStorage.removeItem("saintJulesUnlockCode");
-    localStorage.removeItem("saintJulesUnlockExpiresAt");
-    let albumOverrideUnlocked = false;
-    let activeUnlockCode = "none";
-    let activeUnlockExpiresAt = 0;
+    // Keep successful passcodes alive across refreshes. Reset/lock codes still clear these on purpose.
+    let albumOverrideUnlocked = localStorage.getItem("saintJulesFullAlbum") === "yes";
+    let activeUnlockCode = localStorage.getItem("saintJulesUnlockCode") || "none";
+    let activeUnlockExpiresAt = Number(localStorage.getItem("saintJulesUnlockExpiresAt") || 0);
     let currentTrackIndex = leadIndex;
     let sessionStartedAt = Date.now();
     let lastPlayStartedAt = null;
