@@ -1078,6 +1078,172 @@
       line-height: 1.35;
     }
 
+
+
+    .testing-mode-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: 2px 0 12px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.22);
+      color: var(--white);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: .82rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .test-toggle-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      margin: 12px 0;
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+    }
+
+    .test-toggle-row strong {
+      display: block;
+      font-size: .9rem;
+      letter-spacing: .02em;
+    }
+
+    .test-toggle-row span {
+      display: block;
+      margin-top: 2px;
+      color: rgba(255,250,252,.72);
+      font-size: .78rem;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .test-toggle-button {
+      min-width: 92px;
+      min-height: 40px;
+      border: 1px solid rgba(255,255,255,.26);
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: var(--white);
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      padding: 8px 12px;
+    }
+
+    .test-toggle-button.on {
+      background: #ffffff;
+      color: #002320;
+      border-color: #ffffff;
+    }
+
+    .stats-float-button {
+      display: none;
+      position: fixed;
+      right: 18px;
+      bottom: 82px;
+      z-index: 60;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: #002320;
+      color: var(--white);
+      border: 1px solid rgba(255,255,255,.3);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 950;
+      box-shadow: 0 18px 44px rgba(0,35,32,.28);
+    }
+
+    body.stats-button-visible .stats-float-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .stats-page {
+      display: none;
+    }
+
+    body.stats-button-visible .stats-page,
+    body.testing-mode .stats-page {
+      display: block;
+    }
+
+    .stats-page-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .stats-card {
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.66);
+      box-shadow: 0 12px 28px rgba(137,0,91,.1);
+    }
+
+    .stats-card span {
+      display: block;
+      font-size: .72rem;
+      font-weight: 950;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      opacity: .62;
+    }
+
+    .stats-card strong {
+      display: block;
+      margin-top: 6px;
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      line-height: .92;
+      letter-spacing: -.035em;
+    }
+
+    .stats-table-wrap {
+      overflow-x: auto;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.62);
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 680px;
+      font-size: .9rem;
+      font-weight: 800;
+    }
+
+    .stats-table th,
+    .stats-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(23,0,15,.1);
+      text-align: left;
+    }
+
+    .stats-table th {
+      font-size: .74rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .7;
+    }
+
+    .stats-note {
+      margin: 0;
+      max-width: 780px;
+      font-weight: 800;
+      line-height: 1.45;
+      opacity: .82;
+    }
+
     body.testing-mode:not(.super-mode) {
       background:
         radial-gradient(circle at 12% 10%, rgba(255,255,255,.85) 0 7%, transparent 8%),
@@ -1134,6 +1300,180 @@
       letter-spacing: .055em;
       font-size: .78rem;
     }
+
+
+
+    .pick-helper,
+    .rider-name-card {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 20, 147, .22);
+      background: rgba(255, 255, 255, .58);
+      box-shadow: 0 12px 28px rgba(137,0,91,.1);
+    }
+
+    .pick-helper-head,
+    .rider-name-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .pick-helper-head strong,
+    .rider-name-head strong {
+      font-family: "Bagel Fat One", system-ui, sans-serif;
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      line-height: .9;
+      letter-spacing: -.04em;
+    }
+
+    .pick-helper-copy,
+    .rider-name-copy {
+      margin: 0 0 12px;
+      font-weight: 800;
+      line-height: 1.4;
+      opacity: .82;
+    }
+
+    .random-five-actions,
+    .name-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      align-items: center;
+    }
+
+    .mini-button,
+    .name-button {
+      min-height: 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,.78);
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 950;
+      cursor: pointer;
+      padding: 10px 13px;
+      transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
+    }
+
+    .mini-button:hover,
+    .name-button:hover {
+      transform: translateY(-2px) rotate(-1deg);
+      background: var(--white);
+      box-shadow: 0 12px 26px rgba(137,0,91,.16);
+    }
+
+    .mini-button.primary,
+    .name-button.primary {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .mini-button:disabled,
+    .name-button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .random-five-result {
+      display: grid;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .random-five-empty {
+      padding: 12px 13px;
+      border-radius: 18px;
+      border: 1px dashed rgba(23,0,15,.18);
+      background: rgba(255,255,255,.58);
+      font-weight: 900;
+      line-height: 1.35;
+    }
+
+    .random-five-track {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      text-align: left;
+      border: 1px solid rgba(23,0,15,.12);
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 950;
+      padding: 11px 12px;
+      cursor: pointer;
+    }
+
+    .random-five-track:hover {
+      background: var(--white);
+      transform: translateX(4px);
+    }
+
+    .random-five-track span:first-child {
+      opacity: .58;
+    }
+
+    .random-five-track span:last-child {
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      opacity: .68;
+    }
+
+    .rider-name-display {
+      display: inline-flex;
+      margin: 4px 0 8px;
+      padding: 9px 13px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 950;
+      letter-spacing: .02em;
+    }
+
+    .name-select,
+    .name-input {
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.86);
+      color: var(--ink);
+      padding: 10px 13px;
+      font-family: inherit;
+      font-weight: 900;
+      outline: none;
+    }
+
+    .name-select {
+      min-width: min(100%, 250px);
+    }
+
+    .name-input {
+      flex: 1 1 220px;
+      min-width: min(100%, 220px);
+    }
+
+    .name-select:focus,
+    .name-input:focus {
+      border-color: rgba(255,20,147,.72);
+      box-shadow: 0 0 0 5px rgba(255,20,147,.13);
+    }
+
+    body.testing-mode .pick-helper,
+    body.testing-mode .rider-name-card {
+      border-color: rgba(0, 168, 153, .35);
+      box-shadow: 0 18px 42px rgba(0, 168, 153, .12);
+    }
+
 
     .signup-input {
       width: 100%;
@@ -1247,7 +1587,7 @@
       .hero, .player-grid, .teaser, .album-splash, .super-pass { grid-template-columns: 1fr; }
       .cover-card, .album-art { transform: none; }
       .gallery { grid-template-columns: 1fr; }
-      .links { grid-template-columns: repeat(2, 1fr); }
+      .links, .stats-page-grid { grid-template-columns: repeat(2, 1fr); }
       .section-head { align-items: start; flex-direction: column; }
     }
 
@@ -1257,7 +1597,7 @@
       .nav-links { justify-content: flex-start; }
       .pill { padding: 8px 11px; }
       .hero { padding-top: 36px; }
-      .gallery, .links, .album-mini-list { grid-template-columns: 1fr; }
+      .gallery, .links, .album-mini-list, .stats-page-grid { grid-template-columns: 1fr; }
       .cover-card::before { right: 8px; top: 16px; }
       .track-row { grid-template-columns: auto 1fr; }
       .track-row .status { display: none; }
@@ -1267,6 +1607,7 @@
 </head>
 
 <body>
+  <a class="stats-float-button" id="statsPageButton" href="#stats-page" aria-label="Open local stats page">📊 Stats Page</a>
   <main class="page">
     <nav class="nav" aria-label="Main navigation">
       <a href="#top" class="brand"><span class="dot"></span><span>Saint Jules</span></a>
@@ -1354,6 +1695,22 @@
           </div>
 
           <div class="tracklist" id="tracklist" aria-label="Album tracklist"></div>
+
+          <div class="pick-helper" id="songPickerPanel" aria-label="Random song picker">
+            <div class="pick-helper-head">
+              <strong>can’t pick?</strong>
+              <button class="mini-button primary" id="randomFiveButton" type="button">roll 5 songs</button>
+            </div>
+            <p class="pick-helper-copy">When the 5-pack is open, this throws five unlocked songs at them so they can stop acting like choosing music is a tax form.</p>
+            <div class="random-five-actions">
+              <button class="mini-button" id="playRandomPickButton" type="button" disabled>play first pick</button>
+              <button class="mini-button" id="clearRandomFiveButton" type="button">clear picks</button>
+            </div>
+            <div class="random-five-result" id="randomFiveResult">
+              <div class="random-five-empty">Unlock at least 5 songs first. The randomizer refuses to hallucinate a rollout.</div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -1431,13 +1788,21 @@
           <div class="pass-message" id="passMessage"></div>
 
           <div class="testing-panel" id="testingPanel" aria-label="Testing controls">
+            <div class="testing-mode-title">🧪 testing mode</div>
             <div class="testing-panel-head">
               <span class="eyebrow">owner testing mode</span>
               <strong>Testing console</strong>
             </div>
             <p>
-              Testing mode is separate from full album mode. Use these buttons to preview locked states, fake release states, and local events without turning every test code into a real superstar pass.
+              Testing mode is separate from full album mode. Use these buttons to preview locked states, fake release states, stats buttons, and local events without turning every test code into a real superstar pass.
             </p>
+            <div class="test-toggle-row">
+              <div>
+                <strong>Automatic permanent stats page button</strong>
+                <span>When this is on, the Stats Page button appears forever after full album mode starts or the listener reaches 10 full-listen equivalents.</span>
+              </div>
+              <button class="test-toggle-button" id="testToggleAutoStats" type="button">off</button>
+            </div>
             <div class="testing-buttons">
               <button class="test-button" id="testSingleMode" type="button">regular locked view</button>
               <button class="test-button" id="testBoyGenius" type="button">unlock Boy Genius only</button>
@@ -1449,6 +1814,9 @@
               <button class="test-button" id="testLockedMessage" type="button">show locked message</button>
               <button class="test-button" id="testIssueSignupCode" type="button">issue test signup code</button>
               <button class="test-button" id="testFakeAnalytics" type="button">save fake analytics event</button>
+              <button class="test-button" id="testForceStatsButton" type="button">force stats button on</button>
+              <button class="test-button" id="testHideStatsButton" type="button">hide stats button</button>
+              <button class="test-button" id="testEnoughListens" type="button">fake enough listens</button>
               <button class="test-button danger" id="testClearCache" type="button">clear local test/cache</button>
               <button class="test-button" id="testExitMode" type="button">exit testing mode</button>
             </div>
@@ -1477,7 +1845,58 @@
           </form>
           <iframe name="signupFrame" title="Signup form response" style="display:none;"></iframe>
           <div class="signup-message" id="signupMessage"></div>
+
+          <div class="rider-name-card" id="riderNameCard" aria-label="Passenger name changer">
+            <div class="rider-name-head">
+              <span class="eyebrow">passenger name</span>
+              <strong>pick your tag</strong>
+            </div>
+            <span class="rider-name-display" id="visitorNameDisplay">Loading name…</span>
+            <p class="rider-name-copy" id="visitorNameMessage">Use a name from the list or keep the SJ number. Custom names are allowed, but the website will judge you a little.</p>
+            <div class="name-controls">
+              <select class="name-select" id="presetNameSelect" aria-label="Pick a passenger name from the list"></select>
+              <button class="name-button primary" id="usePresetNameButton" type="button">use list name</button>
+              <button class="name-button" id="randomPresetNameButton" type="button">random name</button>
+            </div>
+            <div class="name-controls" style="margin-top:9px;">
+              <input class="name-input" id="customNameInput" type="text" maxlength="32" placeholder="type your own name if you must" aria-label="Custom passenger name" />
+              <button class="name-button" id="saveCustomNameButton" type="button">use my own</button>
+              <button class="name-button" id="resetVisitorNameButton" type="button">back to SJ number</button>
+            </div>
+          </div>
+
         </div>
+      </div>
+    </section>
+
+
+
+    <section class="section stats-page" id="stats-page">
+      <div class="section-head">
+        <h2>local stats page</h2>
+        <p class="small-note">Private browser-side numbers for testing the listener ladder, passcodes, and the permanent stats button. This page reads only this browser’s local Saint Jules data.</p>
+      </div>
+      <p class="stats-note" id="statsPageStatus">Stats page is ready.</p>
+      <div class="stats-page-grid" aria-label="Local listener stats summary">
+        <div class="stats-card"><span>mode</span><strong id="statsModeValue">single</strong></div>
+        <div class="stats-card"><span>auto button</span><strong id="statsAutoValue">off</strong></div>
+        <div class="stats-card"><span>listen progress</span><strong id="statsListenValue">0/10</strong></div>
+        <div class="stats-card"><span>events saved</span><strong id="statsEventsValue">0</strong></div>
+      </div>
+      <div class="stats-table-wrap">
+        <table class="stats-table" aria-label="Local song stats">
+          <thead>
+            <tr>
+              <th>Track</th>
+              <th>Status</th>
+              <th>Plays</th>
+              <th>Completed</th>
+              <th>Seconds</th>
+              <th>Locked clicks</th>
+            </tr>
+          </thead>
+          <tbody id="statsSongRows"></tbody>
+        </table>
       </div>
     </section>
 
@@ -1543,8 +1962,59 @@
     const analyticsEndpoint = "";
     const passcodeUsesEndpoint = "https://formspree.io/f/xaqarqrp";
     const analyticsLocalStorageKey = "saintJulesPendingAnalytics";
+    const autoStatsButtonStorageKey = "saintJulesAutoStatsButton";
+    const statsButtonStorageKey = "saintJulesStatsPageButtonUnlocked";
+    const statsProgressStorageKey = "saintJulesStatsProgress";
+    const listenEnoughGoal = 10;
     const codePrefix = "SJ";
     const generatedCodeSalt = "CRASHDUMMYERA";
+
+    const visitorNameStorageKey = "saintJulesVisitorName";
+    const visitorNameModeStorageKey = "saintJulesVisitorNameMode";
+    const visitorPresetNames = [
+      "Redstone Romeo",
+      "Creeper Passenger",
+      "Diamond Cart Driver",
+      "Netherite Nepo Baby",
+      "Ender Baddie",
+      "Blockhead Deluxe",
+      "Spiral Crash Pilot",
+      "Drill Bit Prince",
+      "Galaxy-Brain Side Character",
+      "Team Rocket Science",
+      "Nine-Tail Pit Crew",
+      "Shadow Clone Chauffeur",
+      "Hidden Village Menace",
+      "Ramen Runaway",
+      "Metal Fusion Menace",
+      "Beyblade Breakfast Club",
+      "Pegasus Parking Ticket",
+      "L-Drago Liability",
+      "Straw Hat Seatbelt",
+      "Grand Line Backseat Driver",
+      "Going Merry Go-Round",
+      "Pirate Radio Passenger",
+      "Miata Menace",
+      "Civic Type Heartbreak",
+      "Altima Activities",
+      "Pink Slip Princess",
+      "Passenger Princess 1738",
+      "Crash Test Cutie",
+      "Dashboard Warning Light",
+      "Emotional Support Seatbelt",
+      "Aux Cord Villain",
+      "Parking Lot Philosopher",
+      "Saint Jules Witness",
+      "The Proposition Accepted"
+    ];
+    const customNameRoasts = [
+      "Custom name? Bold choice. You saw the cool list and said, ‘nah, I brought a clipboard.’ Fine.",
+      "You really looked at all these names and chose homework. Respectfully, the website is concerned.",
+      "Fine, main character. The list was right there, but apparently we needed a director’s cut.",
+      "Using your own name is legal. Stylish? The jury is still listening to The Proposition.",
+      "A custom name? Somebody woke up and chose administrative privileges. Saved."
+    ];
+
 
     const uniqueCodes = {
       "JULES001": "street code 001",
@@ -1755,8 +2225,32 @@
     const testLockedMessageButton = document.getElementById("testLockedMessage");
     const testIssueSignupCodeButton = document.getElementById("testIssueSignupCode");
     const testFakeAnalyticsButton = document.getElementById("testFakeAnalytics");
+    const testToggleAutoStatsButton = document.getElementById("testToggleAutoStats");
+    const testForceStatsButton = document.getElementById("testForceStatsButton");
+    const testHideStatsButton = document.getElementById("testHideStatsButton");
+    const testEnoughListensButton = document.getElementById("testEnoughListens");
     const testClearCacheButton = document.getElementById("testClearCache");
     const testExitModeButton = document.getElementById("testExitMode");
+    const statsPageStatus = document.getElementById("statsPageStatus");
+    const statsModeValue = document.getElementById("statsModeValue");
+    const statsAutoValue = document.getElementById("statsAutoValue");
+    const statsListenValue = document.getElementById("statsListenValue");
+    const statsEventsValue = document.getElementById("statsEventsValue");
+    const statsSongRows = document.getElementById("statsSongRows");
+
+    const randomFiveButton = document.getElementById("randomFiveButton");
+    const playRandomPickButton = document.getElementById("playRandomPickButton");
+    const clearRandomFiveButton = document.getElementById("clearRandomFiveButton");
+    const randomFiveResult = document.getElementById("randomFiveResult");
+    const visitorNameDisplay = document.getElementById("visitorNameDisplay");
+    const visitorNameMessage = document.getElementById("visitorNameMessage");
+    const presetNameSelect = document.getElementById("presetNameSelect");
+    const usePresetNameButton = document.getElementById("usePresetNameButton");
+    const randomPresetNameButton = document.getElementById("randomPresetNameButton");
+    const customNameInput = document.getElementById("customNameInput");
+    const saveCustomNameButton = document.getElementById("saveCustomNameButton");
+    const resetVisitorNameButton = document.getElementById("resetVisitorNameButton");
+
 
     const leadIndex = tracks.findIndex(track => track.title === "The Proposition");
     // Keep successful passcodes alive across refreshes. Reset/lock codes still clear these on purpose.
@@ -1766,6 +2260,8 @@
     let testingModeUnlocked = localStorage.getItem("saintJulesTestingMode") === "yes";
     let testingUnlockState = localStorage.getItem("saintJulesTestingUnlockState") || "single";
     let activeTestingCode = localStorage.getItem("saintJulesTestingCode") || "none";
+    let autoStatsButtonEnabled = localStorage.getItem(autoStatsButtonStorageKey) === "yes";
+    let statsButtonUnlocked = localStorage.getItem(statsButtonStorageKey) === "yes";
     let currentTrackIndex = leadIndex;
     let sessionStartedAt = Date.now();
     let lastPlayStartedAt = null;
@@ -1850,6 +2346,11 @@
     activeUnlockCode = normalizeAnalyticsCode(activeUnlockCode || "none") || "none";
     localStorage.setItem("saintJulesTracker", visitorTracker);
 
+    let visitorDisplayName = localStorage.getItem(visitorNameStorageKey) || visitorTracker;
+    let visitorNameMode = localStorage.getItem(visitorNameModeStorageKey) || "sj_number";
+    let currentRandomFiveIndexes = [];
+
+
     function hasEnteredReportingCode() {
       const cleanCode = normalizeAnalyticsCode(activeUnlockCode);
       return Boolean(cleanCode && cleanCode !== "none");
@@ -1862,6 +2363,104 @@
     function getGoogleUserId() {
       const reportingCode = getCurrentReportingCode();
       return reportingCode !== "none" ? reportingCode : visitorTracker;
+    }
+
+
+    function cleanVisitorName(value) {
+      return String(value || "")
+        .replace(/[<>]/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .slice(0, 32);
+    }
+
+    function getVisitorDisplayName() {
+      return cleanVisitorName(visitorDisplayName) || visitorTracker;
+    }
+
+    function randomFromList(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function populatePresetNames() {
+      if (!presetNameSelect) return;
+      presetNameSelect.innerHTML = "";
+      visitorPresetNames.forEach((name) => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        presetNameSelect.appendChild(option);
+      });
+    }
+
+    function saveVisitorName(name, mode = "preset", message = "Passenger name saved.") {
+      const cleanName = cleanVisitorName(name);
+      if (!cleanName) return;
+      visitorDisplayName = cleanName;
+      visitorNameMode = mode;
+      if (mode === "sj_number") {
+        localStorage.removeItem(visitorNameStorageKey);
+        localStorage.setItem(visitorNameModeStorageKey, "sj_number");
+      } else {
+        localStorage.setItem(visitorNameStorageKey, visitorDisplayName);
+        localStorage.setItem(visitorNameModeStorageKey, visitorNameMode);
+      }
+      syncFormCodeFields(`visitor_name_${mode}`);
+      reportIdentityToGoogle(`visitor_name_${mode}`);
+      logEvent("sj_visitor_name_changed", {
+        new_listener_name: getVisitorDisplayName(),
+        name_mode: visitorNameMode
+      });
+      updateVisitorNameUI(message);
+    }
+
+    function updateVisitorNameUI(message = "") {
+      const displayName = getVisitorDisplayName();
+      if (visitorNameDisplay) visitorNameDisplay.textContent = displayName;
+      if (visitorNameMessage) {
+        visitorNameMessage.textContent = message || (visitorNameMode === "sj_number"
+          ? "You are still riding around as the SJ number. Mysterious, but also very DMV paperwork."
+          : visitorNameMode === "custom"
+            ? "Custom name saved. The website judged you, but it did save it."
+            : "List name saved. Good. You let the machine cook for once.");
+      }
+      if (customNameInput && visitorNameMode === "custom") customNameInput.value = displayName;
+    }
+
+    function chooseRandomPresetName() {
+      const name = randomFromList(visitorPresetNames);
+      if (presetNameSelect) presetNameSelect.value = name;
+      saveVisitorName(name, "preset", `Random name assigned: ${name}. Honestly, it could have been worse.`);
+    }
+
+    function saveSelectedPresetName() {
+      const name = presetNameSelect?.value || randomFromList(visitorPresetNames);
+      saveVisitorName(name, "preset", `${name} is locked in. Much better than being called a receipt number.`);
+    }
+
+    function saveCustomVisitorName() {
+      const cleanName = cleanVisitorName(customNameInput?.value || "");
+      if (!cleanName) {
+        updateVisitorNameUI("Type a name first. I cannot roast an empty text box.");
+        return;
+      }
+      const roast = randomFromList(customNameRoasts);
+      const confirmed = window.confirm(`${roast}\n\nUse “${cleanName}” anyway?`);
+      if (!confirmed) {
+        updateVisitorNameUI("Good call. The list was sitting right there looking useful.");
+        return;
+      }
+      saveVisitorName(cleanName, "custom", roast);
+    }
+
+    function resetVisitorNameToTracker() {
+      visitorDisplayName = visitorTracker;
+      visitorNameMode = "sj_number";
+      localStorage.removeItem(visitorNameStorageKey);
+      localStorage.setItem(visitorNameModeStorageKey, "sj_number");
+      syncFormCodeFields("visitor_name_reset");
+      logEvent("sj_visitor_name_reset", { new_listener_name: visitorTracker, name_mode: "sj_number" });
+      updateVisitorNameUI("Back to the SJ number. Anonymous behavior. Respectfully suspicious.");
     }
 
     function ensureSignupAssignedCode() {
@@ -1891,6 +2490,9 @@
         tracker_id: visitorTracker,
         listener_id: visitorTracker,
         sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
         pass_code: reportingCode,
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
@@ -1919,6 +2521,9 @@
         listener_id: visitorTracker,
         tracker_id: visitorTracker,
         sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
         pass_code: reportingCode,
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
@@ -1932,6 +2537,9 @@
         sj_tracker_id: visitorTracker,
         sj_signup_code: reportingCode,
         listener_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
         pass_code: reportingCode,
         testing_mode: isTestingModeActive() ? "yes" : "no",
         testing_state: testingUnlockState || "single"
@@ -1948,6 +2556,9 @@
         listener_id: visitorTracker,
         tracker_id: visitorTracker,
         sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
         pass_code: reportingCode,
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
@@ -1991,6 +2602,150 @@
       return "single";
     }
 
+
+    function readLocalJson(key, fallback) {
+      try {
+        const raw = localStorage.getItem(key);
+        return raw ? JSON.parse(raw) : fallback;
+      } catch (error) {
+        return fallback;
+      }
+    }
+
+    function writeLocalJson(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+      } catch (error) {}
+    }
+
+    function getStatsProgress() {
+      const fallback = { equivalentListens: 0, seconds: 0, completed: 0, trackSeconds: {}, trackPlays: {}, trackCompleted: {}, trackLockedClicks: {}, unlockedReason: "none" };
+      const data = readLocalJson(statsProgressStorageKey, fallback) || fallback;
+      data.equivalentListens = Number(data.equivalentListens || 0);
+      data.seconds = Number(data.seconds || 0);
+      data.completed = Number(data.completed || 0);
+      data.trackSeconds = data.trackSeconds || {};
+      data.trackPlays = data.trackPlays || {};
+      data.trackCompleted = data.trackCompleted || {};
+      data.trackLockedClicks = data.trackLockedClicks || {};
+      data.unlockedReason = data.unlockedReason || "none";
+      return data;
+    }
+
+    function saveStatsProgress(data) {
+      writeLocalJson(statsProgressStorageKey, data);
+    }
+
+    function getRecentEventCount() {
+      try {
+        return JSON.parse(localStorage.getItem(analyticsLocalStorageKey) || "[]").length;
+      } catch (error) {
+        return 0;
+      }
+    }
+
+    function syncStatsButtonState(reason = "sync") {
+      document.body.classList.toggle("stats-button-visible", statsButtonUnlocked);
+      if (testToggleAutoStatsButton) {
+        testToggleAutoStatsButton.textContent = autoStatsButtonEnabled ? "on" : "off";
+        testToggleAutoStatsButton.classList.toggle("on", autoStatsButtonEnabled);
+      }
+      updateStatsPage(reason);
+    }
+
+    function setStatsButtonVisible(visible, reason = "manual") {
+      statsButtonUnlocked = Boolean(visible);
+      if (statsButtonUnlocked) localStorage.setItem(statsButtonStorageKey, "yes");
+      else localStorage.removeItem(statsButtonStorageKey);
+      const data = getStatsProgress();
+      if (statsButtonUnlocked) data.unlockedReason = reason;
+      else data.unlockedReason = "hidden";
+      saveStatsProgress(data);
+      syncStatsButtonState(reason);
+      logEvent(statsButtonUnlocked ? "sj_stats_button_unlocked" : "sj_stats_button_hidden", { reason, auto_stats_button: autoStatsButtonEnabled ? "on" : "off" });
+    }
+
+    function maybeTriggerStatsButton(reason = "auto_trigger") {
+      if (!autoStatsButtonEnabled || statsButtonUnlocked) {
+        syncStatsButtonState(reason);
+        return false;
+      }
+      setStatsButtonVisible(true, reason);
+      return true;
+    }
+
+    function toggleAutoStatsButton() {
+      autoStatsButtonEnabled = !autoStatsButtonEnabled;
+      if (autoStatsButtonEnabled) localStorage.setItem(autoStatsButtonStorageKey, "yes");
+      else localStorage.removeItem(autoStatsButtonStorageKey);
+      logEvent("sj_testing_auto_stats_toggle", { auto_stats_button: autoStatsButtonEnabled ? "on" : "off" });
+      if (autoStatsButtonEnabled && document.body.classList.contains("super-mode")) {
+        maybeTriggerStatsButton("full_album_mode_already_on");
+      } else {
+        syncStatsButtonState("auto_stats_toggle");
+      }
+      updateTestingStatus(autoStatsButtonEnabled ? "Automatic stats button is on." : "Automatic stats button is off.");
+    }
+
+    function addStatsListeningTime(track, seconds) {
+      if (!track || !seconds) return;
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      const safeDuration = Number(player.duration || 180) || 180;
+      data.seconds += seconds;
+      data.equivalentListens += seconds / Math.max(30, safeDuration);
+      data.trackSeconds[trackKey] = (Number(data.trackSeconds[trackKey] || 0) + seconds);
+      saveStatsProgress(data);
+      if (data.equivalentListens >= listenEnoughGoal) {
+        maybeTriggerStatsButton("listener_reached_10_full_listen_equivalents");
+      } else {
+        updateStatsPage("listening_progress");
+      }
+    }
+
+    function markStatsPlay(track) {
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      data.trackPlays[trackKey] = (Number(data.trackPlays[trackKey] || 0) + 1);
+      saveStatsProgress(data);
+      updateStatsPage("track_play");
+    }
+
+    function markStatsComplete(track) {
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      data.completed += 1;
+      data.trackCompleted[trackKey] = (Number(data.trackCompleted[trackKey] || 0) + 1);
+      saveStatsProgress(data);
+      updateStatsPage("track_complete");
+    }
+
+    function markStatsLockedClick(track) {
+      const data = getStatsProgress();
+      const trackKey = `${track.number} ${track.title}`;
+      data.trackLockedClicks[trackKey] = (Number(data.trackLockedClicks[trackKey] || 0) + 1);
+      saveStatsProgress(data);
+      updateStatsPage("locked_click");
+    }
+
+    function updateStatsPage(reason = "refresh") {
+      const data = getStatsProgress();
+      if (statsModeValue) statsModeValue.textContent = getPlayerModeName().replace(/_/g, " ");
+      if (statsAutoValue) statsAutoValue.textContent = autoStatsButtonEnabled ? "on" : "off";
+      if (statsListenValue) statsListenValue.textContent = `${Math.min(listenEnoughGoal, data.equivalentListens).toFixed(1)}/${listenEnoughGoal}`;
+      if (statsEventsValue) statsEventsValue.textContent = String(getRecentEventCount());
+      if (statsPageStatus) {
+        const buttonState = statsButtonUnlocked ? "visible" : "hidden";
+        statsPageStatus.textContent = `Stats button is ${buttonState}. Trigger: ${data.unlockedReason || "none"}. Name: ${getVisitorDisplayName()}. Code: ${getCurrentReportingCode()}. Tracker: ${visitorTracker}. Last update: ${reason}.`;
+      }
+      if (statsSongRows) {
+        statsSongRows.innerHTML = tracks.map((track) => {
+          const key = `${track.number} ${track.title}`;
+          return `<tr><td>${key}</td><td>${getTrackStatus(track)}</td><td>${Number(data.trackPlays[key] || 0)}</td><td>${Number(data.trackCompleted[key] || 0)}</td><td>${Math.round(Number(data.trackSeconds[key] || 0))}</td><td>${Number(data.trackLockedClicks[key] || 0)}</td></tr>`;
+        }).join("");
+      }
+    }
+
     function isTestingTrackUnlocked(track) {
       if (!isTestingModeActive()) return false;
       const index = tracks.indexOf(track);
@@ -2003,7 +2758,7 @@
 
     function updateTestingStatus(message = "") {
       if (!testingStatus) return;
-      const modeLine = `Testing state: ${testingUnlockState.replace(/_/g, " ")}. Full album mode: ${document.body.classList.contains("super-mode") ? "on" : "off"}.`;
+      const modeLine = `Testing state: ${testingUnlockState.replace(/_/g, " ")}. Full album mode: ${document.body.classList.contains("super-mode") ? "on" : "off"}. Auto stats button: ${autoStatsButtonEnabled ? "on" : "off"}. Stats button: ${statsButtonUnlocked ? "visible" : "hidden"}.`;
       testingStatus.textContent = message ? `${message} ${modeLine}` : modeLine;
     }
 
@@ -2238,6 +2993,9 @@
         listener_id: visitorTracker,
         tracker_id: visitorTracker,
         sj_tracker_id: visitorTracker,
+        listener_name: getVisitorDisplayName(),
+        passenger_name: getVisitorDisplayName(),
+        listener_name_mode: visitorNameMode || "sj_number",
         pass_code: reportingCode,
         signup_code: reportingCode,
         sj_signup_code: reportingCode,
@@ -2324,6 +3082,7 @@
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       const seconds = Math.max(0, Math.round((Date.now() - lastPlayStartedAt) / 1000));
       getTrackSummary(track).seconds += seconds;
+      addStatsListeningTime(track, seconds);
       lastPlayStartedAt = null;
     }
 
@@ -2400,6 +3159,88 @@
       return tracks.map((track, index) => ({ track, index })).filter(item => isTrackUnlocked(item.track)).map(item => item.index);
     }
 
+
+    function shuffleIndexes(indexes) {
+      const copy = [...indexes];
+      for (let i = copy.length - 1; i > 0; i -= 1) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function getRandomFivePool() {
+      return getUnlockedIndexes();
+    }
+
+    function renderRandomFiveMessage(message) {
+      if (!randomFiveResult) return;
+      randomFiveResult.innerHTML = "";
+      const box = document.createElement("div");
+      box.className = "random-five-empty";
+      box.textContent = message;
+      randomFiveResult.appendChild(box);
+    }
+
+    function refreshRandomFiveButtons(updateMessage = true) {
+      const pool = getRandomFivePool();
+      const canRoll = pool.length >= 5;
+      const poolSet = new Set(pool);
+      if (currentRandomFiveIndexes.some((index) => !poolSet.has(index))) {
+        currentRandomFiveIndexes = [];
+      }
+      if (randomFiveButton) randomFiveButton.disabled = !canRoll;
+      if (playRandomPickButton) playRandomPickButton.disabled = currentRandomFiveIndexes.length === 0;
+      if (updateMessage && currentRandomFiveIndexes.length === 0) {
+        renderRandomFiveMessage(canRoll
+          ? "5-pack is open. Roll five songs when the aux cord starts feeling like a responsibility."
+          : "Unlock at least 5 songs first. The randomizer refuses to hallucinate a rollout.");
+      }
+    }
+
+    function rollRandomFiveSongs() {
+      const pool = getRandomFivePool();
+      if (pool.length < 5) {
+        currentRandomFiveIndexes = [];
+        refreshRandomFiveButtons();
+        logEvent("sj_random_five_blocked", { unlocked_count: pool.length, needed_count: 5 });
+        return;
+      }
+
+      currentRandomFiveIndexes = shuffleIndexes(pool).slice(0, 5);
+      if (!randomFiveResult) return;
+      randomFiveResult.innerHTML = "";
+      currentRandomFiveIndexes.forEach((trackIndex, pickIndex) => {
+        const track = tracks[trackIndex];
+        const button = document.createElement("button");
+        button.className = "random-five-track";
+        button.type = "button";
+        button.innerHTML = `<span>${String(pickIndex + 1).padStart(2, "0")}</span><strong>${track.number} ${track.title}</strong><span>play</span>`;
+        button.addEventListener("click", () => loadTrack(track, trackIndex, true));
+        randomFiveResult.appendChild(button);
+      });
+      refreshRandomFiveButtons();
+      logEvent("sj_random_five_rolled", {
+        random_five_tracks: currentRandomFiveIndexes.map((index) => `${tracks[index].number} ${tracks[index].title}`).join(" | "),
+        unlocked_count: pool.length
+      });
+    }
+
+    function playFirstRandomPick() {
+      const firstIndex = currentRandomFiveIndexes[0];
+      if (firstIndex === undefined) {
+        rollRandomFiveSongs();
+        return;
+      }
+      loadTrack(tracks[firstIndex], firstIndex, true);
+    }
+
+    function clearRandomFiveSongs() {
+      currentRandomFiveIndexes = [];
+      renderRandomFiveMessage("Picks cleared. Emotional reset. Roll again when the aux cord gets scary.");
+      refreshRandomFiveButtons(false);
+    }
+
     function formatTime(seconds) {
       if (!Number.isFinite(seconds)) return "0:00";
       const mins = Math.floor(seconds / 60);
@@ -2456,6 +3297,7 @@
         tracklist.appendChild(button);
       });
       setActive(currentTrackIndex);
+      refreshRandomFiveButtons();
     }
 
     function loadTrack(track, index, autoplay = true) {
@@ -2468,6 +3310,7 @@
 
       if (!isTrackUnlocked(track)) {
         summary.lockedClicks += 1;
+        markStatsLockedClick(track);
         const lockedKey = `${track.number} ${track.title}`;
         sessionLockedClickCounts[lockedKey] = (sessionLockedClickCounts[lockedKey] || 0) + 1;
         logEvent("sj_locked_track_click", simpleTrackProps(track, {
@@ -2522,6 +3365,7 @@
       localStorage.setItem("saintJulesUnlockCode", cleanCode);
       localStorage.setItem("saintJulesUnlockExpiresAt", activeUnlockExpiresAt.toString());
       document.body.classList.add("super-mode");
+      maybeTriggerStatsButton("full_album_mode_entered");
       const timeoutLine = new Date() >= albumRelease ? "" : ` Star power lasts ${unlockTimeoutHours} hours.`;
       passMessage.textContent = `${message}${timeoutLine}`;
       passMessage.classList.add("show");
@@ -2614,6 +3458,18 @@
       loadTrack(tracks[firstIndex], firstIndex, true);
     });
 
+
+    randomFiveButton?.addEventListener("click", rollRandomFiveSongs);
+    playRandomPickButton?.addEventListener("click", playFirstRandomPick);
+    clearRandomFiveButton?.addEventListener("click", clearRandomFiveSongs);
+    usePresetNameButton?.addEventListener("click", saveSelectedPresetName);
+    randomPresetNameButton?.addEventListener("click", chooseRandomPresetName);
+    saveCustomNameButton?.addEventListener("click", saveCustomVisitorName);
+    customNameInput?.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") saveCustomVisitorName();
+    });
+    resetVisitorNameButton?.addEventListener("click", resetVisitorNameToTracker);
+
     testSingleModeButton?.addEventListener("click", () => {
       clearFullAlbumOnly();
       setTestingUnlockState("single", "Regular locked view loaded for testing.");
@@ -2683,20 +3539,46 @@
       updateTestingStatus("Fake analytics event saved locally and sent to GA if available.");
     });
 
+    testToggleAutoStatsButton?.addEventListener("click", toggleAutoStatsButton);
+
+    testForceStatsButton?.addEventListener("click", () => {
+      setStatsButtonVisible(true, "testing_force_button_on");
+      updateTestingStatus("Stats page button forced on.");
+    });
+
+    testHideStatsButton?.addEventListener("click", () => {
+      setStatsButtonVisible(false, "testing_hide_button");
+      updateTestingStatus("Stats page button hidden. Auto trigger setting stayed the same.");
+    });
+
+    testEnoughListensButton?.addEventListener("click", () => {
+      const data = getStatsProgress();
+      data.equivalentListens = listenEnoughGoal;
+      data.seconds = Math.max(Number(data.seconds || 0), 1800);
+      data.unlockedReason = data.unlockedReason || "testing_fake_enough_listens";
+      saveStatsProgress(data);
+      const triggered = maybeTriggerStatsButton("testing_fake_enough_listens");
+      updateTestingStatus(triggered ? "Enough-listens trigger fired and the stats button appeared." : "Enough-listens progress faked. Auto stats button is off or the stats button was already visible.");
+    });
+
     testClearCacheButton?.addEventListener("click", () => {
       clearFullAlbumOnly();
       localStorage.removeItem(analyticsLocalStorageKey);
+      localStorage.removeItem(statsButtonStorageKey);
+      localStorage.removeItem(statsProgressStorageKey);
       localStorage.removeItem("saintJulesTestingMode");
       localStorage.removeItem("saintJulesTestingUnlockState");
       localStorage.removeItem("saintJulesTestingCode");
       testingModeUnlocked = true;
       testingUnlockState = "single";
       activeTestingCode = "none";
+      statsButtonUnlocked = false;
       localStorage.setItem("saintJulesTestingMode", "yes");
       document.body.classList.add("testing-mode");
       renderTracklist();
       loadTrack(tracks[leadIndex], leadIndex, false);
-      updateTestingStatus("Local analytics cache and unlock states were cleared. Testing mode stayed open.");
+      syncStatsButtonState("clear_cache");
+      updateTestingStatus("Local analytics cache, stats button, and unlock states were cleared. Testing mode stayed open.");
     });
 
     testExitModeButton?.addEventListener("click", () => {
@@ -2743,6 +3625,12 @@
       setTimeout(() => passInput.focus(), 250);
     });
 
+
+
+    populatePresetNames();
+    updateVisitorNameUI();
+    refreshRandomFiveButtons();
+
     if (testingModeUnlocked) {
       document.body.classList.add("testing-mode");
       activeTestingCode = normalizeAnalyticsCode(activeTestingCode || "none");
@@ -2752,16 +3640,19 @@
     if (new Date() >= albumRelease) {
       albumOverrideUnlocked = true;
       document.body.classList.add("super-mode");
+      maybeTriggerStatsButton("album_release_full_album_live");
     } else if (albumOverrideUnlocked && !isUnlockStillValid()) {
       clearSuperstarMode("Superstar mode timed out. Enter a code to unlock it again.");
     } else if (albumOverrideUnlocked) {
       document.body.classList.add("super-mode");
+      maybeTriggerStatsButton("restored_full_album_mode");
       const minutesLeft = Math.max(1, Math.round((activeUnlockExpiresAt - Date.now()) / 60000));
       passMessage.textContent = `Superstar mode is still glowing for about ${minutesLeft} more minutes.`;
       passMessage.classList.add("show");
     }
 
     syncFormCodeFields("page_ready");
+    syncStatsButtonState("page_ready");
     renderTracklist();
 
     player.addEventListener("play", () => {
@@ -2775,6 +3666,7 @@
         hasLoggedPlayForCurrentLoad = true;
         sessionPlayCounts[trackKey] = (sessionPlayCounts[trackKey] || 0) + 1;
         summary.plays += 1;
+        markStatsPlay(track);
 
         const isRepeat = sessionPlayCounts[trackKey] > 1;
         if (isRepeat) sessionRepeatCounts[trackKey] = (sessionRepeatCounts[trackKey] || 0) + 1;
@@ -2829,6 +3721,7 @@
       addListeningTime();
       const track = tracks[currentTrackIndex] || tracks[leadIndex];
       getTrackSummary(track).completed += 1;
+      markStatsComplete(track);
       const completeKey = `${track.number} ${track.title}`;
       sessionCompleteCounts[completeKey] = (sessionCompleteCounts[completeKey] || 0) + 1;
       const completeProps = simpleTrackProps(track, {
