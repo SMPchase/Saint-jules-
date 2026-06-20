@@ -363,6 +363,13 @@
       box-shadow: inset 0 1px rgba(255,255,255,.85), 0 14px 36px rgba(255,93,157,.28);
     }
     .track-node:hover { scale: 1.12; }
+    html.is-orbiting .track-node,
+    html.is-orbiting .link-node,
+    html.is-orbiting .collection-node,
+    html.is-orbiting .ring,
+    html.is-orbiting .album-object {
+      transition: none !important;
+    }
 
     .link-node {
       min-width: 50px;
@@ -840,8 +847,16 @@
       mode: "order",
       spin: 0,
       dragging: false,
-      dragX: 0,
-      dragSpin: 0,
+      dragStartAngle: 0,
+      dragStartSpin: 0,
+      dragStartX: 0,
+      dragStartY: 0,
+      dragMoved: false,
+      lastAngle: 0,
+      lastTime: 0,
+      velocity: 0,
+      spinRaf: 0,
+      suppressNextClick: false,
       extraCollections: []
     };
 
@@ -883,10 +898,76 @@
       return mode === "order" ? track.orderSrc : track.selectSrc;
     }
 
-    function syncSpinToTrack() {
-      const segment = 360 / tracks.length;
-      state.spin = -state.current * segment;
-      els.root.style.setProperty("--spin", `${state.spin}deg`);
+    const segment = () => 360 / tracks.length;
+    const mod = (value, size) => ((value % size) + size) % size;
+
+    function nearestIndexFromSpin(spin = state.spin) {
+      return mod(Math.round(-spin / segment()), tracks.length);
+    }
+
+    function nearestSpinForIndex(index, fromSpin = state.spin) {
+      const base = -index * segment();
+      return base + Math.round((fromSpin - base) / 360) * 360;
+    }
+
+    function setSpin(spin, updateCurrent = true) {
+      state.spin = spin;
+      els.root.style.setProperty("--spin", `${spin}deg`);
+      if (updateCurrent) {
+        const next = nearestIndexFromSpin(spin);
+        if (next !== state.current) {
+          state.current = next;
+          updateActive({ keepSpin: true });
+        }
+      }
+    }
+
+    function snapSpinToTrack(index = state.current, autoplayIfPlaying = false) {
+      const target = nearestSpinForIndex(index);
+      animateSpinTo(target, () => {
+        selectTrack(index, autoplayIfPlaying, state.mode, { keepSpin: true });
+      });
+    }
+
+    function animateSpinTo(target, done) {
+      cancelAnimationFrame(state.spinRaf);
+      els.root.classList.add("is-orbiting");
+      const start = state.spin;
+      const delta = target - start;
+      const duration = Math.min(520, Math.max(180, Math.abs(delta) * 5));
+      const started = performance.now();
+      const easeOut = t => 1 - Math.pow(1 - t, 3);
+      const tick = now => {
+        const t = Math.min(1, (now - started) / duration);
+        setSpin(start + delta * easeOut(t), true);
+        if (t < 1) state.spinRaf = requestAnimationFrame(tick);
+        else {
+          setSpin(target, true);
+          els.root.classList.remove("is-orbiting");
+          done?.();
+        }
+      };
+      state.spinRaf = requestAnimationFrame(tick);
+    }
+
+    function angleFromCenter(event) {
+      const rect = els.universe.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      return Math.atan2(event.clientY - cy, event.clientX - cx) * 180 / Math.PI;
+    }
+
+    function angleDelta(now, before) {
+      let delta = now - before;
+      while (delta > 180) delta -= 360;
+      while (delta < -180) delta += 360;
+      return delta;
+    }
+
+    function finishFreeOrbit(autoplayIfPlaying = !els.audio.paused) {
+      const targetIndex = nearestIndexFromSpin(state.spin);
+      state.current = targetIndex;
+      snapSpinToTrack(targetIndex, autoplayIfPlaying);
     }
 
     function renderNodes() {
@@ -896,7 +977,15 @@
       }).join("");
 
       $$(".track-node", els.trackNodes).forEach(node => {
-        node.addEventListener("click", () => selectTrack(Number(node.dataset.index), true, "select"));
+        node.addEventListener("click", event => {
+          if (state.suppressNextClick) {
+            event.preventDefault();
+            event.stopPropagation();
+            state.suppressNextClick = false;
+            return;
+          }
+          selectTrack(Number(node.dataset.index), true, "select");
+        });
       });
     }
 
@@ -915,23 +1004,25 @@
       });
     }
 
-    function updateActive() {
+    function updateActive(options = {}) {
       const track = tracks[state.current];
       els.trackCount.textContent = `${track.num} / ${String(tracks.length).padStart(2, "0")}`;
       els.trackTitle.textContent = track.title;
       els.miniTitle.textContent = track.title;
       $$(".track-node").forEach((node, index) => node.setAttribute("aria-current", String(index === state.current)));
       $$(".row").forEach((row, index) => row.classList.toggle("active", index === state.current));
-      syncSpinToTrack();
+      if (!options.keepSpin) setSpin(nearestSpinForIndex(state.current, state.spin), false);
     }
 
-    function selectTrack(index, autoplay = false, mode = state.mode) {
-      state.current = (index + tracks.length) % tracks.length;
+    function selectTrack(index, autoplay = false, mode = state.mode, options = {}) {
+      state.current = mod(index, tracks.length);
       setMode(mode === "select" ? "select" : mode);
       const track = tracks[state.current];
-      els.audio.src = mode === "select" ? track.selectSrc : srcFor(track, mode);
-      updateActive();
-      if (autoplay) play();
+      const nextSrc = mode === "select" ? track.selectSrc : srcFor(track, mode);
+      if (els.audio.getAttribute("src") !== nextSrc) els.audio.src = nextSrc;
+      updateActive({ keepSpin: options.keepSpin });
+      if (!options.keepSpin) animateSpinTo(nearestSpinForIndex(state.current), () => autoplay && play());
+      else if (autoplay) play();
     }
 
     async function play() {
@@ -961,7 +1052,8 @@
 
     function rotateBy(direction) {
       const mode = state.mode === "order" ? "order" : "select";
-      selectTrack(state.current + direction, true, mode);
+      const next = mod(state.current + direction, tracks.length);
+      selectTrack(next, true, mode);
     }
 
     els.playPause.addEventListener("click", () => {
@@ -1017,33 +1109,91 @@
       if (!state.dragging) {
         els.root.style.setProperty("--tilt-y", `${x * 6}deg`);
         els.root.style.setProperty("--tilt-x", `${y * -5}deg`);
+        return;
       }
-      if (state.dragging) {
-        const dx = event.clientX - state.dragX;
-        els.root.style.setProperty("--spin", `${state.dragSpin + dx * .36}deg`);
-      }
+
+      const nowAngle = angleFromCenter(event);
+      const moved = Math.hypot(event.clientX - state.dragStartX, event.clientY - state.dragStartY);
+      const deltaFromStart = angleDelta(nowAngle, state.dragStartAngle);
+      const now = performance.now();
+      const dt = Math.max(16, now - state.lastTime);
+      state.velocity = angleDelta(nowAngle, state.lastAngle) / dt * 16.67;
+      state.lastAngle = nowAngle;
+      state.lastTime = now;
+      state.dragMoved = state.dragMoved || moved > 8;
+      setSpin(state.dragStartSpin + deltaFromStart, true);
     }, { passive: true });
 
+    els.universe.addEventListener("click", event => {
+      if (!state.suppressNextClick) return;
+      event.preventDefault();
+      event.stopPropagation();
+      state.suppressNextClick = false;
+    }, true);
+
     els.universe.addEventListener("pointerdown", event => {
+      if (event.target.closest("a, input, .mode-btn, .tracks-toggle, .play-core")) return;
+      cancelAnimationFrame(state.spinRaf);
       state.dragging = true;
-      state.dragX = event.clientX;
-      state.dragSpin = state.spin;
+      state.dragMoved = false;
+      state.dragStartX = event.clientX;
+      state.dragStartY = event.clientY;
+      state.dragStartAngle = angleFromCenter(event);
+      state.lastAngle = state.dragStartAngle;
+      state.lastTime = performance.now();
+      state.dragStartSpin = state.spin;
+      state.velocity = 0;
+      els.root.classList.add("is-orbiting");
       els.universe.setPointerCapture(event.pointerId);
       enableMotion();
     });
 
     els.universe.addEventListener("pointerup", event => {
       if (!state.dragging) return;
-      const dx = event.clientX - state.dragX;
       state.dragging = false;
-      if (Math.abs(dx) > 32) rotateBy(dx < 0 ? 1 : -1);
-      else syncSpinToTrack();
+      els.root.classList.remove("is-orbiting");
+      try { els.universe.releasePointerCapture(event.pointerId); } catch {}
+
+      if (!state.dragMoved) {
+        const node = event.target.closest(".track-node");
+        if (node) selectTrack(Number(node.dataset.index), true, "select");
+        else finishFreeOrbit(false);
+        return;
+      }
+
+      state.suppressNextClick = true;
+      const wasPlaying = !els.audio.paused;
+      let velocity = Math.max(-28, Math.min(28, state.velocity));
+      if (Math.abs(velocity) < .7) return finishFreeOrbit(wasPlaying);
+
+      els.root.classList.add("is-orbiting");
+      const coast = () => {
+        velocity *= .93;
+        setSpin(state.spin + velocity, true);
+        if (Math.abs(velocity) > .25) state.spinRaf = requestAnimationFrame(coast);
+        else {
+          els.root.classList.remove("is-orbiting");
+          finishFreeOrbit(wasPlaying);
+        }
+      };
+      state.spinRaf = requestAnimationFrame(coast);
+    });
+
+    els.universe.addEventListener("pointercancel", () => {
+      if (!state.dragging) return;
+      state.dragging = false;
+      els.root.classList.remove("is-orbiting");
+      finishFreeOrbit(!els.audio.paused);
     });
 
     els.universe.addEventListener("wheel", event => {
-      if (Math.abs(event.deltaY) < 6) return;
+      const delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+      if (Math.abs(delta) < 6) return;
       event.preventDefault();
-      rotateBy(event.deltaY > 0 ? 1 : -1);
+      cancelAnimationFrame(state.spinRaf);
+      setSpin(state.spin - delta * .18, true);
+      clearTimeout(els.universe.wheelTimer);
+      els.universe.wheelTimer = setTimeout(() => finishFreeOrbit(!els.audio.paused), 160);
     }, { passive: false });
 
     async function enableMotion() {
