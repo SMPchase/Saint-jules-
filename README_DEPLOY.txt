@@ -1,15 +1,22 @@
-SAINT JULES — iOS/mobile fixed build
+SAINT JULES — LUCKY 13 MOBILE BUILD
 
-Replace the repository root index.html with this file and keep these beside it:
-- album-cover.jpeg
+Place these files at the root of the GitHub Pages repository:
+- index.html
+- catalog.json
 - manifest.webmanifest
-- The Proposition comple/            (full order/interlude versions)
-- Lord Have Mercy, He's A Crash Dummy!/  (regular selectable songs)
+- album-cover.jpeg
 
-Mobile changes:
-- Uses a contained square orbit stage so nodes cannot spill across the iPhone screen.
-- Uses 100dvh without fixing the body, which avoids Safari toolbar/viewport breakage.
-- Orbit is truly draggable by angle, supports flick momentum, and snaps to the nearest track.
-- Mobile controls have a dedicated bottom area and the track list opens as a safe-area drawer.
+Keep these existing audio folders next to index.html:
+- Lord Have Mercy, He's A Crash Dummy!
+- The Proposition comple
 
-The Spotify, YouTube, and Instagram links remain placeholders (#) until their exact URLs are supplied.
+The site reads catalog.json first and falls back to the same catalog embedded in index.html.
+To add a future project such as Jasper, add another collection object to catalog.json with:
+- id
+- title
+- cover
+- normalRoot
+- orderRoot
+- tracks
+
+Spotify, YouTube, and Instagram are currently # placeholders. Replace those values in catalog.json with the real URLs.

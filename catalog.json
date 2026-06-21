@@ -1,0 +1,33 @@
+{
+  "artist": "Saint Jules",
+  "collections": [
+    {
+      "id": "crash-dummy",
+      "title": "Lord Have Mercy, He's A Crash Dummy!",
+      "cover": "album-cover.jpeg",
+      "normalRoot": "Lord Have Mercy, He's A Crash Dummy!",
+      "orderRoot": "The Proposition comple",
+      "tracks": [
+        {"num":"01","title":"Boy Genius","normal":"01 Boy Genius.wav","album":"01 Boy genius interlude full.mp3"},
+        {"num":"02","title":"Jump!!!","normal":"02 Jump!!!.wav","album":"02 Jump!!!.wav"},
+        {"num":"03","title":"Come to Life","normal":"03 Come to Life.wav","album":"03 Come to Life.wav"},
+        {"num":"04","title":"The Proposition","normal":"04 The Proposition.wav","album":"04 The Proposition.wav"},
+        {"num":"05","title":"Rude","normal":"05 Rude.wav","album":"05 Rude.wav"},
+        {"num":"06","title":"PISA","normal":"06 PISA.wav","album":"06 Pisa Interlude full.wav"},
+        {"num":"07","title":"Apple Pie","normal":"07 Apple Pie.wav","album":"07 Apple Pie.wav"},
+        {"num":"08","title":"I Know","normal":"08 I Know..wav","album":"08 I Know..wav"},
+        {"num":"09","title":"Felt It? My Darling","normal":"09 Felt It?:My Darling .wav","album":"09 Felt It?:My Darling .wav"},
+        {"num":"10","title":"Crash Dummy","normal":"10 Crash Dummy.wav","album":"10 Crash Dummy interlude full.wav"},
+        {"num":"11","title":"Mr. Please","normal":"11 Mr.Please.wav","album":"11 Mr.Please.wav"},
+        {"num":"12","title":"WHO KNEW","normal":"12 WHO KNEW.wav","album":"12 WHO KNEW.wav"},
+        {"num":"13","title":"Sky Is Falling","normal":"13 Sky Is Falling.wav","album":"13 Sky Is Falling.wav"}
+      ]
+    }
+  ],
+  "links": {
+    "apple": "https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201",
+    "spotify": "#",
+    "youtube": "#",
+    "instagram": "#"
+  }
+}

@@ -1,17 +1,9 @@
 {
   "name": "Saint Jules",
   "short_name": "Saint Jules",
-  "start_url": "./index.html",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#f3c7d5",
-  "theme_color": "#f3c7d5",
-  "description": "Saint Jules music player",
-  "icons": [
-    {
-      "src": "album-cover.jpeg",
-      "sizes": "512x512",
-      "type": "image/jpeg",
-      "purpose": "any"
-    }
-  ]
+  "background_color": "#f3bfd1",
+  "theme_color": "#f3bfd1",
+  "icons": []
 }
