@@ -879,6 +879,126 @@
       *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
       .album-object, .ring { transform: none !important; }
     }
+
+    /* iOS interaction and performance pass */
+    .album-object { aspect-ratio:1; }
+    .cover-wrap { isolation:isolate; touch-action:none; }
+    .cover-toggle {
+      position:absolute; inset:0; z-index:5; display:grid; place-items:center; align-content:center; gap:8px;
+      border:0; padding:0; background:linear-gradient(180deg,rgba(24,12,18,.02),rgba(24,12,18,.08));
+      color:#fff; touch-action:none; user-select:none; -webkit-user-select:none;
+    }
+    .cover-toggle::after {
+      content:""; position:absolute; inset:0; z-index:-1; opacity:0;
+      background:radial-gradient(circle at center,rgba(255,255,255,.17),transparent 46%);
+      transition:opacity .22s ease;
+    }
+    .cover-toggle:active::after,.cover-toggle.is-pressing::after { opacity:1; }
+    .cover-control-disc {
+      --cover-progress:0deg; position:relative; width:clamp(68px,10vw,88px); height:clamp(68px,10vw,88px);
+      display:grid; place-items:center; border-radius:50%; border:1px solid rgba(255,255,255,.78);
+      background:rgba(255,255,255,.18); -webkit-backdrop-filter:blur(14px) saturate(1.18);
+      backdrop-filter:blur(14px) saturate(1.18); box-shadow:inset 0 1px rgba(255,255,255,.78),0 16px 42px rgba(34,15,24,.22);
+      transition:transform .24s var(--ease),background .24s var(--ease),opacity .24s var(--ease);
+    }
+    .cover-control-disc::before {
+      content:""; position:absolute; inset:-4px; border-radius:inherit;
+      background:conic-gradient(rgba(255,255,255,.92) var(--cover-progress),rgba(255,255,255,.16) 0);
+      -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0);
+      mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 0); opacity:.9;
+    }
+    .cover-glyph { display:block; transform:translateX(2px); font-size:clamp(24px,4vw,34px); line-height:1; text-shadow:0 2px 18px rgba(0,0,0,.3); }
+    .cover-toggle.is-playing .cover-control-disc { opacity:.68; background:rgba(255,255,255,.13); transform:scale(.92); }
+    .cover-toggle.is-playing .cover-glyph { transform:none; }
+    .cover-state {
+      min-width:58px; padding:6px 10px; border:1px solid rgba(255,255,255,.56); border-radius:999px;
+      background:rgba(18,10,14,.18); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px);
+      color:rgba(255,255,255,.94); font-size:9px; font-weight:950; letter-spacing:.16em; text-transform:uppercase;
+      text-shadow:0 1px 8px rgba(0,0,0,.3); transition:opacity .22s ease,transform .22s ease;
+    }
+    .cover-toggle.is-playing .cover-state { opacity:.62; transform:translateY(-2px); }
+    .cover-tools { position:absolute; left:12px; right:12px; bottom:12px; z-index:8; display:flex; align-items:center; justify-content:space-between; pointer-events:none; }
+    .cover-tool {
+      width:40px; height:40px; display:grid; place-items:center; padding:0; border:1px solid rgba(255,255,255,.7);
+      border-radius:50%; background:rgba(255,255,255,.2); -webkit-backdrop-filter:blur(12px) saturate(1.15);
+      backdrop-filter:blur(12px) saturate(1.15); box-shadow:inset 0 1px rgba(255,255,255,.76),0 10px 24px rgba(22,10,16,.18);
+      color:#fff; pointer-events:auto;
+    }
+    .cover-tool svg { width:19px; height:19px; fill:currentColor; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+    .cover-tool .sound-wave { fill:none; }
+    .volume-popover {
+      position:absolute; right:10px; bottom:60px; z-index:9; width:44px; height:142px; display:grid; place-items:center;
+      border:1px solid rgba(255,255,255,.72); border-radius:999px; background:rgba(255,255,255,.28);
+      -webkit-backdrop-filter:blur(18px) saturate(1.18); backdrop-filter:blur(18px) saturate(1.18);
+      box-shadow:inset 0 1px rgba(255,255,255,.78),0 16px 36px rgba(31,13,21,.2);
+      opacity:0; pointer-events:none; transform:translateY(8px) scale(.94); transform-origin:bottom center;
+      transition:opacity .2s ease,transform .2s var(--ease);
+    }
+    .volume-popover.open { opacity:1; pointer-events:auto; transform:translateY(0) scale(1); }
+    .volume-popover input { width:106px; transform:rotate(-90deg); accent-color:var(--hot-pink); }
+    .project-scrub {
+      position:absolute; left:50%; top:14px; z-index:9; transform:translate(-50%,-8px); display:flex; align-items:center; gap:9px;
+      max-width:calc(100% - 30px); padding:8px 11px; border:1px solid rgba(255,255,255,.68); border-radius:999px;
+      background:rgba(24,12,18,.18); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); color:#fff;
+      opacity:0; pointer-events:none; transition:opacity .2s ease,transform .2s var(--ease);
+    }
+    .project-scrub.open { opacity:1; transform:translate(-50%,0); }
+    .project-scrub>span:first-child { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:10px; font-weight:900; letter-spacing:.08em; text-transform:uppercase; }
+    .project-dots { display:flex; gap:4px; }
+    .project-dots i { width:5px; height:5px; border-radius:50%; background:rgba(255,255,255,.42); }
+    .project-dots i.active { background:#fff; transform:scale(1.35); }
+    .album-object.is-playing { filter:drop-shadow(0 38px 66px rgba(255,79,148,.22)) drop-shadow(0 20px 60px rgba(62,28,38,.22)); }
+    .album-object.is-playing .cover-wrap { box-shadow:inset 0 1px rgba(255,255,255,.88),0 0 0 8px rgba(255,255,255,.11),0 22px 90px rgba(255,79,148,.2); }
+
+    @media (max-width:900px) {
+      html,body { height:100%; min-height:100%; overflow:hidden; }
+      body { overscroll-behavior:none; }
+      .app { height:100vh; height:100svh; min-height:0; }
+      .backdrop {
+        background:
+          radial-gradient(circle at 50% 42%,rgba(255,255,255,.70),transparent 22%),
+          radial-gradient(circle at 16% 20%,rgba(255,79,148,.40),transparent 29%),
+          radial-gradient(circle at 84% 18%,rgba(169,217,232,.58),transparent 31%),
+          radial-gradient(circle at 58% 88%,rgba(244,223,189,.72),transparent 39%),
+          linear-gradient(135deg,#f5abc2,#d8edf4 48%,#f3ddb9);
+      }
+      .backdrop::before { filter:blur(30px) saturate(1.12); opacity:.34; }
+      .backdrop::after {
+        background:radial-gradient(ellipse at center,transparent 0 34%,rgba(255,255,255,.16) 53%,rgba(255,238,231,.55) 100%),
+        repeating-radial-gradient(circle at 50% 49%,rgba(255,255,255,.12) 0 1px,transparent 1px 18px);
+      }
+      .grain { display:none; }
+      .orbit-shell {
+        contain:layout paint style;
+        transform:translateZ(0);
+      }
+      .orbit-shell::before {
+        filter:blur(17px);
+        animation-duration:48s;
+        background:
+          radial-gradient(circle at 50% 50%,rgba(255,255,255,.35),transparent 30%),
+          conic-gradient(from 18deg,rgba(255,79,148,.52),rgba(169,217,232,.46),rgba(244,223,189,.54),rgba(255,79,148,.52));
+      }
+      .track-node,.link-node,.collection-node { -webkit-backdrop-filter:none; backdrop-filter:none; }
+      .track-node { background:linear-gradient(180deg,rgba(255,255,255,.84),rgba(255,231,239,.72)); }
+      .track-node[aria-current="true"] { background:linear-gradient(180deg,#fff,#ffd4e1 54%,#f79ab8); }
+      .ring,.album-object { transition:none; will-change:transform; }
+      .cover-wrap { contain:layout paint; transform:translateZ(0); }
+      .cover-control-disc { width:72px; height:72px; -webkit-backdrop-filter:blur(10px) saturate(1.12); backdrop-filter:blur(10px) saturate(1.12); }
+      .cover-state { font-size:8px; }
+      .cover-tools { left:9px; right:9px; bottom:9px; }
+      .cover-tool { width:36px; height:36px; }
+      .volume-popover { right:7px; bottom:52px; height:128px; }
+    }
+    @media (display-mode:standalone) and (max-width:900px) { .app { height:100dvh; } }
+    @media (max-width:390px),(max-height:700px) {
+      .cover-control-disc { width:62px; height:62px; }
+      .cover-glyph { font-size:22px; }
+      .cover-state { padding:5px 8px; }
+      .cover-tool { width:33px; height:33px; }
+      .cover-tool svg { width:17px; height:17px; }
+    }
+
   </style>
 </head>
 <body>
@@ -911,10 +1031,19 @@
           <button class="orbit-item collection-node" id="collectionNode" type="button" aria-label="Open extra music collection"></button>
 
           <div class="album-object" id="albumObject">
-            <div class="cover-wrap">
-              <img src="album-cover.jpeg" alt="Lord Have Mercy, He's A Crash Dummy! album cover" />
+            <div class="cover-wrap" id="coverSurface">
+              <img id="coverImage" src="album-cover.jpeg" alt="Lord Have Mercy, He's A Crash Dummy! album cover" draggable="false" />
+              <button class="cover-toggle" id="playPause" type="button" aria-label="Play">
+                <span class="cover-control-disc" aria-hidden="true"><span class="cover-glyph" id="playGlyph">▶</span></span>
+                <span class="cover-state" id="coverState">play</span>
+              </button>
+              <div class="cover-tools" aria-label="Playback controls">
+                <button class="cover-tool" id="stopBtn" type="button" aria-label="Stop and return to the beginning"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="2"></rect></svg></button>
+                <button class="cover-tool" id="volumeBtn" type="button" aria-label="Volume" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 10v4h4l5 4V6l-5 4H5z"></path><path class="sound-wave" d="M17 9c1.3 1.7 1.3 4.3 0 6M19.5 6.5c3.1 3.1 3.1 7.9 0 11"></path></svg></button>
+              </div>
+              <div class="volume-popover" id="volumePopover" aria-hidden="true"><input id="volumeRange" type="range" min="0" max="1" step="0.01" value="1" aria-label="Volume level" /></div>
+              <div class="project-scrub" id="projectScrub" aria-hidden="true"><span id="projectName">Lord Have Mercy</span><span class="project-dots" id="projectDots"></span></div>
             </div>
-            <button class="play-core" id="playPause" type="button" aria-label="Play or pause">▶</button>
           </div>
 
           <div class="selection-card" aria-live="polite">
@@ -964,455 +1093,192 @@
     const orderRoot = "The Proposition comple";
     const asset = (...parts) => parts.map(part => encodeURIComponent(part)).join("/");
 
-    const tracks = [
-      { num: "01", title: "Boy Genius", selectFile: "01 Boy Genius.wav", orderFile: "01 Boy genius interlude full.mp3", lyrics: null },
-      { num: "02", title: "Jump!!!", selectFile: "02 Jump!!!.wav", orderFile: "02 Jump!!!.wav", lyrics: null },
-      { num: "03", title: "Come to Life", selectFile: "03 Come to Life.wav", orderFile: "03 Come to Life.wav", lyrics: null },
-      { num: "04", title: "The Proposition", selectFile: "04 The Proposition.wav", orderFile: "04 The Proposition.wav", lyrics: null },
-      { num: "05", title: "Rude", selectFile: "05 Rude.wav", orderFile: "05 Rude.wav", lyrics: null },
-      { num: "06", title: "PISA", selectFile: "06 PISA.wav", orderFile: "06 Pisa Interlude full.wav", lyrics: null },
-      { num: "07", title: "Apple Pie", selectFile: "07 Apple Pie.wav", orderFile: "07 Apple Pie.wav", lyrics: null },
-      { num: "08", title: "I Know", selectFile: "08 I Know..wav", orderFile: "08 I Know..wav", lyrics: null },
-      { num: "09", title: "Felt It? My Darling", selectFile: "09 Felt It?:My Darling .wav", orderFile: "09 Felt It?:My Darling .wav", lyrics: null },
-      { num: "10", title: "Crash Dummy", selectFile: "10 Crash Dummy.wav", orderFile: "10 Crash Dummy interlude full.wav", lyrics: null },
-      { num: "11", title: "Mr. Please", selectFile: "11 Mr.Please.wav", orderFile: "11 Mr.Please.wav", lyrics: null },
-      { num: "12", title: "WHO KNEW", selectFile: "12 WHO KNEW.wav", orderFile: "12 WHO KNEW.wav", lyrics: null },
-      { num: "13", title: "Sky Is Falling", selectFile: "13 Sky Is Falling.wav", orderFile: "13 Sky Is Falling.wav", lyrics: null }
-    ].map(track => ({
-      ...track,
-      selectSrc: asset(normalRoot, track.selectFile),
-      orderSrc: asset(orderRoot, track.orderFile)
-    }));
+    const baseTracks = [
+      { num:"01", title:"Boy Genius", selectFile:"01 Boy Genius.wav", orderFile:"01 Boy genius interlude full.mp3" },
+      { num:"02", title:"Jump!!!", selectFile:"02 Jump!!!.wav", orderFile:"02 Jump!!!.wav" },
+      { num:"03", title:"Come to Life", selectFile:"03 Come to Life.wav", orderFile:"03 Come to Life.wav" },
+      { num:"04", title:"The Proposition", selectFile:"04 The Proposition.wav", orderFile:"04 The Proposition.wav" },
+      { num:"05", title:"Rude", selectFile:"05 Rude.wav", orderFile:"05 Rude.wav" },
+      { num:"06", title:"PISA", selectFile:"06 PISA.wav", orderFile:"06 Pisa Interlude full.wav" },
+      { num:"07", title:"Apple Pie", selectFile:"07 Apple Pie.wav", orderFile:"07 Apple Pie.wav" },
+      { num:"08", title:"I Know", selectFile:"08 I Know..wav", orderFile:"08 I Know..wav" },
+      { num:"09", title:"Felt It? My Darling", selectFile:"09 Felt It?:My Darling .wav", orderFile:"09 Felt It?:My Darling .wav" },
+      { num:"10", title:"Crash Dummy", selectFile:"10 Crash Dummy.wav", orderFile:"10 Crash Dummy interlude full.wav" },
+      { num:"11", title:"Mr. Please", selectFile:"11 Mr.Please.wav", orderFile:"11 Mr.Please.wav" },
+      { num:"12", title:"WHO KNEW", selectFile:"12 WHO KNEW.wav", orderFile:"12 WHO KNEW.wav" },
+      { num:"13", title:"Sky Is Falling", selectFile:"13 Sky Is Falling.wav", orderFile:"13 Sky Is Falling.wav" }
+    ].map(track => ({...track,selectSrc:asset(normalRoot,track.selectFile),orderSrc:asset(orderRoot,track.orderFile)}));
 
-    const $ = (selector, root = document) => root.querySelector(selector);
-    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-    const mod = (value, length) => ((value % length) + length) % length;
-    const normalizeAngle = angle => {
-      let value = angle % 360;
-      if (value > 180) value -= 360;
-      if (value < -180) value += 360;
-      return value;
+    const $=(s,r=document)=>r.querySelector(s);
+    const $$=(s,r=document)=>[...r.querySelectorAll(s)];
+    const mod=(v,n)=>((v%n)+n)%n;
+    const clamp=(v,min,max)=>Math.min(max,Math.max(min,v));
+    const normalizeAngle=a=>{let v=a%360;if(v>180)v-=360;if(v<-180)v+=360;return v;};
+
+    const els={
+      root:document.documentElement,orbitShell:$("#orbitShell"),albumObject:$("#albumObject"),coverSurface:$("#coverSurface"),coverImage:$("#coverImage"),
+      trackNodes:$("#trackNodes"),trackList:$("#trackList"),playPause:$("#playPause"),playGlyph:$("#playGlyph"),coverState:$("#coverState"),
+      stopBtn:$("#stopBtn"),volumeBtn:$("#volumeBtn"),volumePopover:$("#volumePopover"),volumeRange:$("#volumeRange"),
+      projectScrub:$("#projectScrub"),projectName:$("#projectName"),projectDots:$("#projectDots"),orderBtn:$("#orderBtn"),shuffleBtn:$("#shuffleBtn"),
+      trackToggle:$("#trackToggle"),drawerScrim:$("#drawerScrim"),audio:$("#audio"),currentTime:$("#currentTime"),duration:$("#duration"),seek:$("#seek"),
+      trackCount:$("#trackCount"),trackTitle:$("#trackTitle"),mobileCount:$("#mobileCount"),mobileTitle:$("#mobileTitle"),miniTitle:$("#miniTitle"),
+      toast:$("#toast"),collectionNode:$("#collectionNode")
     };
 
-    const els = {
-      root: document.documentElement,
-      orbitShell: $("#orbitShell"),
-      trackNodes: $("#trackNodes"),
-      trackList: $("#trackList"),
-      playPause: $("#playPause"),
-      orderBtn: $("#orderBtn"),
-      shuffleBtn: $("#shuffleBtn"),
-      trackToggle: $("#trackToggle"),
-      drawerScrim: $("#drawerScrim"),
-      audio: $("#audio"),
-      currentTime: $("#currentTime"),
-      duration: $("#duration"),
-      seek: $("#seek"),
-      trackCount: $("#trackCount"),
-      trackTitle: $("#trackTitle"),
-      mobileCount: $("#mobileCount"),
-      mobileTitle: $("#mobileTitle"),
-      miniTitle: $("#miniTitle"),
-      toast: $("#toast"),
-      collectionNode: $("#collectionNode")
+    const collections=[{id:"crash-dummy",title:"Lord Have Mercy",cover:"album-cover.jpeg",tracks:baseTracks}];
+    let tracks=collections[0].tracks;
+    const state={
+      current:0,mode:"order",spin:0,dragging:false,moved:false,pointerId:null,startX:0,startY:0,lastAngle:0,lastTime:0,velocity:0,
+      inertiaFrame:0,renderFrame:0,pendingSpin:null,suppressClicksUntil:0,loadedSrc:"",activeCollection:0,sensorStatus:"idle",
+      tiltTargetX:0,tiltTargetY:0,tiltCurrentX:0,tiltCurrentY:0,sceneTargetX:0,sceneTargetY:0,sceneCurrentX:0,sceneCurrentY:0,sensorFrame:0,
+      lastShakeAt:0,shakeScore:0,lastAcceleration:null,
+      coverGesture:{active:false,long:false,pointerId:null,startX:0,startY:0,startVolume:1,projectOffset:0,timer:0,moved:false,suppressClick:false}
     };
+    const segment=()=>360/Math.max(1,tracks.length);
 
-    const segment = 360 / tracks.length;
-    const state = {
-      current: 0,
-      mode: "order",
-      spin: 0,
-      dragging: false,
-      moved: false,
-      pointerId: null,
-      lastAngle: 0,
-      lastTime: 0,
-      velocity: 0,
-      inertiaFrame: 0,
-      extraCollections: []
-    };
+    function formatTime(s){if(!Number.isFinite(s))return"0:00";return`${Math.floor(s/60)}:${String(Math.floor(s%60)).padStart(2,"0")}`;}
+    function toast(m){els.toast.textContent=m;els.toast.classList.add("show");clearTimeout(toast.timer);toast.timer=setTimeout(()=>els.toast.classList.remove("show"),1500);}
+    function setMode(m){state.mode=m;els.orderBtn.classList.toggle("active",m==="order");els.shuffleBtn.classList.toggle("active",m==="shuffle");}
+    function toggleTracks(force){const open=typeof force==="boolean"?force:!els.trackList.classList.contains("open");els.trackList.classList.toggle("open",open);els.drawerScrim.classList.toggle("open",open);els.trackToggle.classList.toggle("active",open);}
+    function srcFor(t,m=state.mode){return t.directSrc|| (m==="order"?t.orderSrc:t.selectSrc);}
+    function angleFromEvent(e){const r=els.orbitShell.getBoundingClientRect();return Math.atan2(e.clientY-(r.top+r.height/2),e.clientX-(r.left+r.width/2))*180/Math.PI;}
+    function applySpin(v){state.spin=v;els.orbitShell.style.setProperty("--orbit-spin",`${v}deg`);}
+    function queueSpin(v){state.pendingSpin=v;if(state.renderFrame)return;state.renderFrame=requestAnimationFrame(()=>{state.renderFrame=0;if(state.pendingSpin===null)return;applySpin(state.pendingSpin);state.pendingSpin=null;});}
+    function indexFromSpin(s=state.spin){return mod(Math.round(-s/segment()),tracks.length);}
 
-    function formatTime(seconds) {
-      if (!Number.isFinite(seconds)) return "0:00";
-      const min = Math.floor(seconds / 60);
-      const sec = String(Math.floor(seconds % 60)).padStart(2, "0");
-      return `${min}:${sec}`;
+    function setCurrentUI(index){
+      const next=mod(index,tracks.length),track=tracks[next];state.current=next;
+      const count=`${track.num} / ${String(tracks.length).padStart(2,"0")}`;
+      els.trackCount.textContent=count;els.mobileCount.textContent=count;els.trackTitle.textContent=track.title;els.mobileTitle.textContent=track.title;els.miniTitle.textContent=track.title;
+      $$(".track-node",els.trackNodes).forEach((n,i)=>n.setAttribute("aria-current",String(i===next)));
+      $$(".row",els.trackList).forEach((n,i)=>n.classList.toggle("active",i===next));
     }
 
-    function toast(message) {
-      els.toast.textContent = message;
-      els.toast.classList.add("show");
-      clearTimeout(toast.timer);
-      toast.timer = setTimeout(() => els.toast.classList.remove("show"), 1700);
+    function layoutOrbit(){
+      const size=els.orbitShell.getBoundingClientRect().width;
+      if(!size)return;
+      const trackRadius=size*.39;
+      const linkRadius=size*.43;
+      $$(".track-node",els.trackNodes).forEach(node=>node.style.setProperty("--radius",`${trackRadius}px`));
+      $$(".link-node",els.orbitShell).forEach(node=>node.style.setProperty("--radius",`${linkRadius}px`));
+      if(els.collectionNode.classList.contains("active"))els.collectionNode.style.setProperty("--radius",`${linkRadius}px`);
     }
 
-    function setMode(mode) {
-      state.mode = mode;
-      els.orderBtn.classList.toggle("active", mode === "order");
-      els.shuffleBtn.classList.toggle("active", mode === "shuffle");
+    function renderNodes(){
+      els.trackNodes.innerHTML=tracks.map((t,i)=>`<button class="orbit-item track-node" type="button" style="--angle:${i*segment()-90}deg" data-index="${i}" aria-label="${t.num} ${t.title}">${t.num}</button>`).join("");
+      $$(".track-node",els.trackNodes).forEach(node=>node.addEventListener("click",e=>{if(performance.now()<state.suppressClicksUntil){e.preventDefault();return;}e.stopPropagation();selectTrack(Number(node.dataset.index),!els.audio.paused&&!!state.loadedSrc,"shuffle",true);}));
+      requestAnimationFrame(layoutOrbit);
+    }
+    function renderTrackList(){
+      els.trackList.innerHTML=tracks.map((t,i)=>`<button class="row" type="button" data-index="${i}"><span class="row-num">${t.num}</span><span class="row-title">${t.title}</span></button>`).join("");
+      $$(".row",els.trackList).forEach(row=>row.addEventListener("click",()=>{selectTrack(Number(row.dataset.index),!els.audio.paused&&!!state.loadedSrc,"shuffle",true);toggleTracks(false);}));
     }
 
-    function toggleTracks(force) {
-      const open = typeof force === "boolean" ? force : !els.trackList.classList.contains("open");
-      els.trackList.classList.toggle("open", open);
-      els.drawerScrim.classList.toggle("open", open);
-      els.trackToggle.classList.toggle("active", open);
+    function nearestTarget(index){const canonical=-mod(index,tracks.length)*segment();return state.spin+normalizeAngle(canonical-state.spin);}
+    function snapSpinToIndex(index,animate=true){
+      cancelAnimationFrame(state.inertiaFrame);const target=nearestTarget(index);
+      if(!animate||matchMedia("(prefers-reduced-motion: reduce)").matches){applySpin(target);return;}
+      const start=state.spin,delta=target-start,duration=matchMedia("(max-width:900px)").matches?210:280,started=performance.now();
+      const tick=now=>{const p=Math.min(1,(now-started)/duration),e=1-Math.pow(1-p,4);applySpin(start+delta*e);const preview=indexFromSpin();if(preview!==state.current)setCurrentUI(preview);if(p<1)state.inertiaFrame=requestAnimationFrame(tick);else applySpin(target);};
+      state.inertiaFrame=requestAnimationFrame(tick);
     }
 
-    function srcFor(track, mode = state.mode) {
-      return mode === "order" ? track.orderSrc : track.selectSrc;
+    function loadTrack(index,mode){const t=tracks[mod(index,tracks.length)],src=srcFor(t,mode);if(state.loadedSrc!==src){state.loadedSrc=src;els.audio.src=src;els.audio.load();}}
+    function selectTrack(index,autoplay=false,mode=state.mode,animate=true){const next=mod(index,tracks.length);setMode(mode);setCurrentUI(next);snapSpinToIndex(next,animate);loadTrack(next,mode);if(autoplay)play();}
+    async function play(){try{if(!state.loadedSrc)loadTrack(state.current,state.mode);await els.audio.play();}catch{toast("tap play");}updatePlayIcon();}
+    function pause(){els.audio.pause();updatePlayIcon();}
+    function stop(){els.audio.pause();try{els.audio.currentTime=0;}catch{}updatePlayIcon();updateProgressUI();}
+    function updatePlayIcon(){const playing=!els.audio.paused;els.playGlyph.textContent=playing?"Ⅱ":"▶";els.coverState.textContent=playing?"pause":"play";els.playPause.classList.toggle("is-playing",playing);els.albumObject.classList.toggle("is-playing",playing);els.playPause.setAttribute("aria-label",playing?"Pause":"Play");}
+    function updateProgressUI(){const d=els.audio.duration,c=els.audio.currentTime||0,r=Number.isFinite(d)&&d>0?c/d:0;els.currentTime.textContent=formatTime(c);els.duration.textContent=formatTime(d);els.seek.value=String(Math.round(r*1000));$(".cover-control-disc",els.playPause)?.style.setProperty("--cover-progress",`${r*360}deg`);}
+    function shuffle(autoplay=true){let next=Math.floor(Math.random()*tracks.length);if(tracks.length>1&&next===state.current)next=(next+1)%tracks.length;selectTrack(next,autoplay,"shuffle",true);}
+    function commitOrbitSelection(){selectTrack(indexFromSpin(),!els.audio.paused&&!!state.loadedSrc,"shuffle",true);}
+    function startInertia(){
+      cancelAnimationFrame(state.inertiaFrame);let v=clamp(state.velocity,-9,9),last=state.current;
+      const tick=()=>{v*=.84;applySpin(state.spin+v);const preview=indexFromSpin();if(preview!==last){last=preview;setCurrentUI(preview);}if(Math.abs(v)>.32)state.inertiaFrame=requestAnimationFrame(tick);else commitOrbitSelection();};
+      if(Math.abs(v)>.55)state.inertiaFrame=requestAnimationFrame(tick);else commitOrbitSelection();
     }
 
-    function angleFromEvent(event) {
-      const rect = els.orbitShell.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      return Math.atan2(event.clientY - centerY, event.clientX - centerX) * 180 / Math.PI;
+    function startOrbitDrag(e){
+      if(e.button!==undefined&&e.button!==0)return;if(e.target.closest(".cover-wrap,.cover-tools,.volume-popover"))return;
+      cancelAnimationFrame(state.inertiaFrame);state.dragging=true;state.moved=false;state.pointerId=e.pointerId;state.startX=e.clientX;state.startY=e.clientY;state.lastAngle=angleFromEvent(e);state.lastTime=performance.now();state.velocity=0;els.root.classList.add("orbit-dragging");try{els.orbitShell.setPointerCapture(e.pointerId);}catch{}enableSensors();
     }
+    els.orbitShell.addEventListener("pointerdown",startOrbitDrag,{capture:true});
+    els.orbitShell.addEventListener("pointermove",e=>{
+      const r=els.orbitShell.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;state.sceneTargetX=x*34;state.sceneTargetY=y*28;scheduleSensorFrame();
+      if(!state.dragging||e.pointerId!==state.pointerId)return;e.preventDefault();const sample=e.getCoalescedEvents?.().at(-1)||e,now=performance.now(),angle=angleFromEvent(sample),delta=normalizeAngle(angle-state.lastAngle),elapsed=Math.max(8,now-state.lastTime),distance=Math.hypot(sample.clientX-state.startX,sample.clientY-state.startY);
+      if(distance>5)state.moved=true;if(state.moved&&Math.abs(delta)>.02){const next=state.spin+delta;state.spin=next;queueSpin(next);state.velocity=state.velocity*.48+(delta/elapsed)*16.67*.52;const preview=indexFromSpin();if(preview!==state.current)setCurrentUI(preview);}state.lastAngle=angle;state.lastTime=now;
+    },{passive:false});
+    function endOrbitDrag(e){if(!state.dragging||e.pointerId!==state.pointerId)return;state.dragging=false;state.pointerId=null;els.root.classList.remove("orbit-dragging");try{els.orbitShell.releasePointerCapture(e.pointerId);}catch{}if(state.moved){state.suppressClicksUntil=performance.now()+420;startInertia();}}
+    els.orbitShell.addEventListener("pointerup",endOrbitDrag);els.orbitShell.addEventListener("pointercancel",endOrbitDrag);els.orbitShell.addEventListener("lostpointercapture",e=>{if(state.dragging&&e.pointerId===state.pointerId)endOrbitDrag(e);});
+    els.orbitShell.addEventListener("click",e=>{if(performance.now()<state.suppressClicksUntil){e.preventDefault();e.stopImmediatePropagation();}},true);
+    els.orbitShell.addEventListener("wheel",e=>{if(Math.abs(e.deltaY)<4&&Math.abs(e.deltaX)<4)return;e.preventDefault();const dir=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?Math.sign(e.deltaY):Math.sign(e.deltaX);selectTrack(state.current+dir,!els.audio.paused&&!!state.loadedSrc,"shuffle",true);},{passive:false});
 
-    function setSpin(value) {
-      state.spin = value;
-      els.root.style.setProperty("--orbit-spin", `${value}deg`);
+    function showProjectScrub(open){els.projectScrub.classList.toggle("open",open);els.projectScrub.setAttribute("aria-hidden",String(!open));}
+    function renderProjectDots(preview=state.activeCollection){els.projectDots.innerHTML=collections.map((_,i)=>`<i class="${i===preview?"active":""}"></i>`).join("");els.projectName.textContent=collections[preview]?.title||collections[state.activeCollection].title;}
+    function switchCollection(index){if(!collections.length)return;const next=mod(index,collections.length);if(next===state.activeCollection)return;stop();state.activeCollection=next;tracks=collections[next].tracks;state.current=0;state.loadedSrc="";els.coverImage.src=collections[next].cover||"album-cover.jpeg";renderNodes();renderTrackList();renderProjectDots();setMode("order");applySpin(0);setCurrentUI(0);loadTrack(0,"order");toast(collections[next].title);}
+
+    function startCoverGesture(e){
+      if(e.button!==undefined&&e.button!==0)return;if(e.target.closest(".cover-tools,.volume-popover"))return;const g=state.coverGesture;g.active=true;g.long=false;g.pointerId=e.pointerId;g.startX=e.clientX;g.startY=e.clientY;g.startVolume=els.audio.volume;g.projectOffset=0;g.moved=false;g.suppressClick=false;els.playPause.classList.add("is-pressing");try{els.playPause.setPointerCapture(e.pointerId);}catch{}clearTimeout(g.timer);g.timer=setTimeout(()=>{if(!g.active)return;g.long=true;g.suppressClick=true;showProjectScrub(true);renderProjectDots();navigator.vibrate?.(12);},380);enableSensors();
     }
-
-    function indexFromSpin(spin = state.spin) {
-      return mod(Math.round(-spin / segment), tracks.length);
+    function moveCoverGesture(e){
+      const g=state.coverGesture;if(!g.active||e.pointerId!==g.pointerId)return;const dx=e.clientX-g.startX,dy=e.clientY-g.startY,d=Math.hypot(dx,dy);if(d>8)g.moved=true;if(!g.long){if(d>14)clearTimeout(g.timer);return;}e.preventDefault();if(Math.abs(dy)>Math.abs(dx)){const v=clamp(g.startVolume-dy/170,0,1);setVolume(v);els.projectName.textContent=`volume ${Math.round(v*100)}`;}else if(collections.length>1){g.projectOffset=Math.round(-dx/92);renderProjectDots(mod(state.activeCollection+g.projectOffset,collections.length));}
     }
-
-    function setCurrentUI(index) {
-      state.current = mod(index, tracks.length);
-      const track = tracks[state.current];
-      const count = `${track.num} / ${String(tracks.length).padStart(2, "0")}`;
-      els.trackCount.textContent = count;
-      els.mobileCount.textContent = count;
-      els.trackTitle.textContent = track.title;
-      els.mobileTitle.textContent = track.title;
-      els.miniTitle.textContent = track.title;
-      $$(".track-node").forEach((node, nodeIndex) => node.setAttribute("aria-current", String(nodeIndex === state.current)));
-      $$(".row").forEach((row, rowIndex) => row.classList.toggle("active", rowIndex === state.current));
+    function endCoverGesture(e){
+      const g=state.coverGesture;if(!g.active||e.pointerId!==g.pointerId)return;clearTimeout(g.timer);g.active=false;els.playPause.classList.remove("is-pressing");try{els.playPause.releasePointerCapture(e.pointerId);}catch{}if(g.long){if(collections.length>1&&g.projectOffset)switchCollection(state.activeCollection+g.projectOffset);showProjectScrub(false);setTimeout(()=>g.suppressClick=false,80);return;}if(!g.moved){els.audio.paused?play():pause();}
     }
+    els.playPause.addEventListener("pointerdown",startCoverGesture);els.playPause.addEventListener("pointermove",moveCoverGesture,{passive:false});els.playPause.addEventListener("pointerup",endCoverGesture);els.playPause.addEventListener("pointercancel",endCoverGesture);
+    els.playPause.addEventListener("click",e=>{if(e.detail!==0||state.coverGesture.suppressClick){e.preventDefault();return;}els.audio.paused?play():pause();enableSensors();});
 
-    function renderNodes() {
-      els.trackNodes.innerHTML = tracks.map((track, index) => {
-        const angle = index * segment - 90;
-        return `<button class="orbit-item track-node" type="button" style="--angle:${angle}deg" data-index="${index}" aria-label="${track.num} ${track.title}">${track.num}</button>`;
-      }).join("");
+    els.stopBtn.addEventListener("pointerdown",e=>e.stopPropagation());els.stopBtn.addEventListener("click",e=>{e.stopPropagation();stop();enableSensors();});
+    function setVolume(value){const v=clamp(Number(value),0,1);els.audio.volume=v;els.volumeRange.value=String(v);els.volumeBtn.style.opacity=v===0?".55":"1";}
+    function toggleVolume(force){const open=typeof force==="boolean"?force:!els.volumePopover.classList.contains("open");els.volumePopover.classList.toggle("open",open);els.volumePopover.setAttribute("aria-hidden",String(!open));els.volumeBtn.setAttribute("aria-expanded",String(open));}
+    els.volumeBtn.addEventListener("pointerdown",e=>e.stopPropagation());els.volumeBtn.addEventListener("click",e=>{e.stopPropagation();toggleVolume();enableSensors();});els.volumeRange.addEventListener("pointerdown",e=>e.stopPropagation());els.volumeRange.addEventListener("input",()=>setVolume(els.volumeRange.value));
 
-      $$(".track-node", els.trackNodes).forEach(node => {
-        node.addEventListener("click", event => {
-          event.stopPropagation();
-          const index = Number(node.dataset.index);
-          const autoplay = !els.audio.paused && Boolean(els.audio.src);
-          selectTrack(index, autoplay, "shuffle", true);
-        });
-      });
+    els.orderBtn.addEventListener("click",()=>{selectTrack(0,true,"order",true);enableSensors();});els.shuffleBtn.addEventListener("click",()=>{shuffle(true);enableSensors();});els.trackToggle.addEventListener("click",()=>toggleTracks());els.drawerScrim.addEventListener("click",()=>toggleTracks(false));
+    els.audio.addEventListener("play",updatePlayIcon);els.audio.addEventListener("pause",updatePlayIcon);els.audio.addEventListener("ended",()=>state.mode==="order"?selectTrack(state.current+1,true,"order",true):shuffle(true));els.audio.addEventListener("loadedmetadata",updateProgressUI);els.audio.addEventListener("durationchange",updateProgressUI);els.audio.addEventListener("timeupdate",updateProgressUI);els.audio.addEventListener("volumechange",()=>{els.volumeRange.value=String(els.audio.volume);});
+    els.seek.addEventListener("input",()=>{if(Number.isFinite(els.audio.duration)){els.audio.currentTime=(Number(els.seek.value)/1000)*els.audio.duration;updateProgressUI();}});
+    document.addEventListener("pointerdown",e=>{if(!e.target.closest(".volume-popover,#volumeBtn"))toggleVolume(false);});
+
+    document.addEventListener("pointermove",e=>{if(matchMedia("(max-width:900px)").matches||state.dragging)return;const x=(e.clientX/innerWidth-.5)*2,y=(e.clientY/innerHeight-.5)*2;state.tiltTargetY=x*6;state.tiltTargetX=y*-5;state.sceneTargetX=x*24;state.sceneTargetY=y*20;scheduleSensorFrame();},{passive:true});
+    function scheduleSensorFrame(){if(state.sensorFrame)return;state.sensorFrame=requestAnimationFrame(updateSensorFrame);}
+    function updateSensorFrame(){state.sensorFrame=0;state.tiltCurrentX+=(state.tiltTargetX-state.tiltCurrentX)*.14;state.tiltCurrentY+=(state.tiltTargetY-state.tiltCurrentY)*.14;state.sceneCurrentX+=(state.sceneTargetX-state.sceneCurrentX)*.1;state.sceneCurrentY+=(state.sceneTargetY-state.sceneCurrentY)*.1;els.orbitShell.style.setProperty("--tilt-x",`${state.tiltCurrentX}deg`);els.orbitShell.style.setProperty("--tilt-y",`${state.tiltCurrentY}deg`);els.root.style.setProperty("--mx",`${state.sceneCurrentX}px`);els.root.style.setProperty("--my",`${state.sceneCurrentY}px`);const moving=Math.abs(state.tiltTargetX-state.tiltCurrentX)>.03||Math.abs(state.tiltTargetY-state.tiltCurrentY)>.03||Math.abs(state.sceneTargetX-state.sceneCurrentX)>.08||Math.abs(state.sceneTargetY-state.sceneCurrentY)>.08;if(moving&&document.visibilityState==="visible")scheduleSensorFrame();}
+    function onOrientation(e){if(state.dragging||state.coverGesture.active||document.visibilityState!=="visible")return;const gamma=clamp(e.gamma||0,-26,26),beta=clamp((e.beta||0)-40,-28,28);state.tiltTargetY=gamma*.34;state.tiltTargetX=beta*-.23;state.sceneTargetX=gamma*.62;state.sceneTargetY=beta*.45;scheduleSensorFrame();}
+    function onMotion(e){if(document.visibilityState!=="visible"||state.dragging||state.coverGesture.active)return;const a=e.acceleration||e.accelerationIncludingGravity;if(!a)return;const sample={x:Number(a.x||0),y:Number(a.y||0),z:Number(a.z||0)};if(state.lastAcceleration){const jerk=Math.abs(sample.x-state.lastAcceleration.x)+Math.abs(sample.y-state.lastAcceleration.y)+Math.abs(sample.z-state.lastAcceleration.z);state.shakeScore=state.shakeScore*.72+jerk;const now=performance.now();if(state.shakeScore>31&&now-state.lastShakeAt>1450){state.lastShakeAt=now;state.shakeScore=0;shuffle(true);navigator.vibrate?.([10,30,10]);}}state.lastAcceleration=sample;}
+    async function enableSensors(){
+      if(state.sensorStatus==="ready"||state.sensorStatus==="requesting")return;
+      state.sensorStatus="requesting";
+      try{
+        const orientationRequest=window.DeviceOrientationEvent&&typeof DeviceOrientationEvent.requestPermission==="function"
+          ? DeviceOrientationEvent.requestPermission()
+          : Promise.resolve(window.DeviceOrientationEvent?"granted":"denied");
+        const motionRequest=window.DeviceMotionEvent&&typeof DeviceMotionEvent.requestPermission==="function"
+          ? DeviceMotionEvent.requestPermission()
+          : Promise.resolve(window.DeviceMotionEvent?"granted":"denied");
+        const [orientationResult,motionResult]=await Promise.allSettled([orientationRequest,motionRequest]);
+        const orientationGranted=orientationResult.status==="fulfilled"&&orientationResult.value==="granted";
+        const motionGranted=motionResult.status==="fulfilled"&&motionResult.value==="granted";
+        if(orientationGranted)addEventListener("deviceorientation",onOrientation,true);
+        if(motionGranted)addEventListener("devicemotion",onMotion,true);
+        state.sensorStatus=orientationGranted||motionGranted?"ready":"denied";
+      }catch{state.sensorStatus="denied";}
     }
+    document.addEventListener("visibilitychange",()=>{if(document.visibilityState!=="visible"){state.lastAcceleration=null;state.shakeScore=0;}});
 
-    function renderTrackList() {
-      els.trackList.innerHTML = tracks.map((track, index) => `
-        <button class="row" type="button" data-index="${index}" aria-label="${track.num} ${track.title}">
-          <span class="row-num">${track.num}</span>
-          <span class="row-title">${track.title}</span>
-        </button>
-      `).join("");
-
-      $$(".row", els.trackList).forEach(row => {
-        row.addEventListener("click", () => {
-          const autoplay = !els.audio.paused && Boolean(els.audio.src);
-          selectTrack(Number(row.dataset.index), autoplay, "shuffle", true);
-          toggleTracks(false);
-        });
-      });
+    async function discoverFolder(folderName){
+      try{const response=await fetch(`${encodeURIComponent(folderName)}/manifest.json`,{cache:"no-store"});if(response.ok){const data=await response.json(),list=(data.tracks||[]).map((t,i)=>({num:t.num||String(i+1).padStart(2,"0"),title:t.title||`Track ${i+1}`,directSrc:t.src}));if(list.length)return{id:folderName,title:data.title||folderName,cover:data.cover||"album-cover.jpeg",tracks:list};}}catch{}
+      try{const response=await fetch(`https://api.github.com/repos/${repo}/contents/${encodeURIComponent(folderName)}?ref=${branch}`,{headers:{Accept:"application/vnd.github+json"}});if(!response.ok)return null;const entries=await response.json(),audio=entries.filter(f=>/\.(mp3|wav|m4a|aac|ogg)$/i.test(f.name)),image=entries.find(f=>/\.(jpg|jpeg|png|gif|webp)$/i.test(f.name));if(!audio.length)return null;return{id:folderName,title:folderName,cover:image?.download_url||"album-cover.jpeg",tracks:audio.sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true})).map((f,i)=>({num:String(i+1).padStart(2,"0"),title:f.name.replace(/\.(mp3|wav|m4a|aac|ogg)$/i,"").replace(/^\d+\s*/,""),directSrc:f.download_url}))};}catch{return null;}
     }
+    async function collectionFolders(){try{const response=await fetch("collections.json",{cache:"no-store"});if(response.ok){const data=await response.json();if(Array.isArray(data))return data.map(x=>typeof x==="string"?x:x.folder).filter(Boolean);}}catch{}return["Jasper"];}
+    async function bootExtraCollections(){for(const folder of await collectionFolders()){const c=await discoverFolder(folder);if(c)collections.push(c);}renderProjectDots();if(collections.length<2)return;const next=collections[1];els.collectionNode.innerHTML=`<img src="${next.cover}" alt="${next.title}">`;els.collectionNode.classList.add("active");els.collectionNode.style.setProperty("--angle","72deg");els.collectionNode.addEventListener("click",e=>{if(performance.now()<state.suppressClicksUntil){e.preventDefault();return;}e.stopPropagation();switchCollection(state.activeCollection+1);});}
+    for(const link of $$(".link-node",els.orbitShell))link.addEventListener("click",e=>{if(performance.now()<state.suppressClicksUntil){e.preventDefault();return;}if(link.getAttribute("href")==="#"){e.preventDefault();toast(link.getAttribute("aria-label"));}});
+    let orbitResizeFrame=0;
+    const scheduleOrbitLayout=()=>{if(orbitResizeFrame)return;orbitResizeFrame=requestAnimationFrame(()=>{orbitResizeFrame=0;layoutOrbit();});};
+    addEventListener("resize",scheduleOrbitLayout,{passive:true});
+    visualViewport?.addEventListener("resize",scheduleOrbitLayout,{passive:true});
+    addEventListener("orientationchange",()=>setTimeout(scheduleOrbitLayout,180),{passive:true});
 
-    function snapSpinToIndex(index, animate = true) {
-      cancelAnimationFrame(state.inertiaFrame);
-      const target = -mod(index, tracks.length) * segment;
-      if (!animate || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-        setSpin(target);
-        return;
-      }
+    renderNodes();renderTrackList();renderProjectDots();applySpin(0);setCurrentUI(0);loadTrack(0,"order");setVolume(1);updatePlayIcon();updateProgressUI();bootExtraCollections();
 
-      const start = state.spin;
-      const delta = normalizeAngle(target - start);
-      const duration = 320;
-      const started = performance.now();
-
-      const tick = now => {
-        const progress = Math.min(1, (now - started) / duration);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setSpin(start + delta * eased);
-        setCurrentUI(indexFromSpin());
-        if (progress < 1) state.inertiaFrame = requestAnimationFrame(tick);
-        else setSpin(target);
-      };
-
-      state.inertiaFrame = requestAnimationFrame(tick);
-    }
-
-    function selectTrack(index, autoplay = false, mode = state.mode, animateOrbit = true) {
-      const nextIndex = mod(index, tracks.length);
-      setMode(mode);
-      setCurrentUI(nextIndex);
-      snapSpinToIndex(nextIndex, animateOrbit);
-      const track = tracks[nextIndex];
-      const nextSrc = srcFor(track, mode);
-      if (!els.audio.src.endsWith(nextSrc)) els.audio.src = nextSrc;
-      if (autoplay) play();
-    }
-
-    async function play() {
-      try {
-        await els.audio.play();
-        updatePlayIcon();
-      } catch {
-        toast("tap once more");
-      }
-    }
-
-    function pause() {
-      els.audio.pause();
-      updatePlayIcon();
-    }
-
-    function updatePlayIcon() {
-      els.playPause.textContent = els.audio.paused ? "▶" : "Ⅱ";
-    }
-
-    function shuffle() {
-      let next = Math.floor(Math.random() * tracks.length);
-      if (tracks.length > 1 && next === state.current) next = (next + 1) % tracks.length;
-      selectTrack(next, true, "shuffle", true);
-    }
-
-    function commitOrbitSelection() {
-      const nextIndex = indexFromSpin();
-      const autoplay = !els.audio.paused && Boolean(els.audio.src);
-      selectTrack(nextIndex, autoplay, state.mode === "order" ? "order" : "shuffle", true);
-    }
-
-    function startInertia() {
-      cancelAnimationFrame(state.inertiaFrame);
-      let velocity = Math.max(-18, Math.min(18, state.velocity));
-
-      const tick = () => {
-        velocity *= .935;
-        setSpin(state.spin + velocity);
-        setCurrentUI(indexFromSpin());
-        if (Math.abs(velocity) > .16) {
-          state.inertiaFrame = requestAnimationFrame(tick);
-        } else {
-          commitOrbitSelection();
-        }
-      };
-
-      if (Math.abs(velocity) > .6) state.inertiaFrame = requestAnimationFrame(tick);
-      else commitOrbitSelection();
-    }
-
-    els.orbitShell.addEventListener("pointerdown", event => {
-      if (event.button !== undefined && event.button !== 0) return;
-      if (event.target.closest("a, button, input")) return;
-
-      cancelAnimationFrame(state.inertiaFrame);
-      state.dragging = true;
-      state.moved = false;
-      state.pointerId = event.pointerId;
-      state.lastAngle = angleFromEvent(event);
-      state.lastTime = performance.now();
-      state.velocity = 0;
-      els.root.classList.add("orbit-dragging");
-      els.orbitShell.setPointerCapture(event.pointerId);
-      enableMotion();
-    });
-
-    els.orbitShell.addEventListener("pointermove", event => {
-      const rect = els.orbitShell.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width - .5;
-      const y = (event.clientY - rect.top) / rect.height - .5;
-      els.root.style.setProperty("--mx", `${x * 34}px`);
-      els.root.style.setProperty("--my", `${y * 28}px`);
-
-      if (!state.dragging || event.pointerId !== state.pointerId) {
-        els.root.style.setProperty("--tilt-y", `${x * 10}deg`);
-        els.root.style.setProperty("--tilt-x", `${y * -8}deg`);
-        return;
-      }
-
-      event.preventDefault();
-      const now = performance.now();
-      const angle = angleFromEvent(event);
-      const delta = normalizeAngle(angle - state.lastAngle);
-      const elapsed = Math.max(8, now - state.lastTime);
-
-      if (Math.abs(delta) > .01) {
-        state.moved = true;
-        setSpin(state.spin + delta);
-        state.velocity = state.velocity * .55 + (delta / elapsed) * 16.67 * .45;
-        setCurrentUI(indexFromSpin());
-      }
-
-      state.lastAngle = angle;
-      state.lastTime = now;
-    }, { passive: false });
-
-    function endOrbitDrag(event) {
-      if (!state.dragging || event.pointerId !== state.pointerId) return;
-      state.dragging = false;
-      state.pointerId = null;
-      els.root.classList.remove("orbit-dragging");
-      try { els.orbitShell.releasePointerCapture(event.pointerId); } catch {}
-      if (state.moved) startInertia();
-      else snapSpinToIndex(state.current, true);
-    }
-
-    els.orbitShell.addEventListener("pointerup", endOrbitDrag);
-    els.orbitShell.addEventListener("pointercancel", endOrbitDrag);
-    els.orbitShell.addEventListener("lostpointercapture", event => {
-      if (state.dragging && event.pointerId === state.pointerId) endOrbitDrag(event);
-    });
-
-    els.orbitShell.addEventListener("wheel", event => {
-      if (Math.abs(event.deltaY) < 4 && Math.abs(event.deltaX) < 4) return;
-      event.preventDefault();
-      const direction = Math.abs(event.deltaY) >= Math.abs(event.deltaX)
-        ? Math.sign(event.deltaY)
-        : Math.sign(event.deltaX);
-      const next = mod(state.current + direction, tracks.length);
-      selectTrack(next, !els.audio.paused && Boolean(els.audio.src), state.mode, true);
-    }, { passive: false });
-
-    els.playPause.addEventListener("click", event => {
-      event.stopPropagation();
-      if (!els.audio.src) selectTrack(state.current, false, state.mode, false);
-      if (els.audio.paused) play();
-      else pause();
-      enableMotion();
-    });
-
-    els.orderBtn.addEventListener("click", () => {
-      selectTrack(0, true, "order", true);
-      enableMotion();
-    });
-
-    els.shuffleBtn.addEventListener("click", () => {
-      setMode("shuffle");
-      shuffle();
-      enableMotion();
-    });
-
-    els.trackToggle.addEventListener("click", () => toggleTracks());
-    els.drawerScrim.addEventListener("click", () => toggleTracks(false));
-
-    els.audio.addEventListener("play", updatePlayIcon);
-    els.audio.addEventListener("pause", updatePlayIcon);
-    els.audio.addEventListener("ended", () => {
-      if (state.mode === "order") selectTrack(state.current + 1, true, "order", true);
-      else shuffle();
-    });
-
-    els.audio.addEventListener("loadedmetadata", () => {
-      els.duration.textContent = formatTime(els.audio.duration);
-    });
-
-    els.audio.addEventListener("timeupdate", () => {
-      els.currentTime.textContent = formatTime(els.audio.currentTime);
-      if (Number.isFinite(els.audio.duration) && els.audio.duration > 0) {
-        els.seek.value = String(Math.round((els.audio.currentTime / els.audio.duration) * 1000));
-      }
-    });
-
-    els.seek.addEventListener("input", () => {
-      if (Number.isFinite(els.audio.duration)) {
-        els.audio.currentTime = (Number(els.seek.value) / 1000) * els.audio.duration;
-      }
-    });
-
-    document.addEventListener("pointermove", event => {
-      if (window.matchMedia("(max-width: 900px)").matches || state.dragging) return;
-      const x = (event.clientX / window.innerWidth - .5) * 2;
-      const y = (event.clientY / window.innerHeight - .5) * 2;
-      els.root.style.setProperty("--mx", `${x * 24}px`);
-      els.root.style.setProperty("--my", `${y * 20}px`);
-      els.root.style.setProperty("--tilt-y", `${x * 6}deg`);
-      els.root.style.setProperty("--tilt-x", `${y * -5}deg`);
-    }, { passive: true });
-
-    async function enableMotion() {
-      const Motion = window.DeviceOrientationEvent;
-      if (!Motion || enableMotion.done) return;
-
-      try {
-        if (typeof Motion.requestPermission === "function") {
-          const permission = await Motion.requestPermission();
-          if (permission !== "granted") return;
-        }
-      } catch {
-        return;
-      }
-
-      enableMotion.done = true;
-      window.addEventListener("deviceorientation", event => {
-        if (state.dragging) return;
-        const gamma = Math.max(-24, Math.min(24, event.gamma || 0));
-        const beta = Math.max(-24, Math.min(24, (event.beta || 0) - 40));
-        els.root.style.setProperty("--tilt-y", `${gamma * .34}deg`);
-        els.root.style.setProperty("--tilt-x", `${beta * -.22}deg`);
-        els.root.style.setProperty("--mx", `${gamma * .65}px`);
-        els.root.style.setProperty("--my", `${beta * .5}px`);
-      }, true);
-    }
-
-    async function discoverFolder(folderName) {
-      const localManifest = `${encodeURIComponent(folderName)}/manifest.json`;
-      try {
-        const manifest = await fetch(localManifest, { cache: "no-store" });
-        if (manifest.ok) return await manifest.json();
-      } catch {}
-
-      try {
-        const api = `https://api.github.com/repos/${repo}/contents/${encodeURIComponent(folderName)}?ref=${branch}`;
-        const response = await fetch(api, { headers: { Accept: "application/vnd.github+json" } });
-        if (!response.ok) return null;
-        const entries = await response.json();
-        const audioFiles = entries.filter(file => /\.(mp3|wav|m4a|aac|ogg)$/i.test(file.name));
-        const image = entries.find(file => /\.(jpg|jpeg|png|gif|webp)$/i.test(file.name));
-        if (!audioFiles.length) return null;
-        return {
-          title: folderName,
-          cover: image?.download_url || "album-cover.jpeg",
-          tracks: audioFiles
-            .sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }))
-            .map((file, index) => ({
-              num: String(index + 1).padStart(2, "0"),
-              title: file.name.replace(/\.(mp3|wav|m4a|aac|ogg)$/i, "").replace(/^\d+\s*/, ""),
-              src: file.download_url
-            }))
-        };
-      } catch {
-        return null;
-      }
-    }
-
-    async function bootExtraCollections() {
-      const jasper = await discoverFolder("Jasper");
-      if (!jasper) return;
-      state.extraCollections.push(jasper);
-      els.collectionNode.innerHTML = `<img src="${jasper.cover}" alt="${jasper.title}">`;
-      els.collectionNode.classList.add("active");
-      els.collectionNode.style.setProperty("--angle", "72deg");
-      els.collectionNode.addEventListener("click", event => {
-        event.stopPropagation();
-        toast(jasper.title);
-      });
-    }
-
-    renderNodes();
-    renderTrackList();
-    setCurrentUI(0);
-    setSpin(0);
-    selectTrack(0, false, "order", false);
-    bootExtraCollections();
   </script>
 </body>
 </html>
