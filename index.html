@@ -27,8 +27,6 @@
       --line:rgba(255,255,255,.72);
       --shadow:0 22px 70px rgba(85,35,56,.22);
       --ease:cubic-bezier(.2,.82,.2,1);
-      --tilt-x:0deg;
-      --tilt-y:0deg;
       --card-x:0px;
       color-scheme:light;
     }
@@ -101,7 +99,7 @@
       gap:clamp(28px,6vw,86px);align-items:center;padding:18px 0 28px;
     }
 
-    .machine{display:grid;place-items:center;min-width:0;perspective:1100px}
+    .machine{display:grid;place-items:center;min-width:0}
     .cabinet{width:min(610px,100%);display:grid;gap:16px;justify-items:center}
 
     .reel-shell{
@@ -132,8 +130,8 @@
     .card-stage{position:relative;width:min(86vw,520px);display:grid;place-items:center;padding:12px}
     .card-glow{position:absolute;inset:8%;border-radius:42px;background:radial-gradient(circle at 50% 42%,rgba(255,255,255,.62),transparent 32%),linear-gradient(135deg,rgba(255,69,128,.46),rgba(169,217,232,.43),rgba(244,223,189,.50));filter:blur(34px);opacity:.88}
     .album-card{
-      position:relative;width:100%;aspect-ratio:1;z-index:2;border-radius:36px;transform-style:preserve-3d;
-      transform:translateX(var(--card-x)) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      position:relative;width:100%;aspect-ratio:1;z-index:2;border-radius:36px;
+      transform:translateX(var(--card-x));
       transition:transform .32s var(--ease),filter .25s var(--ease);filter:drop-shadow(0 30px 54px rgba(65,28,43,.24));touch-action:none;
     }
     .album-card.dragging{transition:none}
@@ -207,13 +205,21 @@
     .sheet-scrim{position:fixed;inset:0;z-index:20;background:rgba(44,20,30,.16);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .24s var(--ease)}
     .sheet-scrim.open{opacity:1;pointer-events:auto}
     .sheet{
-      position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:21;max-height:min(72dvh,640px);
-      padding:10px;border:1px solid rgba(255,255,255,.74);border-radius:30px;background:rgba(248,224,233,.78);-webkit-backdrop-filter:blur(28px) saturate(1.15);backdrop-filter:blur(28px) saturate(1.15);
-      box-shadow:0 28px 90px rgba(63,27,41,.28);overflow:auto;opacity:0;pointer-events:none;transform:translateY(calc(100% + 24px));transition:transform .32s var(--ease),opacity .22s var(--ease)
+      position:fixed;left:10px;right:10px;bottom:max(10px,env(safe-area-inset-bottom));z-index:21;
+      height:min(72vh,640px);height:min(72dvh,640px);max-height:calc(100dvh - max(28px,env(safe-area-inset-top)) - max(24px,env(safe-area-inset-bottom)));
+      padding:10px;border:1px solid rgba(255,255,255,.74);border-radius:30px;background:rgba(248,224,233,.88);-webkit-backdrop-filter:blur(28px) saturate(1.15);backdrop-filter:blur(28px) saturate(1.15);
+      box-shadow:0 28px 90px rgba(63,27,41,.28);overflow:hidden;opacity:0;pointer-events:none;transform:translateY(calc(100% + 24px));transition:transform .32s var(--ease),opacity .22s var(--ease);
+      display:grid;grid-template-rows:auto minmax(0,1fr)
     }
     .sheet.open{opacity:1;pointer-events:auto;transform:translateY(0)}
-    .sheet-head{display:flex;align-items:center;justify-content:space-between;padding:8px 10px 12px;font-weight:950}
-    .sheet-close{width:36px;height:36px;border:0;border-radius:50%;background:rgba(255,255,255,.5)}
+    .sheet-head{display:flex;align-items:center;justify-content:space-between;min-height:54px;padding:6px 8px 10px 12px;font-weight:950;border-bottom:1px solid rgba(255,255,255,.5)}
+    .sheet-close{width:38px;height:38px;flex:0 0 38px;border:0;border-radius:50%;background:rgba(255,255,255,.58);font-size:22px;line-height:1}
+    .sheet-body{min-height:0;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;touch-action:pan-y;padding:8px 4px 10px;scrollbar-width:none}
+    .sheet-body::-webkit-scrollbar{display:none}
+    .sheet .track-row{min-height:58px;grid-template-columns:42px minmax(0,1fr);gap:12px;padding:9px 10px;margin:0 0 6px;border:1px solid rgba(255,255,255,.36);background:rgba(255,255,255,.22);border-radius:18px}
+    .sheet .track-row.active{background:rgba(255,255,255,.62);box-shadow:0 8px 22px rgba(84,36,55,.09)}
+    .sheet .track-row span:first-child{width:38px;height:38px}
+    .sheet .track-row span:last-child{white-space:normal;overflow:visible;text-overflow:clip;line-height:1.14;font-size:15px;overflow-wrap:anywhere}
     .links-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:4px}
     .brand-link{min-height:58px;border-radius:18px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:950;letter-spacing:.08em;text-transform:uppercase;box-shadow:0 10px 24px rgba(40,20,28,.12)}
     .apple-link{background:linear-gradient(135deg,#ff5d9d,#a974ff 62%,#5dd7ff)}
@@ -257,6 +263,9 @@
       .progress{padding:6px 10px;font-size:9px;min-height:32px}
       .mobile-actions{display:grid;grid-template-columns:1fr 1fr;gap:6px}
       .mobile-actions button{height:36px;border:1px solid rgba(255,255,255,.68);border-radius:999px;background:rgba(255,255,255,.28);font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+      .sheet{left:8px;right:8px;height:min(78vh,680px);height:min(78dvh,680px);border-radius:26px;padding:8px}
+      .sheet-head{min-height:52px}
+      .sheet .track-row{min-height:60px}
     }
 
     @media(max-width:390px),(max-height:700px){
@@ -352,12 +361,12 @@
 
   <section class="sheet" id="tracksSheet" aria-label="Tracks">
     <div class="sheet-head"><span>Tracks</span><button class="sheet-close" data-close-sheet type="button" aria-label="Close">×</button></div>
-    <div id="mobileList"></div>
+    <div class="sheet-body" id="mobileList"></div>
   </section>
 
   <section class="sheet" id="linksSheet" aria-label="Links">
     <div class="sheet-head"><span>Saint Jules</span><button class="sheet-close" data-close-sheet type="button" aria-label="Close">×</button></div>
-    <div class="links-grid" id="linksGrid"></div>
+    <div class="sheet-body links-grid" id="linksGrid"></div>
   </section>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -402,7 +411,7 @@
     let catalog=fallbackCatalog;
     let collection=fallbackCatalog.collections[0];
     let tracks=collection.tracks;
-    const state={index:0,mode:"album",dragging:false,dragStartX:0,dragX:0,dragMoved:false,reelTimer:0,motionEnabled:false,orientationFrame:0};
+    const state={index:0,mode:"album",dragging:false,dragStartX:0,dragX:0,dragMoved:false,reelTimer:0};
 
     function path(root,file){return [root,file].map(encodeURIComponent).join("/")}
     function sourceFor(track){return state.mode==="album"?path(collection.orderRoot,track.album):path(collection.normalRoot,track.normal)}
@@ -468,7 +477,7 @@
     }
 
     async function play(){
-      try{await els.audio.play();updatePlayUI();enableMotion()}catch{say("Tap play once more.")}
+      try{await els.audio.play();updatePlayUI()}catch{say("Tap play once more.")}
     }
     function pause(){els.audio.pause();updatePlayUI()}
     function togglePlay(){els.audio.paused?play():pause()}
@@ -493,7 +502,17 @@
       setMode("roll",false);setTimeout(()=>setTrack(next,true),180);
     }
 
-    function openSheet(sheet){closeSheets();sheet.classList.add("open");els.sheetScrim.classList.add("open")}
+    function openSheet(sheet){
+      closeSheets();
+      sheet.classList.add("open");
+      els.sheetScrim.classList.add("open");
+      if(sheet===els.tracksSheet){
+        requestAnimationFrame(()=>{
+          const active=$(".track-row.active",els.mobileList);
+          active?.scrollIntoView({block:"center",behavior:"auto"});
+        });
+      }
+    }
     function closeSheets(){$$(".sheet").forEach(sheet=>sheet.classList.remove("open"));els.sheetScrim.classList.remove("open")}
 
     function closestReelTrack(){
@@ -530,26 +549,6 @@
     els.albumCard.addEventListener("pointercancel",endCardDrag);
     els.coverPlay.addEventListener("click",event=>{event.preventDefault();event.stopPropagation()});
 
-    async function enableMotion(){
-      if(state.motionEnabled||document.visibilityState!=="visible")return;
-      try{
-        if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){
-          const result=await DeviceOrientationEvent.requestPermission();if(result!=="granted")return;
-        }
-        window.addEventListener("deviceorientation",onOrientation,{passive:true});state.motionEnabled=true;
-      }catch{}
-    }
-    function onOrientation(event){
-      if(document.visibilityState!=="visible"||state.orientationFrame)return;
-      state.orientationFrame=requestAnimationFrame(()=>{
-        const x=Math.max(-5,Math.min(5,(event.beta||0)*-.12));
-        const y=Math.max(-6,Math.min(6,(event.gamma||0)*.15));
-        document.documentElement.style.setProperty("--tilt-x",`${x}deg`);
-        document.documentElement.style.setProperty("--tilt-y",`${y}deg`);
-        state.orientationFrame=0;
-      });
-    }
-
     els.albumMode.addEventListener("click",()=>setMode("album"));
     els.rollMode.addEventListener("click",rollSong);
     els.mainPlay.addEventListener("click",togglePlay);
@@ -571,7 +570,6 @@
     });
     els.seek.addEventListener("input",()=>{if(Number.isFinite(els.audio.duration))els.audio.currentTime=Number(els.seek.value)/1000*els.audio.duration});
 
-    document.addEventListener("visibilitychange",()=>{if(document.visibilityState!=="visible"){document.documentElement.style.setProperty("--tilt-x","0deg");document.documentElement.style.setProperty("--tilt-y","0deg")}});
     window.addEventListener("keydown",event=>{if(event.key===" "){event.preventDefault();togglePlay()}if(event.key==="ArrowRight")next();if(event.key==="ArrowLeft")previous();if(event.key==="Escape")closeSheets()});
 
     loadCatalog();
