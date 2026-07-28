@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#ed84ae">
-  <meta name="description" content="Download Tideforge 1.3 with sea monsters, sky-high waterworks, moving elevators, proximity voice, living villages, detailed building, EMC, gliders, creator themes, and OBS scenes.">
+  <meta name="description" content="Download Saint Jules’ Tideforge 1.3 Minecraft modpack: 45 pinned mods for sea monsters, engineering, elevators, EMC, furniture, villages, voice chat, adventure, and creator tools.">
   <meta property="og:title" content="Play With Me — Saint Jules × Tideforge">
-  <meta property="og:description" content="Download Tideforge 1.3, pick your Halo style, and get ready for the Saint Jules Minecraft and music community.">
+  <meta property="og:description" content="Download Tideforge 1.3, see every included mod, and join the Saint Jules Minecraft world when the public server opens.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.saintjules.org/minecraft/">
   <meta property="og:image" content="https://www.saintjules.org/minecraft/assets/og.png">
@@ -16,224 +16,161 @@
   <title>Play With Me — Saint Jules × Tideforge</title>
   <style>
     :root{
-      --pink-0:#fff7fb;
-      --pink-1:#ffd9e8;
-      --pink-2:#f7a9c8;
-      --pink-3:#ef5b98;
+      --pink:#ef5b98;
       --cherry:#d92363;
       --gold:#f4cb64;
       --navy:#121b32;
       --ink:#251820;
-      --muted:#6f5661;
-      --cream:#fff0d5;
-      --glass:rgba(255,255,255,.66);
-      --glass-strong:rgba(255,255,255,.84);
-      --line:rgba(255,255,255,.78);
-      --shadow:0 24px 70px rgba(89,34,60,.17);
-      --ease:cubic-bezier(.2,.82,.2,1);
+      --muted:#705a64;
+      --glass:rgba(255,255,255,.74);
+      --line:rgba(255,255,255,.82);
+      --shadow:0 20px 54px rgba(89,34,60,.15);
       color-scheme:light;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0;min-width:320px;background:
-        radial-gradient(circle at 12% 2%,rgba(255,255,255,.9),transparent 23rem),
-        radial-gradient(circle at 90% 17%,rgba(169,217,232,.72),transparent 28rem),
-        linear-gradient(145deg,#f8bfd4 0%,#f3ccdc 42%,#e6f2f3 78%,#fff2d8 100%);
-      color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
+      margin:0;min-width:320px;color:var(--ink);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
       -webkit-font-smoothing:antialiased;
+      background:
+        radial-gradient(circle at 8% 1%,rgba(255,255,255,.92),transparent 22rem),
+        radial-gradient(circle at 95% 25%,rgba(176,224,235,.65),transparent 28rem),
+        linear-gradient(150deg,#f8bfd4 0%,#f0d6e1 53%,#e7f2f2 78%,#fff0ce 100%);
     }
     body::before{
-      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.38;
-      background:
-        radial-gradient(circle,rgba(255,255,255,.9) 0 1px,transparent 1.6px) 0 0/34px 34px,
-        radial-gradient(circle,rgba(255,255,255,.5) 0 1px,transparent 1.6px) 16px 14px/46px 46px;
-      mask-image:linear-gradient(#000,transparent 72%);
-      -webkit-mask-image:linear-gradient(#000,transparent 72%);
+      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.34;
+      background:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px) 0 0/36px 36px;
+      mask-image:linear-gradient(#000,transparent 70%);
+      -webkit-mask-image:linear-gradient(#000,transparent 70%);
     }
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-    figure{margin:0}
     button{font:inherit}
     :focus-visible{outline:3px solid #fff;outline-offset:4px}
-    .skip-link{position:fixed;left:16px;top:12px;z-index:100;transform:translateY(-150%);padding:10px 14px;border-radius:999px;background:#fff;font-weight:900}
+    .skip-link{position:fixed;left:12px;top:10px;z-index:100;transform:translateY(-150%);padding:10px 14px;border-radius:999px;background:#fff;font-weight:900}
     .skip-link:focus{transform:translateY(0)}
-    .shell{width:min(1180px,calc(100% - 32px));margin:auto}
+    .shell{width:min(1120px,calc(100% - 20px));margin-inline:auto}
     .glass{
-      border:1px solid var(--line);background:var(--glass);box-shadow:inset 0 1px rgba(255,255,255,.88),var(--shadow);
-      -webkit-backdrop-filter:blur(22px) saturate(1.1);backdrop-filter:blur(22px) saturate(1.1);
+      border:1px solid var(--line);background:var(--glass);box-shadow:inset 0 1px rgba(255,255,255,.92),var(--shadow);
+      -webkit-backdrop-filter:blur(20px) saturate(1.08);backdrop-filter:blur(20px) saturate(1.08);
     }
-    .nav-wrap{position:relative;z-index:10;padding:max(14px,env(safe-area-inset-top)) 0 0}
-    .nav{
-      min-height:62px;padding:8px 10px 8px 17px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    .eyebrow,.kicker{margin:0 0 10px;color:#9e1e51;font-size:10px;font-weight:950;letter-spacing:.19em;text-transform:uppercase}
+    h1,h2,h3,p{overflow-wrap:anywhere}
+    h1{margin:0;font-size:clamp(54px,19vw,82px);line-height:.79;letter-spacing:-.075em;font-weight:950}
+    h1 span{display:block;color:#fff;text-shadow:0 16px 38px rgba(132,42,78,.15)}
+    h2{margin:0;font-size:clamp(34px,11vw,54px);line-height:.92;letter-spacing:-.052em}
+    h3{letter-spacing:-.025em}
+    .lede{margin:22px 0 0;color:#523d46;font-size:17px;line-height:1.52;font-weight:680}
+    .button{
+      min-height:50px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
+      font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;
     }
-    .brand{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:950;letter-spacing:.27em;text-transform:uppercase;white-space:nowrap}
-    .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;border:1px solid rgba(255,255,255,.9);mix-blend-mode:multiply}
-    .nav-links{display:flex;align-items:center;gap:6px}
-    .nav-link,.pill-button{
-      min-height:44px;padding:0 17px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
-      font-size:10px;font-weight:950;letter-spacing:.11em;text-transform:uppercase;transition:transform .2s var(--ease),background .2s var(--ease);
-    }
-    .nav-link:hover{background:rgba(255,255,255,.7);transform:translateY(-1px)}
-    .pill-button{color:#fff;background:linear-gradient(135deg,#ff568d,#d42160 68%,#8e1645);box-shadow:0 12px 28px rgba(196,29,86,.24)}
-    .pill-button:hover{transform:translateY(-2px)}
+    .button.primary{color:#fff;background:var(--ink);box-shadow:0 14px 30px rgba(50,25,36,.2)}
+    .button.light{border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.58)}
 
-    .hero{padding:56px 0 34px;display:grid;grid-template-columns:minmax(0,1.02fr) minmax(380px,.98fr);gap:clamp(30px,6vw,78px);align-items:center}
-    .eyebrow{margin:0 0 16px;color:#9e1e51;font-size:11px;font-weight:950;letter-spacing:.2em;text-transform:uppercase}
-    h1{margin:0;font-size:clamp(58px,9vw,118px);line-height:.78;letter-spacing:-.078em;font-weight:950;text-wrap:balance}
-    h1 .soft{display:block;color:#fff;text-shadow:0 2px rgba(255,255,255,.8),0 18px 45px rgba(132,42,78,.16)}
-    .lede{max-width:640px;margin:28px 0 0;font-size:clamp(17px,2vw,22px);line-height:1.48;font-weight:670;color:#523c46}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-    .hero-actions a{min-height:52px;padding:0 22px;border-radius:999px;font-size:11px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-    .primary{display:inline-flex;align-items:center;justify-content:center;color:#fff;background:var(--ink);box-shadow:0 14px 32px rgba(50,25,36,.2)}
-    .secondary{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.85);background:rgba(255,255,255,.54)}
-    .fact-row{display:flex;flex-wrap:wrap;gap:8px;margin:21px 0 0;padding:0;list-style:none}
-    .fact{padding:9px 12px;border:1px solid rgba(255,255,255,.72);border-radius:999px;background:rgba(255,255,255,.42);font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
-    .hero-art{position:relative;min-height:560px}
-    .art-card{
-      position:absolute;overflow:hidden;border:1px solid rgba(255,255,255,.9);border-radius:34px;background:#fff;box-shadow:0 28px 60px rgba(71,33,48,.24);
+    .top{padding:max(12px,env(safe-area-inset-top)) 0 0}
+    .nav{min-height:58px;padding:7px 8px 7px 12px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:950;letter-spacing:.2em;text-transform:uppercase}
+    .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}
+    .nav-actions{display:flex;gap:6px}
+    .nav-actions a{min-height:42px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    .nav-actions .download{color:#fff;background:linear-gradient(135deg,#ff568d,#d42160)}
+    .nav-actions .mods{background:rgba(255,255,255,.58)}
+
+    .hero{padding:46px 0 34px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
+    .facts{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0;padding:0;list-style:none}
+    .facts li{padding:8px 10px;border:1px solid rgba(255,255,255,.75);border-radius:999px;background:rgba(255,255,255,.42);font-size:9px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+    .hero-art{position:relative;height:340px;margin-top:34px}
+    .world{position:absolute;overflow:hidden;border:1px solid #fff;border-radius:27px;background:#fff;box-shadow:0 22px 50px rgba(71,33,48,.22)}
+    .world img{width:100%;height:100%;object-fit:cover}
+    .world.cherry{inset:0 14% 8% 0;transform:rotate(-2.5deg)}
+    .world.gold{inset:19% 0 0 28%;transform:rotate(3.5deg)}
+    .world span{position:absolute;left:13px;bottom:13px;padding:8px 10px;border-radius:999px;color:#fff;background:rgba(18,27,50,.68);font-size:8px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    .angel{position:absolute;z-index:3;right:3%;top:-2%;width:66px;height:66px;padding:8px;border:1px solid #fff;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 14px 34px rgba(67,29,45,.16)}
+    .angel img{width:100%;height:100%;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}
+
+    .status{margin-bottom:64px;padding:18px;border-radius:25px;display:grid;gap:13px}
+    .status-line{display:flex;align-items:center;gap:12px}
+    .dot{width:11px;height:11px;flex:0 0 11px;border-radius:50%;background:#e49a32;box-shadow:0 0 0 6px rgba(228,154,50,.16)}
+    .status small{display:block;color:#825f6d;font-size:8px;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
+    .status code{display:block;margin-top:4px;font-family:"SFMono-Regular",Consolas,monospace;font-size:18px;font-weight:850}
+    .status p{margin:0;color:var(--muted);font-size:12px;line-height:1.45;font-weight:700}
+
+    section{scroll-margin-top:18px}
+    .section{padding:0 0 68px}
+    .section-copy{max-width:760px;margin:15px 0 24px;color:#5f4a53;font-size:15px;line-height:1.55;font-weight:650}
+    .highlights{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .highlight{min-height:154px;padding:18px;border-radius:23px}
+    .highlight b{display:grid;place-items:center;width:34px;height:34px;margin-bottom:23px;border-radius:50%;color:#fff;background:var(--ink);font-size:14px}
+    .highlight h3{margin:0 0 7px;font-size:18px}
+    .highlight p{margin:0;color:#67515a;font-size:13px;line-height:1.45;font-weight:620}
+
+    .mod-summary{display:flex;flex-wrap:wrap;gap:7px;margin:19px 0 16px}
+    .mod-summary span{padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.8);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .mod-groups{display:grid;gap:8px}
+    details{border-radius:22px;overflow:hidden}
+    summary{
+      min-height:64px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px;
+      cursor:pointer;list-style:none;font-size:15px;font-weight:900;
     }
-    .art-card img{width:100%;height:100%;object-fit:cover}
-    .art-card.cherry{inset:0 15% 14% 0;transform:rotate(-3deg)}
-    .art-card.gold{inset:16% 0 0 23%;transform:rotate(4deg)}
-    .art-label{
-      position:absolute;left:18px;bottom:18px;padding:10px 13px;border-radius:999px;border:1px solid rgba(255,255,255,.75);
-      color:#fff;background:rgba(16,20,35,.64);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:10px;font-weight:950;letter-spacing:.12em;text-transform:uppercase;
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";display:grid;place-items:center;width:31px;height:31px;flex:0 0 31px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px}
+    details[open] summary::after{content:"–"}
+    summary span{color:#906577;font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    .mod-body{padding:0 17px 17px}
+    .mod-body>p{margin:0 0 13px;color:#65505a;font-size:12px;line-height:1.48;font-weight:650}
+    .mod-list{display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0;list-style:none}
+    .mod-list li{padding:8px 10px;border-radius:11px;background:rgba(255,255,255,.63);font-size:11px;font-weight:820;line-height:1.25}
+    .mod-list small{display:block;margin-top:2px;color:#8b6b78;font-size:8px;font-weight:750}
+
+    .steps{display:grid;gap:9px}
+    .step{padding:19px;border-radius:23px;display:grid;grid-template-columns:36px 1fr;gap:13px;align-items:start}
+    .step-number{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:#fff;background:var(--ink);font-size:11px;font-weight:950}
+    .step h3{margin:1px 0 6px;font-size:18px}
+    .step p{margin:0;color:#67515a;font-size:13px;line-height:1.48;font-weight:620}
+    .step a{display:inline-flex;margin-top:10px;color:#a71f55;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+
+    .extras{display:grid;gap:9px}
+    .extra{min-height:91px;padding:16px;border-radius:22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .extra small{display:block;color:#98637a;font-size:8px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
+    .extra h3{margin:5px 0 0;font-size:16px}
+    .arrow{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px;font-weight:950}
+    .fineprint{margin:13px 0 0;color:#725c66;font-size:11px;line-height:1.5;font-weight:650}
+    .fineprint a{text-decoration:underline;text-underline-offset:3px}
+
+    .closing{padding:28px;border-radius:28px;color:#fff;background:radial-gradient(circle at 88% 20%,rgba(244,203,100,.23),transparent 14rem),linear-gradient(135deg,#8e1645,#211922 56%,#121b32)}
+    .closing .kicker{color:#ffd4e4}
+    .closing p{margin:17px 0 22px;color:rgba(255,255,255,.76);font-size:14px;line-height:1.5;font-weight:640}
+    .socials{display:flex;flex-wrap:wrap;gap:7px}
+    .socials a{min-height:40px;padding:0 13px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.1);display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+    footer{padding:22px 0 max(32px,env(safe-area-inset-bottom));display:flex;align-items:flex-start;justify-content:space-between;gap:16px;color:#725b65;font-size:9px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
+
+    @media(min-width:700px){
+      .shell{width:min(1120px,calc(100% - 48px))}
+      .top{padding-top:18px}
+      .nav{padding-left:16px}
+      .hero{padding:60px 0 42px;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.88fr);gap:50px;align-items:center}
+      h1{font-size:clamp(76px,9vw,112px)}
+      .lede{max-width:610px;font-size:20px}
+      .hero-art{height:510px;margin-top:0}
+      .angel{width:86px;height:86px}
+      .status{grid-template-columns:minmax(0,1fr) minmax(250px,.7fr);align-items:center;padding:20px 24px}
+      .highlights{grid-template-columns:repeat(4,1fr)}
+      .mod-groups{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:repeat(3,1fr)}
+      .step{display:block;min-height:220px}
+      .step h3{margin-top:32px}
+      .extras{grid-template-columns:repeat(3,1fr)}
+      .extra{min-height:116px}
+      .closing{padding:44px}
     }
-    .angel-orbit{
-      position:absolute;z-index:3;right:4%;top:4%;width:92px;height:92px;padding:10px;border-radius:50%;background:rgba(255,255,255,.86);
-      border:1px solid #fff;box-shadow:0 18px 40px rgba(67,29,45,.18);transform:rotate(7deg);
-    }
-    .angel-orbit img{width:100%;height:100%;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}
-
-    .server-bar{margin:18px 0 80px;padding:18px;border-radius:28px;display:flex;align-items:center;justify-content:space-between;gap:22px}
-    .server-copy{display:flex;align-items:center;gap:14px;min-width:0}
-    .status-dot{width:13px;height:13px;flex:0 0 13px;border-radius:50%;background:#f0a43b;box-shadow:0 0 0 7px rgba(240,164,59,.16)}
-    .server-copy small{display:block;margin-bottom:5px;color:#7e5b68;font-size:9px;font-weight:950;letter-spacing:.17em;text-transform:uppercase}
-    .server-copy code{font-family:"SFMono-Regular",Consolas,monospace;font-size:clamp(17px,3vw,26px);font-weight:850;overflow-wrap:anywhere}
-    .pending-note{margin:6px 0 0;color:#755d67;font-size:12px;font-weight:700}
-    .copy-button{min-height:48px;flex:0 0 auto;padding:0 18px;border:0;border-radius:999px;color:#fff;background:#8b5c1b;font-weight:950;cursor:pointer}
-
-    section{scroll-margin-top:24px}
-    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,480px);gap:30px;align-items:end;margin-bottom:25px}
-    .kicker{margin:0 0 9px;color:#a12656;font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
-    h2{margin:0;font-size:clamp(38px,6vw,68px);line-height:.91;letter-spacing:-.057em}
-    .section-head p{margin:0;color:#604b54;font-size:16px;line-height:1.58;font-weight:640}
-    .features{padding:36px 0 92px}
-    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .feature-card{min-height:220px;padding:24px;border-radius:28px}
-    .feature-number{display:grid;place-items:center;width:42px;height:42px;margin-bottom:32px;border-radius:50%;color:#fff;background:var(--ink);font-size:11px;font-weight:950}
-    .feature-card h3{margin:0 0 9px;font-size:21px;letter-spacing:-.035em}
-    .feature-card p{margin:0;color:#67515a;line-height:1.5;font-weight:620}
-
-    .modes{padding:20px 0 92px}
-    .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
-    .mode-card{position:relative;min-height:500px;overflow:hidden;border-radius:34px;border:1px solid rgba(255,255,255,.84);box-shadow:var(--shadow)}
-    .mode-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
-    .mode-card:hover>img{transform:scale(1.035)}
-    .mode-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(19,16,29,.78))}
-    .mode-content{position:absolute;z-index:2;left:0;right:0;bottom:0;padding:28px;color:#fff}
-    .mode-content small{font-size:10px;font-weight:950;letter-spacing:.16em;text-transform:uppercase}
-    .mode-content h3{margin:8px 0 7px;font-size:clamp(30px,4vw,48px);letter-spacing:-.05em}
-    .mode-content p{max-width:500px;margin:0 0 19px;line-height:1.45;color:rgba(255,255,255,.82);font-weight:650}
-    .download-light{display:inline-flex;min-height:44px;padding:0 16px;align-items:center;border-radius:999px;color:var(--ink);background:#fff;font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}
-
-    .install{padding:20px 0 92px}
-    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-    .step{position:relative;min-height:260px;padding:25px;border-radius:28px;overflow:hidden}
-    .step::after{content:attr(data-step);position:absolute;right:16px;bottom:-25px;color:rgba(217,35,99,.11);font-size:140px;line-height:1;font-weight:950}
-    .step h3,.step p,.step a{position:relative;z-index:1}
-    .step h3{margin:45px 0 10px;font-size:23px;letter-spacing:-.035em}
-    .step p{margin:0;color:#68515b;line-height:1.55;font-weight:620}
-    .text-link{display:inline-flex;margin-top:16px;color:#a71f55;font-size:11px;font-weight:950;text-transform:uppercase;letter-spacing:.08em}
-
-    .downloads,.release{padding:20px 0 92px}
-    .download-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-    .download-card{min-height:128px;padding:20px;border-radius:24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-    .download-card small{display:block;color:#98637a;font-size:9px;font-weight:950;letter-spacing:.14em;text-transform:uppercase}
-    .download-card h3{margin:6px 0 0;font-size:18px;letter-spacing:-.025em}
-    .download-icon{display:grid;place-items:center;width:48px;height:48px;flex:0 0 48px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px;font-weight:950}
-
-    .release-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-    .release-card{min-height:220px;padding:24px;border-radius:28px}
-    .release-chip{
-      display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:999px;
-      font-size:9px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;
-    }
-    .release-chip.ready{color:#145f39;background:#c9f3d9}
-    .release-chip.pending{color:#7a3d09;background:#ffe2a2}
-    .release-chip.building{color:#70345c;background:#f8cbe2}
-    .release-card h3{margin:32px 0 9px;font-size:23px;letter-spacing:-.035em}
-    .release-card p{margin:0;color:#67515a;font-weight:620;line-height:1.5}
-
-    .safety{padding:4px 0 92px}
-    .safety-card{
-      padding:clamp(30px,6vw,68px);border-radius:36px;color:#fff;
-      background:radial-gradient(circle at 88% 16%,rgba(244,203,100,.24),transparent 18rem),linear-gradient(135deg,#211922,#121b32 74%);
-      box-shadow:0 26px 70px rgba(24,23,41,.26);
-    }
-    .safety-card .kicker{color:#f4cb64}
-    .safety-card h2{max-width:850px}
-    .safety-card>p:last-child{max-width:690px;margin:22px 0 0;color:rgba(255,255,255,.72);font-size:17px;font-weight:620;line-height:1.58}
-
-    .community{padding:4px 0 92px}
-    .community-card{
-      display:grid;grid-template-columns:minmax(0,1.08fr) minmax(320px,.92fr);align-items:center;
-      padding:clamp(30px,6vw,68px);gap:clamp(30px,6vw,72px);overflow:hidden;border-radius:36px;color:#fff;
-      background:radial-gradient(circle at 12% 18%,rgba(239,91,152,.28),transparent 22rem),radial-gradient(circle at 88% 88%,rgba(244,203,100,.2),transparent 20rem),linear-gradient(135deg,#8e1645,#211922 54%,#121b32);
-      box-shadow:0 26px 70px rgba(73,23,48,.28);
-    }
-    .community-copy .kicker{color:#ffd4e4}
-    .community-copy>p:last-child{max-width:640px;margin:22px 0 0;color:rgba(255,255,255,.76);font-size:17px;font-weight:620;line-height:1.58}
-    .community-status{padding:25px;border-radius:28px;color:var(--ink);background:rgba(255,255,255,.82)}
-    .status-chip{
-      display:inline-flex;align-items:center;min-height:32px;padding:0 12px;border-radius:999px;color:#7a3d09;background:#ffe2a2;
-      font-size:9px;font-weight:950;letter-spacing:.14em;text-transform:uppercase;
-    }
-    .community-status h3{margin:17px 0 8px;font-size:28px;letter-spacing:-.04em}
-    .community-status p{margin:0;color:#67515a;font-weight:650;line-height:1.5}
-    .community-status ul{display:grid;margin:20px 0 0;padding:0;gap:10px;list-style:none}
-    .community-status li{position:relative;padding-left:21px;color:#49343d;font-size:13px;font-weight:800;line-height:1.4}
-    .community-status li::before{
-      position:absolute;left:2px;top:.42em;width:8px;height:8px;border-radius:50%;content:"";background:var(--cherry);
-      box-shadow:0 0 0 4px rgba(217,35,99,.11);
-    }
-
-    .connect{padding:8px 0 70px}
-    .connect-card{padding:clamp(28px,6vw,64px);border-radius:36px;text-align:center}
-    .connect-card h2{max-width:800px;margin:auto}
-    .connect-card p{max-width:600px;margin:18px auto 25px;color:#65505a;line-height:1.55;font-weight:650}
-    .social-row{display:flex;justify-content:center;flex-wrap:wrap;gap:8px}
-    .social-row a{min-height:44px;padding:0 15px;border:1px solid rgba(255,255,255,.82);border-radius:999px;background:rgba(255,255,255,.55);display:inline-flex;align-items:center;font-size:10px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-    footer{padding:0 0 max(34px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:20px;color:#715963;font-size:10px;font-weight:850;letter-spacing:.08em;text-transform:uppercase}
-    .toast{position:fixed;z-index:50;left:50%;bottom:max(20px,env(safe-area-inset-bottom));transform:translate(-50%,12px);opacity:0;pointer-events:none;padding:12px 16px;border-radius:999px;background:#211820;color:#fff;box-shadow:0 14px 36px rgba(41,20,29,.25);font-size:11px;font-weight:850;transition:.2s var(--ease)}
-    .toast.show{opacity:1;transform:translate(-50%,0)}
-
-    @media(max-width:900px){
-      .hero{grid-template-columns:1fr;padding-top:48px}
-      .hero-art{min-height:520px;width:min(620px,100%);margin:auto}
-      .feature-grid,.steps,.release-grid{grid-template-columns:repeat(2,1fr)}
-      .feature-grid>*:last-child,.steps>*:last-child{grid-column:1/-1}
-      .section-head{grid-template-columns:1fr}
-      .community-card{grid-template-columns:1fr}
-    }
-    @media(max-width:640px){
-      .shell{width:min(100% - 20px,1180px)}
-      .nav{padding-left:10px}
+    @media(max-width:440px){
       .brand span{display:none}
-      .nav-link{display:none}
-      .hero{padding-top:40px}
-      h1{font-size:clamp(54px,19vw,84px)}
-      .lede{font-size:17px}
-      .hero-art{min-height:390px}
-      .angel-orbit{width:72px;height:72px}
-      .server-bar{align-items:flex-start;flex-direction:column;margin-bottom:62px}
-      .copy-button{width:100%}
-      .feature-grid,.mode-grid,.steps,.download-grid,.release-grid{grid-template-columns:1fr}
-      .feature-grid>*:last-child,.steps>*:last-child{grid-column:auto}
-      .feature-card{min-height:190px}
-      .mode-card{min-height:420px}
-      footer{align-items:flex-start;flex-direction:column}
+      .nav-actions .mods{display:none}
+      .highlights{grid-template-columns:1fr}
+      .highlight{min-height:135px}
     }
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
@@ -242,196 +179,213 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to the game</a>
+  <a class="skip-link" href="#main">Skip to Tideforge</a>
 
-  <div class="nav-wrap shell">
-    <nav class="nav glass" aria-label="Primary navigation">
+  <header class="top shell">
+    <nav class="nav glass" aria-label="Minecraft page">
       <a class="brand" href="../">
         <img src="assets/angel-silver.jpg" alt="" width="38" height="38">
         <span>Saint Jules</span>
       </a>
-      <div class="nav-links">
-        <a class="nav-link" href="#features">The pack</a>
-        <a class="nav-link" href="#install">Install</a>
-        <a class="nav-link" href="#community">Community</a>
-        <a class="pill-button" href="#downloads">Download</a>
+      <div class="nav-actions">
+        <a class="mods" href="#mods">See all mods</a>
+        <a class="download" href="downloads/Tideforge-1.3.0.mrpack" download>Download</a>
       </div>
     </nav>
-  </div>
+  </header>
 
   <main id="main">
     <section class="hero shell">
       <div>
         <p class="eyebrow">Saint Jules presents · Tideforge 1.3</p>
-        <h1>PLAY <span class="soft">WITH ME.</span></h1>
-        <p class="lede">Sea monsters below. Machines in the sky. Download my custom Minecraft world kit, choose your Halo, and get ready to build something ridiculous together.</p>
+        <h1>PLAY <span>WITH ME.</span></h1>
+        <p class="lede">Sea monsters below. Machines in the sky. Download one pack for engineering, adventure, living villages, furniture, proximity voice, and creator tools.</p>
         <div class="hero-actions">
-          <a class="primary" href="downloads/Tideforge-1.3.0.mrpack" download>Download Tideforge</a>
-          <a class="secondary" href="#install">How to install</a>
+          <a class="button primary" href="downloads/Tideforge-1.3.0.mrpack" download>Download Tideforge 1.3</a>
+          <a class="button light" href="#install">3-step install</a>
         </div>
-        <ul class="fact-row">
-          <li class="fact">Minecraft 1.20.1</li>
-          <li class="fact">Forge 47.4.10</li>
-          <li class="fact">Java 17</li>
-          <li class="fact">Mac + PC</li>
+        <ul class="facts" aria-label="Pack requirements">
+          <li>Minecraft 1.20.1</li>
+          <li>Forge 47.4.10</li>
+          <li>Java 17</li>
+          <li>Mac + PC</li>
+          <li>45 mods</li>
         </ul>
       </div>
-      <div class="hero-art" role="group" aria-label="Tideforge Cherry Halo and Golden Halo worlds">
-        <figure class="art-card cherry">
+      <div class="hero-art" role="group" aria-label="Cherry Halo and Golden Halo Tideforge worlds">
+        <figure class="world cherry">
           <img src="assets/cherry-halo-world.png" alt="Pink voxel ocean engineering world with a sea monster and water tower" fetchpriority="high">
-          <figcaption class="art-label">Cherry Halo</figcaption>
+          <span>Cherry Halo</span>
         </figure>
-        <figure class="art-card gold">
+        <figure class="world gold">
           <img src="assets/golden-halo-world.png" alt="Midnight and gold voxel ocean world with industrial waterworks" fetchpriority="high">
-          <figcaption class="art-label">Golden Halo</figcaption>
+          <span>Golden Halo</span>
         </figure>
-        <div class="angel-orbit" aria-hidden="true"><img src="assets/angel-gold.jpg" alt=""></div>
+        <div class="angel" aria-hidden="true"><img src="assets/angel-gold.jpg" alt=""></div>
       </div>
     </section>
 
-    <aside class="server-bar glass shell" aria-label="Minecraft server status">
-      <div class="server-copy">
-        <span class="status-dot" aria-hidden="true"></span>
+    <aside class="status glass shell" aria-label="Public server status">
+      <div class="status-line">
+        <span class="dot" aria-hidden="true"></span>
         <div>
-          <small>Future Minecraft address · activation pending</small>
+          <small>Public server · activation in progress</small>
           <code id="serverAddress">play.saintjules.org</code>
-          <p class="pending-note">Save it now, but it will not connect until public hosting is activated.</p>
         </div>
       </div>
-      <button class="copy-button" id="copyAddress" type="button">Copy pending address</button>
+      <p>The pack works now. The public Minecraft and proximity-voice routes are not online yet; this notice will change to <strong>Online</strong> after both are tested.</p>
     </aside>
 
-    <section class="features shell" id="features">
-      <div class="section-head">
-        <div>
-          <p class="kicker">What is inside</p>
-          <h2>Ocean horror meets impossible engineering.</h2>
-        </div>
-        <p>Tideforge is a focused adventure pack: terrifying seas, huge machines, proximity voice, living villages, detailed architecture, real moving elevators, furniture, music, photography, alchemy, and creator tools.</p>
-      </div>
-      <div class="feature-grid">
-        <article class="feature-card glass"><span class="feature-number">01</span><h3>Sea monsters</h3><p>Aquamirae, Alex’s Mobs, whales, sharks, orcas, giant squid, ship graveyards, dungeons, and Cataclysm bosses.</p></article>
-        <article class="feature-card glass"><span class="feature-number">02</span><h3>Water to the sky</h3><p>Use Mekanism pumps and pipes to move ocean water hundreds of blocks into a working tower tank.</p></article>
-        <article class="feature-card glass"><span class="feature-number">03</span><h3>A real elevator</h3><p>Build a visible moving platform with named floors, landing displays, remote calls, and redstone controls.</p></article>
-        <article class="feature-card glass"><span class="feature-number">04</span><h3>EMC alchemy</h3><p>ProjectE brings Equivalent Exchange-style transmutation after you earn your way through exploration and engineering.</p></article>
-        <article class="feature-card glass"><span class="feature-number">05</span><h3>Travel light</h3><p>Pack sleeping bags and hang gliders for long expeditions between your ocean base, tower, and boss arenas.</p></article>
-        <article class="feature-card glass"><span class="feature-number">06</span><h3>Furnish the tower</h3><p>Build with 250+ furniture pieces, functional decor, lights, planters, kitchen blocks, cooking tools, and expedition meals.</p></article>
-        <article class="feature-card glass"><span class="feature-number">07</span><h3>Creator novelties</h3><p>Take and display photographs, make albums, and play instruments together inside the world.</p></article>
-        <article class="feature-card glass"><span class="feature-number">08</span><h3>More adventure</h3><p>Raid rebuilt dungeons and ocean monuments, locate structures, and receive personal treasure from shared chests.</p></article>
-        <article class="feature-card glass"><span class="feature-number">09</span><h3>Ready to record</h3><p>Two creator themes, the OBS scene collection, and Tideforge Link’s F8 in-game deck give streams and videos one matching identity.</p></article>
-        <article class="feature-card glass"><span class="feature-number">10</span><h3>Proximity voice</h3><p>Push-to-talk, distance-based conversations, and private groups work on LAN now and publicly after the dedicated UDP route is activated.</p></article>
-        <article class="feature-card glass"><span class="feature-number">11</span><h3>Living villages</h3><p>MCA Reborn gives villagers personalities, relationships, families, guards, and settlements you can help shape.</p></article>
-        <article class="feature-card glass"><span class="feature-number">12</span><h3>Detailed building</h3><p>Macaw’s roofs, bridges, windows, and stairs add gutters, curtains, handrails, balconies, platforms, and finished tower silhouettes.</p></article>
-        <article class="feature-card glass"><span class="feature-number">13</span><h3>Discord community</h3><p>Music rooms, Minecraft chat, server status, showcases, and voice rooms are prepared. Opening soon; activation and the public invite are still pending.</p></article>
+    <section class="section shell" aria-labelledby="insideTitle">
+      <p class="kicker">The experience</p>
+      <h2 id="insideTitle">Ocean horror. Impossible engineering.</h2>
+      <p class="section-copy">Build a tower that pumps ocean water hundreds of blocks into the sky, ride a working elevator, furnish every floor, glide into dungeons, meet living villagers, and fight what comes out of the sea.</p>
+      <div class="highlights">
+        <article class="highlight glass"><b>01</b><h3>Monsters + adventure</h3><p>Aquamirae, Alex’s Mobs, Cataclysm bosses, rebuilt dungeons, and ocean monuments.</p></article>
+        <article class="highlight glass"><b>02</b><h3>Machines + EMC</h3><p>Mekanism pumps, pipes and generators, moving elevators, and ProjectE transmutation.</p></article>
+        <article class="highlight glass"><b>03</b><h3>Homes + people</h3><p>Furniture, roofs, bridges, windows, cooking, sleeping bags, and MCA Reborn families.</p></article>
+        <article class="highlight glass"><b>04</b><h3>Play + create</h3><p>Proximity voice, instruments, photography, two Halo themes, and F8 creator controls.</p></article>
       </div>
     </section>
 
-    <section class="modes shell" aria-labelledby="modesTitle">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Pick a mode</p>
-          <h2 id="modesTitle">Two Halos. One world.</h2>
-        </div>
-        <p>Tideforge 1.3 already includes both looks. These separate downloads are useful when you want to reinstall or share a theme by itself. They style Minecraft’s menus after the game opens; Prism and the official Minecraft launcher keep their own interface.</p>
+    <section class="section shell" id="mods" aria-labelledby="modsTitle">
+      <p class="kicker">Complete manifest</p>
+      <h2 id="modsTitle">Every mod in Tideforge 1.3.</h2>
+      <p class="section-copy">The downloadable pack contains <strong>44 pinned third-party mod files</strong> plus the custom <strong>Tideforge Link</strong> mod. Open a category to see exact names and versions.</p>
+      <div class="mod-summary" aria-label="Mod counts">
+        <span>45 total mods</span>
+        <span>30 gameplay + creator</span>
+        <span>4 performance</span>
+        <span>11 libraries</span>
       </div>
-      <div class="mode-grid">
-        <article class="mode-card">
-          <img src="assets/cherry-halo-world.png" alt="Cherry Halo pink and pearl Tideforge world" loading="lazy">
-          <div class="mode-content"><small>Pink · pearl · gingham · cherry</small><h3>Cherry Halo</h3><p>Sweet on the surface, dangerous underneath. Custom menus, buttons, hotbar, title art, and panorama.</p><a class="download-light" href="downloads/Tideforge-Cherry-Halo-1.0.0.zip" download>Download resource pack</a></div>
-        </article>
-        <article class="mode-card">
-          <img src="assets/golden-halo-world.png" alt="Golden Halo navy, chrome, and gold Tideforge world" loading="lazy">
-          <div class="mode-content"><small>Charcoal · denim · chrome · gold</small><h3>Golden Halo</h3><p>A darker recording-night look with warm gold light and the matching custom Minecraft interface.</p><a class="download-light" href="downloads/Tideforge-Golden-Halo-1.0.0.zip" download>Download resource pack</a></div>
-        </article>
+      <div class="mod-groups">
+        <details class="glass" open>
+          <summary>Ocean, mobs + adventure <span>7 mods</span></summary>
+          <div class="mod-body">
+            <p>Sea life, monsters, bosses, structures, navigation, and fair multiplayer treasure.</p>
+            <ul class="mod-list">
+              <li data-file="alexsmobs-1.22.9.jar">Alex’s Mobs <small>1.22.9</small></li>
+              <li data-file="aquamirae-forge-1.20.1-6.4.0.jar">Aquamirae <small>6.4.0</small></li>
+              <li data-file="L_Enders_Cataclysm-3.31.jar">L_Ender’s Cataclysm <small>3.31</small></li>
+              <li data-file="ExplorersCompass-1.20.1-1.4.0-forge.jar">Explorer’s Compass <small>1.4.0</small></li>
+              <li data-file="lootr-forge-1.20-0.7.35.94.jar">Lootr <small>0.7.35.94</small></li>
+              <li data-file="YungsBetterDungeons-1.20-Forge-4.0.4.jar">YUNG’s Better Dungeons <small>4.0.4</small></li>
+              <li data-file="YungsBetterOceanMonuments-1.20-Forge-3.0.4.jar">YUNG’s Better Ocean Monuments <small>3.0.4</small></li>
+            </ul>
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Engineering + progression <span>5 mods</span></summary>
+          <div class="mod-body">
+            <p>Water pumping, pipes, power, functional elevators, and Equivalent Exchange-style EMC.</p>
+            <ul class="mod-list">
+              <li data-file="Mekanism-1.20.1-10.4.16.80.jar">Mekanism <small>10.4.16.80</small></li>
+              <li data-file="MekanismGenerators-1.20.1-10.4.16.80.jar">Mekanism Generators <small>10.4.16.80</small></li>
+              <li data-file="movingelevators-1.4.12-forge-mc1.20.1.jar">Moving Elevators <small>1.4.12</small></li>
+              <li data-file="ProjectE-1.20.1-PE1.0.1.jar">ProjectE <small>PE1.0.1</small></li>
+              <li data-file="ProjectE_Integration-1.20.1-7.2.5.jar">ProjectE Integration <small>7.2.5</small></li>
+            </ul>
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Building, food + village life <span>10 mods</span></summary>
+          <div class="mod-body">
+            <p>Furniture, detailed architecture, cooking, travel gear, and villagers with lives and relationships.</p>
+            <ul class="mod-list">
+              <li data-file="handcrafted-forge-1.20.1-3.0.6.jar">Handcrafted <small>3.0.6</small></li>
+              <li data-file="supplementaries-1.20-3.1.43-forge.jar">Supplementaries <small>3.1.43</small></li>
+              <li data-file="mcw-bridges-3.1.2-mc1.20.1forge.jar">Macaw’s Bridges <small>3.1.2</small></li>
+              <li data-file="mcw-roofs-2.3.2-mc1.20.1forge.jar">Macaw’s Roofs <small>2.3.2</small></li>
+              <li data-file="mcw-mcwstairs-1.0.2-mc1.20.1forge.jar">Macaw’s Stairs <small>1.0.2</small></li>
+              <li data-file="mcw-mcwwindows-2.4.2-mc1.20.1forge.jar">Macaw’s Windows <small>2.4.2</small></li>
+              <li data-file="FarmersDelight-1.20.1-1.3.2.jar">Farmer’s Delight <small>1.3.2</small></li>
+              <li data-file="comforts-forge-6.4.0+1.20.1.jar">Comforts <small>6.4.0</small></li>
+              <li data-file="HangGlider-v8.0.1-1.20.1-Forge.jar">Hang Glider <small>8.0.1</small></li>
+              <li data-file="minecraft-comes-alive-7.6.26+1.20.1-universal.jar">Minecraft Comes Alive Reborn <small>7.6.26</small></li>
+            </ul>
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Creator, social + interface <span>8 mods</span></summary>
+          <div class="mod-body">
+            <p>Photography, music, voice, Discord support, recipes, equipment slots, and Saint Jules controls.</p>
+            <ul class="mod-list">
+              <li data-file="exposure-1.20.1-1.7.16-forge.jar">Exposure <small>1.7.16</small></li>
+              <li data-file="immersive_melodies-0.6.1+1.20.1-forge.jar">Immersive Melodies <small>0.6.1</small></li>
+              <li data-file="voicechat-forge-1.20.1-2.6.21.jar">Simple Voice Chat <small>2.6.21</small></li>
+              <li data-file="SimpleDiscordLink-Universal-3.4.4.jar">Simple Discord Link <small>3.4.4 · server-side</small></li>
+              <li data-file="tideforge-link-1.0.0.jar">Tideforge Link <small>1.0.0 · custom</small></li>
+              <li data-file="Jade-1.20.1-Forge-11.13.3.jar">Jade <small>11.13.3</small></li>
+              <li data-file="jei-1.20.1-forge-15.20.0.112.jar">Just Enough Items <small>15.20.0.112</small></li>
+              <li data-file="curios-forge-5.14.1+1.20.1.jar">Curios API <small>5.14.1</small></li>
+            </ul>
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Performance + diagnostics <span>4 mods</span></summary>
+          <div class="mod-body">
+            <p>Rendering, memory, loading, and server-performance improvements.</p>
+            <ul class="mod-list">
+              <li data-file="embeddium-0.3.31+mc1.20.1.jar">Embeddium <small>0.3.31</small></li>
+              <li data-file="ferritecore-6.0.1-forge.jar">FerriteCore <small>6.0.1</small></li>
+              <li data-file="modernfix-forge-5.27.66+mc1.20.1.jar">ModernFix <small>5.27.66</small></li>
+              <li data-file="spark-1.10.53-forge.jar">spark <small>1.10.53</small></li>
+            </ul>
+          </div>
+        </details>
+        <details class="glass">
+          <summary>Required libraries <span>11 mods</span></summary>
+          <div class="mod-body">
+            <p>Support code required by the gameplay mods above; Prism installs these automatically.</p>
+            <ul class="mod-list">
+              <li data-file="architectury-9.2.14-forge.jar">Architectury API <small>9.2.14</small></li>
+              <li data-file="citadel-2.6.3-1.20.1.jar">Citadel <small>2.6.3</small></li>
+              <li data-file="CraterLib-Forge-1.20-3.1.2+hotfix.1.jar">CraterLib <small>3.1.2 hotfix 1</small></li>
+              <li data-file="lionfishapi-3.0.jar">Lionfish API <small>3.0</small></li>
+              <li data-file="moonlight-1.20-2.16.34-forge.jar">Moonlight Lib <small>2.16.34</small></li>
+              <li data-file="obscure_api-18.jar">Obscure API <small>18</small></li>
+              <li data-file="PuzzlesLib-v8.1.33-1.20.1-Forge.jar">Puzzles Lib <small>8.1.33</small></li>
+              <li data-file="resourcefullib-forge-1.20.1-2.1.29.jar">Resourceful Lib <small>2.1.29</small></li>
+              <li data-file="supermartijn642configlib-1.1.8-forge-mc1.20.jar">SuperMartijn642’s Config Lib <small>1.1.8</small></li>
+              <li data-file="supermartijn642corelib-1.1.21-forge-mc1.20.1.jar">SuperMartijn642’s Core Lib <small>1.1.21</small></li>
+              <li data-file="YungsApi-1.20-Forge-4.0.6.jar">YUNG’s API <small>4.0.6</small></li>
+            </ul>
+          </div>
+        </details>
       </div>
     </section>
 
-    <section class="install shell" id="install">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Three steps</p>
-          <h2>From download to ocean.</h2>
-        </div>
-        <p>You need Minecraft Java Edition and a Microsoft account that owns it. Prism Launcher handles the Forge profile and official mod downloads for you.</p>
-      </div>
+    <section class="section shell" id="install" aria-labelledby="installTitle">
+      <p class="kicker">Three steps</p>
+      <h2 id="installTitle">Download. Import. Play.</h2>
+      <p class="section-copy">You need Minecraft Java Edition and the Microsoft account that owns it. Prism Launcher handles Forge and the pinned downloads.</p>
       <div class="steps">
-        <article class="step glass" data-step="1"><h3>Get Prism Launcher</h3><p>Install Prism Launcher for your Mac, Windows PC, or Linux computer.</p><a class="text-link" href="https://prismlauncher.org/download/" target="_blank" rel="noopener">Official Prism download ↗</a></article>
-        <article class="step glass" data-step="2"><h3>Import Tideforge</h3><p>In Prism choose <strong>Add Instance → Import</strong>, then select the downloaded <strong>Tideforge-1.3.0.mrpack</strong> file.</p><a class="text-link" href="downloads/Tideforge-1.3.0.mrpack" download>Download pack ↓</a></article>
-        <article class="step glass" data-step="3"><h3>Add the server</h3><p>Sign in, launch once, then add <strong>play.saintjules.org</strong> to Multiplayer after this page says the server is active.</p><a class="text-link" href="#serverAddress">See pending address ↑</a></article>
+        <article class="step glass"><span class="step-number">1</span><div><h3>Install Prism</h3><p>Get Prism Launcher for macOS, Windows, or Linux.</p><a href="https://prismlauncher.org/download/" target="_blank" rel="noopener">Official Prism download ↗</a></div></article>
+        <article class="step glass"><span class="step-number">2</span><div><h3>Import Tideforge</h3><p>Choose <strong>Add Instance → Import</strong> and select <strong>Tideforge-1.3.0.mrpack</strong>.</p><a href="downloads/Tideforge-1.3.0.mrpack" download>Download the pack ↓</a></div></article>
+        <article class="step glass"><span class="step-number">3</span><div><h3>Launch + connect</h3><p>Sign in and launch. Add <strong>play.saintjules.org</strong> only after the status above says Online.</p><a href="#serverAddress">Check server status ↑</a></div></article>
       </div>
     </section>
 
-    <section class="downloads shell" id="downloads">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Download shelf</p>
-          <h2>Everything in one place.</h2>
-        </div>
-        <p>The main modpack is the only required file. The themes and OBS collection are optional creator extras. Checksums let you verify every download.</p>
+    <section class="section shell" id="extras" aria-labelledby="extrasTitle">
+      <p class="kicker">Optional creator extras</p>
+      <h2 id="extrasTitle">Choose your Halo.</h2>
+      <p class="section-copy">Both Minecraft themes are already inside the main pack. Download them separately only to reinstall or share. OBS scenes are optional.</p>
+      <div class="extras">
+        <a class="extra glass" href="downloads/Tideforge-Cherry-Halo-1.0.0.zip" download><div><small>Resource pack</small><h3>Cherry Halo</h3></div><span class="arrow" aria-hidden="true">↓</span></a>
+        <a class="extra glass" href="downloads/Tideforge-Golden-Halo-1.0.0.zip" download><div><small>Resource pack</small><h3>Golden Halo</h3></div><span class="arrow" aria-hidden="true">↓</span></a>
+        <a class="extra glass" href="downloads/Tideforge-Creator-Studio.json" download><div><small>OBS import</small><h3>Creator Studio</h3></div><span class="arrow" aria-hidden="true">↓</span></a>
       </div>
-      <div class="download-grid">
-        <a class="download-card glass" href="downloads/Tideforge-1.3.0.mrpack" download><div><small>Required · Modrinth pack</small><h3>Tideforge 1.3.0</h3></div><span class="download-icon" aria-hidden="true">↓</span></a>
-        <a class="download-card glass" href="downloads/Tideforge-Cherry-Halo-1.0.0.zip" download><div><small>Optional · Resource pack</small><h3>Cherry Halo 1.0.0</h3></div><span class="download-icon" aria-hidden="true">↓</span></a>
-        <a class="download-card glass" href="downloads/Tideforge-Golden-Halo-1.0.0.zip" download><div><small>Optional · Resource pack</small><h3>Golden Halo 1.0.0</h3></div><span class="download-icon" aria-hidden="true">↓</span></a>
-        <a class="download-card glass" href="downloads/Tideforge-Creator-Studio.json" download><div><small>Optional · OBS import</small><h3>Creator Studio scenes</h3></div><span class="download-icon" aria-hidden="true">↓</span></a>
-        <a class="download-card glass" href="downloads/SHA256SUMS.txt" download><div><small>Integrity · Plain text</small><h3>SHA-256 checksums</h3></div><span class="download-icon" aria-hidden="true">#</span></a>
-      </div>
+      <p class="fineprint">Want to verify the files? <a href="downloads/SHA256SUMS.txt" download>Download the SHA-256 checksums.</a> The Discord community and Minecraft chat bridge are prepared but do not have a public invite yet.</p>
     </section>
 
-    <section class="release shell" id="status" aria-labelledby="releaseTitle">
-      <div class="section-head">
-        <div>
-          <p class="kicker">Release board</p>
-          <h2 id="releaseTitle">What works now—and what still needs a key.</h2>
-        </div>
-        <p>The pack and its local creator controls are ready. Public networking and Discord stay clearly marked until they are activated and verified.</p>
-      </div>
-      <div class="release-grid">
-        <article class="release-card glass"><span class="release-chip ready">Ready</span><h3>Tideforge 1.3 download</h3><p>The Forge pack, Cherry Halo, Golden Halo, and Creator Studio scene collection are available from this page.</p></article>
-        <article class="release-card glass"><span class="release-chip pending">Owner setup</span><h3>Public Minecraft + voice</h3><p>The private server works locally. The public game address and separate proximity-voice route still need their secure tunnel and DNS activation.</p></article>
-        <article class="release-card glass"><span class="release-chip pending">Authorization</span><h3>Saint Jules Discord</h3><p>The channel plan and Minecraft bridge are prepared, but no invite is published until the Discord server and private bridge bot are authorized.</p></article>
-        <article class="release-card glass"><span class="release-chip ready">Included</span><h3>Creator Control in Minecraft</h3><p>Tideforge Link is included in the 1.3 pack. Press F8 for local, authenticated OBS WebSocket scene and recording controls, safe player and whitelist shortcuts, the dashboard link, and a confirmed operator-only server stop.</p></article>
-      </div>
-    </section>
-
-    <section class="safety shell" aria-labelledby="safetyTitle">
-      <div class="safety-card">
-        <p class="kicker">Built for safe self-hosting</p>
-        <h2 id="safetyTitle">The game can be public. The controls stay private.</h2>
-        <p>Only the game connections—Minecraft and its dedicated voice channel—will be exposed. The server console, controller, worlds, backups, creator dashboard, and future Discord credential remain private on the Saint Jules Mac and are never linked from this page.</p>
-      </div>
-    </section>
-
-    <section class="community shell" id="community" aria-labelledby="communityTitle">
-      <div class="community-card">
-        <div class="community-copy">
-          <p class="kicker">Saint Jules community</p>
-          <h2 id="communityTitle">Music, Minecraft, one party.</h2>
-          <p>A dedicated Saint Jules Discord is prepared to bring releases, listening sessions, server news, build showcases, support, and a Minecraft chat-and-status bridge together. In-game proximity voice stays inside Tideforge, while Discord provides the wider community rooms.</p>
-        </div>
-        <aside class="community-status glass" aria-label="Discord community status">
-          <span class="status-chip">Opening soon</span>
-          <h3>Activation pending</h3>
-          <p>There is no public invite yet. Saint Jules still needs to create and authorize the Discord server and its private bridge bot.</p>
-          <ul>
-            <li>Music, releases, and listening parties</li>
-            <li>Minecraft chat, news, and server status</li>
-            <li>Build showcases, help, and whitelist requests</li>
-            <li>Listening Room and Tideforge Party voice rooms</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section class="connect shell">
-      <div class="connect-card glass">
-        <p class="kicker">Stay in the party</p>
-        <h2>Music in your ears. Sea monsters on your screen.</h2>
-        <p>Go back to the Saint Jules player or follow along while the public server and Saint Jules Music × Tideforge Discord get their final connections.</p>
-        <div class="social-row">
+    <section class="section shell">
+      <div class="closing">
+        <p class="kicker">Saint Jules</p>
+        <h2>Music in your ears. Monsters on your screen.</h2>
+        <p>Return to the music player or follow Saint Jules while the public Tideforge server gets its final connection.</p>
+        <div class="socials">
           <a href="../">Music player</a>
           <a href="https://soundcloud.com/1jxles" target="_blank" rel="noopener">SoundCloud</a>
-          <a href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener">Spotify</a>
           <a href="https://www.youtube.com/@SaintJulezz" target="_blank" rel="noopener">YouTube</a>
           <a href="https://www.instagram.com/saint__jules/" target="_blank" rel="noopener">Instagram</a>
         </div>
@@ -441,42 +395,7 @@
 
   <footer class="shell">
     <span>© Saint Jules · Tideforge 1.3</span>
-    <span>Server address pending activation</span>
+    <span>Public server activation in progress</span>
   </footer>
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script>
-    const copyButton = document.querySelector("#copyAddress");
-    const address = document.querySelector("#serverAddress").textContent.trim();
-    const toast = document.querySelector("#toast");
-
-    function announce(message) {
-      toast.textContent = message;
-      toast.classList.add("show");
-      clearTimeout(announce.timer);
-      announce.timer = setTimeout(() => toast.classList.remove("show"), 2200);
-    }
-
-    async function copyAddress() {
-      try {
-        await navigator.clipboard.writeText(address);
-      } catch {
-        const field = document.createElement("textarea");
-        field.value = address;
-        field.setAttribute("readonly", "");
-        field.style.position = "fixed";
-        field.style.opacity = "0";
-        document.body.appendChild(field);
-        field.select();
-        document.execCommand("copy");
-        field.remove();
-      }
-      copyButton.textContent = "Copied";
-      announce("Pending server address copied.");
-      setTimeout(() => { copyButton.textContent = "Copy pending address"; }, 1800);
-    }
-
-    copyButton.addEventListener("click", copyAddress);
-  </script>
 </body>
 </html>
