@@ -25,6 +25,7 @@ relative Minecraft destination set to minecraft/ so the main player links to
 the public install page.
 
 The minecraft/ directory contains the Tideforge 1.3 landing page, artwork,
-pack downloads, OBS scene collection, and SHA-256 checksums. The public game
-address shown there is play.saintjules.org, clearly marked pending until the
-separate Minecraft hosting and DNS record are activated.
+pack downloads, OBS scene collection, and SHA-256 checksums. The verified
+free Playit Minecraft address shown there is
+voucher-wildlife.gl.joinmc.link. The separate proximity-voice route is
+configured server-side and is not published as a second player address.
