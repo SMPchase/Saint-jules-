@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#ed84ae">
+  <meta name="theme-color" content="#ef6da3">
   <meta name="description" content="Download Saint Jules’ Tideforge 1.3 Minecraft modpack: 45 pinned mods for sea monsters, engineering, elevators, EMC, furniture, villages, voice chat, adventure, and creator tools.">
   <meta property="og:title" content="Play With Me — Saint Jules × Tideforge">
-  <meta property="og:description" content="Download Tideforge 1.3, see every included mod, and join the Saint Jules Minecraft world when the public server opens.">
+  <meta property="og:description" content="Download Tideforge 1.3, install it in three steps, see what is included, and check the Saint Jules Minecraft server status.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.saintjules.org/minecraft/">
   <meta property="og:image" content="https://www.saintjules.org/minecraft/assets/og.png">
@@ -18,13 +18,13 @@
     :root{
       --pink:#ef5b98;
       --cherry:#d92363;
-      --gold:#f4cb64;
+      --gold:#f3c95f;
       --navy:#121b32;
-      --ink:#251820;
-      --muted:#705a64;
-      --glass:rgba(255,255,255,.74);
-      --line:rgba(255,255,255,.82);
-      --shadow:0 20px 54px rgba(89,34,60,.15);
+      --ink:#261820;
+      --muted:#6f5863;
+      --glass:rgba(255,255,255,.76);
+      --line:rgba(255,255,255,.86);
+      --shadow:0 18px 48px rgba(89,34,60,.14);
       color-scheme:light;
     }
     *{box-sizing:border-box}
@@ -34,143 +34,127 @@
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
       -webkit-font-smoothing:antialiased;
       background:
-        radial-gradient(circle at 8% 1%,rgba(255,255,255,.92),transparent 22rem),
-        radial-gradient(circle at 95% 25%,rgba(176,224,235,.65),transparent 28rem),
-        linear-gradient(150deg,#f8bfd4 0%,#f0d6e1 53%,#e7f2f2 78%,#fff0ce 100%);
+        radial-gradient(circle at 8% 1%,rgba(255,255,255,.94),transparent 22rem),
+        radial-gradient(circle at 95% 34%,rgba(174,226,237,.58),transparent 28rem),
+        linear-gradient(150deg,#f8bfd4 0%,#f1d9e3 55%,#e9f3f2 79%,#fff0cf 100%);
     }
     body::before{
-      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.34;
+      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.3;
       background:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px) 0 0/36px 36px;
-      mask-image:linear-gradient(#000,transparent 70%);
-      -webkit-mask-image:linear-gradient(#000,transparent 70%);
+      mask-image:linear-gradient(#000,transparent 68%);
+      -webkit-mask-image:linear-gradient(#000,transparent 68%);
     }
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-    button{font:inherit}
     :focus-visible{outline:3px solid #fff;outline-offset:4px}
     .skip-link{position:fixed;left:12px;top:10px;z-index:100;transform:translateY(-150%);padding:10px 14px;border-radius:999px;background:#fff;font-weight:900}
     .skip-link:focus{transform:translateY(0)}
-    .shell{width:min(1120px,calc(100% - 20px));margin-inline:auto}
+    .shell{width:min(1060px,calc(100% - 24px));margin-inline:auto}
     .glass{
-      border:1px solid var(--line);background:var(--glass);box-shadow:inset 0 1px rgba(255,255,255,.92),var(--shadow);
-      -webkit-backdrop-filter:blur(20px) saturate(1.08);backdrop-filter:blur(20px) saturate(1.08);
+      border:1px solid var(--line);background:var(--glass);box-shadow:inset 0 1px rgba(255,255,255,.94),var(--shadow);
+      -webkit-backdrop-filter:blur(18px) saturate(1.08);backdrop-filter:blur(18px) saturate(1.08);
     }
-    .eyebrow,.kicker{margin:0 0 10px;color:#9e1e51;font-size:10px;font-weight:950;letter-spacing:.19em;text-transform:uppercase}
+    .eyebrow{margin:0 0 10px;color:#9e1e51;font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
     h1,h2,h3,p{overflow-wrap:anywhere}
-    h1{margin:0;font-size:clamp(54px,19vw,82px);line-height:.79;letter-spacing:-.075em;font-weight:950}
-    h1 span{display:block;color:#fff;text-shadow:0 16px 38px rgba(132,42,78,.15)}
-    h2{margin:0;font-size:clamp(34px,11vw,54px);line-height:.92;letter-spacing:-.052em}
+    h1{margin:0;font-size:clamp(58px,19vw,100px);line-height:.8;letter-spacing:-.075em;font-weight:950}
+    h1 span{display:block;color:#fff;text-shadow:0 16px 38px rgba(132,42,78,.14)}
+    h2{margin:0;font-size:clamp(34px,10vw,54px);line-height:.94;letter-spacing:-.052em}
     h3{letter-spacing:-.025em}
-    .lede{margin:22px 0 0;color:#523d46;font-size:17px;line-height:1.52;font-weight:680}
+    .intro{max-width:680px;margin:16px 0 0;color:#59434d;font-size:16px;line-height:1.5;font-weight:660}
     .button{
-      min-height:50px;padding:0 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
+      min-height:52px;padding:0 21px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
       font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;
     }
     .button.primary{color:#fff;background:var(--ink);box-shadow:0 14px 30px rgba(50,25,36,.2)}
-    .button.light{border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.58)}
+    .button.light{border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.6)}
 
     .top{padding:max(12px,env(safe-area-inset-top)) 0 0}
     .nav{min-height:58px;padding:7px 8px 7px 12px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:950;letter-spacing:.2em;text-transform:uppercase}
+    .brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
     .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}
-    .nav-actions{display:flex;gap:6px}
-    .nav-actions a{min-height:42px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-    .nav-actions .download{color:#fff;background:linear-gradient(135deg,#ff568d,#d42160)}
-    .nav-actions .mods{background:rgba(255,255,255,.58)}
+    .nav-links{display:flex;align-items:center;gap:3px}
+    .nav-links a{min-height:42px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+    .nav-links .download{color:#fff;background:linear-gradient(135deg,#ff568d,#d42160)}
 
-    .hero{padding:46px 0 34px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}
-    .facts{display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0;padding:0;list-style:none}
-    .facts li{padding:8px 10px;border:1px solid rgba(255,255,255,.75);border-radius:999px;background:rgba(255,255,255,.42);font-size:9px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
-    .hero-art{position:relative;height:340px;margin-top:34px}
-    .world{position:absolute;overflow:hidden;border:1px solid #fff;border-radius:27px;background:#fff;box-shadow:0 22px 50px rgba(71,33,48,.22)}
+    main>section{scroll-margin-top:18px;padding:68px 0}
+    #download{padding-top:48px}
+    .hero{display:grid;gap:28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+    .facts{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0 0;padding:0;list-style:none}
+    .facts li{padding:8px 10px;border:1px solid rgba(255,255,255,.78);border-radius:999px;background:rgba(255,255,255,.46);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+    .worlds{height:240px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .world{position:relative;margin:0;overflow:hidden;border:1px solid #fff;border-radius:24px;background:#fff;box-shadow:var(--shadow)}
     .world img{width:100%;height:100%;object-fit:cover}
-    .world.cherry{inset:0 14% 8% 0;transform:rotate(-2.5deg)}
-    .world.gold{inset:19% 0 0 28%;transform:rotate(3.5deg)}
-    .world span{position:absolute;left:13px;bottom:13px;padding:8px 10px;border-radius:999px;color:#fff;background:rgba(18,27,50,.68);font-size:8px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-    .angel{position:absolute;z-index:3;right:3%;top:-2%;width:66px;height:66px;padding:8px;border:1px solid #fff;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 14px 34px rgba(67,29,45,.16)}
-    .angel img{width:100%;height:100%;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}
+    .world figcaption{position:absolute;left:10px;bottom:10px;padding:7px 9px;border-radius:999px;color:#fff;background:rgba(18,27,50,.7);font-size:8px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}
 
-    .status{margin-bottom:64px;padding:18px;border-radius:25px;display:grid;gap:13px}
-    .status-line{display:flex;align-items:center;gap:12px}
-    .dot{width:11px;height:11px;flex:0 0 11px;border-radius:50%;background:#e49a32;box-shadow:0 0 0 6px rgba(228,154,50,.16)}
-    .status small{display:block;color:#825f6d;font-size:8px;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
-    .status code{display:block;margin-top:4px;font-family:"SFMono-Regular",Consolas,monospace;font-size:18px;font-weight:850}
-    .status p{margin:0;color:var(--muted);font-size:12px;line-height:1.45;font-weight:700}
-
-    section{scroll-margin-top:18px}
-    .section{padding:0 0 68px}
-    .section-copy{max-width:760px;margin:15px 0 24px;color:#5f4a53;font-size:15px;line-height:1.55;font-weight:650}
-    .highlights{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-    .highlight{min-height:154px;padding:18px;border-radius:23px}
-    .highlight b{display:grid;place-items:center;width:34px;height:34px;margin-bottom:23px;border-radius:50%;color:#fff;background:var(--ink);font-size:14px}
-    .highlight h3{margin:0 0 7px;font-size:18px}
-    .highlight p{margin:0;color:#67515a;font-size:13px;line-height:1.45;font-weight:620}
-
-    .mod-summary{display:flex;flex-wrap:wrap;gap:7px;margin:19px 0 16px}
-    .mod-summary span{padding:8px 11px;border-radius:999px;background:rgba(255,255,255,.54);border:1px solid rgba(255,255,255,.8);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-    .mod-groups{display:grid;gap:8px}
-    details{border-radius:22px;overflow:hidden}
+    .download-box{margin-top:10px;padding:18px;border-radius:25px}
+    .download-box strong{display:block;font-size:17px}
+    .download-box p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.46;font-weight:650}
+    .extras{margin-top:13px}
+    details{border-radius:20px;overflow:hidden}
     summary{
-      min-height:64px;padding:15px 17px;display:flex;align-items:center;justify-content:space-between;gap:14px;
-      cursor:pointer;list-style:none;font-size:15px;font-weight:900;
+      min-height:58px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;
+      cursor:pointer;list-style:none;font-size:14px;font-weight:900;
     }
     summary::-webkit-details-marker{display:none}
-    summary::after{content:"+";display:grid;place-items:center;width:31px;height:31px;flex:0 0 31px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px}
-    details[open] summary::after{content:"–"}
-    summary span{color:#906577;font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-    .mod-body{padding:0 17px 17px}
-    .mod-body>p{margin:0 0 13px;color:#65505a;font-size:12px;line-height:1.48;font-weight:650}
-    .mod-list{display:flex;flex-wrap:wrap;gap:7px;margin:0;padding:0;list-style:none}
-    .mod-list li{padding:8px 10px;border-radius:11px;background:rgba(255,255,255,.63);font-size:11px;font-weight:820;line-height:1.25}
-    .mod-list small{display:block;margin-top:2px;color:#8b6b78;font-size:8px;font-weight:750}
+    summary::after{content:"+";display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px}
+    details[open]>summary::after{content:"–"}
+    .extra-links{padding:0 16px 16px;display:grid;gap:7px}
+    .extra-links a{padding:11px 12px;border-radius:13px;background:rgba(255,255,255,.65);font-size:11px;font-weight:820}
+    .extra-links small{display:block;margin-top:3px;color:#866873;font-size:9px;font-weight:650}
 
+    .section-head{max-width:760px;margin-bottom:22px}
+    .section-head p{margin:13px 0 0;color:#5f4953;font-size:14px;line-height:1.52;font-weight:640}
     .steps{display:grid;gap:9px}
-    .step{padding:19px;border-radius:23px;display:grid;grid-template-columns:36px 1fr;gap:13px;align-items:start}
-    .step-number{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;color:#fff;background:var(--ink);font-size:11px;font-weight:950}
+    .step{padding:18px;border-radius:22px;display:grid;grid-template-columns:38px 1fr;gap:13px}
+    .step-number{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;color:#fff;background:var(--ink);font-size:11px;font-weight:950}
     .step h3{margin:1px 0 6px;font-size:18px}
     .step p{margin:0;color:#67515a;font-size:13px;line-height:1.48;font-weight:620}
-    .step a{display:inline-flex;margin-top:10px;color:#a71f55;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+    .step a{display:inline-flex;margin-top:9px;color:#a71f55;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
 
-    .extras{display:grid;gap:9px}
-    .extra{min-height:91px;padding:16px;border-radius:22px;display:flex;align-items:center;justify-content:space-between;gap:14px}
-    .extra small{display:block;color:#98637a;font-size:8px;font-weight:950;letter-spacing:.12em;text-transform:uppercase}
-    .extra h3{margin:5px 0 0;font-size:16px}
-    .arrow{display:grid;place-items:center;width:42px;height:42px;flex:0 0 42px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px;font-weight:950}
-    .fineprint{margin:13px 0 0;color:#725c66;font-size:11px;line-height:1.5;font-weight:650}
-    .fineprint a{text-decoration:underline;text-underline-offset:3px}
+    .category-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .category{padding:16px;border-radius:20px}
+    .category span{color:#9d2253;font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    .category h3{margin:7px 0 5px;font-size:16px}
+    .category p{margin:0;color:#67515a;font-size:12px;line-height:1.42;font-weight:620}
+    .manifest{margin-top:10px}
+    .manifest>summary span{color:#946174;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
+    .manifest-body{padding:0 14px 14px;display:grid;gap:8px}
+    .mod-group{padding:14px;border-radius:16px;background:rgba(255,255,255,.54)}
+    .mod-group h3{margin:0 0 9px;font-size:14px}
+    .mod-list{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+    .mod-list li{padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.78);font-size:10px;font-weight:820;line-height:1.25}
+    .mod-list small{display:block;margin-top:2px;color:#876875;font-size:8px;font-weight:680}
 
-    .closing{padding:28px;border-radius:28px;color:#fff;background:radial-gradient(circle at 88% 20%,rgba(244,203,100,.23),transparent 14rem),linear-gradient(135deg,#8e1645,#211922 56%,#121b32)}
-    .closing .kicker{color:#ffd4e4}
-    .closing p{margin:17px 0 22px;color:rgba(255,255,255,.76);font-size:14px;line-height:1.5;font-weight:640}
-    .socials{display:flex;flex-wrap:wrap;gap:7px}
+    .join-card{padding:24px;border-radius:28px;color:#fff;background:radial-gradient(circle at 88% 15%,rgba(244,203,100,.25),transparent 14rem),linear-gradient(135deg,#8e1645,#211922 56%,#121b32)}
+    .status-pill{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:8px 10px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.1);font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+    .dot{width:9px;height:9px;border-radius:50%;background:#f1b351;box-shadow:0 0 0 5px rgba(241,179,81,.16)}
+    .join-card h2{max-width:760px}
+    .address{display:block;margin:20px 0 0;font-family:"SFMono-Regular",Consolas,monospace;font-size:clamp(19px,6vw,28px);font-weight:850}
+    .join-card>p{max-width:720px;margin:12px 0 0;color:rgba(255,255,255,.76);font-size:13px;line-height:1.52;font-weight:640}
+    .socials{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
     .socials a{min-height:40px;padding:0 13px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.1);display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-    footer{padding:22px 0 max(32px,env(safe-area-inset-bottom));display:flex;align-items:flex-start;justify-content:space-between;gap:16px;color:#725b65;font-size:9px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
 
+    footer{padding:4px 0 max(32px,env(safe-area-inset-bottom));display:flex;align-items:flex-start;justify-content:space-between;gap:16px;color:#725b65;font-size:9px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
     @media(min-width:700px){
-      .shell{width:min(1120px,calc(100% - 48px))}
+      .shell{width:min(1060px,calc(100% - 48px))}
       .top{padding-top:18px}
-      .nav{padding-left:16px}
-      .hero{padding:60px 0 42px;display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.88fr);gap:50px;align-items:center}
-      h1{font-size:clamp(76px,9vw,112px)}
-      .lede{max-width:610px;font-size:20px}
-      .hero-art{height:510px;margin-top:0}
-      .angel{width:86px;height:86px}
-      .status{grid-template-columns:minmax(0,1fr) minmax(250px,.7fr);align-items:center;padding:20px 24px}
-      .highlights{grid-template-columns:repeat(4,1fr)}
-      .mod-groups{grid-template-columns:1fr 1fr}
+      .hero{grid-template-columns:minmax(0,1fr) minmax(330px,.78fr);align-items:center;gap:44px}
+      .worlds{height:400px}
       .steps{grid-template-columns:repeat(3,1fr)}
-      .step{display:block;min-height:220px}
-      .step h3{margin-top:32px}
-      .extras{grid-template-columns:repeat(3,1fr)}
-      .extra{min-height:116px}
-      .closing{padding:44px}
+      .step{display:block;min-height:210px}
+      .step h3{margin-top:30px}
+      .category-grid{grid-template-columns:repeat(4,1fr)}
+      .manifest-body{grid-template-columns:1fr 1fr}
+      .join-card{padding:40px}
     }
-    @media(max-width:440px){
+    @media(max-width:560px){
       .brand span{display:none}
-      .nav-actions .mods{display:none}
-      .highlights{grid-template-columns:1fr}
-      .highlight{min-height:135px}
+      .nav-links a:not(.download){display:none}
+      .worlds{height:210px}
+      .category-grid{grid-template-columns:1fr}
+      footer{display:block}
+      footer span{display:block;margin-top:5px}
     }
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
@@ -187,82 +171,100 @@
         <img src="assets/angel-silver.jpg" alt="" width="38" height="38">
         <span>Saint Jules</span>
       </a>
-      <div class="nav-actions">
-        <a class="mods" href="#mods">See all mods</a>
+      <div class="nav-links">
+        <a href="#install">Install</a>
+        <a href="#included">Included</a>
+        <a href="#join">Join</a>
         <a class="download" href="downloads/Tideforge-1.3.0.mrpack" download>Download</a>
       </div>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero shell">
-      <div>
-        <p class="eyebrow">Saint Jules presents · Tideforge 1.3</p>
-        <h1>PLAY <span>WITH ME.</span></h1>
-        <p class="lede">Sea monsters below. Machines in the sky. Download one pack for engineering, adventure, living villages, furniture, proximity voice, and creator tools.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="downloads/Tideforge-1.3.0.mrpack" download>Download Tideforge 1.3</a>
-          <a class="button light" href="#install">3-step install</a>
-        </div>
-        <ul class="facts" aria-label="Pack requirements">
-          <li>Minecraft 1.20.1</li>
-          <li>Forge 47.4.10</li>
-          <li>Java 17</li>
-          <li>Mac + PC</li>
-          <li>45 mods</li>
-        </ul>
-      </div>
-      <div class="hero-art" role="group" aria-label="Cherry Halo and Golden Halo Tideforge worlds">
-        <figure class="world cherry">
-          <img src="assets/cherry-halo-world.png" alt="Pink voxel ocean engineering world with a sea monster and water tower" fetchpriority="high">
-          <span>Cherry Halo</span>
-        </figure>
-        <figure class="world gold">
-          <img src="assets/golden-halo-world.png" alt="Midnight and gold voxel ocean world with industrial waterworks" fetchpriority="high">
-          <span>Golden Halo</span>
-        </figure>
-        <div class="angel" aria-hidden="true"><img src="assets/angel-gold.jpg" alt=""></div>
-      </div>
-    </section>
-
-    <aside class="status glass shell" aria-label="Public server status">
-      <div class="status-line">
-        <span class="dot" aria-hidden="true"></span>
+    <section id="download" class="shell" aria-labelledby="downloadTitle">
+      <div class="hero">
         <div>
-          <small>Public server · activation in progress</small>
-          <code id="serverAddress">play.saintjules.org</code>
+          <p class="eyebrow">Saint Jules presents · Tideforge 1.3</p>
+          <h1 id="downloadTitle">PLAY <span>WITH ME.</span></h1>
+          <p class="intro">One Minecraft pack for sea monsters, sky-high waterworks, real elevators, furniture, living villages, EMC alchemy, and proximity voice.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="downloads/Tideforge-1.3.0.mrpack" download>Download Tideforge</a>
+            <a class="button light" href="#install">How to install</a>
+          </div>
+          <ul class="facts" aria-label="Pack requirements">
+            <li>Minecraft 1.20.1</li>
+            <li>Forge 47.4.10</li>
+            <li>Java 17</li>
+            <li>Mac + PC</li>
+            <li>45 mods</li>
+          </ul>
+          <div class="download-box glass">
+            <strong>Only the Tideforge file is required.</strong>
+            <p>Prism installs all 45 pinned components. The Halo themes are already included in the pack.</p>
+            <details class="extras">
+              <summary>Optional downloads</summary>
+              <div class="extra-links">
+                <a href="downloads/Tideforge-Cherry-Halo-1.0.0.zip" download>Cherry Halo resource pack <small>Separate reinstall copy</small></a>
+                <a href="downloads/Tideforge-Golden-Halo-1.0.0.zip" download>Golden Halo resource pack <small>Separate reinstall copy</small></a>
+                <a href="downloads/Tideforge-Creator-Studio.json" download>OBS Creator Studio <small>Optional scene collection</small></a>
+                <a href="downloads/SHA256SUMS.txt" download>SHA-256 checksums <small>Verify the downloaded files</small></a>
+              </div>
+            </details>
+          </div>
         </div>
-      </div>
-      <p>The pack works now. The public Minecraft and proximity-voice routes are not online yet; this notice will change to <strong>Online</strong> after both are tested.</p>
-    </aside>
-
-    <section class="section shell" aria-labelledby="insideTitle">
-      <p class="kicker">The experience</p>
-      <h2 id="insideTitle">Ocean horror. Impossible engineering.</h2>
-      <p class="section-copy">Build a tower that pumps ocean water hundreds of blocks into the sky, ride a working elevator, furnish every floor, glide into dungeons, meet living villagers, and fight what comes out of the sea.</p>
-      <div class="highlights">
-        <article class="highlight glass"><b>01</b><h3>Monsters + adventure</h3><p>Aquamirae, Alex’s Mobs, Cataclysm bosses, rebuilt dungeons, and ocean monuments.</p></article>
-        <article class="highlight glass"><b>02</b><h3>Machines + EMC</h3><p>Mekanism pumps, pipes and generators, moving elevators, and ProjectE transmutation.</p></article>
-        <article class="highlight glass"><b>03</b><h3>Homes + people</h3><p>Furniture, roofs, bridges, windows, cooking, sleeping bags, and MCA Reborn families.</p></article>
-        <article class="highlight glass"><b>04</b><h3>Play + create</h3><p>Proximity voice, instruments, photography, two Halo themes, and F8 creator controls.</p></article>
+        <div class="worlds" role="group" aria-label="Cherry Halo and Golden Halo Tideforge worlds">
+          <figure class="world">
+            <img src="assets/cherry-halo-world.png" alt="Pink voxel ocean engineering world with a sea monster and water tower" fetchpriority="high">
+            <figcaption>Cherry Halo</figcaption>
+          </figure>
+          <figure class="world">
+            <img src="assets/golden-halo-world.png" alt="Midnight and gold voxel ocean world with industrial waterworks" fetchpriority="high">
+            <figcaption>Golden Halo</figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
-    <section class="section shell" id="mods" aria-labelledby="modsTitle">
-      <p class="kicker">Complete manifest</p>
-      <h2 id="modsTitle">Every mod in Tideforge 1.3.</h2>
-      <p class="section-copy">The downloadable pack contains <strong>44 pinned third-party mod files</strong> plus the custom <strong>Tideforge Link</strong> mod. Open a category to see exact names and versions.</p>
-      <div class="mod-summary" aria-label="Mod counts">
-        <span>45 total mods</span>
-        <span>30 gameplay + creator</span>
-        <span>4 performance</span>
-        <span>11 libraries</span>
+    <section id="install" class="shell" aria-labelledby="installTitle">
+      <div class="section-head">
+        <p class="eyebrow">Install in three steps</p>
+        <h2 id="installTitle">Download. Import. Play.</h2>
+        <p>You need Minecraft Java Edition and the Microsoft account that owns it. Prism Launcher handles Forge and every pinned mod.</p>
       </div>
-      <div class="mod-groups">
-        <details class="glass" open>
-          <summary>Ocean, mobs + adventure <span>7 mods</span></summary>
-          <div class="mod-body">
-            <p>Sea life, monsters, bosses, structures, navigation, and fair multiplayer treasure.</p>
+      <div class="steps">
+        <article class="step glass">
+          <span class="step-number">1</span>
+          <div><h3>Install Prism</h3><p>Get Prism Launcher for macOS, Windows, or Linux.</p><a href="https://prismlauncher.org/download/" target="_blank" rel="noopener">Official Prism download ↗</a></div>
+        </article>
+        <article class="step glass">
+          <span class="step-number">2</span>
+          <div><h3>Import Tideforge</h3><p>Choose <strong>Add Instance → Import</strong>, then select <strong>Tideforge-1.3.0.mrpack</strong>.</p><a href="downloads/Tideforge-1.3.0.mrpack" download>Download the pack ↓</a></div>
+        </article>
+        <article class="step glass">
+          <span class="step-number">3</span>
+          <div><h3>Launch</h3><p>Sign in, launch Tideforge, and use the server address only after its status below changes to <strong>Online</strong>.</p><a href="#join">Check join status ↓</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="included" class="shell" aria-labelledby="includedTitle">
+      <div class="section-head">
+        <p class="eyebrow">What’s included</p>
+        <h2 id="includedTitle">The pack, at a glance.</h2>
+        <p>Tideforge contains <strong>44 pinned third-party mod files</strong> and the custom <strong>Tideforge Link</strong> mod: 45 total.</p>
+      </div>
+      <div class="category-grid">
+        <article class="category glass"><span>Adventure</span><h3>Sea monsters + bosses</h3><p>Aquamirae, Alex’s Mobs, Cataclysm, dungeons, monuments, and treasure.</p></article>
+        <article class="category glass"><span>Engineering</span><h3>Water towers + elevators</h3><p>Mekanism pumps and power, Moving Elevators, and ProjectE transmutation.</p></article>
+        <article class="category glass"><span>Building</span><h3>Homes + living villages</h3><p>Furniture, roofs, bridges, windows, cooking, sleeping bags, and MCA Reborn.</p></article>
+        <article class="category glass"><span>Creator</span><h3>Voice + studio tools</h3><p>Proximity voice, instruments, photography, Halo themes, and F8 creator controls.</p></article>
+      </div>
+
+      <details class="manifest glass">
+        <summary>View all 45 mod names and versions <span>Full list</span></summary>
+        <div class="manifest-body">
+          <div class="mod-group">
+            <h3>Ocean, mobs + adventure · 7</h3>
             <ul class="mod-list">
               <li data-file="alexsmobs-1.22.9.jar">Alex’s Mobs <small>1.22.9</small></li>
               <li data-file="aquamirae-forge-1.20.1-6.4.0.jar">Aquamirae <small>6.4.0</small></li>
@@ -273,11 +275,8 @@
               <li data-file="YungsBetterOceanMonuments-1.20-Forge-3.0.4.jar">YUNG’s Better Ocean Monuments <small>3.0.4</small></li>
             </ul>
           </div>
-        </details>
-        <details class="glass">
-          <summary>Engineering + progression <span>5 mods</span></summary>
-          <div class="mod-body">
-            <p>Water pumping, pipes, power, functional elevators, and Equivalent Exchange-style EMC.</p>
+          <div class="mod-group">
+            <h3>Engineering + progression · 5</h3>
             <ul class="mod-list">
               <li data-file="Mekanism-1.20.1-10.4.16.80.jar">Mekanism <small>10.4.16.80</small></li>
               <li data-file="MekanismGenerators-1.20.1-10.4.16.80.jar">Mekanism Generators <small>10.4.16.80</small></li>
@@ -286,11 +285,8 @@
               <li data-file="ProjectE_Integration-1.20.1-7.2.5.jar">ProjectE Integration <small>7.2.5</small></li>
             </ul>
           </div>
-        </details>
-        <details class="glass">
-          <summary>Building, food + village life <span>10 mods</span></summary>
-          <div class="mod-body">
-            <p>Furniture, detailed architecture, cooking, travel gear, and villagers with lives and relationships.</p>
+          <div class="mod-group">
+            <h3>Building, food + village life · 10</h3>
             <ul class="mod-list">
               <li data-file="handcrafted-forge-1.20.1-3.0.6.jar">Handcrafted <small>3.0.6</small></li>
               <li data-file="supplementaries-1.20-3.1.43-forge.jar">Supplementaries <small>3.1.43</small></li>
@@ -304,11 +300,8 @@
               <li data-file="minecraft-comes-alive-7.6.26+1.20.1-universal.jar">Minecraft Comes Alive Reborn <small>7.6.26</small></li>
             </ul>
           </div>
-        </details>
-        <details class="glass">
-          <summary>Creator, social + interface <span>8 mods</span></summary>
-          <div class="mod-body">
-            <p>Photography, music, voice, Discord support, recipes, equipment slots, and Saint Jules controls.</p>
+          <div class="mod-group">
+            <h3>Creator, social + interface · 8</h3>
             <ul class="mod-list">
               <li data-file="exposure-1.20.1-1.7.16-forge.jar">Exposure <small>1.7.16</small></li>
               <li data-file="immersive_melodies-0.6.1+1.20.1-forge.jar">Immersive Melodies <small>0.6.1</small></li>
@@ -320,11 +313,8 @@
               <li data-file="curios-forge-5.14.1+1.20.1.jar">Curios API <small>5.14.1</small></li>
             </ul>
           </div>
-        </details>
-        <details class="glass">
-          <summary>Performance + diagnostics <span>4 mods</span></summary>
-          <div class="mod-body">
-            <p>Rendering, memory, loading, and server-performance improvements.</p>
+          <div class="mod-group">
+            <h3>Performance + diagnostics · 4</h3>
             <ul class="mod-list">
               <li data-file="embeddium-0.3.31+mc1.20.1.jar">Embeddium <small>0.3.31</small></li>
               <li data-file="ferritecore-6.0.1-forge.jar">FerriteCore <small>6.0.1</small></li>
@@ -332,11 +322,8 @@
               <li data-file="spark-1.10.53-forge.jar">spark <small>1.10.53</small></li>
             </ul>
           </div>
-        </details>
-        <details class="glass">
-          <summary>Required libraries <span>11 mods</span></summary>
-          <div class="mod-body">
-            <p>Support code required by the gameplay mods above; Prism installs these automatically.</p>
+          <div class="mod-group">
+            <h3>Required libraries · 11</h3>
             <ul class="mod-list">
               <li data-file="architectury-9.2.14-forge.jar">Architectury API <small>9.2.14</small></li>
               <li data-file="citadel-2.6.3-1.20.1.jar">Citadel <small>2.6.3</small></li>
@@ -351,41 +338,19 @@
               <li data-file="YungsApi-1.20-Forge-4.0.6.jar">YUNG’s API <small>4.0.6</small></li>
             </ul>
           </div>
-        </details>
-      </div>
+        </div>
+      </details>
     </section>
 
-    <section class="section shell" id="install" aria-labelledby="installTitle">
-      <p class="kicker">Three steps</p>
-      <h2 id="installTitle">Download. Import. Play.</h2>
-      <p class="section-copy">You need Minecraft Java Edition and the Microsoft account that owns it. Prism Launcher handles Forge and the pinned downloads.</p>
-      <div class="steps">
-        <article class="step glass"><span class="step-number">1</span><div><h3>Install Prism</h3><p>Get Prism Launcher for macOS, Windows, or Linux.</p><a href="https://prismlauncher.org/download/" target="_blank" rel="noopener">Official Prism download ↗</a></div></article>
-        <article class="step glass"><span class="step-number">2</span><div><h3>Import Tideforge</h3><p>Choose <strong>Add Instance → Import</strong> and select <strong>Tideforge-1.3.0.mrpack</strong>.</p><a href="downloads/Tideforge-1.3.0.mrpack" download>Download the pack ↓</a></div></article>
-        <article class="step glass"><span class="step-number">3</span><div><h3>Launch + connect</h3><p>Sign in and launch. Add <strong>play.saintjules.org</strong> only after the status above says Online.</p><a href="#serverAddress">Check server status ↑</a></div></article>
-      </div>
-    </section>
-
-    <section class="section shell" id="extras" aria-labelledby="extrasTitle">
-      <p class="kicker">Optional creator extras</p>
-      <h2 id="extrasTitle">Choose your Halo.</h2>
-      <p class="section-copy">Both Minecraft themes are already inside the main pack. Download them separately only to reinstall or share. OBS scenes are optional.</p>
-      <div class="extras">
-        <a class="extra glass" href="downloads/Tideforge-Cherry-Halo-1.0.0.zip" download><div><small>Resource pack</small><h3>Cherry Halo</h3></div><span class="arrow" aria-hidden="true">↓</span></a>
-        <a class="extra glass" href="downloads/Tideforge-Golden-Halo-1.0.0.zip" download><div><small>Resource pack</small><h3>Golden Halo</h3></div><span class="arrow" aria-hidden="true">↓</span></a>
-        <a class="extra glass" href="downloads/Tideforge-Creator-Studio.json" download><div><small>OBS import</small><h3>Creator Studio</h3></div><span class="arrow" aria-hidden="true">↓</span></a>
-      </div>
-      <p class="fineprint">Want to verify the files? <a href="downloads/SHA256SUMS.txt" download>Download the SHA-256 checksums.</a> The Discord community and Minecraft chat bridge are prepared but do not have a public invite yet.</p>
-    </section>
-
-    <section class="section shell">
-      <div class="closing">
-        <p class="kicker">Saint Jules</p>
-        <h2>Music in your ears. Monsters on your screen.</h2>
-        <p>Return to the music player or follow Saint Jules while the public Tideforge server gets its final connection.</p>
-        <div class="socials">
+    <section id="join" class="shell" aria-labelledby="joinTitle">
+      <div class="join-card">
+        <div class="status-pill"><span class="dot" aria-hidden="true"></span> Server activation in progress</div>
+        <h2 id="joinTitle">Join when both routes are tested.</h2>
+        <code class="address">play.saintjules.org</code>
+        <p>The modpack works now. The public Minecraft and proximity-voice routes are not online yet, so this address is not ready to use. This notice will say <strong>Online</strong> after both routes are verified. The Discord invite is not public yet either.</p>
+        <div class="socials" aria-label="Saint Jules links">
           <a href="../">Music player</a>
-          <a href="https://soundcloud.com/1jxles" target="_blank" rel="noopener">SoundCloud</a>
+          <a href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener">Spotify</a>
           <a href="https://www.youtube.com/@SaintJulezz" target="_blank" rel="noopener">YouTube</a>
           <a href="https://www.instagram.com/saint__jules/" target="_blank" rel="noopener">Instagram</a>
         </div>
