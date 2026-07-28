@@ -86,12 +86,21 @@
     }
 
     .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:48px}
-    .brand,.menu-button,.glass{
+    .brand,.menu-button,.play-with-me,.glass{
       border:1px solid var(--line);background:rgba(255,255,255,.31);
       -webkit-backdrop-filter:blur(20px) saturate(1.12);backdrop-filter:blur(20px) saturate(1.12);
       box-shadow:inset 0 1px rgba(255,255,255,.78),0 10px 30px rgba(75,30,48,.12);
     }
     .brand{height:44px;padding:0 19px;display:inline-flex;align-items:center;border-radius:999px;font-size:11px;font-weight:950;letter-spacing:.31em;text-transform:uppercase}
+    .top-actions{display:flex;align-items:center;gap:9px}
+    .play-with-me{
+      min-height:44px;padding:0 18px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
+      color:#fff;background:linear-gradient(135deg,#ff4f87,#d92c67 58%,#8d1847);font-size:10px;font-weight:950;
+      letter-spacing:.15em;text-transform:uppercase;box-shadow:inset 0 1px rgba(255,255,255,.56),0 12px 28px rgba(198,34,91,.26);
+      transition:transform .2s var(--ease),box-shadow .2s var(--ease);
+    }
+    .play-with-me:hover{transform:translateY(-2px);box-shadow:inset 0 1px rgba(255,255,255,.56),0 16px 34px rgba(198,34,91,.32)}
+    .play-with-me:focus-visible,.brand:focus-visible,.menu-button:focus-visible{outline:3px solid rgba(255,255,255,.95);outline-offset:3px}
     .menu-button{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:950;letter-spacing:.05em}
 
     .layout{
@@ -226,6 +235,8 @@
     .spotify-link{background:#1ed760;color:#07130b}
     .youtube-link{background:#ff0033}
     .instagram-link{background:radial-gradient(circle at 30% 115%,#feda75,#fa7e1e 28%,#d62976 54%,#962fbf 74%,#4f5bd5)}
+    .soundcloud-link{background:linear-gradient(135deg,#ff8a00,#ff3d00)}
+    .minecraft-link{background:linear-gradient(135deg,#4f8a3f,#255d33 62%,#153c2c)}
     .unset{opacity:.7}
 
     .toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));z-index:50;opacity:0;pointer-events:none;transform:translateX(-50%) translateY(12px);padding:11px 14px;border:1px solid rgba(255,255,255,.76);border-radius:999px;background:rgba(255,255,255,.65);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 14px 38px rgba(68,28,45,.18);font-size:12px;font-weight:900;transition:opacity .22s var(--ease),transform .22s var(--ease)}
@@ -237,6 +248,8 @@
       .shine::before{width:52vw}
       .app{height:100vh;height:100dvh;min-height:0;padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));grid-template-rows:48px minmax(0,1fr)}
       .brand{height:40px;padding:0 16px;font-size:10px;letter-spacing:.28em}
+      .top-actions{gap:6px}
+      .play-with-me{min-height:40px;padding:0 13px;font-size:9px;letter-spacing:.11em}
       .menu-button{width:40px;height:40px}
       .layout{height:100%;min-height:0;display:grid;grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) auto;gap:7px;padding:4px 0 0}
       .machine{min-height:0;overflow:hidden;align-content:center}
@@ -272,6 +285,7 @@
       .app{grid-template-rows:42px minmax(0,1fr);padding-top:max(7px,env(safe-area-inset-top));gap:4px}
       .topbar{min-height:42px}
       .brand{height:36px;font-size:9px}
+      .play-with-me{min-height:36px;padding:0 10px;font-size:8px}
       .menu-button{width:36px;height:36px}
       .cabinet{gap:5px}
       .reel-shell{padding:4px 0}
@@ -300,7 +314,10 @@
   <main class="app">
     <header class="topbar">
       <a class="brand" href="#" aria-label="Saint Jules home">SAINT JULES</a>
-      <button class="menu-button" id="linksButton" type="button" aria-label="Open links">•••</button>
+      <div class="top-actions">
+        <a class="play-with-me" href="minecraft/">PLAY WITH ME</a>
+        <button class="menu-button" id="linksButton" type="button" aria-label="Open links">•••</button>
+      </div>
     </header>
 
     <section class="layout" aria-label="Saint Jules music player">
@@ -396,7 +413,14 @@
           {num:"13",title:"Sky Is Falling",normal:"13 Sky Is Falling.wav",album:"13 Sky Is Falling.wav"}
         ]
       }],
-      links:{apple:"https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201",spotify:"#",youtube:"#",instagram:"#"}
+      links:{
+        apple:"https://music.apple.com/us/album/the-proposition/1895704396?i=6764253201",
+        spotify:"https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq",
+        youtube:"https://www.youtube.com/@SaintJulezz",
+        instagram:"https://www.instagram.com/saint__jules/",
+        soundcloud:"https://soundcloud.com/1jxles",
+        minecraft:"minecraft/"
+      }
     };
 
     const $=(s,r=document)=>r.querySelector(s);
@@ -442,12 +466,14 @@
     function renderLinks(){
       const links=catalog.links||{};
       const entries=[
-        ["Apple Music","apple-link",links.apple],
-        ["Spotify","spotify-link",links.spotify],
-        ["YouTube","youtube-link",links.youtube],
-        ["Instagram","instagram-link",links.instagram]
+        ["Apple Music","apple-link",links.apple,true],
+        ["Spotify","spotify-link",links.spotify,true],
+        ["YouTube","youtube-link",links.youtube,true],
+        ["Instagram","instagram-link",links.instagram,true],
+        ["SoundCloud","soundcloud-link",links.soundcloud,true],
+        ["Play Minecraft","minecraft-link",links.minecraft,false]
       ];
-      els.linksGrid.innerHTML=entries.map(([name,cls,url])=>`<a class="brand-link ${cls} ${!url||url==="#"?"unset":""}" href="${url||"#"}" ${url&&url!=="#"?'target="_blank" rel="noopener"':""}>${name}</a>`).join("");
+      els.linksGrid.innerHTML=entries.map(([name,cls,url,external])=>`<a class="brand-link ${cls} ${!url||url==="#"?"unset":""}" href="${url||"#"}" ${url&&url!=="#"&&external?'target="_blank" rel="noopener"':""}>${name}</a>`).join("");
       $$(".brand-link.unset",els.linksGrid).forEach(link=>link.addEventListener("click",event=>{event.preventDefault();say("Add this link in catalog.json.")}));
     }
 

@@ -1,0 +1,4 @@
+713faefdd3fc3d4ecf5d540039c5c21d43cdd1ae467e271ccaab99403208499c  Tideforge-1.3.0.mrpack
+6f1b202330d169b322d5bf0c3a6145f3bc6d839f2d09a81a0cf178aac8cd8a7e  Tideforge-Cherry-Halo-1.0.0.zip
+414fe70c065036489d3a293728738d1fa9f9f975a66d1d0712a58a5108aa6da1  Tideforge-Golden-Halo-1.0.0.zip
+a841489ec2324b227a2727ef93d0d6dc9cef4b6a0a52aa2615aae45ee900ec39  Tideforge-Creator-Studio.json
