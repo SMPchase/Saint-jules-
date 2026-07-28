@@ -235,7 +235,6 @@
     .spotify-link{background:#1ed760;color:#07130b}
     .youtube-link{background:#ff0033}
     .instagram-link{background:radial-gradient(circle at 30% 115%,#feda75,#fa7e1e 28%,#d62976 54%,#962fbf 74%,#4f5bd5)}
-    .soundcloud-link{background:linear-gradient(135deg,#ff8a00,#ff3d00)}
     .minecraft-link{background:linear-gradient(135deg,#4f8a3f,#255d33 62%,#153c2c)}
     .unset{opacity:.7}
 
@@ -418,7 +417,6 @@
         spotify:"https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq",
         youtube:"https://www.youtube.com/@SaintJulezz",
         instagram:"https://www.instagram.com/saint__jules/",
-        soundcloud:"https://soundcloud.com/1jxles",
         minecraft:"minecraft/"
       }
     };
@@ -470,7 +468,6 @@
         ["Spotify","spotify-link",links.spotify,true],
         ["YouTube","youtube-link",links.youtube,true],
         ["Instagram","instagram-link",links.instagram,true],
-        ["SoundCloud","soundcloud-link",links.soundcloud,true],
         ["Play Minecraft","minecraft-link",links.minecraft,false]
       ];
       els.linksGrid.innerHTML=entries.map(([name,cls,url,external])=>`<a class="brand-link ${cls} ${!url||url==="#"?"unset":""}" href="${url||"#"}" ${url&&url!=="#"&&external?'target="_blank" rel="noopener"':""}>${name}</a>`).join("");
