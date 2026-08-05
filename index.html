@@ -521,7 +521,7 @@
         ["Spotify","spotify-link",links.spotify,true],
         ["YouTube","youtube-link",links.youtube,true],
         ["Instagram","instagram-link",links.instagram,true],
-        ["The Room · Chat + Journal","community-link",links.community,false],
+        ["Music · Posts · Chat","community-link",links.community,false],
         ["Play Minecraft","minecraft-link",links.minecraft,false]
       ];
       els.linksGrid.innerHTML=entries.map(([name,cls,url,external])=>`<a class="brand-link ${cls} ${!url||url==="#"?"unset":""}" href="${url||"#"}" ${url&&url!=="#"&&external?'target="_blank" rel="noopener"':""}>${name}</a>`).join("");
