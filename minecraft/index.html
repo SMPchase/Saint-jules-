@@ -9,7 +9,7 @@
   <meta property="og:description" content="Download Tideforge Standard 1.5.1, import one file, and build underground, underwater, or in space.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.saintjules.org/minecraft/">
-  <meta property="og:image" content="https://www.saintjules.org/minecraft/assets/og.png">
+  <meta property="og:image" content="https://www.saintjules.org/minecraft/assets/angel-gold.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://www.saintjules.org/minecraft/">
   <link rel="icon" href="assets/angel-silver.jpg">
@@ -82,10 +82,14 @@
     .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
     .facts{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0 0;padding:0;list-style:none}
     .facts li{padding:8px 10px;border:1px solid rgba(255,255,255,.78);border-radius:999px;background:rgba(255,255,255,.46);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-    .worlds{height:240px;display:grid;grid-template-columns:1fr;gap:8px}
-    .world{position:relative;margin:0;overflow:hidden;border:1px solid #fff;border-radius:24px;background:#fff;box-shadow:var(--shadow)}
-    .world img{width:100%;height:100%;object-fit:cover}
-    .world figcaption{position:absolute;left:10px;bottom:10px;padding:7px 9px;border-radius:999px;color:#fff;background:rgba(18,27,50,.7);font-size:8px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}
+    .pack-summary{padding:28px;border-radius:26px}
+    .pack-summary>img{width:82px;height:82px;border-radius:10px;object-fit:cover}
+    .pack-summary>p{margin:34px 0 1px;color:#9e1e51;font-size:9px;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
+    .pack-summary>strong{display:block;font-size:58px;line-height:1;letter-spacing:-.06em}
+    .pack-summary dl{margin:24px 0 0}
+    .pack-summary dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid rgba(83,53,67,.18)}
+    .pack-summary dt,.pack-summary dd{margin:0;font-size:12px;font-weight:780}
+    .pack-summary dt{color:var(--muted)}
 
     .download-box{margin-top:10px;padding:18px;border-radius:25px}
     .download-box strong{display:block;font-size:17px}
@@ -140,7 +144,6 @@
       .shell{width:min(1060px,calc(100% - 48px))}
       .top{padding-top:18px}
       .hero{grid-template-columns:minmax(0,1fr) minmax(330px,.78fr);align-items:center;gap:44px}
-      .worlds{height:400px}
       .steps{grid-template-columns:repeat(3,1fr)}
       .step{display:block;min-height:210px}
       .step h3{margin-top:30px}
@@ -151,7 +154,6 @@
     @media(max-width:560px){
       .brand span{display:none}
       .nav-links a:not(.download){display:none}
-      .worlds{height:210px}
       .category-grid{grid-template-columns:1fr}
       footer{display:block}
       footer span{display:block;margin-top:5px}
@@ -163,7 +165,7 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to Tideforge</a>
+  <a class="skip-link" href="#main">Skip to Minecraft</a>
 
   <header class="top shell">
     <nav class="nav glass" aria-label="Minecraft page">
@@ -203,11 +205,15 @@
             <p>Import <b>Tideforge-Standard-1.5.1.mrpack</b> into Prism Launcher. It installs the complete player setup plus optional F8 controls for local OBS recording.</p>
           </div>
         </div>
-        <div class="worlds" role="img" aria-label="Tideforge ocean engineering world">
-          <figure class="world">
-            <img src="assets/cherry-halo-world.png" alt="Pink voxel ocean engineering world with a sea monster and water tower" fetchpriority="high">
-            <figcaption>Ocean engineering</figcaption>
-          </figure>
+        <div class="pack-summary glass" aria-label="Minecraft pack information">
+          <img src="assets/angel-gold.jpg" alt="" width="82" height="82">
+          <p>Standard pack</p>
+          <strong>1.5.1</strong>
+          <dl>
+            <div><dt>Minecraft</dt><dd>1.20.1</dd></div>
+            <div><dt>Forge</dt><dd>47.4.10</dd></div>
+            <div><dt>Setup</dt><dd>One file</dd></div>
+          </dl>
         </div>
       </div>
     </section>
