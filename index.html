@@ -11,6 +11,7 @@
   <meta property="og:title" content="Saint Jules" />
   <meta property="og:image" content="album-cover.jpeg" />
   <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <title>Saint Jules</title>
   <style>
     :root {
@@ -99,6 +100,11 @@
       letter-spacing:.15em;text-transform:uppercase;box-shadow:inset 0 1px rgba(255,255,255,.56),0 12px 28px rgba(198,34,91,.26);
       transition:transform .2s var(--ease),box-shadow .2s var(--ease);
     }
+    .install-button{
+      min-height:38px;border:2px outset #ece9e0;border-radius:1px;background:#f3f1ea;
+      font-family:"Courier New",monospace;font-size:9px;color:#111;
+    }
+    .install-button:focus-visible{outline:2px solid #d84c7f;outline-offset:2px}
     .play-with-me:hover{transform:translateY(-2px);box-shadow:inset 0 1px rgba(255,255,255,.56),0 16px 34px rgba(198,34,91,.32)}
     .play-with-me:focus-visible,.brand:focus-visible,.menu-button:focus-visible{outline:3px solid rgba(255,255,255,.95);outline-offset:3px}
     .menu-button{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:950;letter-spacing:.05em}
@@ -205,6 +211,9 @@
 
     .desktop-list{max-height:410px;overflow:auto;border-radius:28px;padding:8px;scrollbar-width:none}
     .desktop-list::-webkit-scrollbar{display:none}
+    .track-group{display:grid;gap:3px}
+    .track-group+.track-group{margin-top:8px}
+    .track-group-title{padding:7px 10px 4px;color:var(--muted);font-size:10px;font-weight:950;letter-spacing:.13em;text-transform:uppercase}
     .track-row{width:100%;display:grid;grid-template-columns:40px 1fr;gap:10px;align-items:center;padding:10px;border:0;border-radius:18px;background:transparent;text-align:left}
     .track-row.active{background:rgba(255,255,255,.42)}
     .track-row span:first-child{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.42);font-size:11px;font-weight:950}
@@ -421,6 +430,8 @@
     .progress{padding:8px 10px;font-family:"Courier New",monospace;font-size:9px}
     .progress input{accent-color:#d84c7f}
     .desktop-list{max-height:380px;padding:4px}
+    .track-group+.track-group{margin-top:6px;border-top:1px solid #c7c4ba}
+    .track-group-title{padding:7px 7px 4px;color:#6d6a64;font-family:"Courier New",monospace;font-size:9px;letter-spacing:.1em}
     .track-row{grid-template-columns:34px minmax(0,1fr);padding:7px;border:1px solid transparent;border-radius:1px}
     .track-row:hover{border-color:#b7902f;background:#fffdf2}
     .track-row.active{border-color:#d84c7f;background:#f9e5ec}
@@ -450,6 +461,7 @@
       .app{border:0;padding:max(8px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom));grid-template-rows:44px minmax(0,1fr)}
       .brand{height:34px;padding:0 9px}
       .play-with-me{min-height:34px}
+      .install-button{min-height:34px;padding:0 9px;font-size:8px}
       .menu-button{width:34px;height:34px}
       .layout{gap:5px;padding-top:5px}
       .reel-shell{padding:4px 0}
@@ -478,6 +490,7 @@
     <header class="topbar">
       <a class="brand" href="#" aria-label="Saint Jules home">SAINT JULES</a>
       <div class="top-actions">
+        <button class="install-button" id="installButton" type="button">ADD APP</button>
         <a class="play-with-me" href="minecraft/">PLAY WITH ME</a>
         <button class="menu-button" id="linksButton" type="button" aria-label="Open links">•••</button>
       </div>
@@ -552,6 +565,136 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script type="module">
+    /* music-catalog:start */
+    function firstMusicString(...values){
+      for(const value of values){
+        if(typeof value==="string"&&value.trim())return value.trim();
+        if(typeof value==="number"&&Number.isFinite(value))return String(value);
+      }
+      return"";
+    }
+    function musicList(value){return Array.isArray(value)?value:[]}
+    function musicEntityId(value){return value&&typeof value==="object"?firstMusicString(value.id,value.slug,value.key):firstMusicString(value)}
+    function musicEntityTitle(value){return value&&typeof value==="object"?firstMusicString(value.title,value.name,value.label):firstMusicString(value)}
+    function musicOrder(value,fallback=0){const number=Number(value);return Number.isFinite(number)?number:fallback}
+    function safeMusicUrl(value,base){
+      if(typeof value!=="string"||!value.trim())return null;
+      try{const url=new URL(value.trim(),base);return["http:","https:"].includes(url.protocol)?url.href:null}catch{return null}
+    }
+    function musicDefaultFirst(root){
+      const value=root.defaultFirst&&typeof root.defaultFirst==="object"
+        ?root.defaultFirst
+        :root.default_first&&typeof root.default_first==="object"?root.default_first:null;
+      const kind=firstMusicString(value?.kind,value?.type).toLowerCase();
+      const target=firstMusicString(value?.target,value?.id,value?.key,value?.name);
+      return["track","release","playlist"].includes(kind)&&target?{kind,target}:null;
+    }
+    function normalizeCommunityCatalog(payload,options={}){
+      const apiUrl=options.apiUrl||"https://room.saintjules.org/api/music";
+      const startNumber=Number.isFinite(Number(options.startNumber))?Number(options.startNumber):1;
+      const outer=payload&&typeof payload==="object"?payload:{};
+      const root=outer.catalog&&typeof outer.catalog==="object"?outer.catalog:outer;
+      const releases=musicList(root.releases);
+      const playlists=musicList(root.playlists);
+      const releaseByKey=new Map();
+      const releaseByTitle=new Map();
+      releases.forEach((release,index)=>{
+        if(!release||typeof release!=="object")return;
+        const key=musicEntityId(release)||`release-${index+1}`;
+        const title=musicEntityTitle(release)||"Music";
+        const normalized={
+          key,title,
+          type:firstMusicString(release.type,release.releaseType,release.release_type,"release").toLowerCase(),
+          order:musicOrder(release.sortOrder??release.order,index),
+          cover:safeMusicUrl(release.coverUrl||release.cover_url||release.artworkUrl||release.artwork_url||release.cover||release.image||release.artwork?.url,apiUrl),
+          coverAlt:firstMusicString(release.artwork?.altText,release.artwork?.alt,release.coverAlt)
+        };
+        releaseByKey.set(key,normalized);releaseByTitle.set(title,normalized);
+      });
+      const playlistMemberships=new Map();
+      playlists.forEach((playlist,index)=>{
+        if(!playlist||typeof playlist!=="object")return;
+        const key=musicEntityId(playlist)||`playlist-${index+1}`;
+        const title=musicEntityTitle(playlist)||"Playlist";
+        musicList(playlist.trackIds||playlist.track_ids||playlist.tracks).forEach(reference=>{
+          const trackId=musicEntityId(reference);
+          if(!trackId)return;
+          const groups=playlistMemberships.get(trackId)||[];
+          groups.push(key,title);playlistMemberships.set(trackId,[...new Set(groups)]);
+        });
+      });
+      const candidates=[];
+      musicList(root.tracks).forEach(track=>candidates.push({track}));
+      releases.forEach(release=>musicList(release?.tracks).forEach(track=>{if(track&&typeof track==="object")candidates.push({track,release})}));
+      playlists.forEach(playlist=>musicList(playlist?.tracks).forEach(track=>{if(track&&typeof track==="object")candidates.push({track,playlist})}));
+      const seenIds=new Set();
+      const seenSources=new Set();
+      const groupOrder=new Map();
+      const tracks=[];
+      candidates.slice(0,500).forEach(({track,release:parentRelease,playlist:parentPlaylist},index)=>{
+        if(!track||typeof track!=="object")return;
+        const status=firstMusicString(track.status).toLowerCase();
+        if(track.published===false||["draft","private","unpublished","deleted"].includes(status))return;
+        const source=safeMusicUrl(track.audioUrl||track.audio_url||track.url||track.src||track.audio?.url,apiUrl);
+        const title=firstMusicString(track.title,track.name);
+        if(!source||!title||seenSources.has(source))return;
+        const id=firstMusicString(track.id,track.slug,track.key)||`community-track-${index+1}`;
+        if(seenIds.has(id))return;
+        seenIds.add(id);seenSources.add(source);
+        const rawRelease=track.release??track.album??parentRelease??parentPlaylist;
+        let releaseGroup=firstMusicString(
+          track.releaseGroup,track.release_group,track.releaseTitle,track.release_title,
+          track.albumName,track.album_name,musicEntityTitle(rawRelease),"Singles"
+        );
+        const release=releaseByKey.get(firstMusicString(track.releaseId,track.release_id,track.albumId,track.album_id,musicEntityId(rawRelease)))||releaseByTitle.get(releaseGroup);
+        releaseGroup=releaseGroup||release?.title||"Singles";
+        const releaseType=firstMusicString(track.releaseType,track.release_type,release?.type,parentPlaylist?"playlist":"single").toLowerCase();
+        const playlistGroups=[
+          ...musicList(track.playlistIds||track.playlist_ids||track.playlists).flatMap(value=>[musicEntityId(value),musicEntityTitle(value)]),
+          firstMusicString(track.playlistId,track.playlist_id,musicEntityId(track.playlist)),
+          ...musicList(playlistMemberships.get(id)),
+          ...(parentPlaylist?[musicEntityId(parentPlaylist),musicEntityTitle(parentPlaylist)]:[])
+        ].filter(Boolean);
+        if(!groupOrder.has(releaseGroup))groupOrder.set(releaseGroup,groupOrder.size);
+        const cover=safeMusicUrl(track.coverUrl||track.cover_url||track.artworkUrl||track.artwork_url||track.cover||track.image||track.artwork?.url,apiUrl)||release?.cover||null;
+        tracks.push({
+          id,
+          num:firstMusicString(track.num,track.number,track.trackNumber,track.track_number),
+          title,
+          artist:firstMusicString(track.artist,root.artist,outer.artist,"Saint Jules"),
+          source,
+          ...(cover?{cover}:{}),
+          coverAlt:firstMusicString(track.artwork?.altText,track.artwork?.alt,track.coverAlt,release?.coverAlt,`${releaseGroup} cover`),
+          releaseGroup,
+          releaseTitle:releaseGroup,
+          releaseType,
+          releaseOrder:release?.order??groupOrder.get(releaseGroup),
+          playlistGroups:[...new Set(playlistGroups)],
+          trackOrder:musicOrder(track.trackOrder??track.track_order??track.sortOrder??track.sort_order??track.order,index),
+          community:true
+        });
+      });
+      const defaultFirst=musicDefaultFirst(root);
+      tracks.sort((left,right)=>{
+        const leftDefault=defaultFirst?.kind==="release"&&left.releaseGroup===defaultFirst.target||defaultFirst?.kind==="playlist"&&(left.releaseGroup===defaultFirst.target||left.playlistGroups.includes(defaultFirst.target))?-1:0;
+        const rightDefault=defaultFirst?.kind==="release"&&right.releaseGroup===defaultFirst.target||defaultFirst?.kind==="playlist"&&(right.releaseGroup===defaultFirst.target||right.playlistGroups.includes(defaultFirst.target))?-1:0;
+        if(leftDefault!==rightDefault)return leftDefault-rightDefault;
+        if(left.releaseOrder!==right.releaseOrder)return left.releaseOrder-right.releaseOrder;
+        if(left.releaseGroup!==right.releaseGroup)return left.releaseGroup.localeCompare(right.releaseGroup);
+        return left.trackOrder-right.trackOrder;
+      });
+      tracks.forEach((track,index)=>{if(!track.num)track.num=String(startNumber+index).padStart(2,"0")});
+      const selectedTrack=defaultFirst?.kind==="track"
+        ?tracks.find(track=>track.id===defaultFirst.target)
+        :defaultFirst?.kind==="release"
+          ?tracks.find(track=>track.releaseGroup===defaultFirst.target)
+          :defaultFirst?.kind==="playlist"
+            ?tracks.find(track=>track.releaseGroup===defaultFirst.target||track.playlistGroups.includes(defaultFirst.target))
+            :null;
+      return{tracks,defaultTrackId:selectedTrack?.id||null,defaultFirst};
+    }
+    /* music-catalog:end */
+
     const fallbackCatalog = {
       artist:"Saint Jules",
       communityMusicApi:"https://room.saintjules.org/api/music",
@@ -593,14 +736,30 @@
       audio:$("#audio"),trackReel:$("#trackReel"),albumCard:$("#albumCard"),coverImage:$("#coverImage"),coverPlay:$("#coverPlay"),coverGlyph:$("#coverGlyph"),
       nowNum:$("#nowNum"),nowTitle:$("#nowTitle"),albumMode:$("#albumMode"),rollMode:$("#rollMode"),prevButton:$("#prevButton"),nextButton:$("#nextButton"),
       mainPlay:$("#mainPlay"),seek:$("#seek"),currentTime:$("#currentTime"),duration:$("#duration"),desktopList:$("#desktopList"),mobileList:$("#mobileList"),
-      tracksButton:$("#tracksButton"),muteButton:$("#muteButton"),linksButton:$("#linksButton"),sheetScrim:$("#sheetScrim"),tracksSheet:$("#tracksSheet"),linksSheet:$("#linksSheet"),linksGrid:$("#linksGrid"),toast:$("#toast")
+      tracksButton:$("#tracksButton"),muteButton:$("#muteButton"),linksButton:$("#linksButton"),installButton:$("#installButton"),sheetScrim:$("#sheetScrim"),tracksSheet:$("#tracksSheet"),linksSheet:$("#linksSheet"),linksGrid:$("#linksGrid"),toast:$("#toast")
     };
+
+    let installPrompt=null;
+    if(window.matchMedia("(display-mode: standalone)").matches)els.installButton.hidden=true;
+    window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();installPrompt=event});
+    window.addEventListener("appinstalled",()=>{els.installButton.hidden=true;installPrompt=null});
+    els.installButton.addEventListener("click",async()=>{
+      if(installPrompt){
+        await installPrompt.prompt();
+        await installPrompt.userChoice;
+        installPrompt=null;
+        return;
+      }
+      const ios=/iPad|iPhone|iPod/.test(navigator.userAgent);
+      say(ios?"Tap Share, then Add to Home Screen.":"Use the browser menu, then Install app or Add to Dock.");
+    });
+    if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
 
     let catalog=fallbackCatalog;
     let collection=fallbackCatalog.collections[0];
     let tracks=collection.tracks;
     let bundledTracks=collection.tracks;
-    const state={index:0,mode:"album",dragging:false,dragStartX:0,dragX:0,dragMoved:false,reelTimer:0};
+    const state={index:0,mode:"album",dragging:false,dragStartX:0,dragX:0,dragMoved:false,reelTimer:0,userInteracted:false,appliedCommunityDefault:false};
     const communityMusicTimeoutMs=2500;
 
     function path(root,file){return [root,file].map(encodeURIComponent).join("/")}
@@ -609,58 +768,43 @@
     function say(text){els.toast.textContent=text;els.toast.classList.add("show");clearTimeout(say.t);say.t=setTimeout(()=>els.toast.classList.remove("show"),1900)}
 
     function html(value){return String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[char])}
-    function safeRemoteUrl(value,base=document.baseURI){
-      if(typeof value!=="string"||!value.trim())return null;
-      try{const url=new URL(value.trim(),base);return ["http:","https:"].includes(url.protocol)?url.href:null}catch{return null}
-    }
-    function publishedCommunityTracks(payload,apiUrl,startNumber){
-      const entries=Array.isArray(payload)?payload:Array.isArray(payload?.tracks)?payload.tracks:[];
-      const seen=new Set();
-      return entries.slice(0,200).flatMap(entry=>{
-        if(!entry||typeof entry!=="object")return[];
-        const status=String(entry.status||"").trim().toLowerCase();
-        if(entry.published===false||["draft","private","unpublished"].includes(status))return[];
-        const source=safeRemoteUrl(entry.audioUrl||entry.audio_url||entry.url||entry.src||entry.audio?.url,apiUrl);
-        const cover=safeRemoteUrl(entry.coverUrl||entry.cover_url||entry.artworkUrl||entry.artwork_url||entry.cover||entry.image||entry.artwork?.url,apiUrl);
-        const title=String(entry.title||entry.name||"").trim();
-        if(!source||!title||seen.has(source))return[];
-        seen.add(source);
-        const suppliedNumber=String(entry.num??entry.number??entry.trackNumber??entry.track_number??"").trim();
-        const num=suppliedNumber||String(startNumber+seen.size-1).padStart(2,"0");
-        return[{num,title,source,...(cover?{cover}:{}),community:true}];
-      });
-    }
-    async function fetchCommunityTracks(apiUrl,startNumber){
+    function safeRemoteUrl(value,base=document.baseURI){return safeMusicUrl(value,base)}
+    async function fetchCommunityCatalog(apiUrl,startNumber){
       const controller=new AbortController();
       const timeout=setTimeout(()=>controller.abort(),communityMusicTimeoutMs);
       try{
         const response=await fetch(apiUrl,{cache:"no-store",headers:{Accept:"application/json"},signal:controller.signal});
         if(!response.ok)return null;
-        return publishedCommunityTracks(await response.json(),apiUrl,startNumber);
+        return normalizeCommunityCatalog(await response.json(),{apiUrl,startNumber});
       }catch{return null}finally{clearTimeout(timeout)}
     }
 
     async function syncCommunityMusic(){
       const apiUrl=safeRemoteUrl(catalog.communityMusicApi);
       if(!apiUrl)return;
-      const additions=await fetchCommunityTracks(apiUrl,bundledTracks.length+1);
-      if(additions===null)return;
+      const remoteCatalog=await fetchCommunityCatalog(apiUrl,bundledTracks.length+1);
+      if(remoteCatalog===null)return;
       const selected=tracks[state.index];
       const selectedSource=selected?sourceFor(selected):"";
       const existingSources=new Set(bundledTracks.flatMap(track=>[
         safeRemoteUrl(path(collection.normalRoot,track.normal)),
         safeRemoteUrl(path(collection.orderRoot,track.album))
       ]).filter(Boolean));
-      const uniqueAdditions=additions.filter(track=>!existingSources.has(track.source));
+      const uniqueAdditions=remoteCatalog.tracks.filter(track=>!existingSources.has(track.source));
       tracks=[...bundledTracks,...uniqueAdditions];
       collection={...collection,tracks};
       const remainingCollections=Array.isArray(catalog.collections)?catalog.collections.slice(1):[];
       catalog={...catalog,collections:[collection,...remainingCollections]};
       const preservedIndex=selectedSource?tracks.findIndex(track=>sourceFor(track)===selectedSource):-1;
-      if(preservedIndex>=0)state.index=preservedIndex;
+      const defaultIndex=!state.userInteracted&&!state.appliedCommunityDefault&&remoteCatalog.defaultTrackId
+        ?tracks.findIndex(track=>track.id===remoteCatalog.defaultTrackId)
+        :-1;
+      state.appliedCommunityDefault=true;
+      if(defaultIndex>=0){state.index=defaultIndex;state.mode="album"}
+      else if(preservedIndex>=0)state.index=preservedIndex;
       else if(state.index>=tracks.length)state.index=0;
       render();
-      if(preservedIndex<0&&selectedSource)setTrack(state.index,false);
+      if(defaultIndex>=0||(preservedIndex<0&&selectedSource))setTrack(state.index,false);
     }
 
     async function loadCatalog(){
@@ -671,7 +815,17 @@
         collection=catalog.collections?.[0]||fallbackCatalog.collections[0];
         tracks=collection.tracks||fallbackCatalog.collections[0].tracks;
       }catch{catalog=fallbackCatalog;collection=fallbackCatalog.collections[0];tracks=collection.tracks}
-      bundledTracks=[...tracks];
+      bundledTracks=tracks.map((track,index)=>({
+        ...track,
+        id:track.id||`bundled-${collection.id||"release"}-${index+1}`,
+        releaseId:collection.id||"bundled-release",
+        releaseTitle:collection.title||"Music",
+        releaseGroup:collection.title||"Music",
+        releaseType:"album",
+        bundled:true
+      }));
+      tracks=bundledTracks;
+      collection={...collection,tracks};
       els.coverImage.src=collection.cover||"album-cover.jpeg";
       render();
       setTrack(0,false);
@@ -681,9 +835,16 @@
 
     function render(){
       els.trackReel.innerHTML=tracks.map((track,index)=>`<button class="chip ${index===state.index?"active":""}" data-track="${index}" type="button" aria-label="${html(track.title)}" aria-current="${index===state.index}">${html(track.num)}</button>`).join("");
-      const rows=tracks.map((track,index)=>`<button class="track-row ${index===state.index?"active":""}" data-track="${index}" type="button"><span>${html(track.num)}</span><span>${html(track.title)}</span></button>`).join("");
+      const grouped=[];
+      tracks.forEach((track,index)=>{
+        const title=track.releaseGroup||track.releaseTitle||collection.title||"Music";
+        let group=grouped.find(entry=>entry.title===title);
+        if(!group){group={title,tracks:[]};grouped.push(group)}
+        group.tracks.push({track,index});
+      });
+      const rows=grouped.map(group=>`<section class="track-group" aria-label="${html(group.title)}"><div class="track-group-title">${html(group.title)}</div>${group.tracks.map(({track,index})=>`<button class="track-row ${index===state.index?"active":""}" data-track="${index}" type="button"><span>${html(track.num)}</span><span>${html(track.title)}</span></button>`).join("")}</section>`).join("");
       els.desktopList.innerHTML=rows;els.mobileList.innerHTML=rows;
-      $$("[data-track]").forEach(button=>button.addEventListener("click",()=>{setTrack(Number(button.dataset.track),true);closeSheets()}));
+      $$("[data-track]").forEach(button=>button.addEventListener("click",()=>{setTrack(Number(button.dataset.track),true,true,true);closeSheets()}));
       const selected=tracks[state.index];
       if(selected){
         els.nowNum.textContent=`${selected.num} / ${String(tracks.length).padStart(2,"0")}`;
@@ -718,12 +879,14 @@
       if(announce)say(mode==="album"?"Album order — full versions.":"Roll mode — clean tracks.");
     }
 
-    function setTrack(index,autoplay=false,scroll=true){
+    function setTrack(index,autoplay=false,scroll=true,userInitiated=false){
+      if(userInitiated)state.userInteracted=true;
       state.index=(index+tracks.length)%tracks.length;
       const track=tracks[state.index];
       els.audio.src=sourceFor(track);
       els.coverImage.onerror=track.cover?()=>{els.coverImage.onerror=null;els.coverImage.src=collection.cover||"album-cover.jpeg"}:null;
       els.coverImage.src=track.cover||collection.cover||"album-cover.jpeg";
+      els.coverImage.alt=track.coverAlt||`${track.releaseGroup||track.releaseTitle||collection.title||"Music"} cover`;
       els.nowNum.textContent=`${track.num} / ${String(tracks.length).padStart(2,"0")}`;
       els.nowTitle.textContent=track.title;
       els.seek.value="0";els.currentTime.textContent="0:00";els.duration.textContent="0:00";
@@ -747,16 +910,18 @@
       els.mainPlay.setAttribute("aria-label",playing?"Pause":"Play");
     }
 
-    function next(){
-      if(state.mode==="roll")return rollSong();
-      setTrack(state.index+1,true);
+    function next(userInitiated=false){
+      if(userInitiated)state.userInteracted=true;
+      if(state.mode==="roll")return rollSong(userInitiated);
+      setTrack(state.index+1,true,true,userInitiated);
     }
-    function previous(){setTrack(state.index-1,true)}
-    function rollSong(){
+    function previous(userInitiated=false){setTrack(state.index-1,true,true,userInitiated)}
+    function rollSong(userInitiated=false){
+      if(userInitiated)state.userInteracted=true;
       if(tracks.length<2)return;
       let next=state.index;while(next===state.index)next=Math.floor(Math.random()*tracks.length);
       els.rollMode.classList.remove("rolling");void els.rollMode.offsetWidth;els.rollMode.classList.add("rolling");
-      setMode("roll",false);setTimeout(()=>setTrack(next,true),180);
+      setMode("roll",false);setTimeout(()=>setTrack(next,true,true,userInitiated),180);
     }
 
     function openSheet(sheet){
@@ -783,6 +948,8 @@
       clearTimeout(state.reelTimer);
       state.reelTimer=setTimeout(()=>{const index=closestReelTrack();if(index!==state.index)setTrack(index,false,false)},100);
     },{passive:true});
+    els.trackReel.addEventListener("pointerdown",()=>{state.userInteracted=true},{passive:true});
+    els.trackReel.addEventListener("wheel",()=>{state.userInteracted=true},{passive:true});
 
     els.albumCard.addEventListener("pointerdown",event=>{
       state.dragging=true;state.dragStartX=event.clientX;state.dragX=0;state.dragMoved=false;
@@ -798,36 +965,36 @@
       if(!state.dragging)return;
       state.dragging=false;els.albumCard.classList.remove("dragging");
       const delta=state.dragX;document.documentElement.style.setProperty("--card-x","0px");
-      if(Math.abs(delta)>54){delta<0?setTrack(state.index+1,true):setTrack(state.index-1,true)}
-      else if(!state.dragMoved)togglePlay();
+      if(Math.abs(delta)>54){delta<0?setTrack(state.index+1,true,true,true):setTrack(state.index-1,true,true,true)}
+      else if(!state.dragMoved){state.userInteracted=true;togglePlay()}
       state.dragX=0;
     }
     els.albumCard.addEventListener("pointerup",endCardDrag);
     els.albumCard.addEventListener("pointercancel",endCardDrag);
     els.coverPlay.addEventListener("click",event=>{event.preventDefault();event.stopPropagation()});
 
-    els.albumMode.addEventListener("click",()=>setMode("album"));
-    els.rollMode.addEventListener("click",rollSong);
-    els.mainPlay.addEventListener("click",togglePlay);
-    els.prevButton.addEventListener("click",previous);
-    els.nextButton.addEventListener("click",next);
+    els.albumMode.addEventListener("click",()=>{state.userInteracted=true;setMode("album")});
+    els.rollMode.addEventListener("click",()=>rollSong(true));
+    els.mainPlay.addEventListener("click",()=>{state.userInteracted=true;togglePlay()});
+    els.prevButton.addEventListener("click",()=>previous(true));
+    els.nextButton.addEventListener("click",()=>next(true));
     els.tracksButton.addEventListener("click",()=>openSheet(els.tracksSheet));
     els.linksButton.addEventListener("click",()=>openSheet(els.linksSheet));
     els.sheetScrim.addEventListener("click",closeSheets);
     $$('[data-close-sheet]').forEach(button=>button.addEventListener("click",closeSheets));
-    els.muteButton.addEventListener("click",()=>{els.audio.muted=!els.audio.muted;els.muteButton.textContent=els.audio.muted?"sound off":"sound on"});
+    els.muteButton.addEventListener("click",()=>{state.userInteracted=true;els.audio.muted=!els.audio.muted;els.muteButton.textContent=els.audio.muted?"sound off":"sound on"});
 
     els.audio.addEventListener("play",updatePlayUI);
     els.audio.addEventListener("pause",updatePlayUI);
-    els.audio.addEventListener("ended",next);
+    els.audio.addEventListener("ended",()=>next(false));
     els.audio.addEventListener("loadedmetadata",()=>els.duration.textContent=formatTime(els.audio.duration));
     els.audio.addEventListener("timeupdate",()=>{
       els.currentTime.textContent=formatTime(els.audio.currentTime);
       if(Number.isFinite(els.audio.duration)&&els.audio.duration>0)els.seek.value=String(Math.round(els.audio.currentTime/els.audio.duration*1000));
     });
-    els.seek.addEventListener("input",()=>{if(Number.isFinite(els.audio.duration))els.audio.currentTime=Number(els.seek.value)/1000*els.audio.duration});
+    els.seek.addEventListener("input",()=>{state.userInteracted=true;if(Number.isFinite(els.audio.duration))els.audio.currentTime=Number(els.seek.value)/1000*els.audio.duration});
 
-    window.addEventListener("keydown",event=>{if(event.key===" "){event.preventDefault();togglePlay()}if(event.key==="ArrowRight")next();if(event.key==="ArrowLeft")previous();if(event.key==="Escape")closeSheets()});
+    window.addEventListener("keydown",event=>{if(event.key===" "){event.preventDefault();state.userInteracted=true;togglePlay()}if(event.key==="ArrowRight")next(true);if(event.key==="ArrowLeft")previous(true);if(event.key==="Escape")closeSheets()});
 
     loadCatalog();
   </script>
