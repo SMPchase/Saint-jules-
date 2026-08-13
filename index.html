@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
-  <meta name="theme-color" content="#f3bfd1" />
+  <meta name="theme-color" content="#fffdf8" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="Saint Jules" />
@@ -304,6 +304,169 @@
     }
 
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+    /* Shared Saint Jules 2000s system: white paper, pink controls, gold details. */
+    :root{
+      --pink-0:#fff7fb;
+      --pink-1:#f9e5ec;
+      --pink-2:#eab3c7;
+      --pink-3:#d84c7f;
+      --cream:#f5edcf;
+      --ink:#171717;
+      --muted:#6d6a64;
+      --glass:#fff;
+      --line:#292929;
+      --shadow:none;
+    }
+    html,body{background:#fffdf8}
+    body{font-family:Tahoma,Verdana,Arial,sans-serif;overscroll-behavior:auto}
+    .world{
+      background:
+        linear-gradient(rgba(183,144,47,.08) 1px,transparent 1px) 0 0/18px 18px,
+        linear-gradient(90deg,rgba(216,76,127,.055) 1px,transparent 1px) 0 0/18px 18px,
+        #fffdf8;
+    }
+    .world::before,.shine{display:none}
+    .world::after{opacity:0;background:transparent}
+    .app{
+      width:min(1160px,100%);
+      margin:0 auto;
+      padding:max(12px,env(safe-area-inset-top)) clamp(12px,2vw,24px) max(12px,env(safe-area-inset-bottom));
+      border-inline:1px solid #d5d2c8;
+      background:rgba(255,255,255,.96);
+    }
+    .topbar{min-height:52px;padding-bottom:10px;border-bottom:1px solid #202020}
+    .brand,.menu-button,.play-with-me,.glass,.reel-shell,.now-card,.mode-row,.transport,.progress,.desktop-list{
+      -webkit-backdrop-filter:none;
+      backdrop-filter:none;
+      box-shadow:none;
+    }
+    .brand{
+      height:38px;
+      padding:0 10px;
+      border:1px solid #202020;
+      border-radius:1px;
+      background:#fff;
+      font-family:"Courier New",monospace;
+      font-size:10px;
+      letter-spacing:.2em;
+    }
+    .play-with-me{
+      min-height:38px;
+      padding:0 13px;
+      border:2px outset #f4b0c9;
+      border-radius:1px;
+      background:#d84c7f;
+      color:#111;
+      font-size:9px;
+      letter-spacing:.1em;
+      box-shadow:none;
+    }
+    .play-with-me:hover{transform:none;background:#ed78a3;box-shadow:none}
+    .menu-button{
+      width:38px;height:38px;border:2px outset #ece9e0;border-radius:1px;background:#f3f1ea;
+    }
+    .play-with-me:focus-visible,.brand:focus-visible,.menu-button:focus-visible{outline:2px solid #d84c7f;outline-offset:2px}
+    .layout{
+      width:100%;
+      grid-template-columns:minmax(380px,1fr) minmax(290px,380px);
+      gap:clamp(18px,4vw,50px);
+      padding:22px 0 8px;
+    }
+    .cabinet{gap:10px}
+    .reel-shell{
+      width:min(100%,560px);
+      padding:6px 0;
+      border:1px solid #202020;
+      border-radius:1px;
+      background:#fff;
+    }
+    .reel-shell::before{background:linear-gradient(90deg,#fffdf8,transparent)}
+    .reel-shell::after{background:linear-gradient(-90deg,#fffdf8,transparent)}
+    .chip{
+      flex-basis:48px;height:40px;border:1px solid #8d8a82;border-radius:1px;background:#f5f3ec;
+      box-shadow:none;font-family:"Courier New",monospace;font-size:10px;
+    }
+    .chip[aria-current="true"]{
+      transform:none;border-color:#9d174a;background:#d84c7f;color:#111;box-shadow:inset 2px 2px 0 rgba(255,255,255,.35);
+    }
+    .card-stage{width:min(82vw,470px);padding:8px}
+    .card-glow{inset:2%;border-radius:0;background:#f5edcf;filter:none;opacity:.55}
+    .album-card{border-radius:1px;filter:none}
+    .cover{
+      border:1px solid #202020;border-radius:1px;background:#fff;box-shadow:7px 7px 0 #f5edcf;
+    }
+    .cover::before,.cover::after{display:none}
+    .play-disc{
+      width:68px;height:68px;border:2px outset #f4b0c9;border-radius:1px;background:#d84c7f;color:#111;
+      box-shadow:none;text-shadow:none;
+    }
+    .album-card.playing .play-disc{opacity:.86;transform:none;background:#f5edcf}
+    .now-card{
+      width:min(100%,560px);padding:11px 12px;border:1px solid #202020;border-top:4px solid #b7902f;
+      border-radius:1px;background:#fff;grid-template-columns:auto minmax(0,1fr);
+    }
+    .now-num{font-family:"Courier New",monospace;font-size:10px}
+    .now-title{font-size:clamp(22px,3vw,34px);letter-spacing:-.035em}
+    .side{gap:8px}
+    .mode-row,.transport,.progress,.desktop-list{
+      border:1px solid #202020;border-radius:1px;background:#fff;
+    }
+    .mode-row{gap:2px;padding:3px}
+    .mode-button{height:38px;border:1px solid transparent;border-radius:1px;font-family:"Courier New",monospace;font-size:9px}
+    .mode-button.active{border-color:#b7902f;background:#f5edcf;box-shadow:none}
+    .transport{padding:7px;gap:8px}
+    .transport button{height:44px;border:2px outset #ece9e0;background:#f3f1ea}
+    .transport .main-play{width:58px;height:50px;border:2px outset #f4b0c9;border-radius:1px;background:#d84c7f;box-shadow:none}
+    .progress{padding:8px 10px;font-family:"Courier New",monospace;font-size:9px}
+    .progress input{accent-color:#d84c7f}
+    .desktop-list{max-height:380px;padding:4px}
+    .track-row{grid-template-columns:34px minmax(0,1fr);padding:7px;border:1px solid transparent;border-radius:1px}
+    .track-row:hover{border-color:#b7902f;background:#fffdf2}
+    .track-row.active{border-color:#d84c7f;background:#f9e5ec}
+    .track-row span:first-child{width:28px;height:24px;border:1px solid #aaa;border-radius:1px;background:#f3f1ea;font-family:"Courier New",monospace}
+    .mobile-actions button{
+      border:2px outset #ece9e0!important;border-radius:1px!important;background:#f3f1ea!important;
+    }
+    .sheet{
+      border:1px solid #202020;border-radius:1px;background:#fffdf8;box-shadow:8px 8px 0 rgba(0,0,0,.16);
+      -webkit-backdrop-filter:none;backdrop-filter:none;
+    }
+    .sheet-head{border-bottom:1px solid #202020;background:#f5edcf;font-family:"Courier New",monospace;font-size:12px}
+    .sheet-close{border:2px outset #ece9e0;border-radius:1px;background:#f3f1ea}
+    .sheet .track-row{border:1px solid #c7c4ba;border-radius:1px;background:#fff}
+    .sheet .track-row.active{border-color:#d84c7f;background:#f9e5ec;box-shadow:none}
+    .links-grid{gap:5px}
+    .brand-link{min-height:48px;border:1px solid #202020;border-radius:1px;box-shadow:none}
+    .apple-link,.instagram-link{background:#d84c7f}
+    .spotify-link{background:#f5edcf;color:#111}
+    .youtube-link{background:#fff;color:#a71950}
+    .community-link{background:#fff;color:#111}
+    .minecraft-link{background:#b7902f;color:#111}
+    .toast{border:1px solid #202020;border-radius:1px;background:#f5edcf;box-shadow:4px 4px 0 rgba(0,0,0,.14);-webkit-backdrop-filter:none;backdrop-filter:none}
+
+    @media(max-width:760px){
+      html,body{background:#fffdf8}
+      .app{border:0;padding:max(8px,env(safe-area-inset-top)) 8px max(8px,env(safe-area-inset-bottom));grid-template-rows:44px minmax(0,1fr)}
+      .brand{height:34px;padding:0 9px}
+      .play-with-me{min-height:34px}
+      .menu-button{width:34px;height:34px}
+      .layout{gap:5px;padding-top:5px}
+      .reel-shell{padding:4px 0}
+      .chip{flex-basis:40px;height:34px}
+      .reel{padding-inline:calc(50% - 20px)}
+      .card-stage{width:min(66vw,290px)}
+      .cover{box-shadow:4px 4px 0 #f5edcf}
+      .play-disc{width:56px;height:48px}
+      .now-card{min-height:46px;padding:6px 8px}
+      .mode-button{height:32px}
+      .transport{padding:4px 6px}
+      .transport button{height:34px}
+      .transport .main-play{width:48px;height:38px}
+      .progress{min-height:28px;padding:4px 7px}
+      .mobile-actions button{height:30px}
+      .sheet{left:6px;right:6px;padding:6px}
+    }
   </style>
 </head>
 <body>
@@ -436,6 +599,7 @@
     let catalog=fallbackCatalog;
     let collection=fallbackCatalog.collections[0];
     let tracks=collection.tracks;
+    let bundledTracks=collection.tracks;
     const state={index:0,mode:"album",dragging:false,dragStartX:0,dragX:0,dragMoved:false,reelTimer:0};
     const communityMusicTimeoutMs=2500;
 
@@ -471,9 +635,32 @@
       const timeout=setTimeout(()=>controller.abort(),communityMusicTimeoutMs);
       try{
         const response=await fetch(apiUrl,{cache:"no-store",headers:{Accept:"application/json"},signal:controller.signal});
-        if(!response.ok)return[];
+        if(!response.ok)return null;
         return publishedCommunityTracks(await response.json(),apiUrl,startNumber);
-      }catch{return[]}finally{clearTimeout(timeout)}
+      }catch{return null}finally{clearTimeout(timeout)}
+    }
+
+    async function syncCommunityMusic(){
+      const apiUrl=safeRemoteUrl(catalog.communityMusicApi);
+      if(!apiUrl)return;
+      const additions=await fetchCommunityTracks(apiUrl,bundledTracks.length+1);
+      if(additions===null)return;
+      const selected=tracks[state.index];
+      const selectedSource=selected?sourceFor(selected):"";
+      const existingSources=new Set(bundledTracks.flatMap(track=>[
+        safeRemoteUrl(path(collection.normalRoot,track.normal)),
+        safeRemoteUrl(path(collection.orderRoot,track.album))
+      ]).filter(Boolean));
+      const uniqueAdditions=additions.filter(track=>!existingSources.has(track.source));
+      tracks=[...bundledTracks,...uniqueAdditions];
+      collection={...collection,tracks};
+      const remainingCollections=Array.isArray(catalog.collections)?catalog.collections.slice(1):[];
+      catalog={...catalog,collections:[collection,...remainingCollections]};
+      const preservedIndex=selectedSource?tracks.findIndex(track=>sourceFor(track)===selectedSource):-1;
+      if(preservedIndex>=0)state.index=preservedIndex;
+      else if(state.index>=tracks.length)state.index=0;
+      render();
+      if(preservedIndex<0&&selectedSource)setTrack(state.index,false);
     }
 
     async function loadCatalog(){
@@ -484,24 +671,12 @@
         collection=catalog.collections?.[0]||fallbackCatalog.collections[0];
         tracks=collection.tracks||fallbackCatalog.collections[0].tracks;
       }catch{catalog=fallbackCatalog;collection=fallbackCatalog.collections[0];tracks=collection.tracks}
+      bundledTracks=[...tracks];
       els.coverImage.src=collection.cover||"album-cover.jpeg";
       render();
       setTrack(0,false);
-      const apiUrl=safeRemoteUrl(catalog.communityMusicApi);
-      if(!apiUrl)return;
-      const additions=await fetchCommunityTracks(apiUrl,tracks.length+1);
-      if(!additions.length)return;
-      const existingSources=new Set(tracks.flatMap(track=>[
-        safeRemoteUrl(path(collection.normalRoot,track.normal)),
-        safeRemoteUrl(path(collection.orderRoot,track.album))
-      ]).filter(Boolean));
-      const uniqueAdditions=additions.filter(track=>!existingSources.has(track.source));
-      if(!uniqueAdditions.length)return;
-      tracks=[...tracks,...uniqueAdditions];
-      collection={...collection,tracks};
-      const remainingCollections=Array.isArray(catalog.collections)?catalog.collections.slice(1):[];
-      catalog={...catalog,collections:[collection,...remainingCollections]};
-      render();
+      await syncCommunityMusic();
+      window.setInterval(()=>void syncCommunityMusic(),60_000);
     }
 
     function render(){
@@ -510,7 +685,10 @@
       els.desktopList.innerHTML=rows;els.mobileList.innerHTML=rows;
       $$("[data-track]").forEach(button=>button.addEventListener("click",()=>{setTrack(Number(button.dataset.track),true);closeSheets()}));
       const selected=tracks[state.index];
-      if(selected)els.nowNum.textContent=`${selected.num} / ${String(tracks.length).padStart(2,"0")}`;
+      if(selected){
+        els.nowNum.textContent=`${selected.num} / ${String(tracks.length).padStart(2,"0")}`;
+        els.nowTitle.textContent=selected.title;
+      }
       renderLinks();
     }
 
