@@ -95,6 +95,8 @@ test("keeps the original flat response compatible and filters unsafe entries", (
 
 test("landing player consumes Studio music while retaining fallback and roll mode", async () => {
   assert.match(landingHtml, /https:\/\/room\.saintjules\.org\/api\/music/);
+  assert.match(landingHtml, /https:\/\/studio\.saintjules\.org\//);
+  assert.match(landingHtml, /ADD \/ MANAGE MUSIC/);
   assert.match(landingHtml, /normalizeCommunityCatalog/);
   assert.match(landingHtml, /bundledTracks/);
   assert.match(landingHtml, /\.\.\.bundledTracks,\.\.\.uniqueAdditions/);
