@@ -218,6 +218,12 @@
     .track-row.active{background:rgba(255,255,255,.42)}
     .track-row span:first-child{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.42);font-size:11px;font-weight:950}
     .track-row span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:850}
+    .music-owner-link{
+      min-height:38px;display:flex;align-items:center;justify-content:center;border:1px solid #202020;
+      background:#fffdf8;color:#111;font-family:"Courier New",monospace;font-size:9px;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase;
+    }
+    .music-owner-link:hover,.music-owner-link:focus-visible{background:#f5edcf;outline:2px solid #d84c7f;outline-offset:1px}
 
     .mobile-actions{display:none}
     .sheet-scrim{position:fixed;inset:0;z-index:20;background:rgba(44,20,30,.16);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .24s var(--ease)}
@@ -542,6 +548,8 @@
 
         <div class="desktop-list" id="desktopList" aria-label="Track list"></div>
 
+        <a class="music-owner-link" href="https://studio.saintjules.org/" target="_blank" rel="noopener">ADD / MANAGE MUSIC ↗</a>
+
         <div class="mobile-actions">
           <button id="tracksButton" type="button">tracks</button>
           <button id="muteButton" type="button">sound on</button>
@@ -726,6 +734,7 @@
         youtube:"https://www.youtube.com/@SaintJulezz",
         instagram:"https://www.instagram.com/saint__jules/",
         community:"https://room.saintjules.org/",
+        studio:"https://studio.saintjules.org/",
         minecraft:"minecraft/"
       }
     };
@@ -861,6 +870,7 @@
         ["YouTube","youtube-link",links.youtube,true],
         ["Instagram","instagram-link",links.instagram,true],
         ["Music · Posts · Chat","community-link",links.community,false],
+        ["Add / Manage Music","community-link",links.studio||"https://studio.saintjules.org/",true],
         ["Play Minecraft","minecraft-link",links.minecraft,false]
       ];
       els.linksGrid.innerHTML=entries.map(([name,cls,url,external])=>`<a class="brand-link ${cls} ${!url||url==="#"?"unset":""}" href="${url||"#"}" ${url&&url!=="#"&&external?'target="_blank" rel="noopener"':""}>${name}</a>`).join("");
