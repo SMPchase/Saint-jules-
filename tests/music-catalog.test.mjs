@@ -107,3 +107,18 @@ test("landing player consumes Studio music while retaining fallback and roll mod
   assert.match(landingHtml, /function rollSong/);
   assert.match(landingHtml, /window\.setInterval\(\(\)=>void syncCommunityMusic\(\),60_000\)/);
 });
+
+test("keeps one mobile-friendly player and no install-page prompt", () => {
+  assert.equal((landingHtml.match(/<audio\b/g) || []).length, 1);
+  assert.match(landingHtml, /class="transport" aria-label="Playback controls"/);
+  assert.match(landingHtml, /id="prevButton"/);
+  assert.match(landingHtml, /id="mainPlay"/);
+  assert.match(landingHtml, /id="nextButton"/);
+  assert.match(landingHtml, /id="seek" type="range"/);
+  assert.match(landingHtml, /id="tracksButton"/);
+  assert.match(landingHtml, /id="muteButton"/);
+  assert.match(landingHtml, /min-height:44px/);
+  assert.doesNotMatch(landingHtml, /ADD APP|Add to Home Screen|beforeinstallprompt/i);
+  assert.match(landingHtml, /href="https:\/\/room\.saintjules\.org\/">BLOG<\/a>/);
+  assert.match(landingHtml, /href="minecraft\/">PLAY WITH ME<\/a>/);
+});
