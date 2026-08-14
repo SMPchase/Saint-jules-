@@ -1,10 +1,10 @@
 {
-  "version": "1.5.1",
+  "version": "1.6.0",
   "minecraftVersion": "1.20.1",
   "loader": "Forge",
   "loaderVersion": "47.4.10",
-  "filename": "Saint-Jules-Minecraft-1.5.1.mrpack",
-  "publishedAt": "2026-08-12T00:00:00.000Z",
-  "packUrl": "https://www.saintjules.org/minecraft/downloads/Saint-Jules-Minecraft-1.5.1.mrpack",
-  "sha256": "6194eda80d0ccde4852ff2f2aee21a4806719513a82282b4efcf2847e42023ba"
+  "filename": "Saint-Jules-Minecraft-1.6.0.mrpack",
+  "publishedAt": "2026-08-14T00:00:00.000Z",
+  "packUrl": "https://www.saintjules.org/minecraft/downloads/Saint-Jules-Minecraft-1.6.0.mrpack",
+  "sha256": "170130a4ddd67942d5cfc88383afd1d3325f2c973c846a4d9c7641cb83932502"
 }

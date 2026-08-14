@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fffdf8">
-  <meta name="description" content="Download the Minecraft Standard 1.5.1 pack with 65 player components for engineering, bases, space, furniture, adventure, voice chat, and optional local recording.">
+  <meta name="description" content="Download the Minecraft Standard 1.6.0 pack with 70 player components for engineering, moving boats, submarines and aircraft, clone shells, connected glass, bases, adventure, voice, and local recording.">
   <meta property="og:title" content="Play With Me — Minecraft Server">
   <meta property="og:description" content="Download one Minecraft pack, import it, and build underground, underwater, or in space.">
   <meta property="og:type" content="website">
@@ -153,7 +153,8 @@
     }
     @media(max-width:560px){
       .brand span{display:none}
-      .nav-links a:not(.download){display:none}
+      .nav-links a:not(.download):not(.music){display:none}
+      .nav-links a{min-height:44px;padding:0 10px}
       .category-grid{grid-template-columns:1fr}
       footer{display:block}
       footer span{display:block;margin-top:5px}
@@ -227,10 +228,11 @@
         <span>Saint Jules</span>
       </a>
       <div class="nav-links">
+        <a class="music" href="../">Music</a>
         <a href="#install">Install</a>
         <a href="#included">Included</a>
         <a href="#join">Join</a>
-        <a class="download" href="downloads/Saint-Jules-Minecraft-1.5.1.mrpack" download>Download</a>
+        <a class="download" href="downloads/Saint-Jules-Minecraft-1.6.0.mrpack" download>Download</a>
       </div>
     </nav>
   </header>
@@ -239,11 +241,11 @@
     <section id="download" class="shell" aria-labelledby="downloadTitle">
       <div class="hero">
         <div>
-          <p class="eyebrow">Minecraft Server · Standard pack 1.5.1</p>
+          <p class="eyebrow">Minecraft Server · Standard pack 1.6.0</p>
           <h1 id="downloadTitle">PLAY <span>WITH ME.</span></h1>
-          <p class="intro">Build underground, beneath the ocean, or in orbit. The pack combines sea monsters, BuildCraft-style pipes and quarries, rockets, villages, furniture, and adventure in one modern Tekkit-style setup.</p>
+          <p class="intro">Build underground, beneath the ocean, in orbit, or make the base itself move. The pack combines sea monsters, BuildCraft-style engineering, functional boats, submarines and aircraft, clone shells, connected glass, villages, furniture, and adventure.</p>
           <div class="hero-actions">
-            <a class="button primary" href="downloads/Saint-Jules-Minecraft-1.5.1.mrpack" download>Download standard pack</a>
+            <a class="button primary" href="downloads/Saint-Jules-Minecraft-1.6.0.mrpack" download>Download standard pack</a>
             <a class="button light" href="#install">How to install</a>
           </div>
           <ul class="facts" aria-label="Pack requirements">
@@ -251,7 +253,7 @@
             <li>Forge 47.4.10</li>
             <li>Java 17</li>
             <li>Mac + PC</li>
-            <li>65 player components</li>
+            <li>70 player components</li>
           </ul>
           <div class="download-box glass">
             <strong>One file. No extra setup bundles.</strong>
@@ -261,7 +263,7 @@
         <div class="pack-summary glass" aria-label="Minecraft pack information">
           <img src="assets/angel-gold.jpg" alt="" width="82" height="82">
           <p>Standard pack</p>
-          <strong>1.5.1</strong>
+          <strong>1.6.0</strong>
           <dl>
             <div><dt>Minecraft</dt><dd>1.20.1</dd></div>
             <div><dt>Forge</dt><dd>47.4.10</dd></div>
@@ -284,7 +286,7 @@
         </article>
         <article class="step glass">
           <span class="step-number">2</span>
-          <div><h3>Import the pack</h3><p>Choose <strong>Add Instance → Import</strong>, then select the downloaded <strong>.mrpack file</strong>.</p><a href="downloads/Saint-Jules-Minecraft-1.5.1.mrpack" download>Download the pack ↓</a></div>
+          <div><h3>Import the pack</h3><p>Choose <strong>Add Instance → Import</strong>, then select the downloaded <strong>.mrpack file</strong>.</p><a href="downloads/Saint-Jules-Minecraft-1.6.0.mrpack" download>Download the pack ↓</a></div>
         </article>
         <article class="step glass">
           <span class="step-number">3</span>
@@ -297,19 +299,20 @@
       <div class="section-head">
         <p class="eyebrow">What’s included</p>
         <h2 id="includedTitle">The pack, at a glance.</h2>
-        <p>The standard pack installs <strong>62 pinned player mods</strong> plus three <strong>compatibility helpers</strong>: 65 player components total.</p>
+        <p>The standard pack installs <strong>66 pinned player mods</strong> plus four <strong>compatibility helpers</strong>: 70 player components total.</p>
       </div>
       <div class="category-grid">
         <article class="category glass"><span>Underground bases</span><h3>Dig in + lock down</h3><p>Fast bunkers, rare caves, hidden rooms, reinforced walls, cameras, and vault doors.</p></article>
         <article class="category glass"><span>Underwater bases</span><h3>Pump + build below</h3><p>Move water, shape glass domes, and build protected ocean labs with Create, Mekanism, and FramedBlocks.</p></article>
+        <article class="category glass"><span>Moving bases</span><h3>Sail + dive + fly</h3><p>Build a functional boat, submarine, plane, airship, hover base, or moving town, then add clone shells and seamless connected-glass windows.</p></article>
         <article class="category glass"><span>Space stations</span><h3>Launch + live in orbit</h3><p>Ad Astra rockets, planets, orbital stations, oxygen, fuel, rovers, and 250+ space-building blocks.</p></article>
         <article class="category glass"><span>Engineering</span><h3>BuildCraft-style pipes + quarries</h3><p>QuarryPlus and Pipez restore the simple quarry-to-pipe-to-chest loop. The Field Manual explains when to use Create, Mekanism, Project Red, or CC:Tweaked instead.</p></article>
         <article class="category glass"><span>Adventure + life</span><h3>Monsters + lived-in builds</h3><p>Sea monsters, bosses, furniture, roofs, bridges, sleeping bags, gliders, cooking, and MCA Reborn.</p></article>
-        <article class="category glass"><span>Multiplayer</span><h3>Voice + simple recording</h3><p>Proximity voice keeps nearby players connected. Press F8 for optional start and stop recording controls for OBS on your own computer.</p></article>
+        <article class="category glass"><span>Multiplayer + controls</span><h3>Voice + recording + clean keys</h3><p>Proximity voice keeps nearby players connected. Press F8 for local OBS recording and safe duplicate-key cleanup that preserves movement and your customized choices.</p></article>
       </div>
 
       <details class="manifest glass">
-        <summary>All 65 player components — names and versions <span>Full list</span></summary>
+        <summary>All 70 player components — names and versions <span>Full list</span></summary>
         <div class="manifest-body">
           <div class="mod-group">
             <h3>Ocean, mobs + adventure · 7</h3>
@@ -380,6 +383,15 @@
             </ul>
           </div>
           <div class="mod-group">
+            <h3>Moving bases + clone tech · 4</h3>
+            <ul class="mod-list">
+              <li data-file="xenotech-1.20.1-1.35.jar">XenoTech <small>1.20.1-1.35 · boats, submarines, planes + mobile towns</small></li>
+              <li data-file="Sync-0.2.1.jar">Sync Re-Re-Ported <small>0.2.1 · clone shells + body transfer</small></li>
+              <li data-file="connectedglass-1.1.14-forge-mc1.20.1.jar">Connected Glass <small>1.1.14 · seamless vehicle windows</small></li>
+              <li data-file="fusion-1.3.12-forge-mc1.20.1.jar">Fusion <small>1.3.12 · connected-texture renderer</small></li>
+            </ul>
+          </div>
+          <div class="mod-group">
             <h3>Performance · 3</h3>
             <ul class="mod-list">
               <li data-file="embeddium-0.3.31+mc1.20.1.jar">Embeddium <small>0.3.31</small></li>
@@ -409,10 +421,11 @@
             </ul>
           </div>
           <div class="mod-group">
-            <h3>Pack compatibility · 3</h3>
+            <h3>Pack compatibility · 4</h3>
             <ul class="mod-list">
               <li data-file="tideforge-recorder-1.0.0.jar">Recording Helper <small>1.0.0 · F8 local OBS recording only</small></li>
               <li data-file="tideforge-bases-compat-1.0.0.jar">Base Recipe Compatibility <small>1.0.0 · shared base and space recipe tags</small></li>
+              <li data-file="saint-jules-mobile-bases-1.0.0.jar">Mobile Bases Integration <small>1.0.0 · Create + Mekanism recipes and in-game manual</small></li>
               <li data-file="tideforge-world-tools-1.0.0.jar">Server Tools Compatibility <small>1.0.0 · required server match; no player control screen</small></li>
             </ul>
           </div>
@@ -425,7 +438,7 @@
         <div class="status-pill"><span class="dot" aria-hidden="true"></span> Server address active · whitelist only</div>
         <h2 id="joinTitle">Play with me.</h2>
         <code class="address">voucher-wildlife.gl.joinmc.link</code>
-        <p>Add this address in Minecraft Multiplayer after importing Standard pack 1.5.1. The server requires an approved whitelist name. Proximity voice connects automatically through the included Simple Voice Chat mod.</p>
+        <p>Add this address in Minecraft Multiplayer after importing Standard pack 1.6.0. The server requires an approved whitelist name. Proximity voice connects automatically through the included Simple Voice Chat mod.</p>
         <div class="socials" aria-label="Saint Jules links">
           <a href="../">Music player</a>
           <a href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener">Spotify</a>
@@ -438,7 +451,7 @@
   </main>
 
   <footer class="shell">
-    <span>© Saint Jules · Minecraft Standard 1.5.1</span>
+    <span>© Saint Jules · Minecraft Standard 1.6.0</span>
     <span>Minecraft 1.20.1 · proximity voice included</span>
   </footer>
 </body>
