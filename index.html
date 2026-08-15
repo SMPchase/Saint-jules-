@@ -219,13 +219,6 @@
     .track-row.active{background:rgba(255,255,255,.42)}
     .track-row span:first-child{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.42);font-size:11px;font-weight:950}
     .track-row span:last-child{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:850}
-    .music-owner-link{
-      min-height:38px;display:flex;align-items:center;justify-content:center;border:1px solid #202020;
-      background:#fffdf8;color:#111;font-family:"Courier New",monospace;font-size:9px;font-weight:700;
-      letter-spacing:.08em;text-transform:uppercase;
-    }
-    .music-owner-link:hover,.music-owner-link:focus-visible{background:#f5edcf;outline:2px solid #d84c7f;outline-offset:1px}
-
     .mobile-actions{display:none}
     .sheet-scrim{position:fixed;inset:0;z-index:20;background:rgba(44,20,30,.16);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .24s var(--ease)}
     .sheet-scrim.open{opacity:1;pointer-events:auto}
@@ -252,7 +245,6 @@
     .youtube-link{background:#ff0033}
     .instagram-link{background:radial-gradient(circle at 30% 115%,#feda75,#fa7e1e 28%,#d62976 54%,#962fbf 74%,#4f5bd5)}
     .community-link{background:linear-gradient(135deg,#171015,#ff3f7d 58%,#28d7ee);grid-column:1/-1}
-    .minecraft-link{background:linear-gradient(135deg,#4f8a3f,#255d33 62%,#153c2c)}
     .unset{opacity:.7}
 
     .toast{position:fixed;left:50%;bottom:max(20px,env(safe-area-inset-bottom));z-index:50;opacity:0;pointer-events:none;transform:translateX(-50%) translateY(12px);padding:11px 14px;border:1px solid rgba(255,255,255,.76);border-radius:999px;background:rgba(255,255,255,.65);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);box-shadow:0 14px 38px rgba(68,28,45,.18);font-size:12px;font-weight:900;transition:opacity .22s var(--ease),transform .22s var(--ease)}
@@ -460,7 +452,6 @@
     .spotify-link{background:#f5edcf;color:#111}
     .youtube-link{background:#fff;color:#a71950}
     .community-link{background:#fff;color:#111}
-    .minecraft-link{background:#b7902f;color:#111}
     .toast{border:1px solid #202020;border-radius:1px;background:#f5edcf;box-shadow:4px 4px 0 rgba(0,0,0,.14);-webkit-backdrop-filter:none;backdrop-filter:none}
 
     @media(max-width:760px){
@@ -487,7 +478,6 @@
       .progress{min-height:44px;padding:6px 9px}
       .progress input{height:30px}
       .mobile-actions button{height:44px}
-      .music-owner-link{min-height:44px}
       .sheet{left:6px;right:6px;height:min(82dvh,640px);padding:6px}
       .sheet-close{width:44px;height:44px;flex-basis:44px}
     }
@@ -567,8 +557,6 @@
         </div>
 
         <div class="desktop-list" id="desktopList" aria-label="Track list"></div>
-
-        <a class="music-owner-link" href="https://studio.saintjules.org/" target="_blank" rel="noopener">ADD / MANAGE MUSIC ↗</a>
 
         <div class="mobile-actions">
           <button id="tracksButton" type="button">tracks</button>
@@ -753,9 +741,7 @@
         spotify:"https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq",
         youtube:"https://www.youtube.com/@SaintJulezz",
         instagram:"https://www.instagram.com/saint__jules/",
-        community:"https://room.saintjules.org/",
-        studio:"https://studio.saintjules.org/",
-        minecraft:"minecraft/"
+        community:"https://room.saintjules.org/"
       }
     };
 
@@ -875,9 +861,7 @@
         ["Spotify","spotify-link",links.spotify,true],
         ["YouTube","youtube-link",links.youtube,true],
         ["Instagram","instagram-link",links.instagram,true],
-        ["Music · Posts · Chat","community-link",links.community,false],
-        ["Add / Manage Music","community-link",links.studio||"https://studio.saintjules.org/",true],
-        ["Play Minecraft","minecraft-link",links.minecraft,false]
+        ["Music · Posts · Chat","community-link",links.community,false]
       ];
       els.linksGrid.innerHTML=entries.map(([name,cls,url,external])=>`<a class="brand-link ${cls} ${!url||url==="#"?"unset":""}" href="${url||"#"}" ${url&&url!=="#"&&external?'target="_blank" rel="noopener"':""}>${name}</a>`).join("");
       $$(".brand-link.unset",els.linksGrid).forEach(link=>link.addEventListener("click",event=>{event.preventDefault();say("Add this link in catalog.json.")}));
