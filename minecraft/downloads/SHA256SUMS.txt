@@ -1,2 +1,2 @@
-b9ebd689cbff957a2d7006b9b19337b8a3d1f7a0b9828c510978f9cfefed273f  Saint-Jules-Minecraft-1.6.5.mrpack
-b9ebd689cbff957a2d7006b9b19337b8a3d1f7a0b9828c510978f9cfefed273f  Saint-Jules-Minecraft-Latest.mrpack
+7a5504fb460e4c23b60d7b82c19037e72e5f363f4b6b35a3288e04613de964ef  Saint-Jules-Minecraft-1.6.6.mrpack
+7a5504fb460e4c23b60d7b82c19037e72e5f363f4b6b35a3288e04613de964ef  Saint-Jules-Minecraft-Latest.mrpack
