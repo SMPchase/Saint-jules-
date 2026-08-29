@@ -4,455 +4,62 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#fffdf8">
-  <meta name="description" content="Download the Minecraft Standard 1.6.6 pack with 70 player components for engineering, moving boats, submarines and aircraft, clone shells, connected glass, bases, adventure, voice, and local recording.">
+  <meta name="description" content="Download Saint Jules Minecraft pack 1.6.7 for Forge 1.20.1 and join the included server with all 143 required components.">
   <meta property="og:title" content="Play With Me — Minecraft Server">
-  <meta property="og:description" content="Download one Minecraft pack, import it, and build underground, underwater, or in space.">
+  <meta property="og:description" content="One pack, one import, and the Saint Jules server is already in Multiplayer.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.saintjules.org/minecraft/">
   <meta property="og:image" content="https://www.saintjules.org/minecraft/assets/angel-gold.jpg">
-  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://www.saintjules.org/minecraft/">
   <link rel="icon" href="assets/angel-silver.jpg">
   <title>Play With Me — Minecraft Server</title>
   <style>
-    :root{
-      --pink:#ef5b98;
-      --cherry:#d92363;
-      --gold:#f3c95f;
-      --navy:#121b32;
-      --ink:#261820;
-      --muted:#6f5863;
-      --glass:rgba(255,255,255,.76);
-      --line:rgba(255,255,255,.86);
-      --shadow:0 18px 48px rgba(89,34,60,.14);
-      color-scheme:light;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;min-width:320px;color:var(--ink);
-      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"SF Pro Display","Helvetica Neue",Arial,sans-serif;
-      -webkit-font-smoothing:antialiased;
-      background:
-        radial-gradient(circle at 8% 1%,rgba(255,255,255,.94),transparent 22rem),
-        radial-gradient(circle at 95% 34%,rgba(174,226,237,.58),transparent 28rem),
-        linear-gradient(150deg,#f8bfd4 0%,#f1d9e3 55%,#e9f3f2 79%,#fff0cf 100%);
-    }
-    body::before{
-      content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.3;
-      background:radial-gradient(circle,rgba(255,255,255,.95) 0 1px,transparent 1.5px) 0 0/36px 36px;
-      mask-image:linear-gradient(#000,transparent 68%);
-      -webkit-mask-image:linear-gradient(#000,transparent 68%);
-    }
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    :focus-visible{outline:3px solid #fff;outline-offset:4px}
-    .skip-link{position:fixed;left:12px;top:10px;z-index:100;transform:translateY(-150%);padding:10px 14px;border-radius:999px;background:#fff;font-weight:900}
-    .skip-link:focus{transform:translateY(0)}
-    .shell{width:min(1060px,calc(100% - 24px));margin-inline:auto}
-    .glass{
-      border:1px solid var(--line);background:var(--glass);box-shadow:inset 0 1px rgba(255,255,255,.94),var(--shadow);
-      -webkit-backdrop-filter:blur(18px) saturate(1.08);backdrop-filter:blur(18px) saturate(1.08);
-    }
-    .eyebrow{margin:0 0 10px;color:#9e1e51;font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
-    h1,h2,h3,p{overflow-wrap:anywhere}
-    h1{margin:0;font-size:clamp(58px,19vw,100px);line-height:.8;letter-spacing:-.075em;font-weight:950}
-    h1 span{display:block;color:#fff;text-shadow:0 16px 38px rgba(132,42,78,.14)}
-    h2{margin:0;font-size:clamp(34px,10vw,54px);line-height:.94;letter-spacing:-.052em}
-    h3{letter-spacing:-.025em}
-    .intro{max-width:680px;margin:16px 0 0;color:#59434d;font-size:16px;line-height:1.5;font-weight:660}
-    .button{
-      min-height:52px;padding:0 21px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;
-      font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase;
-    }
-    .button.primary{color:#fff;background:var(--ink);box-shadow:0 14px 30px rgba(50,25,36,.2)}
-    .button.light{border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.6)}
-
-    .top{padding:max(12px,env(safe-area-inset-top)) 0 0}
-    .nav{min-height:58px;padding:7px 8px 7px 12px;border-radius:999px;display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .brand{display:flex;align-items:center;gap:9px;font-size:10px;font-weight:950;letter-spacing:.18em;text-transform:uppercase}
-    .brand img{width:38px;height:38px;border-radius:50%;object-fit:cover;mix-blend-mode:multiply}
-    .nav-links{display:flex;align-items:center;gap:3px}
-    .nav-links a{min-height:42px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-    .nav-links .download{color:#fff;background:linear-gradient(135deg,#ff568d,#d42160)}
-
-    main>section{scroll-margin-top:18px;padding:68px 0}
-    #download{padding-top:48px}
-    .hero{display:grid;gap:28px}
-    .hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-    .facts{display:flex;flex-wrap:wrap;gap:7px;margin:17px 0 0;padding:0;list-style:none}
-    .facts li{padding:8px 10px;border:1px solid rgba(255,255,255,.78);border-radius:999px;background:rgba(255,255,255,.46);font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
-    .pack-summary{padding:28px;border-radius:26px}
-    .pack-summary>img{width:82px;height:82px;border-radius:10px;object-fit:cover}
-    .pack-summary>p{margin:34px 0 1px;color:#9e1e51;font-size:9px;font-weight:950;letter-spacing:.15em;text-transform:uppercase}
-    .pack-summary>strong{display:block;font-size:58px;line-height:1;letter-spacing:-.06em}
-    .pack-summary dl{margin:24px 0 0}
-    .pack-summary dl div{display:flex;justify-content:space-between;gap:16px;padding:11px 0;border-top:1px solid rgba(83,53,67,.18)}
-    .pack-summary dt,.pack-summary dd{margin:0;font-size:12px;font-weight:780}
-    .pack-summary dt{color:var(--muted)}
-
-    .download-box{margin-top:10px;padding:18px;border-radius:25px}
-    .download-box strong{display:block;font-size:17px}
-    .download-box p{margin:7px 0 0;color:var(--muted);font-size:12px;line-height:1.46;font-weight:650}
-    .extras{margin-top:13px}
-    details{border-radius:20px;overflow:hidden}
-    summary{
-      min-height:58px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;
-      cursor:pointer;list-style:none;font-size:14px;font-weight:900;
-    }
-    summary::-webkit-details-marker{display:none}
-    summary::after{content:"+";display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;border-radius:50%;color:#fff;background:var(--cherry);font-size:18px}
-    details[open]>summary::after{content:"–"}
-    .extra-links{padding:0 16px 16px;display:grid;gap:7px}
-    .extra-links a{padding:11px 12px;border-radius:13px;background:rgba(255,255,255,.65);font-size:11px;font-weight:820}
-    .extra-links small{display:block;margin-top:3px;color:#866873;font-size:9px;font-weight:650}
-
-    .section-head{max-width:760px;margin-bottom:22px}
-    .section-head p{margin:13px 0 0;color:#5f4953;font-size:14px;line-height:1.52;font-weight:640}
-    .steps{display:grid;gap:9px}
-    .step{padding:18px;border-radius:22px;display:grid;grid-template-columns:38px 1fr;gap:13px}
-    .step-number{display:grid;place-items:center;width:38px;height:38px;border-radius:50%;color:#fff;background:var(--ink);font-size:11px;font-weight:950}
-    .step h3{margin:1px 0 6px;font-size:18px}
-    .step p{margin:0;color:#67515a;font-size:13px;line-height:1.48;font-weight:620}
-    .step a{display:inline-flex;margin-top:9px;color:#a71f55;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-
-    .category-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-    .category{padding:16px;border-radius:20px}
-    .category span{color:#9d2253;font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-    .category h3{margin:7px 0 5px;font-size:16px}
-    .category p{margin:0;color:#67515a;font-size:12px;line-height:1.42;font-weight:620}
-    .manifest{margin-top:10px}
-    .manifest>summary span{color:#946174;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-    .manifest-body{padding:0 14px 14px;display:grid;gap:8px}
-    .mod-group{padding:14px;border-radius:16px;background:rgba(255,255,255,.54)}
-    .mod-group h3{margin:0 0 9px;font-size:14px}
-    .mod-list{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
-    .mod-list li{padding:7px 9px;border-radius:10px;background:rgba(255,255,255,.78);font-size:10px;font-weight:820;line-height:1.25}
-    .mod-list small{display:block;margin-top:2px;color:#876875;font-size:8px;font-weight:680}
-
-    .join-card{padding:24px;border-radius:28px;color:#fff;background:radial-gradient(circle at 88% 15%,rgba(244,203,100,.25),transparent 14rem),linear-gradient(135deg,#8e1645,#211922 56%,#121b32)}
-    .status-pill{display:inline-flex;align-items:center;gap:8px;margin-bottom:18px;padding:8px 10px;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.1);font-size:9px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
-    .dot{width:9px;height:9px;border-radius:50%;background:#72e6a6;box-shadow:0 0 0 5px rgba(114,230,166,.16)}
-    .join-card h2{max-width:760px}
-    .address{display:block;margin:20px 0 0;font-family:"SFMono-Regular",Consolas,monospace;font-size:clamp(19px,6vw,28px);font-weight:850}
-    .join-card>p{max-width:720px;margin:12px 0 0;color:rgba(255,255,255,.76);font-size:13px;line-height:1.52;font-weight:640}
-    .socials{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
-    .socials a{min-height:40px;padding:0 13px;border:1px solid rgba(255,255,255,.24);border-radius:999px;background:rgba(255,255,255,.1);display:inline-flex;align-items:center;font-size:9px;font-weight:950;letter-spacing:.08em;text-transform:uppercase}
-
-    footer{padding:4px 0 max(32px,env(safe-area-inset-bottom));display:flex;align-items:flex-start;justify-content:space-between;gap:16px;color:#725b65;font-size:9px;font-weight:850;letter-spacing:.07em;text-transform:uppercase}
-    @media(min-width:700px){
-      .shell{width:min(1060px,calc(100% - 48px))}
-      .top{padding-top:18px}
-      .hero{grid-template-columns:minmax(0,1fr) minmax(330px,.78fr);align-items:center;gap:44px}
-      .steps{grid-template-columns:repeat(3,1fr)}
-      .step{display:block;min-height:210px}
-      .step h3{margin-top:30px}
-      .category-grid{grid-template-columns:repeat(3,1fr)}
-      .manifest-body{grid-template-columns:1fr 1fr}
-      .join-card{padding:40px}
-    }
-    @media(max-width:560px){
-      .brand span{display:none}
-      .nav-links a:not(.download):not(.music){display:none}
-      .nav-links a{min-height:44px;padding:0 10px}
-      .category-grid{grid-template-columns:1fr}
-      footer{display:block}
-      footer span{display:block;margin-top:5px}
-    }
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}
-      *,*::before,*::after{animation:none!important;transition:none!important}
-    }
-
-    /* Shared restrained 2000s skin. */
-    :root{
-      --pink:#d84c7f;
-      --cherry:#9d174a;
-      --gold:#b7902f;
-      --navy:#202020;
-      --ink:#171717;
-      --muted:#6d6a63;
-      --glass:#fff;
-      --line:#c9c6bd;
-      --shadow:none;
-    }
-    html,body{background:#fffdf8}
-    body{font-family:Tahoma,Verdana,Arial,sans-serif;background:#fffdf8}
-    body::before{display:none}
-    :focus-visible{outline:2px solid var(--pink);outline-offset:2px}
-    .skip-link{border:1px solid #292929;border-radius:1px}
-    .glass{border:1px solid #c9c6bd;background:#fff;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none}
-    .eyebrow{color:#8a6816;font-family:"Courier New",monospace}
-    h1 span{color:var(--pink);text-shadow:none}
-    .intro,.section-head p,.step p,.category p{color:#5f5b54}
-    .button{min-height:44px;border:1px solid #292929;border-radius:1px}
-    .button.primary{background:var(--pink);box-shadow:none}
-    .button.light{background:#f5f3ed;border-color:#88837a}
-    .top{padding-top:14px}
-    .nav{min-height:54px;border-color:#292929;border-radius:1px}
-    .brand{font-family:"Courier New",monospace}
-    .brand img{border:1px solid #292929;border-radius:1px;mix-blend-mode:normal}
-    .nav-links a{border-radius:1px}
-    .nav-links .download{background:var(--pink);border:1px solid var(--cherry)}
-    main>section{padding:56px 0}
-    .facts li{border:1px solid #c9c6bd;border-radius:1px;background:#fff;font-family:"Courier New",monospace}
-    .pack-summary,.download-box,.step,.category,details,.mod-group,.mod-list li{border-radius:1px}
-    .pack-summary{border-color:#292929;border-top:4px solid var(--gold)}
-    .pack-summary>img{border:1px solid #292929;border-radius:1px}
-    .pack-summary>p,.category span{color:#8a6816;font-family:"Courier New",monospace}
-    .download-box{border-top:3px solid var(--gold)}
-    details{border-color:#292929}
-    summary{font-family:Tahoma,Verdana,Arial,sans-serif}
-    summary::after{border:1px solid var(--cherry);border-radius:1px;background:var(--pink)}
-    .extra-links a,.mod-group,.mod-list li{border:1px solid #d4d1c8;background:#f5f3ed}
-    .step{border-top:3px solid var(--gold)}
-    .step-number{border:1px solid #292929;border-radius:1px;background:var(--pink)}
-    .step a{color:var(--cherry)}
-    .category-grid{gap:7px}
-    .category{border-top:3px solid var(--gold)}
-    .join-card{border:1px solid #292929;border-top:5px solid var(--gold);border-radius:1px;background:#fff;color:#171717}
-    .status-pill{border:1px solid #b7902f;border-radius:1px;background:#fff8dc;color:#5d4a16}
-    .dot{background:#d84c7f;box-shadow:none}
-    .join-card>p{color:#5f5b54}
-    .socials a{border:1px solid #88837a;border-radius:1px;background:#f5f3ed}
-    footer{border-top:1px solid #292929;padding-top:17px;color:#6d6a63}
+    :root{--paper:#fffdf8;--panel:#fff;--ink:#171717;--muted:#66635d;--line:#c9c6bd;--pink:#d84c7f;--pink-dark:#9d174a;--gold:#b7902f}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:Tahoma,Verdana,Arial,sans-serif}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit}.shell{width:min(1040px,calc(100% - 28px));margin-inline:auto}.card{border:1px solid var(--line);background:var(--panel)}
+    :focus-visible{outline:2px solid var(--pink);outline-offset:2px}.skip{position:fixed;left:10px;top:8px;z-index:20;transform:translateY(-160%);padding:9px 12px;border:1px solid var(--ink);background:#fff;font-weight:800}.skip:focus{transform:none}
+    header{padding:14px 0}.nav{min-height:54px;padding:7px 8px 7px 12px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff}.brand{display:flex;align-items:center;gap:9px;font:800 10px/1 "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase}.brand img{width:38px;height:38px;border:1px solid var(--ink);object-fit:cover}.links{display:flex;align-items:center;gap:3px}.links a{min-height:40px;padding:0 11px;display:inline-flex;align-items:center;font-size:9px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.links .download{border:1px solid var(--pink-dark);background:var(--pink);color:#fff}
+    main section{scroll-margin-top:20px}.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);align-items:center;gap:44px;padding:66px 0 45px}.eyebrow,.kicker{margin:0 0 13px;color:#8a6816;font:800 10px/1.3 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}h1{margin:0;font-size:clamp(52px,8vw,82px);line-height:.86;letter-spacing:-.07em}h1 span{display:block;color:var(--pink)}h2{margin:0;font-size:clamp(31px,5vw,48px);line-height:.98;letter-spacing:-.045em}.lede{max-width:680px;margin:22px 0 0;color:#454440;font-size:16px;line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}.button{min-height:44px;padding:0 17px;border:1px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;text-transform:uppercase}.button.primary{background:var(--pink);color:#fff}.facts{display:flex;flex-wrap:wrap;gap:5px;margin:18px 0 0;padding:0;list-style:none}.facts li{padding:6px 8px;border:1px solid var(--line);background:#fff;font:700 9px/1.3 "Courier New",monospace;text-transform:uppercase}.notice{margin-top:15px;padding:15px;border-top:3px solid var(--gold)}.notice strong{font-size:14px}.notice p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
+    .pack{height:100%;min-height:350px;padding:22px;border-color:var(--ink);border-top:4px solid var(--gold)}.pack img{width:72px;height:72px;border:1px solid var(--ink);object-fit:cover}.pack p{margin:42px 0 3px;color:#8a6816;font:800 9px/1.3 "Courier New",monospace;text-transform:uppercase}.pack strong{font-size:54px;letter-spacing:-.06em}.pack dl{margin:25px 0 0}.pack dl div{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}.pack dt,.pack dd{margin:0;font:11px/1.3 "Courier New",monospace}.pack dt{color:var(--muted)}
+    .flow{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:70px;border:1px solid var(--ink)}.flow a{display:flex;align-items:center;gap:10px;padding:12px;border-right:1px solid var(--line);background:#fff}.flow a:last-child{border-right:0}.flow b{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--gold);background:#f7edc9;font:700 10px/1 "Courier New",monospace}.flow small,.flow strong{display:block}.flow small{color:var(--muted);font:8px/1.2 "Courier New",monospace;text-transform:uppercase}.flow strong{margin-top:2px;font-size:12px}
+    .section{padding-bottom:78px}.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,420px);gap:28px;margin-bottom:22px;padding-top:18px;border-top:1px solid var(--ink)}.section-head>p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.step{min-height:190px;padding:18px;border-top:3px solid var(--gold)}.step span{font:800 10px/1 "Courier New",monospace;color:var(--pink-dark)}.step h3{margin:28px 0 8px;font-size:18px}.step p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.step a{display:inline-block;margin-top:14px;color:var(--pink-dark);font:800 9px/1.3 "Courier New",monospace;text-transform:uppercase}
+    .join{padding:clamp(24px,5vw,48px);border:1px solid var(--ink);border-top:4px solid var(--pink);background:#fff}.status{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;color:var(--muted);font:800 9px/1.3 "Courier New",monospace;text-transform:uppercase}.dot{width:8px;height:8px;border:1px solid #356f42;background:#55b66d}.address{display:block;margin-top:22px;padding:11px;border:1px solid var(--line);background:#f2f2ee;font:700 clamp(15px,3vw,22px)/1.3 "Courier New",monospace;overflow-wrap:anywhere}.join p{max-width:760px;margin:12px 0 18px;color:var(--muted);font-size:13px;line-height:1.55}.copy{min-height:40px;padding:0 14px;border:1px solid var(--pink-dark);background:var(--pink);color:#fff;cursor:pointer;font-size:10px;font-weight:900;text-transform:uppercase}
+    details{border:1px solid var(--ink);background:#fff}summary{min-height:54px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;font-size:13px;font-weight:800}summary::-webkit-details-marker{display:none}summary span{margin-left:auto;color:var(--muted);font:8px/1.2 "Courier New",monospace;text-transform:uppercase}summary::after{content:"+";display:grid;place-items:center;width:27px;height:27px;border:1px solid var(--pink-dark);background:var(--pink);color:#fff;font:700 16px/1 "Courier New",monospace}details[open] summary::after{content:"–"}.mods{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:16px;border-top:1px solid var(--line);list-style:none}.mods li{padding:6px 7px;border:1px solid #d4d3cd;background:#f2f2ee;font-size:10px;font-weight:700;line-height:1.3}
+    footer{display:flex;justify-content:space-between;gap:12px;padding:18px 0 max(34px,env(safe-area-inset-bottom));border-top:1px solid var(--ink);color:var(--muted);font:9px/1.4 "Courier New",monospace;text-transform:uppercase}
+    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:20px;padding-top:42px}.pack{min-height:280px}.section-head{grid-template-columns:1fr;gap:10px}.steps{grid-template-columns:1fr}.step{min-height:0}.flow{grid-template-columns:1fr}.flow a{border-right:0;border-bottom:1px solid var(--line)}.flow a:last-child{border-bottom:0}}
+    @media(max-width:560px){.brand span,.links a:not(.download){display:none}.hero h1{font-size:clamp(47px,17vw,66px)}.actions{display:grid}.button{width:100%}.copy{width:100%}footer{flex-direction:column}}
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to Minecraft</a>
-
-  <header class="top shell">
-    <nav class="nav glass" aria-label="Minecraft page">
-      <a class="brand" href="../">
-        <img src="assets/angel-silver.jpg" alt="" width="38" height="38">
-        <span>Saint Jules</span>
-      </a>
-      <div class="nav-links">
-        <a class="music" href="../">Music</a>
-        <a href="#install">Install</a>
-        <a href="#included">Included</a>
-        <a href="#join">Join</a>
-        <a class="download" href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download</a>
-      </div>
+  <a class="skip" href="#main">Skip to Minecraft</a>
+  <header class="shell">
+    <nav class="nav" aria-label="Minecraft page">
+      <a class="brand" href="../"><img src="assets/angel-silver.jpg" alt="" width="38" height="38"><span>Saint Jules</span></a>
+      <div class="links"><a href="#install">Install</a><a href="#mods">Mods</a><a href="#join">Join</a><a class="download" href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download</a></div>
     </nav>
   </header>
-
   <main id="main">
-    <section id="download" class="shell" aria-labelledby="downloadTitle">
-      <div class="hero">
-        <div>
-          <p class="eyebrow">Minecraft Server · Standard pack 1.6.6</p>
-          <h1 id="downloadTitle">PLAY <span>WITH ME.</span></h1>
-          <p class="intro">Build underground, beneath the ocean, in orbit, or make the base itself move. The pack combines sea monsters, BuildCraft-style engineering, functional boats, submarines and aircraft, clone shells, connected glass, villages, furniture, and adventure.</p>
-          <div class="hero-actions">
-            <a class="button primary" href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download standard pack</a>
-            <a class="button light" href="#install">How to install</a>
-          </div>
-          <ul class="facts" aria-label="Pack requirements">
-            <li>Minecraft 1.20.1</li>
-            <li>Forge 47.4.10</li>
-            <li>Java 17</li>
-            <li>Mac + PC</li>
-            <li>70 player components</li>
-          </ul>
-          <div class="download-box glass">
-            <strong>One file. No extra setup bundles.</strong>
-            <p>Import the downloaded <b>.mrpack file</b> into Prism Launcher. It installs the complete player setup plus optional F8 controls for local OBS recording.</p>
-          </div>
-        </div>
-        <div class="pack-summary glass" aria-label="Minecraft pack information">
-          <img src="assets/angel-gold.jpg" alt="" width="82" height="82">
-          <p>Standard pack</p>
-          <strong>1.6.6</strong>
-          <dl>
-            <div><dt>Minecraft</dt><dd>1.20.1</dd></div>
-            <div><dt>Forge</dt><dd>47.4.10</dd></div>
-            <div><dt>Setup</dt><dd>One file</dd></div>
-          </dl>
-        </div>
+    <section class="hero shell" id="download">
+      <div>
+        <p class="eyebrow">Minecraft Server · Pack 1.6.7</p>
+        <h1>PLAY <span>WITH ME.</span></h1>
+        <p class="lede">One Forge pack for the Saint Jules server. Download it, import it into Prism Launcher, and the server is already in Multiplayer.</p>
+        <div class="actions"><a class="button primary" href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download the pack</a><a class="button" href="#join">Server address</a></div>
+        <ul class="facts"><li>Minecraft 1.20.1</li><li>Forge 47.4.10</li><li>Java 17</li><li>Mac + PC</li><li>143 components</li></ul>
+        <div class="notice card"><strong>Only one file is required.</strong><p>Import the downloaded .mrpack into Prism Launcher. Do not add or remove individual mods.</p></div>
       </div>
+      <aside class="pack card"><img src="assets/angel-gold.jpg" alt="" width="72" height="72"><p>Current pack</p><strong>1.6.7</strong><dl><div><dt>Minecraft</dt><dd>1.20.1</dd></div><div><dt>Forge</dt><dd>47.4.10</dd></div><div><dt>Setup</dt><dd>One file</dd></div></dl></aside>
     </section>
-
-    <section id="install" class="shell" aria-labelledby="installTitle">
-      <div class="section-head">
-        <p class="eyebrow">Install in three steps</p>
-        <h2 id="installTitle">Download. Import. Play.</h2>
-        <p>You need Minecraft Java Edition and the Microsoft account that owns it. Prism Launcher handles Forge and every pinned mod.</p>
-      </div>
-      <div class="steps">
-        <article class="step glass">
-          <span class="step-number">1</span>
-          <div><h3>Install Prism</h3><p>Get Prism Launcher for macOS, Windows, or Linux.</p><a href="https://prismlauncher.org/download/" target="_blank" rel="noopener">Official Prism download ↗</a></div>
-        </article>
-        <article class="step glass">
-          <span class="step-number">2</span>
-          <div><h3>Import the pack</h3><p>Choose <strong>Add Instance → Import</strong>, then select the downloaded <strong>.mrpack file</strong>.</p><a href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download the pack ↓</a></div>
-        </article>
-        <article class="step glass">
-          <span class="step-number">3</span>
-          <div><h3>Launch + join</h3><p>Sign in, launch the pack, open <strong>Multiplayer</strong>, and use the verified address below. The server is whitelist-only.</p><a href="#join">Copy the join address ↓</a></div>
-        </article>
-      </div>
-    </section>
-
-    <section id="included" class="shell" aria-labelledby="includedTitle">
-      <div class="section-head">
-        <p class="eyebrow">What’s included</p>
-        <h2 id="includedTitle">The pack, at a glance.</h2>
-        <p>The standard pack installs <strong>66 pinned player mods</strong> plus four <strong>compatibility helpers</strong>: 70 player components total.</p>
-      </div>
-      <div class="category-grid">
-        <article class="category glass"><span>Underground bases</span><h3>Dig in + lock down</h3><p>Fast bunkers, rare caves, hidden rooms, reinforced walls, cameras, and vault doors.</p></article>
-        <article class="category glass"><span>Underwater bases</span><h3>Pump + build below</h3><p>Move water, shape glass domes, and build protected ocean labs with Create, Mekanism, and FramedBlocks.</p></article>
-        <article class="category glass"><span>Moving bases</span><h3>Sail + dive + fly</h3><p>Build a functional boat, submarine, plane, airship, hover base, or moving town, then add clone shells and seamless connected-glass windows.</p></article>
-        <article class="category glass"><span>Space stations</span><h3>Launch + live in orbit</h3><p>Ad Astra rockets, planets, orbital stations, oxygen, fuel, rovers, and 250+ space-building blocks.</p></article>
-        <article class="category glass"><span>Engineering</span><h3>BuildCraft-style pipes + quarries</h3><p>QuarryPlus and Pipez restore the simple quarry-to-pipe-to-chest loop. The Field Manual explains when to use Create, Mekanism, Project Red, or CC:Tweaked instead.</p></article>
-        <article class="category glass"><span>Adventure + life</span><h3>Monsters + lived-in builds</h3><p>Sea monsters, bosses, furniture, roofs, bridges, sleeping bags, gliders, cooking, and MCA Reborn.</p></article>
-        <article class="category glass"><span>Multiplayer + controls</span><h3>Voice + recording + clean keys</h3><p>Proximity voice keeps nearby players connected. Press F8 for local OBS recording and safe duplicate-key cleanup that preserves movement and your customized choices.</p></article>
-      </div>
-
-      <details class="manifest glass">
-        <summary>All 70 player components — names and versions <span>Full list</span></summary>
-        <div class="manifest-body">
-          <div class="mod-group">
-            <h3>Ocean, mobs + adventure · 7</h3>
-            <ul class="mod-list">
-              <li data-file="alexsmobs-1.22.9.jar">Alex’s Mobs <small>1.22.9</small></li>
-              <li data-file="aquamirae-forge-1.20.1-6.4.0.jar">Aquamirae <small>6.4.0</small></li>
-              <li data-file="L_Enders_Cataclysm-3.31.jar">L_Ender’s Cataclysm <small>3.31</small></li>
-              <li data-file="ExplorersCompass-1.20.1-1.4.0-forge.jar">Explorer’s Compass <small>1.4.0</small></li>
-              <li data-file="lootr-forge-1.20-0.7.35.94.jar">Lootr <small>0.7.35.94</small></li>
-              <li data-file="YungsBetterDungeons-1.20-Forge-4.0.4.jar">YUNG’s Better Dungeons <small>4.0.4</small></li>
-              <li data-file="YungsBetterOceanMonuments-1.20-Forge-3.0.4.jar">YUNG’s Better Ocean Monuments <small>3.0.4</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Engineering + classic Tekkit-style automation · 13</h3>
-            <ul class="mod-list">
-              <li data-file="Mekanism-1.20.1-10.4.16.80.jar">Mekanism <small>10.4.16.80</small></li>
-              <li data-file="MekanismGenerators-1.20.1-10.4.16.80.jar">Mekanism Generators <small>10.4.16.80</small></li>
-              <li data-file="create-1.20.1-6.0.8.jar">Create <small>6.0.8</small></li>
-              <li data-file="cc-tweaked-1.20.1-forge-1.120.0.jar">CC:Tweaked <small>1.120.0</small></li>
-              <li data-file="AdditionalEnchantedMiner-1.20.1-1201.1.136.jar">Additional Enchanted Miner / QuarryPlus <small>1201.1.136</small></li>
-              <li data-file="pipez-forge-1.20.1-1.2.26.jar">Pipez <small>1.20.1-1.2.26</small></li>
-              <li data-file="ProjectRed-1.20.1-4.21.0-core.jar">Project Red Core <small>4.21.0</small></li>
-              <li data-file="ProjectRed-1.20.1-4.21.0-integration.jar">Project Red Integration <small>4.21.0</small></li>
-              <li data-file="ProjectRed-1.20.1-4.21.0-transmission.jar">Project Red Transmission <small>4.21.0</small></li>
-              <li data-file="ProjectRed-1.20.1-4.21.0-expansion.jar">Project Red Expansion <small>4.21.0</small></li>
-              <li data-file="movingelevators-1.4.12-forge-mc1.20.1.jar">Moving Elevators <small>1.4.12</small></li>
-              <li data-file="ProjectE-1.20.1-PE1.0.1.jar">ProjectE <small>PE1.0.1</small></li>
-              <li data-file="ProjectE_Integration-1.20.1-7.2.5.jar">ProjectE Integration <small>7.2.5</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Underground, underwater + space bases · 6</h3>
-            <ul class="mod-list">
-              <li data-file="ad_astra-forge-1.20.1-1.15.20.jar">Ad Astra <small>1.15.20</small></li>
-              <li data-file="alexscaves-2.0.2.jar">Alex’s Caves <small>2.0.2</small></li>
-              <li data-file="buildinggadgets2-1.0.8.jar">Building Gadgets 2 <small>1.0.8</small></li>
-              <li data-file="createdeco-2.0.3-1.20.1-forge.jar">Create Deco <small>2.0.3</small></li>
-              <li data-file="FramedBlocks-9.4.3.jar">FramedBlocks <small>9.4.3</small></li>
-              <li data-file="[1.20.1] SecurityCraft v1.10.2.1.jar">SecurityCraft <small>1.10.2.1</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Building, food + village life · 11</h3>
-            <ul class="mod-list">
-              <li data-file="handcrafted-forge-1.20.1-3.0.6.jar">Handcrafted <small>3.0.6</small></li>
-              <li data-file="supplementaries-1.20-3.1.43-forge.jar">Supplementaries <small>3.1.43</small></li>
-              <li data-file="mcw-bridges-3.1.2-mc1.20.1forge.jar">Macaw’s Bridges <small>3.1.2</small></li>
-              <li data-file="mcw-roofs-2.3.2-mc1.20.1forge.jar">Macaw’s Roofs <small>2.3.2</small></li>
-              <li data-file="mcw-mcwstairs-1.0.2-mc1.20.1forge.jar">Macaw’s Stairs <small>1.0.2</small></li>
-              <li data-file="mcw-mcwwindows-2.4.2-mc1.20.1forge.jar">Macaw’s Windows <small>2.4.2</small></li>
-              <li data-file="FarmersDelight-1.20.1-1.3.2.jar">Farmer’s Delight <small>1.3.2</small></li>
-              <li data-file="comforts-forge-6.4.0+1.20.1.jar">Comforts <small>6.4.0</small></li>
-              <li data-file="HangGlider-v8.0.1-1.20.1-Forge.jar">Hang Glider <small>8.0.1</small></li>
-              <li data-file="minecraft-comes-alive-7.6.26+1.20.1-universal.jar">Minecraft Comes Alive Reborn <small>7.6.26</small></li>
-              <li data-file="FallingTree-1.20.1-4.3.4.jar">FallingTree <small>4.3.4</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Social + interface · 6</h3>
-            <ul class="mod-list">
-              <li data-file="exposure-1.20.1-1.7.16-forge.jar">Exposure <small>1.7.16</small></li>
-              <li data-file="immersive_melodies-0.6.1+1.20.1-forge.jar">Immersive Melodies <small>0.6.1</small></li>
-              <li data-file="voicechat-forge-1.20.1-2.6.21.jar">Simple Voice Chat <small>2.6.21</small></li>
-              <li data-file="Jade-1.20.1-Forge-11.13.3.jar">Jade <small>11.13.3</small></li>
-              <li data-file="jei-1.20.1-forge-15.20.0.112.jar">Just Enough Items <small>15.20.0.112</small></li>
-              <li data-file="curios-forge-5.14.1+1.20.1.jar">Curios API <small>5.14.1</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Moving bases + clone tech · 4</h3>
-            <ul class="mod-list">
-              <li data-file="xenotech-1.20.1-1.35.jar">XenoTech <small>1.20.1-1.35 · boats, submarines, planes + mobile towns</small></li>
-              <li data-file="Sync-0.2.1.jar">Sync Re-Re-Ported <small>0.2.1 · clone shells + body transfer</small></li>
-              <li data-file="connectedglass-1.1.14-forge-mc1.20.1.jar">Connected Glass <small>1.1.14 · seamless vehicle windows</small></li>
-              <li data-file="fusion-1.3.12-forge-mc1.20.1.jar">Fusion <small>1.3.12 · connected-texture renderer</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Performance · 3</h3>
-            <ul class="mod-list">
-              <li data-file="embeddium-0.3.31+mc1.20.1.jar">Embeddium <small>0.3.31</small></li>
-              <li data-file="ferritecore-6.0.1-forge.jar">FerriteCore <small>6.0.1</small></li>
-              <li data-file="modernfix-forge-5.27.66+mc1.20.1.jar">ModernFix <small>5.27.66</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Required libraries · 16</h3>
-            <ul class="mod-list">
-              <li data-file="architectury-9.2.14-forge.jar">Architectury API <small>9.2.14</small></li>
-              <li data-file="botarium-forge-1.20.1-2.3.4.jar">Botarium <small>2.3.4</small></li>
-              <li data-file="CBMultipart-1.20.1-3.3.0.159-universal.jar">CB Multipart <small>3.3.0.159</small></li>
-              <li data-file="citadel-2.6.3-1.20.1.jar">Citadel <small>2.6.3</small></li>
-              <li data-file="CodeChickenLib-1.20.1-4.4.0.528-universal.jar">CodeChicken Lib <small>4.4.0.528</small></li>
-              <li data-file="lionfishapi-3.0.jar">Lionfish API <small>3.0</small></li>
-              <li data-file="moonlight-1.20-2.16.34-forge.jar">Moonlight Lib <small>2.16.34</small></li>
-              <li data-file="obscure_api-18.jar">Obscure API <small>18</small></li>
-              <li data-file="Patchouli-1.20.1-85-FORGE.jar">Patchouli <small>1.20.1-85</small></li>
-              <li data-file="PuzzlesLib-v8.1.33-1.20.1-Forge.jar">Puzzles Lib <small>8.1.33</small></li>
-              <li data-file="resourcefulconfig-forge-1.20.1-2.1.3.jar">Resourceful Config <small>2.1.3</small></li>
-              <li data-file="resourcefullib-forge-1.20.1-2.1.29.jar">Resourceful Lib <small>2.1.29</small></li>
-              <li data-file="ScalableCatsForce-3.3.1-build-0-with-library.jar">Scalable Cat’s Force <small>3.3.1 build 0</small></li>
-              <li data-file="supermartijn642configlib-1.1.8-forge-mc1.20.jar">SuperMartijn642’s Config Lib <small>1.1.8</small></li>
-              <li data-file="supermartijn642corelib-1.1.21-forge-mc1.20.1.jar">SuperMartijn642’s Core Lib <small>1.1.21</small></li>
-              <li data-file="YungsApi-1.20-Forge-4.0.6.jar">YUNG’s API <small>4.0.6</small></li>
-            </ul>
-          </div>
-          <div class="mod-group">
-            <h3>Pack compatibility · 4</h3>
-            <ul class="mod-list">
-              <li data-file="tideforge-recorder-1.0.0.jar">Recording Helper <small>1.0.0 · F8 local OBS recording only</small></li>
-              <li data-file="tideforge-bases-compat-1.0.0.jar">Base Recipe Compatibility <small>1.0.0 · shared base and space recipe tags</small></li>
-              <li data-file="saint-jules-mobile-bases-1.0.0.jar">Mobile Bases Integration <small>1.0.0 · Create + Mekanism recipes and in-game manual</small></li>
-              <li data-file="tideforge-world-tools-1.0.0.jar">Server Tools Compatibility <small>1.0.0 · required server match; no player control screen</small></li>
-            </ul>
-          </div>
-        </div>
-      </details>
-    </section>
-
-    <section id="join" class="shell" aria-labelledby="joinTitle">
-      <div class="join-card">
-        <div class="status-pill"><span class="dot" aria-hidden="true"></span> Server address active · whitelist only</div>
-        <h2 id="joinTitle">Play with me.</h2>
-        <code class="address">voucher-wildlife.gl.joinmc.link</code>
-        <p>Add this address in Minecraft Multiplayer after importing Standard pack 1.6.6. The server requires an approved whitelist name. Proximity voice connects automatically through the included Simple Voice Chat mod.</p>
-        <div class="socials" aria-label="Saint Jules links">
-          <a href="../">Music player</a>
-          <a href="https://open.spotify.com/track/1P0PjFVnnYS2xWulb3ljlq" target="_blank" rel="noopener">Spotify</a>
-          <a href="https://discord.gg/KZ6YFPMame" target="_blank" rel="noopener">Join Discord</a>
-          <a href="https://www.youtube.com/@SaintJulezz" target="_blank" rel="noopener">YouTube</a>
-          <a href="https://www.instagram.com/saint__jules/" target="_blank" rel="noopener">Instagram</a>
-        </div>
-      </div>
-    </section>
+    <nav class="flow shell" aria-label="Start here"><a href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download><b>1</b><span><small>Download</small><strong>Get the .mrpack</strong></span></a><a href="#install"><b>2</b><span><small>Import</small><strong>Open it in Prism</strong></span></a><a href="#join"><b>3</b><span><small>Join</small><strong>Open Multiplayer</strong></span></a></nav>
+    <section class="section shell" id="install"><div class="section-head"><div><p class="kicker">Install</p><h2>Three short steps.</h2></div><p>The pack contains the exact client-side set needed by the server, including Tideforge Foremen 1.1.0.</p></div><div class="steps"><article class="step card"><span>01</span><h3>Install Prism Launcher</h3><p>Use the official Prism Launcher for macOS, Windows, or Linux.</p><a href="https://prismlauncher.org/download/">Prism download ↗</a></article><article class="step card"><span>02</span><h3>Import the pack</h3><p>Choose Add Instance → Import, then select the downloaded .mrpack file.</p></article><article class="step card"><span>03</span><h3>Launch and join</h3><p>Sign into Microsoft, launch the instance, then select Saint Jules in Multiplayer.</p></article></div></section>
+    <section class="section shell" id="join"><div class="join"><div class="status"><span class="dot"></span>Public server address</div><h2>Join Saint Jules.</h2><code class="address">voucher-wildlife.gl.joinmc.link</code><p>The address is included in pack 1.6.7, so it should already appear in the Multiplayer list.</p><button class="copy" type="button" data-copy>Copy server address</button></div></section>
+    <section class="section shell" id="mods"><div class="section-head"><div><p class="kicker">Included</p><h2>All 143 components.</h2></div><p>Open the list only when you need it. Libraries and Saint Jules compatibility mods are included because the pack requires them.</p></div><details><summary>Show the complete mod list <span>143 installed</span></summary><ul class="mods">
+      <li>Ad Astra</li><li>Additional Enchanted Miner</li><li>AddonsLib</li><li>Alex's Caves</li><li>Alex's Mobs</li><li>Aquamirae</li><li>Architectury API</li><li>Ars Nouveau</li><li>Better Structures +</li><li>Biomes O' Plenty</li><li>Botarium</li><li>Building Gadgets 2</li><li>CastLib</li><li>CB Multipart</li><li>CC: Tweaked</li><li>Citadel</li><li>Cloth Config API</li><li>CodeChicken Lib</li><li>Comforts</li><li>Connected Glass</li><li>CorgiLib</li><li>CoroUtil</li><li>Crawl on Demand</li><li>Create</li><li>Create Big Cannons</li><li>Create Deco</li><li>Create Nuclear</li><li>Create: Gunsmithing</li><li>Create: Handcrafted</li><li>Create: New Age</li><li>Create: Nuclear War</li><li>Create: Nuke</li><li>Cristel Lib</li><li>Curios API</li><li>Electrodynamics</li><li>Embeddium</li><li>Explorer's Compass</li><li>Exposure</li><li>FallingTree</li><li>Farmer's Delight</li><li>FerriteCore</li><li>FramedBlocks</li><li>Fusion (Connected Textures)</li><li>Geckolib</li><li>GlitchCore</li><li>Guns ++</li><li>Handcrafted</li><li>Hang Glider</li><li>Hbm's Nuclear Tech - Muddy Edition</li><li>HBM's Nuclear Tech Modernized</li><li>Immersive Aircraft</li><li>Immersive Machinery</li><li>Immersive Melodies</li><li>Immersive Weathering</li><li>Iron's Lib</li><li>Iron's Spells 'n Spellbooks</li><li>Jade</li><li>Just Enough Items</li><li>Kotlin for Forge</li><li>Lionfish API</li><li>Lootr</li><li>L_Ender's Cataclysm</li><li>Macaw's Bridges</li><li>Macaw's Doors</li><li>Macaw's Fences and Walls</li><li>Macaw's Furniture</li><li>Macaw's Holidays</li><li>Macaw's Lights and Lamps</li><li>Macaw's Paintings</li><li>Macaw's Paths and Pavings</li><li>Macaw's Roofs</li><li>Macaw's Stairs</li><li>Macaw's Trapdoors</li><li>Macaw's Windows</li><li>MCA Reborn</li><li>Mekanism</li><li>Mekanism Generators</li><li>Miscellaneous Metals (Formerly Marbled's Core)</li><li>ModernFix</li><li>Modular Force Field System</li><li>Moonlight Lib</li><li>Moving Elevators</li><li>MrCrayfish's Furniture Mod Tools: Legacy</li><li>Nondirectional Damage Tilt Fix</li><li>Nuclear Science</li><li>Obscure API</li><li>Patchouli</li><li>Pipez</li><li>playerAnimator</li><li>Project Red Core</li><li>Project Red Expansion</li><li>Project Red Exploration</li><li>Project Red Fabrication</li><li>Project Red Illumination</li><li>Project Red Integration</li><li>Project Red Transmission</li><li>ProjectE</li><li>ProjectE Integration</li><li>Puzzles Lib</li><li>Radiated Infection</li><li>Resourceful Config</li><li>Resourceful Lib</li><li>Ritchie's Projectile Library</li><li>saint-jules-mobile-bases-1.0.0</li><li>saint-jules-new-mod-compat-1.2.0</li><li>Scalable Cat's Force</li><li>SecretRooms-Unofficial</li><li>Security+</li><li>SecurityCraft</li><li>SecurityCraft: More Protectables</li><li>Simple Voice Chat</li><li>Sophisticated Backpacks</li><li>Sophisticated Backpacks: TAN Compat</li><li>Sophisticated Core</li><li>Superb Warfare</li><li>SuperMartijn642's Config Lib</li><li>SuperMartijn642's Core Lib</li><li>Supplementaries</li><li>Sync Re-Re-Ported</li><li>TACZ: Plus</li><li>TaCZ: Special Forces</li><li>TerraBlender</li><li>tideforge-bases-compat-1.0.0</li><li>tideforge-foremen-1.1.0</li><li>tideforge-world-tools-1.0.0</li><li>Tough As Nails</li><li>Towns and Towers</li><li>Traffic Control + Roads (City) mod by Teerth</li><li>TxniLib</li><li>Voltaic</li><li>waterupgrade</li><li>Weather Storms &amp; Tornadoes</li><li>XenoTech</li><li>YUNG's API</li><li>YUNG's Better Dungeons</li><li>YUNG's Better Ocean Monuments</li><li>YUNG's Cave Biomes</li><li>[NTGL] NukaTeam's Gun Lib</li><li>[SBW] Advanced CIWS</li><li>[SBW] Drone Warfare</li><li>[SBW] More Drone Detector</li><li>[TACZ] LesRaisins Tactical Equipements</li><li>[TaCZ] Timeless and Classics Zero</li>
+    </ul></details></section>
   </main>
-
-  <footer class="shell">
-    <span>© Saint Jules · Minecraft Standard 1.6.6</span>
-    <span>Minecraft 1.20.1 · proximity voice included</span>
-  </footer>
+  <footer class="shell"><span>Saint Jules Minecraft · Pack 1.6.7</span><span>Minecraft 1.20.1 · Forge 47.4.10</span></footer>
+  <script>
+    const copyButton=document.querySelector('[data-copy]');
+    copyButton?.addEventListener('click',async()=>{const address='voucher-wildlife.gl.joinmc.link';try{await navigator.clipboard.writeText(address)}catch{const area=document.createElement('textarea');area.value=address;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove()}copyButton.textContent='Copied';window.setTimeout(()=>copyButton.textContent='Copy server address',1800)});
+  </script>
 </body>
 </html>
