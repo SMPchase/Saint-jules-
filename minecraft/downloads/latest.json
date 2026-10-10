@@ -1,13 +1,13 @@
 {
-  "version": "1.8.0",
+  "version": "1.8.1",
   "minecraftVersion": "1.20.1",
   "loader": "Forge",
   "loaderVersion": "47.4.10",
   "serverAddress": "voucher-wildlife.gl.joinmc.link",
-  "filename": "Saint-Jules-Minecraft-1.8.0.mrpack",
-  "publishedAt": "2026-09-28T03:42:00.653Z",
-  "packUrl": "https://www.saintjules.org/minecraft/downloads/Saint-Jules-Minecraft-1.8.0.mrpack",
-  "sha256": "fff302c21a02a7f1ce0521ea26eb69c27a2b70a39dfe904828ba45471c34ecaa",
+  "filename": "Saint-Jules-Minecraft-1.8.1.mrpack",
+  "publishedAt": "2026-10-10T13:06:52.954Z",
+  "packUrl": "https://www.saintjules.org/minecraft/downloads/Saint-Jules-Minecraft-1.8.1.mrpack",
+  "sha256": "176bd393edca10e988dbcdadd79f5f240a6e81689116a0d7a8994115fee1e3d9",
   "inventory": {
     "hosted": [
       "[1.20.1] SecurityCraft v1.10.2.1.jar",
@@ -150,7 +150,7 @@
       "saint-jules-mobile-bases-1.0.0.jar",
       "saint-jules-new-mod-compat-1.2.7.jar",
       "tideforge-bases-compat-1.0.0.jar",
-      "tideforge-foremen-2.7.195.jar",
+      "tideforge-foremen-2.7.196.jar",
       "tideforge-world-tools-1.2.4.jar"
     ]
   }
