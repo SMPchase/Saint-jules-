@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="560" viewBox="0 0 680 560" fill="none">
+<title>Two illustrated block worlds</title><desc>A woodland cabin and an imaginative factory, on separate floating islands.</desc>
+<defs>
+  <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#536d43"/><stop offset="1" stop-color="#253f32"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#afcd89" stop-opacity=".13"/><stop offset="1" stop-color="#afcd89" stop-opacity="0"/></radialGradient>
+  <g id="tree"><path d="M-5 0 5-5 5 37-5 42Z" fill="#8e704e"/><path d="m5-5 10 5v37l-10-5Z" fill="#624d37"/><path d="m-28-43 30-16 31 17L3-25Z" fill="#91b16b"/><path d="m-28-43 31 18v45L-28 2Z" fill="#618344"/><path d="M3-25 33-42V3L3 20Z" fill="#456638"/><path d="m-20-62 23-12 23 13L3-48Z" fill="#abc481"/><path d="m-20-62 23 14v28l-23-14Z" fill="#71964f"/><path d="m3-48 23-13v29L3-20Z" fill="#557940"/></g>
+  <g id="pine"><path d="M-3 0h8v31h-8Z" fill="#8d6e45"/><path d="m-26-16 28-58 28 58L2 0Z" fill="#9ab96c"/><path d="M2-74v74l28-16Z" fill="#5b8146"/></g>
+  <g id="flower"><path d="M0 0v10" stroke="#a7ba73" stroke-width="2"/><path d="M-4-4h8v8h-8Z" fill="#f4d384"/></g>
+  <g id="star"><path d="M0-5v10M-5 0H5" stroke="#bcd3a4" stroke-width="1.2"/></g>
+</defs>
+<ellipse cx="342" cy="294" rx="330" ry="245" fill="url(#glow)"/>
+<path d="M67 414c57 38 121 51 184 30M403 437c78-13 160-51 195-94" stroke="#829e78" stroke-opacity=".22" stroke-dasharray="3 7"/>
+<use href="#star" x="101" y="119" opacity=".7"/><use href="#star" x="567" y="115" opacity=".65"/><use href="#star" x="344" y="70" opacity=".45"/><use href="#star" x="626" y="285" opacity=".4"/>
+<circle cx="67" cy="247" r="2" fill="#a5bd90"/><circle cx="299" cy="115" r="1.5" fill="#b9d59e"/><circle cx="452" cy="77" r="2" fill="#b1c591"/>
+<path d="M39 310 180 239 322 312 180 386Z" fill="#527542"/>
+<path d="m39 310 141 76v69l-40-21v-20l-38-21v-17l-37-19v-19l-26-14Z" fill="#675b40"/>
+<path d="m180 386 142-74v34l-27 15v23l-35 18v20l-40 21v19l-40 21Z" fill="#3d4934"/>
+<path d="m39 310 141 76v14L39 325Z" fill="#6e9250"/><path d="m180 386 142-74v14l-142 74Z" fill="#426637"/>
+<path d="m67 303 111-57 117 62-114 59Z" fill="#789853"/>
+<path d="m128 323 30-16 93 48-31 16Z" fill="#adad73"/><path d="m151 336 20-10 17 9-20 10Z" fill="#c2ba80"/><path d="m186 354 20-11 16 9-19 11Z" fill="#c2ba80"/>
+<path d="m58 319 49-25 32 18-48 25Z" fill="#599b8d"/><path d="m63 320 29 16 25-13" stroke="#9bcabb" stroke-width="2"/><path d="m102 336 19-10 23 12-20 10Z" fill="#d3c38b"/>
+<use href="#tree" x="100" y="274"/><use href="#tree" x="239" y="303" transform="translate(32 26) scale(.86)"/>
+<use href="#pine" x="270" y="298"/><use href="#pine" x="212" y="280" transform="translate(35 68) scale(.75)"/>
+<path d="m120 248 55-29 59 31-55 30Z" fill="#d6c791"/><path d="m120 248 59 32v56l-59-32Z" fill="#b69c62"/><path d="m179 280 55-30v55l-55 31Z" fill="#837348"/>
+<path d="m106 251 65-76 79 41-65 78Z" fill="#e9d4a0"/><path d="m171 175 15 93 64-52Z" fill="#bd9d62"/><path d="m106 251 79 43v-11l-79-42Z" fill="#b28c52"/>
+<path d="m131 277 18 10v29l-18-10Z" fill="#5b6040"/><path d="m193 288 19-11v19l-19 10Z" fill="#e9ce81"/><path d="m201 283 2-1v19l-2 1Z" fill="#9f8754"/>
+<path d="m216 208 12-7v-35l-12 7Z" fill="#8f8d70"/><path d="m204 167 12 6 12-7-12-6Z" fill="#d5cfab"/><path d="m204 167 12 6v35l-12-6Z" fill="#b5aa86"/>
+<use href="#flower" x="146" y="347"/><use href="#flower" x="161" y="354"/><use href="#flower" x="231" y="333"/>
+<path d="m216 147 13-7 12 6-13 7Z" fill="#d7dfb7" opacity=".5"/><path d="m224 124 16-9 17 9-16 9Z" fill="#d7dfb7" opacity=".25"/>
+<path d="m351 272 136-70 153 80-139 73Z" fill="#a0a392"/>
+<path d="m351 272 150 83v81l-39-22v-20l-35-18v-24l-46-25v-24l-30-16Z" fill="#6d6962"/>
+<path d="m501 355 139-73v42l-29 15v24l-39 21v22l-36 20v24l-35 18Z" fill="#44454a"/>
+<path d="m351 272 150 83v13l-150-82Z" fill="#b8b5a0"/><path d="m501 355 139-73v13l-139 73Z" fill="#797c72"/>
+<path d="m371 272 113-58 135 70-116 60Z" fill="#929d88"/>
+<path d="M378 283l114 60M390 278l115 60M443 244l133 70" stroke="#c7c7ab" stroke-width="2" opacity=".6"/>
+<path d="m398 244 57-30 68 36-57 31Z" fill="#d5cbb9"/><path d="m398 244 68 37v54l-68-36Z" fill="#b3a28c"/><path d="m466 281 57-31v55l-57 30Z" fill="#82776f"/>
+<path d="m391 239 63-34 77 41-65 35Z" fill="#c8bb9e"/><path d="m391 239 75 42v-12l-75-41Z" fill="#a18d6e"/>
+<path d="m410 269 14 8v16l-14-8ZM435 282l14 8v16l-14-8Z" fill="#f6cd8d"/><path d="m477 286 18-9v25l-18 10Z" fill="#4d5a52"/>
+<path d="m423 222 17 9v-89l-17-9Z" fill="#b48c71"/><path d="m440 231 17-9v-89l-17 9Z" fill="#805e53"/><path d="m423 133 17-9 17 9-17 9Z" fill="#e3baa0"/>
+<path d="m459 220 13 7v-59l-13-7Z" fill="#b48c71"/><path d="m472 227 13-7v-59l-13 7Z" fill="#805e53"/><path d="m459 161 13-7 13 7-13 7Z" fill="#e3baa0"/>
+<path d="m430 108 16-8 18 9-17 8Z" fill="#cdd4c1" opacity=".5"/><path d="m443 85 19-10 20 11-19 9Z" fill="#cdd4c1" opacity=".23"/>
+<path d="m536 243 25-13 25 13-25 14Z" fill="#d8c5a3"/><path d="m536 243 25 14v43l-25-14Z" fill="#b69a77"/><path d="m561 257 25-14v43l-25 14Z" fill="#857059"/>
+<path d="m538 249 23 12 22-12M538 279l23 12 22-12" stroke="#6c7168" stroke-width="4"/>
+<path d="m532 281-17 8v18l-16 8" stroke="#d3b375" stroke-width="7"/><path d="m593 276 13 7v18l-22 12" stroke="#d3b375" stroke-width="6"/>
+<path d="m574 207 5 3v-63l-5-3Z" fill="#8f9da1"/><path d="m579 210 5-3v-63l-5 3Z" fill="#5b7078"/>
+<circle cx="579" cy="145" r="7" fill="#d9dfc9"/><path d="m579 143-6-42 10 5 1 35ZM582 148l35 17-9 5-29-17ZM574 148l-28 24-2-11 28-19Z" fill="#d2dfd4"/>
+<path d="m326 304 5-3 5 3-5 3Z" fill="#c4cfab"/><path d="m330 307 5 3 5-3-5-3Z" fill="#c4cfab"/><path d="M290 357c33 20 62 19 92-1" stroke="#b2bf91" stroke-opacity=".6" stroke-dasharray="2 6"/>
+<path d="m111 420 12 7v14l-12-7Z" fill="#b29966" opacity=".55"/><path d="m229 423 13-7v15l-13 7Z" fill="#6f7750"/><path d="m552 407 12-7v14l-12 7Z" fill="#79707e"/>
+</svg>

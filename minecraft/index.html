@@ -2,57 +2,148 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#fffdf8">
-  <meta name="description" content="Download Saint Jules Minecraft pack 1.8.1 for Forge 1.20.1 and join the included server with all 140 required components.">
-  <meta property="og:title" content="Play With Me — Minecraft Server">
-  <meta property="og:description" content="One pack, one import, and the Saint Jules server is already in Multiplayer.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142c26">
+  <meta name="description" content="Two ways to play Saint Jules Minecraft. A fresh vanilla world and the same expansive modded pack: build cities, make factories, explore space, and play together.">
+  <meta property="og:title" content="Saint Jules Minecraft — Two worlds. Your kind of adventure.">
+  <meta property="og:description" content="A new vanilla world. Your familiar modded universe. Find your server, get set up, and make something worth coming back to.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.saintjules.org/minecraft/">
   <meta property="og:image" content="https://www.saintjules.org/minecraft/assets/angel-gold.jpg">
   <link rel="canonical" href="https://www.saintjules.org/minecraft/">
   <link rel="icon" href="assets/angel-silver.jpg">
-  <title>Play With Me — Minecraft Server</title>
-  <style>
-    :root{--paper:#fffdf8;--panel:#fff;--ink:#171717;--muted:#66635d;--line:#c9c6bd;--pink:#d84c7f;--pink-dark:#9d174a;--gold:#b7902f}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:var(--paper);color:var(--ink);font-family:Tahoma,Verdana,Arial,sans-serif}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}button{font:inherit}.shell{width:min(1040px,calc(100% - 28px));margin-inline:auto}.card{border:1px solid var(--line);background:var(--panel)}
-    :focus-visible{outline:2px solid var(--pink);outline-offset:2px}.skip{position:fixed;left:10px;top:8px;z-index:20;transform:translateY(-160%);padding:9px 12px;border:1px solid var(--ink);background:#fff;font-weight:800}.skip:focus{transform:none}
-    header{padding:14px 0}.nav{min-height:54px;padding:7px 8px 7px 12px;border:1px solid var(--ink);display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff}.brand{display:flex;align-items:center;min-width:44px;min-height:44px;gap:9px;font:800 10px/1 "Courier New",monospace;letter-spacing:.14em;text-transform:uppercase}.brand img{width:38px;height:38px;border:1px solid var(--ink);object-fit:cover}.links{display:flex;align-items:center;gap:3px}.links a{min-height:44px;padding:0 11px;display:inline-flex;align-items:center;font-size:9px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.links .download{border:1px solid var(--pink-dark);background:var(--pink);color:#fff}
-    main section{scroll-margin-top:20px}.hero{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);align-items:center;gap:44px;padding:66px 0 45px}.eyebrow,.kicker{margin:0 0 13px;color:#8a6816;font:800 10px/1.3 "Courier New",monospace;letter-spacing:.12em;text-transform:uppercase}h1{margin:0;font-size:clamp(52px,8vw,82px);line-height:.86;letter-spacing:-.07em}h1 span{display:block;color:var(--pink)}h2{margin:0;font-size:clamp(31px,5vw,48px);line-height:.98;letter-spacing:-.045em}.lede{max-width:680px;margin:22px 0 0;color:#454440;font-size:16px;line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px}.button{min-height:44px;padding:0 17px;border:1px solid var(--ink);display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;text-transform:uppercase}.button.primary{background:var(--pink);color:#fff}.facts{display:flex;flex-wrap:wrap;gap:5px;margin:18px 0 0;padding:0;list-style:none}.facts li{padding:6px 8px;border:1px solid var(--line);background:#fff;font:700 9px/1.3 "Courier New",monospace;text-transform:uppercase}.notice{margin-top:15px;padding:15px;border-top:3px solid var(--gold)}.notice strong{font-size:14px}.notice p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.5}
-    .pack{height:100%;min-height:350px;padding:22px;border-color:var(--ink);border-top:4px solid var(--gold)}.pack img{width:72px;height:72px;border:1px solid var(--ink);object-fit:cover}.pack p{margin:42px 0 3px;color:#8a6816;font:800 9px/1.3 "Courier New",monospace;text-transform:uppercase}.pack strong{font-size:54px;letter-spacing:-.06em}.pack dl{margin:25px 0 0}.pack dl div{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}.pack dt,.pack dd{margin:0;font:11px/1.3 "Courier New",monospace}.pack dt{color:var(--muted)}
-    .flow{display:grid;grid-template-columns:repeat(3,1fr);margin-bottom:70px;border:1px solid var(--ink)}.flow a{display:flex;align-items:center;gap:10px;padding:12px;border-right:1px solid var(--line);background:#fff}.flow a:last-child{border-right:0}.flow b{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--gold);background:#f7edc9;font:700 10px/1 "Courier New",monospace}.flow small,.flow strong{display:block}.flow small{color:var(--muted);font:8px/1.2 "Courier New",monospace;text-transform:uppercase}.flow strong{margin-top:2px;font-size:12px}
-    .section{padding-bottom:78px}.section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,420px);gap:28px;margin-bottom:22px;padding-top:18px;border-top:1px solid var(--ink)}.section-head>p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.step{min-height:190px;padding:18px;border-top:3px solid var(--gold)}.step span{font:800 10px/1 "Courier New",monospace;color:var(--pink-dark)}.step h3{margin:28px 0 8px;font-size:18px}.step p{margin:0;color:var(--muted);font-size:12px;line-height:1.5}.step a{display:inline-flex;align-items:center;min-height:44px;margin-top:14px;color:var(--pink-dark);font:800 9px/1.3 "Courier New",monospace;text-transform:uppercase}
-    .join{padding:clamp(24px,5vw,48px);border:1px solid var(--ink);border-top:4px solid var(--pink);background:#fff}.status{display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;color:var(--muted);font:800 9px/1.3 "Courier New",monospace;text-transform:uppercase}.dot{width:8px;height:8px;border:1px solid #777;background:#aaa}.status[data-state="online"] .dot{border-color:#356f42;background:#55b66d}.status[data-state="offline"] .dot{border-color:#842f2f;background:#d85c5c}.address{display:block;margin-top:22px;padding:11px;border:1px solid var(--line);background:#f2f2ee;font:700 clamp(15px,3vw,22px)/1.3 "Courier New",monospace;overflow-wrap:anywhere}.join p{max-width:760px;margin:12px 0 18px;color:var(--muted);font-size:13px;line-height:1.55}.join-actions{display:flex;flex-wrap:wrap;gap:6px}.copy{min-height:44px;padding:0 14px;border:1px solid var(--pink-dark);background:var(--pink);color:#fff;cursor:pointer;font-size:10px;font-weight:900;text-transform:uppercase}.copy.secondary{border-color:var(--ink);background:#fff;color:var(--ink)}
-    details{border:1px solid var(--ink);background:#fff}summary{min-height:54px;padding:13px 15px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;font-size:13px;font-weight:800}summary::-webkit-details-marker{display:none}summary span{margin-left:auto;color:var(--muted);font:8px/1.2 "Courier New",monospace;text-transform:uppercase}summary::after{content:"+";display:grid;place-items:center;width:27px;height:27px;border:1px solid var(--pink-dark);background:var(--pink);color:#fff;font:700 16px/1 "Courier New",monospace}details[open] summary::after{content:"–"}.mods{display:flex;flex-wrap:wrap;gap:4px;margin:0;padding:16px;border-top:1px solid var(--line);list-style:none}.mods li{padding:6px 7px;border:1px solid #d4d3cd;background:#f2f2ee;font-size:10px;font-weight:700;line-height:1.3}
-    footer{display:flex;justify-content:space-between;gap:12px;padding:18px 0 max(34px,env(safe-area-inset-bottom));border-top:1px solid var(--ink);color:var(--muted);font:9px/1.4 "Courier New",monospace;text-transform:uppercase}
-    @media(max-width:760px){.hero{grid-template-columns:1fr;gap:20px;padding-top:42px}.pack{min-height:280px}.section-head{grid-template-columns:1fr;gap:10px}.steps{grid-template-columns:1fr}.step{min-height:0}.flow{grid-template-columns:1fr}.flow a{border-right:0;border-bottom:1px solid var(--line)}.flow a:last-child{border-bottom:0}}
-    @media(max-width:560px){.brand span,.links a:not(.download){display:none}.hero h1{font-size:clamp(47px,17vw,66px)}.actions{display:grid}.button{width:100%}.copy{width:100%}footer{flex-direction:column}}
-  </style>
+  <link rel="stylesheet" href="assets/site.css">
+  <title>Saint Jules Minecraft — Two worlds, one community</title>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to Minecraft</a>
-  <header class="shell">
-    <nav class="nav" aria-label="Minecraft page">
-      <a class="brand" href="../" aria-label="Saint Jules home"><img src="assets/angel-silver.jpg" alt="" width="38" height="38"><span>Saint Jules</span></a>
-      <div class="links"><a href="#install">Install</a><a href="#mods">Mods</a><a href="#join">Join</a><a class="download" data-pack-download href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download</a></div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav shell" aria-label="Main navigation">
+      <a class="brand" href="https://www.saintjules.org/" aria-label="Saint Jules home">
+        <img src="assets/angel-silver.jpg" alt="" width="40" height="40">
+        <span>SAINT JULES<small>MINECRAFT</small></span>
+      </a>
+      <div class="nav-links"><a href="#worlds">The servers</a><a href="#install">Get started</a><a href="#help">Need a hand?</a></div>
+      <a class="button button-small button-dark" href="#worlds">Let's play <span aria-hidden="true">↗</span></a>
     </nav>
   </header>
   <main id="main">
-    <section class="hero shell" id="download">
-      <div>
-        <p class="eyebrow">Minecraft Server · Public pack <span data-pack-version>1.8.1</span></p>
-        <h1>PLAY <span>WITH ME.</span></h1>
-        <p class="lede">One Forge pack for the Saint Jules server. Download it, import it into Prism Launcher, and the server is already in Multiplayer.</p>
-        <div class="actions"><a class="button primary" data-pack-download href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download the pack</a><a class="button" href="#join">Server address</a></div>
-        <ul class="facts"><li>Minecraft <span data-minecraft-version>1.20.1</span></li><li>Forge <span data-forge-version>47.4.10</span></li><li>Java 17</li><li>Mac + PC</li><li>140 client mod files</li></ul>
-        <div class="notice card"><strong>Use the Latest download above.</strong><p>Import that one .mrpack into Prism Launcher. The page checks release metadata automatically and keeps a verified 1.8.1 fallback if that check is unavailable.</p></div>
+    <section class="hero">
+      <div class="hero-grid shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="tiny-square" aria-hidden="true"></span> SAINT JULES MINECRAFT · 2.0</p>
+          <h1>Good company.<br> <em>Big worlds.</em></h1>
+          <p class="hero-lede">Start with a little cabin. End up with a whole city.<br class="desktop-break"> Two ways to play, and plenty of room to make it yours.</p>
+          <div class="actions"><a class="button button-lime" href="#worlds">Find your world <span aria-hidden="true">↓</span></a><a class="hero-text-link" href="#modded">Already play modded? <span aria-hidden="true">↗</span></a></div>
+          <div class="hero-note"><span class="line" aria-hidden="true"></span> Your modded world stays. A new adventure joins it.</div>
+        </div>
+        <figure class="hero-art">
+          <img src="assets/two-worlds.svg" alt="Illustration of two floating block worlds: a woodland cabin and an imaginative factory." width="680" height="560" fetchpriority="high">
+          <figcaption><span>01 / VANILLA</span><span>02 / MODDED</span></figcaption>
+        </figure>
       </div>
-      <aside class="pack card"><img src="assets/angel-gold.jpg" alt="" width="72" height="72"><p>Public release</p><strong data-pack-version>1.8.1</strong><dl><div><dt>Minecraft</dt><dd data-minecraft-version>1.20.1</dd></div><div><dt>Forge</dt><dd data-forge-version>47.4.10</dd></div><div><dt>SHA-256</dt><dd data-pack-sha>176bd393…</dd></div><div><dt>Published</dt><dd data-pack-published>Oct 10, 2026</dd></div></dl></aside>
+      <div class="hero-bottom shell"><span>JAVA EDITION</span><span>MAC · WINDOWS · LINUX</span><span>BUILT TO PLAY TOGETHER</span></div>
     </section>
-    <nav class="flow shell" aria-label="Start here"><a data-pack-download href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download><b>1</b><span><small>Download</small><strong>Get the .mrpack</strong></span></a><a href="#install"><b>2</b><span><small>Import</small><strong>Open it in Prism</strong></span></a><a href="#join"><b>3</b><span><small>Join</small><strong>Open Multiplayer</strong></span></a></nav>
-    <section class="section shell" id="install"><div class="section-head"><div><p class="kicker">Install</p><h2>Three short steps.</h2></div><p>The public pack is a verified Modrinth/Prism archive with 133 hosted downloads and 7 included local JARs. Version-specific feature claims are intentionally kept out of this page so it cannot advertise unfinished work.</p></div><div class="steps"><article class="step card"><span>01</span><h3>Install Prism Launcher</h3><p>Use the official Prism Launcher for macOS, Windows, or Linux.</p><a href="https://prismlauncher.org/download/">Prism download ↗</a></article><article class="step card"><span>02</span><h3>Import the pack</h3><p>Choose Add Instance → Import, then select the downloaded .mrpack file.</p></article><article class="step card"><span>03</span><h3>Launch and join</h3><p>Sign into Microsoft, launch the instance, then select Saint Jules in Multiplayer.</p></article></div></section>
-    <section class="section shell" id="join"><div class="join"><div class="status" data-server-status data-state="checking"><span class="dot"></span><span data-server-status-label>Checking server…</span></div><h2>Join Saint Jules.</h2><code class="address" data-server-address>voucher-wildlife.gl.joinmc.link</code><p>The address above is embedded in the public pack. Live status is checked separately so a colored dot never pretends the server is online.</p><p data-server-detail aria-live="polite">Contacting the Minecraft status service…</p><div class="join-actions"><button class="copy" type="button" data-copy>Copy server address</button><button class="copy secondary" type="button" data-refresh-status>Refresh status</button></div></div></section>
-    <section class="section shell" id="mods"><div class="section-head"><div><p class="kicker">Included</p><h2>140 client mod files.</h2></div><p>This is the exact count inside public pack <span data-pack-version>1.8.1</span>: 133 hosted downloads plus 7 included local JARs. Open the list only when you need the names.</p></div><details><summary>Show the complete mod list <span>140 in the public pack</span></summary><ul class="mods" data-pack-mod-list>
+
+    <section class="section shell" id="worlds">
+      <div class="section-heading"><div><p class="eyebrow">CHOOSE YOUR ADVENTURE</p><h2>Same community.<br>Different possibilities.</h2></div><p>Keep it classic, or go gloriously overboard.<br>These are separate servers, with separate worlds.</p></div>
+      <div class="worlds">
+        <article class="world-card vanilla-card">
+          <div class="card-top"><span class="world-number">01</span><div class="status" data-server-status="vanilla" data-state="checking"><span class="dot" aria-hidden="true"></span><span data-server-status-label>Checking server</span></div></div>
+          <div class="world-icon" aria-hidden="true">✳</div>
+          <p class="eyebrow">THE FRESH START</p><h3>Vanilla.</h3>
+          <p class="world-description">Just Minecraft. New terrain, first-night shelters, shared builds, and whatever happens along the way.</p>
+          <ul class="world-tags" aria-label="Vanilla requirements"><li>Minecraft <span data-vanilla-version>26.3</span></li><li>No modpack</li><li>New world</li></ul>
+          <a class="button button-dark" href="#vanilla">Explore vanilla <span aria-hidden="true">↗</span></a>
+        </article>
+        <article class="world-card modded-card">
+          <div class="card-top"><span class="world-number">02</span><div class="status" data-server-status="modded" data-state="checking"><span class="dot" aria-hidden="true"></span><span data-server-status-label>Checking server</span></div></div>
+          <div class="world-icon" aria-hidden="true">✧</div>
+          <p class="eyebrow">THE FAMILIAR UNIVERSE</p><h3>Modded.</h3>
+          <p class="world-description">Factories and cities. Magic and machinery. Space trips and sea monsters. Your existing pack, all still here.</p>
+          <ul class="world-tags" aria-label="Modded requirements"><li>Pack <span data-pack-version>1.8.1</span></li><li>Minecraft <span data-minecraft-version>1.20.1</span></li><li><span data-pack-count>140</span> mod files</li></ul>
+          <a class="button button-dark" href="#modded">Explore modded <span aria-hidden="true">↗</span></a>
+        </article>
+      </div>
+      <p class="under-note"><span aria-hidden="true">↳</span> Website 2.0 is a fresh front door—not a reset of the modded world or a new modpack version.</p>
+    </section>
+
+    <section class="section modded-section" id="modded">
+      <div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">02 / THE MODDED SERVER</p><h2>A little bit<br>of <em>everything.</em></h2></div><p>The same Saint Jules pack, with room for the way you like to play. No picking through JAR files. No starting over.</p></div>
+        <div class="play-grid">
+          <article class="play-item"><span class="play-symbol" aria-hidden="true">▦</span><h3>Build something big.</h3><p>Lay out a town, connect factories, and make the machinery work for you.</p><small>Create · Mekanism · ProjectRed · Macaw's</small></article>
+          <article class="play-item"><span class="play-symbol" aria-hidden="true">↗</span><h3>Take the long way.</h3><p>Fly out, explore deep caves, or take the next project all the way to space.</p><small>Ad Astra · Immersive Aircraft · Alex's Caves</small></article>
+          <article class="play-item"><span class="play-symbol" aria-hidden="true">✧</span><h3>Expect the strange.</h3><p>Spellcraft, sea creatures, bigger mobs, and reasons to bring a friend.</p><small>Ars Nouveau · Iron's Spellbooks · Aquamirae</small></article>
+          <article class="play-item"><span class="play-symbol" aria-hidden="true">ϟ</span><h3>Turn up the stakes.</h3><p>Weather, survival systems, nuclear projects, and a well-stocked kitchen.</p><small>Weather2 · Tough As Nails · Nuclear Science · Farmer's Delight</small></article>
+        </div>
+        <div class="modded-console" id="join">
+          <div class="console-main">
+            <div class="status" data-server-status="modded" data-state="checking"><span class="dot" aria-hidden="true"></span><span data-server-status-label>Checking server</span></div>
+            <h3>Your world is right here.</h3>
+            <p>Install the matching pack, then choose <strong>Saint Jules</strong> in Multiplayer.</p>
+            <span class="code-label">MODDED SERVER ADDRESS</span>
+            <code class="address" id="modded-address" data-server-address>voucher-wildlife.gl.joinmc.link</code>
+            <div class="actions"><button class="button button-lime" type="button" data-copy="modded">Copy address <span aria-hidden="true">↗</span></button><button class="text-button" type="button" data-refresh-status="modded">Refresh status</button></div>
+            <p class="feedback" data-copy-message="modded" aria-live="polite"></p>
+            <p class="status-detail" data-server-detail="modded" aria-live="polite">Checking public reachability. Status is not a guarantee of in-game performance.</p>
+          </div>
+          <aside class="download-panel">
+            <p class="eyebrow">YOUR ONE-FILE INSTALL</p><h3>Grab the pack.</h3>
+            <p>Import the .mrpack into Prism. It brings the required mods and server entry with it.</p>
+            <a class="button button-white" data-pack-download href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download pack <span data-pack-version>1.8.1</span> <span aria-hidden="true">↓</span></a>
+            <dl class="release-facts"><div><dt>Minecraft</dt><dd data-minecraft-version>1.20.1</dd></div><div><dt>Forge</dt><dd data-forge-version>47.4.10</dd></div><div><dt>Java runtime</dt><dd>17</dd></div><div><dt>Published</dt><dd data-pack-published>Oct 10, 2026</dd></div><div><dt>SHA-256</dt><dd data-pack-sha title="176bd393edca10e988dbcdadd79f5f240a6e81689116a0d7a8994115fee1e3d9">176bd393…</dd></div></dl>
+            <p class="release-note" data-release-note aria-live="polite">Published pack 1.8.1. Checking the release feed…</p>
+            <a class="subtle-link" href="downloads/SHA256SUMS.txt">View checksums <span aria-hidden="true">↗</span></a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell vanilla-section" id="vanilla">
+      <div class="vanilla-art" aria-hidden="true"><span class="sun-disc"></span><span class="pixel-tree tree-one"></span><span class="pixel-tree tree-two"></span><span class="pixel-ground"></span><span class="art-caption">A NEW SEED.<br>A CLEAN SLATE.</span></div>
+      <div class="vanilla-copy"><p class="eyebrow">01 / THE VANILLA SERVER</p><h2>The simple<br>joy of <em>starting.</em></h2><p>A separate, fresh survival world on modern Minecraft Java Edition. No Forge, no extra mods, and no changes to the modded server.</p>
+        <div class="status" data-server-status="vanilla" data-state="checking"><span class="dot" aria-hidden="true"></span><span data-server-status-label>Checking server</span></div>
+        <p class="vanilla-readiness" data-vanilla-ready>A fresh vanilla world, separate from modded. Use the address below with Minecraft Java 26.3.</p>
+        <div class="vanilla-connect"><span class="code-label">VANILLA SERVER ADDRESS</span><code class="vanilla-address" data-vanilla-address>shrimp-russ.tun.ply.gg</code><div class="actions"><button class="button button-dark" type="button" data-copy="vanilla">Copy vanilla address</button><button class="text-button" type="button" data-refresh-status="vanilla">Refresh status</button></div><p class="feedback" data-copy-message="vanilla" aria-live="polite"></p><p class="status-detail" data-server-detail="vanilla" aria-live="polite">Use Minecraft Java <span data-vanilla-version>26.3</span>. Checking public reachability…</p></div>
+      </div>
+    </section>
+
+    <section class="section install-section" id="install"><div class="shell">
+      <div class="section-heading"><div><p class="eyebrow">LESS SETUP. MORE PLAY.</p><h2>Let's get you in.</h2></div><p>Use the instructions for your server. The modded pack and vanilla client are separate installations.</p></div>
+      <div class="install-columns">
+        <article><div class="guide-title"><span class="guide-dot purple"></span><h3>For modded</h3><span>PRISM LAUNCHER</span></div><ol class="steps">
+          <li><span>01</span><div><h4>Get Prism.</h4><p>Install <a href="https://prismlauncher.org/download/">Prism Launcher</a> for your computer, then sign in with the Microsoft account that owns Minecraft Java.</p></div></li>
+          <li><span>02</span><div><h4>Import one file.</h4><p><a data-pack-download href="downloads/Saint-Jules-Minecraft-Latest.mrpack" download>Download the Saint Jules pack</a>. In Prism, select <strong>Add Instance → Import</strong> and choose the .mrpack.</p></div></li>
+          <li><span>03</span><div><h4>Launch. Join. Settle in.</h4><p>Launch the imported instance and choose <strong>Saint Jules</strong> in Multiplayer. Keep its mod list unchanged so it matches the server.</p></div></li>
+        </ol></article>
+        <article><div class="guide-title"><span class="guide-dot green"></span><h3>For vanilla</h3><span>STANDARD MINECRAFT</span></div><ol class="steps">
+          <li><span>01</span><div><h4>Open Java Edition.</h4><p>Use the <a href="https://www.minecraft.net/en-us/download">official Minecraft Launcher</a> or a separate vanilla Prism instance. This is Java Edition, not Bedrock.</p></div></li>
+          <li><span>02</span><div><h4>Match the server version.</h4><p>Select Minecraft <strong data-vanilla-version>26.3</strong>. Do not launch the Forge modpack for this server.</p></div></li>
+          <li><span>03</span><div><h4>Add the vanilla address.</h4><p>Use <strong>Multiplayer → Add Server</strong> and paste its separate address above. Both servers use approved player lists.</p></div></li>
+        </ol></article>
+      </div>
+    </div></section>
+
+    <section class="section shell" id="help">
+      <div class="section-heading"><div><p class="eyebrow">THE USEFUL STUFF</p><h2>A little help<br>goes a long way.</h2></div><p>Start here if something doesn't quite click.</p></div>
+      <div class="help-grid">
+        <div class="faq-list">
+          <details><summary>Do I need to start my modded world over?</summary><p>No. The vanilla server is separate. The current modded world and pack stay in place; website 2.0 does not reset them.</p></details>
+          <details><summary>Why does it say I'm not whitelisted?</summary><p>Both servers use approved player lists. Ask Jules to add your exact Java username to the server you want to join. Repeatedly reinstalling the pack won't fix an access-list message.</p></details>
+          <details><summary>The pack won't launch, or memory is tight.</summary><p>Let Prism finish its downloads and use the pack's Java 17 runtime. Close applications you aren't using before launching a large modpack. Don't delete random mods or increase memory beyond what your computer has available.</p></details>
+          <details><summary>I can't connect, but the site shows a status.</summary><p>Status comes from an outside checker and can be delayed or unavailable. Check your edition, version, address, and approved-player access first. “Could not confirm” is not proof the server is down.</p></details>
+          <details><summary>I'm playing on the server-hosting Mac.</summary><p>For the quickest local route, use <code>127.0.0.1:25565</code> for modded or <code>127.0.0.1:25566</code> for vanilla. These addresses only work on that Mac; everyone else uses the public addresses above.</p></details>
+          <details><summary>Can I bring a console or Bedrock client?</summary><p>These are Minecraft Java Edition servers. Bedrock, console, and mobile cross-play are not currently offered.</p></details>
+        </div>
+        <aside class="community-note"><span class="note-star" aria-hidden="true">✳</span><p class="eyebrow">MAKE YOURSELF AT HOME</p><h3>Build together.<br>Leave room<br>for each other.</h3><p>Respect other people's builds, ask before changing shared spaces, and keep the adventure welcoming.</p><a href="https://www.saintjules.org/">Back to Saint Jules <span aria-hidden="true">↗</span></a></aside>
+      </div>
+    </section>
+
+    <section class="section shell inventory-section" id="mods">
+      <details class="inventory"><summary><span><span class="eyebrow">FOR THE CURIOUS</span><strong>The full modded inventory</strong></span><span class="inventory-count"><span data-pack-count>140</span> FILES <span aria-hidden="true">+</span></span></summary>
+        <div class="inventory-tools"><div><label for="mod-search">Find a mod</label><input id="mod-search" type="search" data-mod-search placeholder="Try ProjectRed, Create, or weather" autocomplete="off"></div><p><span data-hosted-count>133</span> hosted downloads + <span data-included-count>7</span> bundled files.<br><span data-mod-search-result aria-live="polite">All 140 mod files shown.</span></p></div>
+        <ul class="mods" data-pack-mod-list>
       <li data-pack-source="hosted">[1.20.1] SecurityCraft v1.10.2.1.jar</li>
       <li data-pack-source="hosted">ad_astra-forge-1.20.1-1.15.20.jar</li>
       <li data-pack-source="hosted">AdditionalEnchantedMiner-1.20.1-1201.1.136.jar</li>
@@ -193,22 +284,17 @@
       <li data-pack-source="included">tideforge-bases-compat-1.0.0.jar</li>
       <li data-pack-source="included">tideforge-foremen-2.7.196.jar</li>
       <li data-pack-source="included">tideforge-world-tools-1.2.4.jar</li>
-    </ul></details></section>
+    </ul>
+      </details>
+    </section>
   </main>
-  <footer class="shell"><span>Saint Jules Minecraft · Public pack <span data-pack-version>1.8.1</span></span><span>Minecraft <span data-minecraft-version>1.20.1</span> · Forge <span data-forge-version>47.4.10</span></span></footer>
+  <footer class="site-footer"><div class="shell footer-top"><a class="brand" href="https://www.saintjules.org/"><img src="assets/angel-silver.jpg" alt="" width="40" height="40"><span>SAINT JULES<small>MAKE SOMETHING GOOD.</small></span></a><a href="#worlds">Find your world <span aria-hidden="true">↑</span></a></div><div class="shell footer-bottom"><span>Two worlds. One community. · Website 2.0</span><span>Unofficial Minecraft community. Not affiliated with Mojang or Microsoft.</span></div></footer>
+  <noscript><p class="noscript-note">Downloads and setup guides work without JavaScript. Enable it for copy buttons, mod search, and live status checks.</p></noscript>
   <script>
     const fallbackRelease={"version":"1.8.1","minecraftVersion":"1.20.1","loaderVersion":"47.4.10","packUrl":"downloads/Saint-Jules-Minecraft-Latest.mrpack","sha256":"176bd393edca10e988dbcdadd79f5f240a6e81689116a0d7a8994115fee1e3d9","publishedAt":"2026-10-10T13:06:52.954Z"};
-    const setText=(selector,value)=>document.querySelectorAll(selector).forEach(node=>node.textContent=value);
-    const applyRelease=(release)=>{const version=String(release.version||fallbackRelease.version);const minecraft=String(release.minecraftVersion||fallbackRelease.minecraftVersion);const forge=String(release.loaderVersion||fallbackRelease.loaderVersion);const sha=String(release.sha256||fallbackRelease.sha256);let packUrl=fallbackRelease.packUrl;try{const candidate=new URL(release.packUrl||fallbackRelease.packUrl,location.href);if(candidate.origin===location.origin)packUrl=candidate.href}catch{}setText('[data-pack-version]',version);setText('[data-minecraft-version]',minecraft);setText('[data-forge-version]',forge);setText('[data-pack-sha]',sha.slice(0,8)+'…');if(release.publishedAt){const date=new Date(release.publishedAt);if(!Number.isNaN(date.valueOf()))setText('[data-pack-published]',new Intl.DateTimeFormat(undefined,{dateStyle:'medium'}).format(date))}document.querySelectorAll('[data-pack-download]').forEach(link=>link.href=packUrl)};
-    applyRelease(fallbackRelease);
-    fetch('downloads/latest.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('release metadata unavailable');return response.json()}).then(applyRelease).catch(()=>{});
     const serverAddress="voucher-wildlife.gl.joinmc.link";
-    const copyButton=document.querySelector('[data-copy]');
-    copyButton?.addEventListener('click',async()=>{try{await navigator.clipboard.writeText(serverAddress)}catch{const area=document.createElement('textarea');area.value=serverAddress;area.setAttribute('readonly','');area.style.position='fixed';area.style.opacity='0';document.body.appendChild(area);area.select();document.execCommand('copy');area.remove()}copyButton.textContent='Copied';window.setTimeout(()=>copyButton.textContent='Copy server address',1800)});
-    const statusNode=document.querySelector('[data-server-status]');const statusLabel=document.querySelector('[data-server-status-label]');const statusDetail=document.querySelector('[data-server-detail]');
-    const setServerStatus=(state,label,detail)=>{statusNode.dataset.state=state;statusLabel.textContent=label;statusDetail.textContent=detail};
-    const refreshServerStatus=async()=>{setServerStatus('checking','Checking server…','Contacting the Minecraft status service…');try{const response=await fetch('https://api.mcstatus.io/v2/status/java/'+encodeURIComponent(serverAddress),{cache:'no-store'});if(!response.ok)throw new Error('status unavailable');const status=await response.json();if(status.online===true){const online=Number(status.players?.online||0);const max=Number(status.players?.max||0);setServerStatus('online','Server online',online+' of '+max+' players online · '+String(status.version?.name_clean||'Minecraft 1.20.1'))}else{setServerStatus('offline','Server offline','The public status check could not reach Minecraft. The address is still available to copy.')}}catch{setServerStatus('unknown','Status unavailable','The status service did not answer. No online or offline claim is being made.')}};
-    document.querySelector('[data-refresh-status]')?.addEventListener('click',refreshServerStatus);refreshServerStatus();
+    const vanillaServer={address:"shrimp-russ.tun.ply.gg",version:"26.3",state:"configured"};
   </script>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>
